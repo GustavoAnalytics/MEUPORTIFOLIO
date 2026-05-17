@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Executivo - Viabilidade Financeira & Controladoria</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .pbi-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+        .pbi-card:hover {
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
+
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 shadow-xl">
+        <div class="container mx-auto px-6 py-4 flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-4">
+                <div class="bg-gradient-to-br from-amber-500 to-amber-600 text-slate-950 p-2.5 rounded-lg font-black text-2xl tracking-tighter shadow-lg shadow-amber-500/20">
+                    PBI
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white tracking-wide flex items-center gap-2">
+                        Estudo de Viabilidade Financeira <span class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/30 px-2 py-0.5 rounded font-mono">Controladoria</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Modelagem de Incorporação Imobiliária, RET & Fluxo Caixas Projetados</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-3 text-xs w-full lg:w-auto justify-end">
+                <div class="bg-slate-800 border border-slate-700 rounded-md px-3 py-2 flex items-center gap-2">
+                    <span class="text-slate-400 font-medium">Cenário RET:</span>
+                    <select id="ret-select" onchange="updateDashboardData()" class="bg-transparent text-amber-400 font-bold focus:outline-none cursor-pointer">
+                        <option value="0.04" class="bg-slate-800 text-white">RET Especial (4.0%)</option>
+                        <option value="0.06" class="bg-slate-800 text-white">RET Geral (6.0%)</option>
+                        <option value="0.00" class="bg-slate-800 text-white">Sem RET (Lucro Presumido)</option>
+                    </select>
+                </div>
+                <div class="bg-slate-800 border border-slate-700 rounded-md px-3 py-2 flex items-center gap-2">
+                    <span class="text-slate-400 font-medium">VGV Total:</span>
+                    <select id="vgv-select" onchange="updateDashboardData()" class="bg-transparent text-white font-bold focus:outline-none cursor-pointer">
+                        <option value="120000000" class="bg-slate-800">R$ 120 Mi (Base)</option>
+                        <option value="150000000" class="bg-slate-800">R$ 150 Mi (Otimista)</option>
+                        <option value="90000000" class="bg-slate-800">R$ 90 Mi (Estressado)</option>
+                    </select>
+                </div>
+                <button onclick="resetFilters()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 px-3 py-2 rounded-md transition font-medium flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-filter-circle-xmark text-amber-400"></i> Limpar Filtros
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 space-y-6">
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            
+            <div class="pbi-card p-5 rounded-xl shadow-md">
+                <div class="flex justify-between items-start text-slate-400">
+                    <span class="text-xs font-semibold uppercase tracking-wider">VGV Projetado</span>
+                    <i class="fa-solid fa-building text-amber-400 text-lg"></i>
+                </div>
+                <p class="text-2xl font-bold text-white mt-2 font-mono" id="kpi-vgv">R$ 120.0M</p>
+                <div class="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+                    <span>Valor Geral de Vendas</span>
+                    <span class="text-emerald-400 font-bold"><i class="fa-solid fa-caret-up"></i> 100%</span>
+                </div>
+            </div>
+
+            <div class="pbi-card p-5 rounded-xl shadow-md">
+                <div class="flex justify-between items-start text-slate-400">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Custo de Obra (TDC)</span>
+                    <i class="fa-solid fa-trowel-bricks text-blue-400 text-lg"></i>
+                </div>
+                <p class="text-2xl font-bold text-white mt-2 font-mono" id="kpi-cost">R$ 68.4M</p>
+                <div class="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+                    <span>Terreno + Construção</span>
+                    <span class="text-slate-300 font-semibold" id="kpi-cost-pct">57.0%</span>
+                </div>
+            </div>
+
+            <div class="pbi-card p-5 rounded-xl shadow-md">
+                <div class="flex justify-between items-start text-slate-400">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Impostos (RET)</span>
+                    <i class="fa-solid fa-percent text-rose-400 text-lg"></i>
+                </div>
+                <p class="text-2xl font-bold text-rose-400 mt-2 font-mono" id="kpi-ret">R$ 4.80M</p>
+                <div class="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+                    <span>Regime Especial Trib.</span>
+                    <span class="text-rose-400 font-bold" id="kpi-ret-rate">4.0%</span>
+                </div>
+            </div>
+
+            <div class="pbi-card p-5 rounded-xl shadow-md bg-gradient-to-b from-slate-800 to-slate-900">
+                <div class="flex justify-between items-start text-slate-400">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Lucro Líquido Real</span>
+                    <i class="fa-solid fa-coins text-emerald-400 text-lg"></i>
+                </div>
+                <p class="text-2xl font-bold text-emerald-400 mt-2 font-mono" id="kpi-profit">R$ 46.8M</p>
+                <div class="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+                    <span>Resultado Líquido</span>
+                    <span class="text-emerald-400 font-bold"><i class="fa-solid fa-arrow-trend-up"></i> Eficiente</span>
+                </div>
+            </div>
+
+            <div class="pbi-card p-5 rounded-xl shadow-md">
+                <div class="flex justify-between items-start text-slate-400">
+                    <span class="text-xs font-semibold uppercase tracking-wider">Margem Líquida</span>
+                    <i class="fa-solid fa-chart-pie text-cyan-400 text-lg"></i>
+                </div>
+                <p class="text-2xl font-bold text-cyan-400 mt-2 font-mono" id="kpi-margin">39.0%</p>
+                <div class="text-[11px] text-slate-400 mt-1 flex items-center justify-between">
+                    <span>Margem Operacional</span>
+                    <span class="text-cyan-400 font-semibold">Alvo > 30%</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <div class="lg:col-span-2 bg-slate-900 p-5 rounded-xl border border-slate-800 shadow-xl">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-6">
+                    <div>
+                        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Curva S de Viabilidade & Fluxo de Caixa</h3>
+                        <p class="text-xs text-slate-400">Cronograma Físico-Financeiro das Fases de Lançamento, Obra e Repasse</p>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] bg-slate-950 p-2 rounded-lg border border-slate-800">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-emerald-500 inline-block"></span>Aportes/Receitas</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-xs bg-rose-500 inline-block"></span>Custos Mensais</span>
+                        <span class="flex items-center gap-1.5"><span class="w-4 h-0.5 bg-amber-400 inline-block"></span>Caixa Acumulado</span>
+                    </div>
+                </div>
+                <div class="h-80 relative">
+                    <canvas id="cashFlowChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 shadow-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Breakdown de Custos & Capex</h3>
+                    <p class="text-xs text-slate-400 mb-6">Rateio proporcional do orçamento alocado</p>
+                </div>
+                <div class="h-56 relative flex items-center justify-center">
+                    <canvas id="costsCompositionChart"></canvas>
+                </div>
+                <div class="text-[11px] text-slate-400 bg-slate-950 p-2.5 rounded-lg border border-slate-800 mt-4 text-center">
+                    Gargalo Identificado: <span class="text-amber-400 font-semibold">Custo de Edificação (INCC)</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 shadow-xl lg:col-span-2">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Demonstrativo de Fluxo Mensal Consolidado</h3>
+                        <p class="text-xs text-slate-400">Valores escalonados de acordo com as travas do RET e VGV selecionados</p>
+                    </div>
+                    <button onclick="exportSimulation()" class="text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1.5 rounded font-semibold transition cursor-pointer flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-excel"></i> Exportar XLS
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300 font-mono">
+                        <thead class="bg-slate-950 text-slate-400 uppercase font-semibold border-b border-slate-800">
+                            <tr>
+                                <th class="p-3">Período / Fase</th>
+                                <th class="p-3 text-right">Receitas (VGV)</th>
+                                <th class="p-3 text-right">Custos Obra</th>
+                                <th class="p-3 text-right">Imposto RET</th>
+                                <th class="p-3 text-right text-amber-400">Margem Líquida</th>
+                            </tr>
+                        </thead>
+                        <tbody id="financial-table-body" class="divide-y divide-slate-800/60">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 shadow-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4">
+                        <i class="fa-solid fa-brain text-amber-400 mr-2"></i>Parecer de Controladoria & Risco
+                    </h3>
+                    <div class="space-y-4 text-xs leading-relaxed text-slate-300">
+                        <div class="p-3 bg-slate-950 rounded-lg border-l-4 border-emerald-500">
+                            <span class="font-bold text-emerald-400 block mb-1">Atratividade do Projeto</span>
+                            <p class="text-slate-400">A TIR estimada supera o Custo Médio Ponderado de Capital (WACC) da holding de incorporação, validando o go-ahead estratégico.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950 rounded-lg border-l-4 border-amber-500">
+                            <span class="font-bold text-amber-400 block mb-1">Mitigação Tributária via RET</span>
+                            <p class="text-slate-400">A adesão ao Patrimônio de Afetação garante enquadramento no RET reduzindo drasticamente a carga fiscal sobre os recebíveis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-4 border-t border-slate-800 text-[11px] text-slate-500 flex justify-between items-center">
+                    <span>Responsável Técnico: Equipe PMO</span>
+                    <span>v2.4.1</span>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-900 mt-12 py-4">
+        <div class="container mx-auto px-6 text-center text-xs text-slate-600">
+            Este relatório simula dinamicamente regras de governança e controladoria financeira corporativa. Conteúdo confidencial.
+        </div>
+    </footer>
+
+    <script>
+        let cashFlowChartInstance = null;
+        let costsCompositionChartInstance = null;
+
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 1 }).format(value);
+        }
+
+        function updateDashboardData() {
+            // Read inputs
+            const vgv = parseFloat(document.getElementById('vgv-select').value);
+            const retRate = parseFloat(document.getElementById('ret-select').value);
+
+            // Calculation Engine
+            const costTDC = vgv * 0.57; // Historical dynamic standard 57% cost mapping
+            const retTax = vgv * retRate;
+            const netProfit = vgv - costTDC - retTax;
+            const netMargin = (netProfit / vgv) * 100;
+
+            // Update Header KPI Cards
+            document.getElementById('kpi-vgv').innerText = formatCurrency(vgv);
+            document.getElementById('kpi-cost').innerText = formatCurrency(costTDC);
+            document.getElementById('kpi-ret').innerText = formatCurrency(retTax);
+            document.getElementById('kpi-ret-rate').innerText = (retRate * 100).toFixed(1) + '%';
+            document.getElementById('kpi-profit').innerText = formatCurrency(netProfit);
+            document.getElementById('kpi-margin').innerText = netMargin.toFixed(1) + '%';
+
+            // Generate Dynamic Table Rows
+            const tableBody = document.getElementById('financial-table-body');
+            const stages = [
+                { name: "Mês 01-06: Pré-Lançamento", vgvPct: 0.10, costPct: 0.05 },
+                { name: "Mês 07-18: Fundações & Estrutura", vgvPct: 0.25, costPct: 0.40 },
+                { name: "Mês 19-30: Acabamento & Fachada", vgvPct: 0.35, costPct: 0.45 },
+                { name: "Mês 31-36: Chaves & Repasse", vgvPct: 0.30, costPct: 0.10 }
+            ];
+
+            tableBody.innerHTML = '';
+            stages.forEach(stage => {
+                const stageVgv = vgv * stage.vgvPct;
+                const stageCost = costTDC * stage.costPct;
+                const stageRet = stageVgv * retRate;
+                const stageMargin = ((stageVgv - stageCost - stageRet) / stageVgv) * 100;
+
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-800/40 transition";
+                row.innerHTML = `
+                    <td class="p-3 font-semibold text-slate-200">${stage.name}</td>
+                    <td class="p-3 text-right text-emerald-400">${formatCurrency(stageVgv)}</td>
+                    <td class="p-3 text-right text-rose-400">${formatCurrency(stageCost)}</td>
+                    <td class="p-3 text-right text-slate-400">${formatCurrency(stageRet)}</td>
+                    <td class="p-3 text-right font-bold text-amber-400">${stageMargin.toFixed(1)}%</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            // Update Chart 1: Cash Flow Curves
+            updateCashFlowChart(vgv, costTDC, retTax);
+
+            // Update Chart 2: Cost Breakdowns
+            updateCostCompositionChart(costTDC);
+        }
+
+        function updateCashFlowChart(vgv, cost, tax) {
+            const ctx = document.getElementById('cashFlowChart').getContext('2d');
+            
+            // Build progressive accumulation arrays for curves
+            const labels = ['Mês 01', 'Mês 06', 'Mês 12', 'Mês 18', 'Mês 24', 'Mês 30', 'Mês 36'];
+            const revenues = [0, vgv*0.1, vgv*0.35, vgv*0.5, vgv*0.7, vgv*0.85, vgv];
+            const expenses = [0, cost*0.05, cost*0.25, cost*0.55, cost*0.75, cost*0.95, cost + tax];
+            const accumulated = revenues.map((rev, i) => rev - expenses[i]);
+
+            if (cashFlowChartInstance) {
+                cashFlowChartInstance.destroy();
+            }
+
+            cashFlowChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Receitas Acumuladas',
+                            data: revenues,
+                            backgroundColor: 'rgba(16, 185, 129, 0.75)',
+                            borderColor: '#10b981',
+                            borderWidth: 1,
+                            borderRadius: 3
+                        },
+                        {
+                            label: 'Despesas Totais',
+                            data: expenses,
+                            backgroundColor: 'rgba(244, 63, 94, 0.75)',
+                            borderColor: '#f43f5e',
+                            borderWidth: 1,
+                            borderRadius: 3
+                        },
+                        {
+                            label: 'Saldo de Caixa Líquido',
+                            data: accumulated,
+                            type: 'line',
+                            borderColor: '#fbbf24',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#fbbf24',
+                            fill: false,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 10 } } },
+                        y: { grid: { color: '#334155', borderDash: [4, 4] }, ticks: { color: '#94a3b8', font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        function updateCostCompositionChart(costTDC) {
+            const ctx = document.getElementById('costsCompositionChart').getContext('2d');
+
+            if (costsCompositionChartInstance) {
+                costsCompositionChartInstance.destroy();
+            }
+
+            costsCompositionChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Terreno / Outorgas', 'Obra & Engenharia', 'Projetos & Licenças', 'Marketing & Vendas'],
+                    datasets: [{
+                        data: [costTDC * 0.30, costTDC * 0.55, costTDC * 0.05, costTDC * 0.10],
+                        backgroundColor: ['#38bdf8', '#3b82f6', '#a855f7', '#fbbf24'],
+                        borderWidth: 2,
+                        borderColor: '#1e293b'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#94a3b8', font: { size: 10 }, boxWidth: 12 }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+        }
+
+        function resetFilters() {
+            document.getElementById('ret-select').value = "0.04";
+            document.getElementById('vgv-select').value = "120000000";
+            updateDashboardData();
+        }
+
+        function exportSimulation() {
+            alert("Ação do Power BI: Planilha consolidada de Controladoria enviada com sucesso para fila de exportação!");
+        }
+
+        // Run Engine on load
+        document.addEventListener("DOMContentLoaded", function() {
+            updateDashboardData();
+        });
+    </script>
+</body>
+</html>
