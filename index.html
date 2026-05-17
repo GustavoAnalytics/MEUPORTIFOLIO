@@ -981,467 +981,179 @@ animation:fadeIn .5s;
     <!-- RESULTADOS -->
     
     <div class="mt-14">
-    
-    <h2 class="text-2xl font-bold mb-8">
-    
-    Resultados Gerados
-    
-    </h2>
-    
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-    
-    
-    <div class="bg-gray-50 p-6 rounded-xl text-center">
-    
-    <h3 class="text-3xl font-bold text-blue-600">
-    
-    15%
-    
-    </h3>
-    
-    <p class="text-sm text-gray-600">
-    
-    Redução custos operacionais
-    
-    </p>
-    
+        <h2 class="text-2xl font-bold mb-8 text-gray-900">
+            Resultados Gerados
+        </h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
+                <h3 class="text-3xl font-bold text-blue-600">
+                    15%
+                </h3>
+                <p class="text-sm text-gray-600 mt-2">
+                    Redução custos operacionais
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
+                <h3 class="text-3xl font-bold text-green-600">
+                    +15h
+                </h3>
+                <p class="text-sm text-gray-600 mt-2">
+                    Economia semanal automações
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
+                <h3 class="text-3xl font-bold text-purple-600">
+                    40%
+                </h3>
+                <p class="text-sm text-gray-600 mt-2">
+                    Redução processamento
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
+                <h3 class="text-3xl font-bold text-red-600">
+                    100%
+                </h3>
+                <p class="text-sm text-gray-600 mt-2">
+                    Confiabilidade indicadores
+                </p>
+            </div>
+        </div>
     </div>
-    
-    
-    
-    <div class="bg-gray-50 p-6 rounded-xl text-center">
-    
-    <h3 class="text-3xl font-bold text-green-600">
-    
-    +15h
-    
-    </h3>
-    
-    <p class="text-sm text-gray-600">
-    
-    Economia semanal automações
-    
-    </p>
-    
+
+    <div id="modalProjetos" class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center p-6">
+        <div class="bg-white rounded-3xl w-full max-w-5xl p-8 relative animate-fadeIn text-gray-900 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-3xl text-gray-400 hover:text-gray-600 transition cursor-pointer">
+                ✕
+            </button>
+            
+            <div id="modalContent"></div>
+        </div>
     </div>
-    
-    
-    
-    <div class="bg-gray-50 p-6 rounded-xl text-center">
-    
-    <h3 class="text-3xl font-bold text-purple-600">
-    
-    40%
-    
-    </h3>
-    
-    <p class="text-sm text-gray-600">
-    
-    Redução processamento
-    
-    </p>
-    
-    </div>
-    
-    
-    
-    <div class="bg-gray-50 p-6 rounded-xl text-center">
-    
-    <h3 class="text-3xl font-bold text-red-600">
-    
-    100%
-    
-    </h3>
-    
-    <p class="text-sm text-gray-600">
-    
-    Confiabilidade indicadores
-    
-    </p>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    
-    <!-- MODAL -->
-    
-    <div id="modalProjetos"
-    class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center p-6">
-    
-    <div class="bg-white rounded-3xl w-full max-w-5xl p-8 relative animate-fadeIn">
-    
-    <button
-    onclick="closeModal()"
-    class="absolute top-5 right-5 text-3xl">
-    
-    ✕
-    
-    </button>
-    
-    
-    <div id="modalContent">
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    
-    
+
     <script>
-    
-    const conteudos={
-    
-    
-    erp:`
-    
-    <h2 class="text-3xl font-bold mb-6">
-    
-    🏢 Implantação ERP
-    
-    </h2>
-    
-    <p class="text-gray-600 mb-8">
-    
-    Estruturação completa do ERP.
-    
-    </p>
-    
-    
-    <div class="grid md:grid-cols-4 gap-5">
-    
-    <div class="bg-blue-50 p-5 rounded-xl text-center">
-    
-    📋
-    
-    <h3 class="font-bold">
-    
-    Levantamento
-    
-    </h3>
-    
-    <p>
-    
-    Requisitos
-    
-    </p>
-    
-    </div>
-    
-    
-    <div class="bg-blue-50 p-5 rounded-xl text-center">
-    
-    ⚙️
-    
-    <h3 class="font-bold">
-    
-    AS-IS
-    
-    </h3>
-    
-    <p>
-    
-    Processos
-    
-    </p>
-    
-    </div>
-    
-    
-    <div class="bg-blue-50 p-5 rounded-xl text-center">
-    
-    🔄
-    
-    <h3 class="font-bold">
-    
-    Integrações
-    
-    </h3>
-    
-    <p>
-    
-    ERP + BI
-    
-    </p>
-    
-    </div>
-    
-    
-    <div class="bg-blue-50 p-5 rounded-xl text-center">
-    
-    🚀
-    
-    <h3 class="font-bold">
-    
-    Go Live
-    
-    </h3>
-    
-    <p>
-    
-    Treinamento
-    
-    </p>
-    
-    </div>
-    
-    </div>
-    
-    `,
-    
-    
-    pmo:`
-    
-    <h2 class="text-3xl font-bold mb-8">
-    
-    📊 PMO Sistemas
-    
-    </h2>
-    
-    <div class="flex flex-wrap gap-4">
-    
-    <div class="bg-gray-100 p-5 rounded-xl">
-    🎯 Escopo
-    </div>
-    
-    ➡️
-    
-    <div class="bg-gray-100 p-5 rounded-xl">
-    📅 Planejamento
-    </div>
-    
-    ➡️
-    
-    <div class="bg-gray-100 p-5 rounded-xl">
-    ⚡ Execução
-    </div>
-    
-    ➡️
-    
-    <div class="bg-gray-100 p-5 rounded-xl">
-    📈 Indicadores
-    </div>
-    
-    </div>
-    
-    `,
-    
-    
-    sap:`
-    
-    <h2 class="text-3xl font-bold">
-    
-    🖥 SAP
-    
-    </h2>
-    
-    <div class="bg-green-50 p-8 rounded-xl mt-6">
-    
-    Financeiro
-    
-    ↓<br><br>
-    
-    Compras
-    
-    ↓<br><br>
-    
-    Estoque
-    
-    ↓<br><br>
-    
-    Operações
-    
-    </div>
-    
-    `,
-    
-    
-    wms:`
-    
-    <h2 class="text-3xl font-bold">
-    
-    📦 WMS
-    
-    </h2>
-    
-    <div class="flex gap-4 mt-6 flex-wrap">
-    
-    <div class="bg-orange-100 p-4 rounded-xl">
-    
-    🚚 Recebimento
-    
-    </div>
-    
-    ➡️
-    
-    <div class="bg-orange-100 p-4 rounded-xl">
-    
-    📍 Armazenagem
-    
-    </div>
-    
-    ➡️
-    
-    <div class="bg-orange-100 p-4 rounded-xl">
-    
-    📦 Picking
-    
-    </div>
-    
-    ➡️
-    
-    <div class="bg-orange-100 p-4 rounded-xl">
-    
-    🚛 Expedição
-    
-    </div>
-    
-    </div>
-    
-    `
-    
-    }
-    
-    
-    
-    function openModal(tipo){
-    
-    document.getElementById(
-    "modalProjetos"
-    ).classList.remove("hidden");
-    
-    document.getElementById(
-    "modalContent"
-    ).innerHTML=
-    conteudos[tipo];
-    
-    }
-    
-    
-    
-    function closeModal(){
-    
-    document.getElementById(
-    "modalProjetos"
-    ).classList.add(
-    "hidden"
-    );
-    
-    }
-    
+        const conteudos = {
+            erp: `
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-2">🏢 Implantação ERP</h2>
+                <p class="text-gray-600 mb-8">Estruturação completa do ERP.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-5 text-gray-800">
+                    <div class="bg-blue-50 p-5 rounded-xl text-center">
+                        <div class="text-2xl mb-1">📋</div>
+                        <h3 class="font-bold">Levantamento</h3>
+                        <p class="text-xs text-gray-500 mt-1">Requisitos</p>
+                    </div>
+                    <div class="bg-blue-50 p-5 rounded-xl text-center">
+                        <div class="text-2xl mb-1">⚙️</div>
+                        <h3 class="font-bold">AS-IS</h3>
+                        <p class="text-xs text-gray-500 mt-1">Processos</p>
+                    </div>
+                    <div class="bg-blue-50 p-5 rounded-xl text-center">
+                        <div class="text-2xl mb-1">🔄</div>
+                        <h3 class="font-bold">Integrações</h3>
+                        <p class="text-xs text-gray-500 mt-1">ERP + BI</p>
+                    </div>
+                    <div class="bg-blue-50 p-5 rounded-xl text-center">
+                        <div class="text-2xl mb-1">🚀</div>
+                        <h3 class="font-bold">Go Live</h3>
+                        <p class="text-xs text-gray-500 mt-1">Treinamento</p>
+                    </div>
+                </div>
+            `,
+            pmo: `
+                <h2 class="text-3xl font-bold mb-8">📊 PMO Sistemas</h2>
+                <div class="flex flex-wrap items-center gap-4 text-gray-800 text-sm">
+                    <div class="bg-gray-100 p-5 rounded-xl font-semibold">🎯 Escopo</div>
+                    <div class="text-gray-400">➡️</div>
+                    <div class="bg-gray-100 p-5 rounded-xl font-semibold">📅 Planejamento</div>
+                    <div class="text-gray-400">➡️</div>
+                    <div class="bg-gray-100 p-5 rounded-xl font-semibold">⚡ Execução</div>
+                    <div class="text-gray-400">➡️</div>
+                    <div class="bg-gray-100 p-5 rounded-xl font-semibold">📈 Indicadores</div>
+                </div>
+            `,
+            sap: `
+                <h2 class="text-3xl font-bold">🖥 SAP</h2>
+                <div class="bg-green-50 text-green-900 p-6 rounded-xl mt-6 space-y-2 font-medium max-w-xs">
+                    <div class="flex items-center gap-2">💰 Financeiro</div>
+                    <div class="text-xs text-green-400 pl-1">↓</div>
+                    <div class="flex items-center gap-2">🛒 Compras</div>
+                    <div class="text-xs text-green-400 pl-1">↓</div>
+                    <div class="flex items-center gap-2">📦 Estoque</div>
+                    <div class="text-xs text-green-400 pl-1">↓</div>
+                    <div class="flex items-center gap-2">🏭 Operações</div>
+                </div>
+            `,
+            wms: `
+                <h2 class="text-3xl font-bold">📦 WMS</h2>
+                <div class="flex gap-4 mt-6 flex-wrap text-orange-900 text-sm font-medium">
+                    <div class="bg-orange-100 p-4 rounded-xl">🚚 Recebimento</div>
+                    <div class="flex items-center text-orange-300">➡️</div>
+                    <div class="bg-orange-100 p-4 rounded-xl">📍 Armazenagem</div>
+                    <div class="flex items-center text-orange-300">➡️</div>
+                    <div class="bg-orange-100 p-4 rounded-xl">📦 Picking</div>
+                    <div class="flex items-center text-orange-300">➡️</div>
+                    <div class="bg-orange-100 p-4 rounded-xl">🚛 Expedição</div>
+                </div>
+            `
+        };
+
+        function openModal(tipo) {
+            document.getElementById("modalProjetos").classList.remove("hidden");
+            document.getElementById("modalContent").innerHTML = conteudos[tipo];
+        }
+
+        function closeModal() {
+            document.getElementById("modalProjetos").classList.add("hidden");
+        }
     </script>
 
+    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-8 mt-10">
+        <h2 class="text-3xl font-bold mb-8 text-gray-900">
+            Depoimentos
+        </h2>
 
-<!-- ====================== DEPOIMENTOS ====================== -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
+                <p class="text-gray-600 italic text-sm">
+                    "A implantação conduzida pelo Gustavo trouxe organização, padronização e confiabilidade nos dados."
+                </p>
+                <div class="mt-4 pt-3 border-t border-gray-200/60">
+                    <strong class="text-gray-900 block text-sm">Carlos Henrique</strong>
+                    <p class="text-xs text-gray-500">Gerente Administrativo</p>
+                </div>
+            </div>
 
-<div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-8">
+            <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
+                <p class="text-gray-600 italic text-sm">
+                    "O diferencial é unir tecnologia, processos e pessoas."
+                </p>
+                <div class="mt-4 pt-3 border-t border-gray-200/60">
+                    <strong class="text-gray-900 block text-sm">Eduardo Pacheco</strong>
+                    <p class="text-xs text-gray-500">CEO</p>
+                </div>
+            </div>
 
-<h2 class="text-3xl font-bold mb-8">
-Depoimentos
-</h2>
+            <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
+                <p class="text-gray-600 italic text-sm">
+                    "Os dashboards transformaram a forma como acompanhamos resultados."
+                </p>
+                <div class="mt-4 pt-3 border-t border-gray-200/60">
+                    <strong class="text-gray-900 block text-sm">Marcos Oliveira</strong>
+                    <p class="text-xs text-gray-500">Diretor Executivo</p>
+                </div>
+            </div>
 
-<div class="grid md:grid-cols-2 gap-6">
-
-<div class="testimonial-card">
-
-<p>
-
-"A implantação conduzida pelo Gustavo trouxe organização,
-padronização e confiabilidade nos dados."
-
-</p>
-
-<div class="mt-4">
-
-<strong>Carlos Henrique</strong>
-
-<p class="text-sm text-gray-500">
-Gerente Administrativo
-</p>
-
-</div>
-
-</div>
-
-
-<div class="testimonial-card">
-
-<p>
-
-"O diferencial é unir tecnologia,
-processos e pessoas."
-
-</p>
-
-<div class="mt-4">
-
-<strong>Eduardo Pacheco</strong>
-
-<p class="text-sm text-gray-500">
-
-CEO
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="testimonial-card">
-
-<p>
-
-"Os dashboards transformaram a forma
-como acompanhamos resultados."
-
-</p>
-
-<div class="mt-4">
-
-<strong>Marcos Oliveira</strong>
-
-<p class="text-sm text-gray-500">
-
-Diretor Executivo
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="testimonial-card">
-
-<p>
-
-"Gustavo é extremamente dedicado,
-colaborativo e sempre entrega soluções."
-
-</p>
-
-<div class="mt-4">
-
-<strong>Rodrigues Ademir</strong>
-
-<p class="text-sm text-gray-500">
-
-RH
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+            <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
+                <p class="text-gray-600 italic text-sm">
+                    "Gustavo é extremamente dedicado, colaborativo e sempre entrega soluções."
+                </p>
+                <div class="mt-4 pt-3 border-t border-gray-200/60">
+                    <strong class="text-gray-900 block text-sm">Rodrigues Ademir</strong>
+                    <p class="text-xs text-gray-500">RH</p>
+                </div>
+            </div>
+        </div>
+    </div>
