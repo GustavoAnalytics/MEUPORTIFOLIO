@@ -794,264 +794,188 @@ animation:fadeIn .5s;
 
     <!-- ====================== PROJETOS ====================== -->
     
-    <div class="bg-white p-8 rounded-3xl shadow-xl mb-10">
-    
-    <!-- Cabeçalho -->
-    
-    <div class="text-center mb-12">
-    
-    <div class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm mb-4">
-    
-    Portfólio Profissional
-    
-    </div>
-    
-    
-    <h2 class="text-4xl font-bold text-gray-900">
-    
-    Projetos Estratégicos & Transformação Digital
-    
-    </h2>
-    
-    
-    <p class="text-gray-600 mt-4 max-w-5xl mx-auto">
-    
-    Experiência em PMO Sistemas, ERP, WMS, SAP, BI,
-    Engenharia de Dados, Processos, Automações e
-    soluções orientadas por indicadores.
-    
-    </p>
-    
-    </div>
-    
-    
-    <!-- GRID -->
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-    
-    
-    <!-- PMO ERP -->
-    
-    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
-    
-    <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png"
-    class="h-52 w-full object-cover">
-    
-    
-    <div class="p-6">
-    
-    <h3 class="text-xl font-bold">
-    
-    🚀 PMO Sistemas & ERP
-    
-    </h3>
-    
-    
-    <p class="text-gray-600 text-sm mt-3">
-    
-    Implantação e governança de ERP
-    Sienge, SAP, WMS e TOTVS,
-    levantamento requisitos,
-    AS-IS, TO-BE e treinamento.
-    
-    </p>
-    
-    
-    <div class="flex flex-wrap gap-2 mt-4">
-    
-    <button onclick="openModal('erp')" class="tag">
-    
-    ERP
-    
-    </button>
-    
-    
-    <button onclick="openModal('pmo')" class="tag">
-    
-    PMO
-    
-    </button>
-    
-    
-    <button onclick="openModal('sap')" class="tag">
-    
-    SAP
-    
-    </button>
-    
-    
-    <button onclick="openModal('wms')" class="tag">
-    
-    WMS
-    
-    </button>
-    
-    </div>
-    
-    
-    <div class="mt-5 flex gap-2">
-    
-    <button onclick="openModal('erp')"
-    class="btn-project">
-    
-    Detalhes
-    
-    </button>
-    
-    
-    <a href="pmo.html"
-       class="btn-view"
-       target="_blank">
-    
-       Ver Projeto →
-    
-    </a>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    
-    
-    <!-- FLUXO CAIXA -->
-    
-    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
-    
-    <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png"
-    class="h-52 w-full object-cover">
-    
-    <div class="p-6">
-    
-    <h3 class="text-xl font-bold">
-    
-    💰 Dashboard Fluxo Caixa
-    
-    </h3>
-    
-    <p class="text-gray-600 text-sm mt-3">
-    
-    Monitoramento financeiro,
-    projeção futura,
-    controle diário
-    e conciliação.
-    
-    </p>
-    
-    <div class="flex gap-2 mt-4 flex-wrap">
-    
-    <span class="tag">
-    
-    Power BI
-    
-    </span>
-    
-    <span class="tag">
-    
-    Financeiro
-    
-    </span>
-    
-    </div>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de Projetos Estratégicos</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <div class="mt-5 flex gap-2">
-    
-        <button 
-            type="button"
-            class="btn-project"
-            onclick="location.href='./fluxo_caixa.html';">
-            Detalhes
-        </button>
-    
-    </div>
-    
-    <a target="_blank"
-    href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9"
-    class="btn-view">
-    
-    Ver Projeto →
-    
-    </a>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    
-    
-    
-    <!-- VIABILIDADE -->
-    
-    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
-    
-    <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png"
-    class="h-52 w-full object-cover">
-    
-    <div class="p-6">
-    
-    <h3 class="text-xl font-bold">
-    
-    📊 Viabilidade Financeira
-    
-    </h3>
-    
-    <p class="text-gray-600 text-sm mt-3">
-    
-    Fluxo caixa,
-    VGV,
-    RET,
-    lucro
-    e margem.
-    
-    </p>
-    
-    
-    <div class="flex gap-2 mt-4 flex-wrap">
-    
-    <span class="tag">
-    
-    Power BI
-    
-    </span>
-    
-    <span class="tag">
-    
-    Controladoria
-    
-    </span>
-    
-    </div>
+    <style>
+        body {
+            background: #f5f7fb;
+        }
 
-    <div class="mt-5 flex gap-2">
-    
-        <button
-            type="button"
-            class="btn-project"
-            onclick="location.href='./viabilidade.html'">
-            Detalhes
-        </button>
-    
-    </div>
-    
-    <a target="_blank"
-    href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9"
-    
-    class="btn-view">
-    
-    Ver Projeto →
-    
-    </a>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    </div>
+        .project-card {
+            transition: all .4s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .tag {
+            padding: 6px 14px;
+            background: #EEF2FF;
+            border-radius: 30px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: .4s;
+            font-weight: 500;
+        }
+
+        .tag:hover {
+            background: #2563EB;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-project {
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: #f3f4f6;
+            font-size: 14px;
+            transition: .3s;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-project:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-view {
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: #2563EB;
+            color: white;
+            font-size: 14px;
+            transition: .3s;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-view:hover {
+            background: #1D4ED8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn .5s;
+        }
+    </style>
+</head>
+<body class="p-8">
+
+    <div class="bg-white p-8 rounded-3xl shadow-xl mb-10 animate-fadeIn">
+        
+        <div class="text-center mb-12">
+            <div class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm mb-4">
+                Portfólio Profissional
+            </div>
+            
+            <h2 class="text-4xl font-bold text-gray-900">
+                Projetos Estratégicos & Transformação Digital
+            </h2>
+            
+            <p class="text-gray-600 mt-4 max-w-5xl mx-auto">
+                Experiência em PMO Sistemas, ERP, WMS, SAP, BI, Engenharia de Dados, Processos, Automações e soluções orientadas por indicadores.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png" class="h-52 w-full object-cover" alt="PMO Sistemas">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold">🚀 PMO Sistemas & ERP</h3>
+                    <p class="text-gray-600 text-sm mt-3">
+                        Implantação e governança de ERP Sienge, SAP, WMS e TOTVS, levantamento requisitos, AS-IS, TO-BE e treinamento.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button onclick="openModal('erp')" class="tag">ERP</button>
+                        <button onclick="openModal('pmo')" class="tag">PMO</button>
+                        <button onclick="openModal('sap')" class="tag">SAP</button>
+                        <button onclick="openModal('wms')" class="tag">WMS</button>
+                    </div>
+                    
+                    <div class="mt-5 flex gap-2">
+                        <button onclick="openModal('erp')" class="btn-project">Detalhes</button>
+                        <a href="pmo.html" class="btn-view" target="_blank">Ver Projeto →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png" class="h-52 w-full object-cover" alt="Fluxo de Caixa">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold">💰 Dashboard Fluxo Caixa</h3>
+                    <p class="text-gray-600 text-sm mt-3">
+                        Monitoramento financeiro, projeção futura, controle diário e conciliação.
+                    </p>
+                    
+                    <div class="flex gap-2 mt-4 flex-wrap">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Financeiro</span>
+                    </div>
+
+                    <div class="mt-5 flex gap-2 items-center justify-between">
+                        <button type="button" class="btn-project" onclick="location.href='./fluxo_caixa.html';">
+                            Detalhes
+                        </button>
+                        <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9" class="btn-view">
+                            Ver Projeto →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png" class="h-52 w-full object-cover" alt="Viabilidade Financeira">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold">📊 Viabilidade Financeira</h3>
+                    <p class="text-gray-600 text-sm mt-3">
+                        Fluxo caixa, VGV, RET, lucro e margem.
+                    </p>
+                    
+                    <div class="flex gap-2 mt-4 flex-wrap">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Controladoria</span>
+                    </div>
+
+                    <div class="mt-5 flex gap-2 items-center justify-between">
+                        <button type="button" class="btn-project" onclick="location.href='./viabilidade.html'">
+                            Detalhes
+                        </button>
+                        <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9" class="btn-view">
+                            Ver Projeto →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div> </div> <script>
+        function openModal(type) {
+            alert('Visualizando detalhes do escopo técnico: ' + type.toUpperCase());
+            // Aqui você pode acoplar a lógica de abertura de modais futuros se desejar.
+        }
+    </script>
+</body>
+</html>
     
     
     <!-- RESULTADOS -->
