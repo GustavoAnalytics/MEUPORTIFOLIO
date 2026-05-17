@@ -687,435 +687,716 @@
 
         <!-- ====================== PROJETOS ====================== -->
 
-<div class="bg-white p-8 rounded-3xl shadow-xl mb-10">
-
-    <!-- Cabeçalho -->
-    <div class="text-center mb-12">
-
-        <div class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm mb-4">
-            Portfólio Profissional
-        </div>
-
-        <h2 class="text-4xl font-bold text-gray-900">
-            Projetos Estratégicos & Transformação Digital
-        </h2>
-
-        <p class="text-gray-600 mt-4 max-w-5xl mx-auto">
-            Experiência em PMO Sistemas, ERP, WMS, SAP, BI,
-            Engenharia de Dados, Processos, Automações e
-            soluções orientadas por indicadores.
-        </p>
-
-    </div>
-
-
-    <!-- TAGS ESTRATÉGICAS -->
-
-    <div class="flex flex-wrap gap-3 justify-center mb-10">
-
-        <button onclick="openModal('erp')" class="tag-button">
-            ERP
-        </button>
-
-        <button onclick="openModal('pmo')" class="tag-button">
-            PMO
-        </button>
-
-        <button onclick="openModal('sap')" class="tag-button">
-            SAP
-        </button>
-
-        <button onclick="openModal('wms')" class="tag-button">
-            WMS
-        </button>
-
-    </div>
-
-
-    <!-- GRID -->
-
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-
-
-        <!-- PMO -->
-
-        <div class="project-card">
-
-            <img src="erp.png"
-            class="h-52 w-full object-cover">
-
-            <div class="p-6">
-
-                <h3 class="text-xl font-bold">
-                    🚀 PMO Sistemas & ERP
-                </h3>
-
-                <p class="text-gray-600 text-sm mt-3">
-
-                    Implantação e governança de ERP
-                    Sienge, SAP, WMS e TOTVS,
-                    levantamento requisitos,
-                    AS-IS, TO-BE e treinamento.
-
-                </p>
-
-                <div class="flex flex-wrap gap-2 mt-4">
-
-                    <span class="tag">ERP</span>
-                    <span class="tag">PMO</span>
-                    <span class="tag">SAP</span>
-                    <span class="tag">WMS</span>
-
-                </div>
-
-                <div class="mt-5 flex gap-2">
-
-                    <button onclick="openModal('erp')"
-                    class="btn-project">
-
-                        Detalhes
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- Fluxo -->
-
-        <div class="project-card">
-
-            <img src="image copy 2.png"
-            class="h-52 w-full object-cover">
-
-            <div class="p-6">
-
-                <h3 class="text-xl font-bold">
-                    💰 Dashboard Fluxo Caixa
-                </h3>
-
-                <p class="text-gray-600 text-sm mt-3">
-
-                    Monitoramento financeiro,
-                    projeção saldo futuro
-                    e controle estratégico.
-
-                </p>
-
-                <div class="flex gap-2 mt-4">
-
-                    <span class="tag">
-                        Power BI
-                    </span>
-
-                    <span class="tag">
-                        Financeiro
-                    </span>
-
-                </div>
-
-                <a href="https://app.powerbi.com"
-                target="_blank"
-                class="btn-view mt-5 inline-block">
-
-                    Ver Projeto →
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- Viabilidade -->
-
-        <div class="project-card">
-
-            <img src="viabilidade.png"
-            class="h-52 w-full object-cover">
-
-            <div class="p-6">
-
-                <h3 class="text-xl font-bold">
-                    📊 Viabilidade Financeira
-                </h3>
-
-                <p class="text-gray-600 text-sm mt-3">
-
-                    Fluxo caixa,
-                    margem,
-                    VGV,
-                    RET e lucro.
-
-                </p>
-
-                <div class="flex gap-2 mt-4">
-
-                    <span class="tag">
-                        Controladoria
-                    </span>
-
-                    <span class="tag">
-                        Power BI
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- RESULTADOS -->
-
-    <div class="mt-14">
-
-        <h2 class="text-2xl font-bold mb-8">
-
-            Resultados Gerados
-
-        </h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-
-            <div class="result-card">
-                <h3>15%</h3>
-                <p>Redução custos operacionais</p>
-            </div>
-
-            <div class="result-card">
-                <h3>+15h</h3>
-                <p>Economia semanal automações</p>
-            </div>
-
-            <div class="result-card">
-                <h3>40%</h3>
-                <p>Redução processamento</p>
-            </div>
-
-            <div class="result-card">
-                <h3>100%</h3>
-                <p>Confiabilidade indicadores</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- MODAL -->
-
-<div id="modalProjetos"
-class="fixed inset-0 hidden bg-black/60 z-50 flex items-center justify-center">
-
-<div class="bg-white rounded-3xl p-8 max-w-4xl w-full relative">
-
-<button
-onclick="closeModal()"
-class="absolute right-6 top-4 text-2xl">
-
-✕
-
-</button>
-
-<div id="modalContent"></div>
-
-</div>
-
-</div>
-
-
-
+<script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 
+body{
+background:#f5f7fb;
+}
+
 .project-card{
-
-background:white;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-transition:.4s;
-
+transition:all .4s ease;
+cursor:pointer;
 }
 
 .project-card:hover{
-
 transform:translateY(-8px);
-box-shadow:0 20px 40px rgba(0,0,0,.12);
-
 }
 
 .tag{
-
-padding:6px 12px;
-border-radius:30px;
+padding:6px 14px;
 background:#EEF2FF;
-font-size:12px;
-
-}
-
-.tag-button{
-
-padding:12px 20px;
 border-radius:30px;
-background:#eef2ff;
-font-weight:600;
-transition:.3s;
-
+font-size:12px;
+cursor:pointer;
+transition:.4s;
+font-weight:500;
 }
 
-.tag-button:hover{
-
-background:#2563eb;
+.tag:hover{
+background:#2563EB;
 color:white;
-
+transform:translateY(-2px);
 }
 
 .btn-project{
 
-padding:10px 16px;
-background:#f3f4f6;
+padding:10px 18px;
 border-radius:10px;
+background:#f3f4f6;
+font-size:14px;
+transition:.3s;
 
 }
+
+.btn-project:hover{
+
+background:#e5e7eb;
+
+}
+
 
 .btn-view{
 
-padding:10px 16px;
-background:#2563eb;
-color:white;
+padding:10px 18px;
 border-radius:10px;
+background:#2563EB;
+color:white;
+font-size:14px;
+transition:.3s;
 
 }
 
-.result-card{
+.btn-view:hover{
 
-padding:25px;
-background:#f8fafc;
-border-radius:15px;
-text-align:center;
+background:#1D4ED8;
 
 }
 
-.result-card h3{
+@keyframes fadeIn{
 
-font-size:30px;
-font-weight:bold;
-color:#2563eb;
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0px);
+}
+
+}
+
+.animate-fadeIn{
+
+animation:fadeIn .5s;
 
 }
 
 </style>
 
+</head>
+
+<body class="p-8">
 
 
-<script>
 
-const conteudos={
-
-erp:`
-<h2 class="text-3xl font-bold mb-6">
-🏢 ERP
-</h2>
-
-<div class="grid grid-cols-4 gap-4">
-
-<div class="bg-blue-50 p-4 rounded-xl text-center">
-📋<br>Levantamento
-</div>
-
-<div class="bg-blue-50 p-4 rounded-xl text-center">
-⚙️<br>AS-IS / TO-BE
-</div>
-
-<div class="bg-blue-50 p-4 rounded-xl text-center">
-🔄<br>Integrações
-</div>
-
-<div class="bg-blue-50 p-4 rounded-xl text-center">
-🚀<br>Go Live
-</div>
-
-</div>
-`,
-
-pmo:`
-<h2 class="text-3xl font-bold mb-6">
-📊 PMO Sistemas
-</h2>
-
-<div class="flex justify-between">
-
-<div>🎯 Escopo</div>
-<div>➡️</div>
-<div>📅 Planejamento</div>
-<div>➡️</div>
-<div>⚡ Execução</div>
-<div>➡️</div>
-<div>📈 KPI</div>
-
-</div>
-`,
-
-sap:`
-<h2 class="text-3xl font-bold">
-🖥 SAP
-</h2>
-
-<p class="mt-4">
-Financeiro → Compras → Estoque → Operações
-</p>
-`,
-
-wms:`
-<h2 class="text-3xl font-bold">
-📦 WMS
-</h2>
-
-<p class="mt-4">
-
-🚚 Recebimento
-→ 📍 Armazenagem
-→ 📦 Picking
-→ 🚛 Expedição
-
-</p>
-`
-
-}
-
-
-function openModal(tipo){
-
-document.getElementById("modalProjetos")
-.classList.remove("hidden");
-
-document.getElementById("modalContent")
-.innerHTML=conteudos[tipo];
-
-}
-
-function closeModal(){
-
-document.getElementById("modalProjetos")
-.classList.add("hidden");
-
-}
-
-</script>
+    <!-- ====================== PROJETOS ====================== -->
+    
+    <div class="bg-white p-8 rounded-3xl shadow-xl mb-10">
+    
+    <!-- Cabeçalho -->
+    
+    <div class="text-center mb-12">
+    
+    <div class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm mb-4">
+    
+    Portfólio Profissional
+    
+    </div>
+    
+    
+    <h2 class="text-4xl font-bold text-gray-900">
+    
+    Projetos Estratégicos & Transformação Digital
+    
+    </h2>
+    
+    
+    <p class="text-gray-600 mt-4 max-w-5xl mx-auto">
+    
+    Experiência em PMO Sistemas, ERP, WMS, SAP, BI,
+    Engenharia de Dados, Processos, Automações e
+    soluções orientadas por indicadores.
+    
+    </p>
+    
+    </div>
+    
+    
+    <!-- GRID -->
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+    
+    
+    <!-- PMO ERP -->
+    
+    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+    
+    <img src="erp.png"
+    class="h-52 w-full object-cover">
+    
+    
+    <div class="p-6">
+    
+    <h3 class="text-xl font-bold">
+    
+    🚀 PMO Sistemas & ERP
+    
+    </h3>
+    
+    
+    <p class="text-gray-600 text-sm mt-3">
+    
+    Implantação e governança de ERP
+    Sienge, SAP, WMS e TOTVS,
+    levantamento requisitos,
+    AS-IS, TO-BE e treinamento.
+    
+    </p>
+    
+    
+    <div class="flex flex-wrap gap-2 mt-4">
+    
+    <button onclick="openModal('erp')" class="tag">
+    
+    ERP
+    
+    </button>
+    
+    
+    <button onclick="openModal('pmo')" class="tag">
+    
+    PMO
+    
+    </button>
+    
+    
+    <button onclick="openModal('sap')" class="tag">
+    
+    SAP
+    
+    </button>
+    
+    
+    <button onclick="openModal('wms')" class="tag">
+    
+    WMS
+    
+    </button>
+    
+    </div>
+    
+    
+    <div class="mt-5 flex gap-2">
+    
+    <button onclick="openModal('erp')"
+    class="btn-project">
+    
+    Detalhes
+    
+    </button>
+    
+    
+    <a href="#"
+    class="btn-view">
+    
+    Ver Projeto →
+    
+    </a>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    
+    
+    <!-- FLUXO CAIXA -->
+    
+    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+    
+    <img src="image copy 2.png"
+    class="h-52 w-full object-cover">
+    
+    <div class="p-6">
+    
+    <h3 class="text-xl font-bold">
+    
+    💰 Dashboard Fluxo Caixa
+    
+    </h3>
+    
+    <p class="text-gray-600 text-sm mt-3">
+    
+    Monitoramento financeiro,
+    projeção futura,
+    controle diário
+    e conciliação.
+    
+    </p>
+    
+    <div class="flex gap-2 mt-4 flex-wrap">
+    
+    <span class="tag">
+    
+    Power BI
+    
+    </span>
+    
+    <span class="tag">
+    
+    Financeiro
+    
+    </span>
+    
+    </div>
+    
+    <div class="mt-5 flex gap-2">
+    
+    <button class="btn-project">
+    
+    Detalhes
+    
+    </button>
+    
+    <a target="_blank"
+    href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9"
+    class="btn-view">
+    
+    Ver Projeto →
+    
+    </a>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    
+    
+    
+    <!-- VIABILIDADE -->
+    
+    <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg">
+    
+    <img src="viabilidade.png"
+    class="h-52 w-full object-cover">
+    
+    <div class="p-6">
+    
+    <h3 class="text-xl font-bold">
+    
+    📊 Viabilidade Financeira
+    
+    </h3>
+    
+    <p class="text-gray-600 text-sm mt-3">
+    
+    Fluxo caixa,
+    VGV,
+    RET,
+    lucro
+    e margem.
+    
+    </p>
+    
+    
+    <div class="flex gap-2 mt-4 flex-wrap">
+    
+    <span class="tag">
+    
+    Power BI
+    
+    </span>
+    
+    <span class="tag">
+    
+    Controladoria
+    
+    </span>
+    
+    </div>
+    
+    
+    <div class="mt-5 flex gap-2">
+    
+    <button class="btn-project">
+    
+    Detalhes
+    
+    </button>
+    
+    <a target="_blank"
+    href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9"
+    
+    class="btn-view">
+    
+    Ver Projeto →
+    
+    </a>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    
+    <!-- RESULTADOS -->
+    
+    <div class="mt-14">
+    
+    <h2 class="text-2xl font-bold mb-8">
+    
+    Resultados Gerados
+    
+    </h2>
+    
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    
+    
+    <div class="bg-gray-50 p-6 rounded-xl text-center">
+    
+    <h3 class="text-3xl font-bold text-blue-600">
+    
+    15%
+    
+    </h3>
+    
+    <p class="text-sm text-gray-600">
+    
+    Redução custos operacionais
+    
+    </p>
+    
+    </div>
+    
+    
+    
+    <div class="bg-gray-50 p-6 rounded-xl text-center">
+    
+    <h3 class="text-3xl font-bold text-green-600">
+    
+    +15h
+    
+    </h3>
+    
+    <p class="text-sm text-gray-600">
+    
+    Economia semanal automações
+    
+    </p>
+    
+    </div>
+    
+    
+    
+    <div class="bg-gray-50 p-6 rounded-xl text-center">
+    
+    <h3 class="text-3xl font-bold text-purple-600">
+    
+    40%
+    
+    </h3>
+    
+    <p class="text-sm text-gray-600">
+    
+    Redução processamento
+    
+    </p>
+    
+    </div>
+    
+    
+    
+    <div class="bg-gray-50 p-6 rounded-xl text-center">
+    
+    <h3 class="text-3xl font-bold text-red-600">
+    
+    100%
+    
+    </h3>
+    
+    <p class="text-sm text-gray-600">
+    
+    Confiabilidade indicadores
+    
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    
+    <!-- MODAL -->
+    
+    <div id="modalProjetos"
+    class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center p-6">
+    
+    <div class="bg-white rounded-3xl w-full max-w-5xl p-8 relative animate-fadeIn">
+    
+    <button
+    onclick="closeModal()"
+    class="absolute top-5 right-5 text-3xl">
+    
+    ✕
+    
+    </button>
+    
+    
+    <div id="modalContent">
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    
+    
+    <script>
+    
+    const conteudos={
+    
+    
+    erp:`
+    
+    <h2 class="text-3xl font-bold mb-6">
+    
+    🏢 Implantação ERP
+    
+    </h2>
+    
+    <p class="text-gray-600 mb-8">
+    
+    Estruturação completa do ERP.
+    
+    </p>
+    
+    
+    <div class="grid md:grid-cols-4 gap-5">
+    
+    <div class="bg-blue-50 p-5 rounded-xl text-center">
+    
+    📋
+    
+    <h3 class="font-bold">
+    
+    Levantamento
+    
+    </h3>
+    
+    <p>
+    
+    Requisitos
+    
+    </p>
+    
+    </div>
+    
+    
+    <div class="bg-blue-50 p-5 rounded-xl text-center">
+    
+    ⚙️
+    
+    <h3 class="font-bold">
+    
+    AS-IS
+    
+    </h3>
+    
+    <p>
+    
+    Processos
+    
+    </p>
+    
+    </div>
+    
+    
+    <div class="bg-blue-50 p-5 rounded-xl text-center">
+    
+    🔄
+    
+    <h3 class="font-bold">
+    
+    Integrações
+    
+    </h3>
+    
+    <p>
+    
+    ERP + BI
+    
+    </p>
+    
+    </div>
+    
+    
+    <div class="bg-blue-50 p-5 rounded-xl text-center">
+    
+    🚀
+    
+    <h3 class="font-bold">
+    
+    Go Live
+    
+    </h3>
+    
+    <p>
+    
+    Treinamento
+    
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    `,
+    
+    
+    pmo:`
+    
+    <h2 class="text-3xl font-bold mb-8">
+    
+    📊 PMO Sistemas
+    
+    </h2>
+    
+    <div class="flex flex-wrap gap-4">
+    
+    <div class="bg-gray-100 p-5 rounded-xl">
+    🎯 Escopo
+    </div>
+    
+    ➡️
+    
+    <div class="bg-gray-100 p-5 rounded-xl">
+    📅 Planejamento
+    </div>
+    
+    ➡️
+    
+    <div class="bg-gray-100 p-5 rounded-xl">
+    ⚡ Execução
+    </div>
+    
+    ➡️
+    
+    <div class="bg-gray-100 p-5 rounded-xl">
+    📈 Indicadores
+    </div>
+    
+    </div>
+    
+    `,
+    
+    
+    sap:`
+    
+    <h2 class="text-3xl font-bold">
+    
+    🖥 SAP
+    
+    </h2>
+    
+    <div class="bg-green-50 p-8 rounded-xl mt-6">
+    
+    Financeiro
+    
+    ↓<br><br>
+    
+    Compras
+    
+    ↓<br><br>
+    
+    Estoque
+    
+    ↓<br><br>
+    
+    Operações
+    
+    </div>
+    
+    `,
+    
+    
+    wms:`
+    
+    <h2 class="text-3xl font-bold">
+    
+    📦 WMS
+    
+    </h2>
+    
+    <div class="flex gap-4 mt-6 flex-wrap">
+    
+    <div class="bg-orange-100 p-4 rounded-xl">
+    
+    🚚 Recebimento
+    
+    </div>
+    
+    ➡️
+    
+    <div class="bg-orange-100 p-4 rounded-xl">
+    
+    📍 Armazenagem
+    
+    </div>
+    
+    ➡️
+    
+    <div class="bg-orange-100 p-4 rounded-xl">
+    
+    📦 Picking
+    
+    </div>
+    
+    ➡️
+    
+    <div class="bg-orange-100 p-4 rounded-xl">
+    
+    🚛 Expedição
+    
+    </div>
+    
+    </div>
+    
+    `
+    
+    }
+    
+    
+    
+    function openModal(tipo){
+    
+    document.getElementById(
+    "modalProjetos"
+    ).classList.remove("hidden");
+    
+    document.getElementById(
+    "modalContent"
+    ).innerHTML=
+    conteudos[tipo];
+    
+    }
+    
+    
+    
+    function closeModal(){
+    
+    document.getElementById(
+    "modalProjetos"
+    ).classList.add(
+    "hidden"
+    );
+    
+    }
+    
+    </script>
 
 
 <!-- ====================== DEPOIMENTOS ====================== -->
