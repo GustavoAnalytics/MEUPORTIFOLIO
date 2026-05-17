@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PMO Corporativo - Governança & Implantação ERP</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .progress-bar {
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <header class="bg-slate-900 text-white shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-network-wired text-cyan-400 text-2xl"></i>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">PMO de Sistemas & Governança</h1>
+                    <p class="text-xs text-gray-400">Master Plan de Implantação ERP</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm bg-slate-800 px-3 py-1.5 rounded-md border border-slate-700 text-gray-300">
+                    <i class="fa-regular fa-calendar-days mr-2 text-cyan-400"></i>Status: Q2 2026
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase">Sistemas em Escopo</h3>
+                    <i class="fa-solid fa-cubes text-blue-500 text-xl"></i>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">4 Grandes ERPs</p>
+                <p class="text-xs text-gray-500 mt-1">Sienge, SAP, WMS, TOTVS</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase">Progresso Global</h3>
+                    <i class="fa-solid fa-chart-line text-green-500 text-xl"></i>
+                </div>
+                <p class="text-2xl font-bold text-gray-900" id="global-progress">68%</p>
+                <div class="w-full bg-gray-200 h-2 rounded-full mt-2">
+                    <div class="bg-green-500 h-2 rounded-full progress-bar" style="width: 68%"></div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase">Fase Atual Predominante</h3>
+                    <i class="fa-solid fa-arrow-right-arrows-left text-amber-500 text-xl"></i>
+                </div>
+                <p class="text-2xl font-bold text-gray-900">TO-BE & Testes</p>
+                <p class="text-xs text-gray-500 mt-1">Desenho de processos futuros</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-sm font-semibold text-gray-500 uppercase">Status de Riscos</h3>
+                    <i class="fa-solid fa-triangle-exclamation text-emerald-500 text-xl"></i>
+                </div>
+                <p class="text-2xl font-bold text-emerald-600">Controlado</p>
+                <p class="text-xs text-gray-500 mt-1">0 bloqueios críticos</p>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-lg font-bold text-slate-900"><i class="fa-solid fa-layer-group mr-2 text-blue-600"></i>Status por Frente de Sistema</h2>
+                        <span class="text-xs text-gray-500">Clique para filtrar detalhes das fases</span>
+                    </div>
+
+                    <div class="space-y-4" id="erp-container">
+                        </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
+                    <h2 class="text-lg font-bold text-slate-900 mb-4"><i class="fa-solid fa-gavel mr-2 text-blue-600"></i>Framework de Governança do PMO</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-slate-50 rounded-lg border border-gray-100">
+                            <h4 class="font-semibold text-sm text-slate-800 mb-1"><i class="fa-solid fa-people-gg mr-2 text-indigo-500"></i>Matriz de Comunicação</h4>
+                            <p class="text-xs text-gray-600">Reuniões de Status Report Semanais (Sponsors) e Diárias (Steering Committee/Equipe Técnica).</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-lg border border-gray-100">
+                            <h4 class="font-semibold text-sm text-slate-800 mb-1"><i class="fa-solid fa-shield-halved mr-2 text-indigo-500"></i>Controle de Mudanças (CCB)</h4>
+                            <p class="text-xs text-gray-600">Qualquer alteração de escopo em requisitos do Sienge, SAP, WMS ou TOTVS passa por aprovação formal e análise de impacto regulatório.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-xl shadow-xs border border-gray-200">
+                    <h2 class="text-lg font-bold text-slate-900 mb-4"><i class="fa-solid fa-list-check mr-2 text-blue-600"></i>Macrofluxo de Implantação</h2>
+                    <p class="text-xs text-gray-500 mb-6">Metodologia ágil aplicada à transição de processos de negócio.</p>
+                    
+                    <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-gray-200">
+                        
+                        <div class="relative pl-8 phase-card" id="phase-req">
+                            <div class="absolute left-1 top-1 bg-blue-600 w-5 h-5 rounded-full flex items-center justify-center ring-4 ring-white">
+                                <span class="text-[10px] text-white font-bold">1</span>
+                            </div>
+                            <h3 class="font-bold text-sm text-gray-900">Levantamento de Requisitos</h3>
+                            <p class="text-xs text-gray-600 mt-1">Mapeamento de dores, entrevistas com Key Users e especificação técnica das necessidades de negócio.</p>
+                            <span class="inline-block mt-2 text-[10px] bg-green-100 text-green-800 font-semibold px-2 py-0.5 rounded">Concluído Global</span>
+                        </div>
+
+                        <div class="relative pl-8 phase-card" id="phase-asis">
+                            <div class="absolute left-1 top-1 bg-blue-600 w-5 h-5 rounded-full flex items-center justify-center ring-4 ring-white">
+                                <span class="text-[10px] text-white font-bold">2</span>
+                            </div>
+                            <h3 class="font-bold text-sm text-gray-900">Mapeamento AS-IS</h3>
+                            <p class="text-xs text-gray-600 mt-1">Documentação detalhada da situação atual dos processos operacionais, fiscais e logísticos de cada frente.</p>
+                            <span class="inline-block mt-2 text-[10px] bg-green-100 text-green-800 font-semibold px-2 py-0.5 rounded">Concluído Global</span>
+                        </div>
+
+                        <div class="relative pl-8 phase-card" id="phase-tobe">
+                            <div class="absolute left-1 top-1 bg-amber-500 w-5 h-5 rounded-full flex items-center justify-center ring-4 ring-white">
+                                <span class="text-[10px] text-white font-bold">3</span>
+                            </div>
+                            <h3 class="font-bold text-sm text-gray-900">Desenho TO-BE & Configuração</h3>
+                            <p class="text-xs text-gray-600 mt-1">Arquitetura de processos futuros otimizados dentro das melhores práticas nativas de cada ERP.</p>
+                            <span class="inline-block mt-2 text-[10px] bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded">Em Execução</span>
+                        </div>
+
+                        <div class="relative pl-8 phase-card" id="phase-train">
+                            <div class="absolute left-1 top-1 bg-gray-400 w-5 h-5 rounded-full flex items-center justify-center ring-4 ring-white">
+                                <span class="text-[10px] text-white font-bold">4</span>
+                            </div>
+                            <h3 class="font-bold text-sm text-gray-900">Capacitação & Treinamento</h3>
+                            <p class="text-xs text-gray-600 mt-1">Homologação, criação de manuais de processos e treinamento prático dos usuários finais (Go-Live Readiness).</p>
+                            <span class="inline-block mt-2 text-[10px] bg-gray-100 text-gray-700 font-semibold px-2 py-0.5 rounded">Planejado</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-12 py-4">
+        <div class="container mx-auto px-6 text-center text-xs text-gray-500">
+            &copy; 2026 PMO Corporativo de Sistemas. Todos os direitos reservados. Relatório Gerencial de Alta Performance.
+        </div>
+    </footer>
+
+    <script>
+        // Massa de dados estruturada contendo o escopo exigido
+        const erpData = [
+            {
+                name: "Sienge ERP",
+                segment: "Engenharia & Construção",
+                manager: "Carlos Silva",
+                progress: 90,
+                status: "Fase Final",
+                statusColor: "bg-emerald-100 text-emerald-800",
+                phases: { req: "100%", asis: "100%", tobe: "95%", train: "65%" }
+            },
+            {
+                name: "SAP S/4HANA",
+                segment: "Finanças, Controladoria & Compras",
+                manager: "Mariana Costa",
+                progress: 45,
+                status: "Crítico / Atenção",
+                statusColor: "bg-red-100 text-red-800",
+                phases: { req: "100%", asis: "80%", tobe: "30%", train: "0%" }
+            },
+            {
+                name: "WMS (Software de Logística)",
+                segment: "Cadeia de Suprimentos & Estoque",
+                manager: "Roberto Junior",
+                progress: 75,
+                status: "No Prazo",
+                statusColor: "bg-blue-100 text-blue-800",
+                phases: { req: "100%", asis: "100%", tobe: "80%", train: "20%" }
+            },
+            {
+                name: "TOTVS Protheus",
+                segment: "Backoffice, RH & Manufatura",
+                manager: "Ana Beatriz",
+                progress: 62,
+                status: "No Prazo",
+                statusColor: "bg-blue-100 text-blue-800",
+                phases: { req: "100%", asis: "90%", tobe: "50%", train: "10%" }
+            }
+        ];
+
+        // Função para renderizar os cards de ERP na tela
+        function renderERPCards() {
+            const container = document.getElementById('erp-container');
+            container.innerHTML = ''; // Limpa container
+
+            erpData.forEach((erp, index) => {
+                const card = document.createElement('div');
+                card.className = "p-5 bg-slate-50 rounded-xl border border-gray-200 hover:border-blue-400 transition cursor-pointer";
+                card.onclick = () => highlightPhases(erp);
+
+                card.innerHTML = `
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                        <div>
+                            <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">${erp.segment}</span>
+                            <h3 class="text-lg font-bold text-gray-900 mt-0.5">${erp.name}</h3>
+                            <p class="text-xs text-gray-500">Líder de Frente: ${erp.manager}</p>
+                        </div>
+                        <div class="mt-2 md:mt-0 flex items-center space-x-3">
+                            <span class="status-badge ${erp.statusColor}">${erp.status}</span>
+                            <span class="text-sm font-bold text-gray-700">${erp.progress}%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full bg-gray-200 h-2 rounded-full mb-4">
+                        <div class="bg-slate-800 h-2 rounded-full progress-bar" style="width: ${erp.progress}%"></div>
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-2 text-center text-xs">
+                        <div class="bg-white p-2 rounded border border-gray-100">
+                            <span class="block text-gray-400 font-medium">Requisitos</span>
+                            <span class="font-bold text-gray-800">${erp.phases.req}</span>
+                        </div>
+                        <div class="bg-white p-2 rounded border border-gray-100">
+                            <span class="block text-gray-400 font-medium">AS-IS</span>
+                            <span class="font-bold text-gray-800">${erp.phases.asis}</span>
+                        </div>
+                        <div class="bg-white p-2 rounded border border-gray-100">
+                            <span class="block text-gray-400 font-medium">TO-BE</span>
+                            <span class="font-bold text-gray-800">${erp.phases.tobe}</span>
+                        </div>
+                        <div class="bg-white p-2 rounded border border-gray-100">
+                            <span class="block text-gray-400 font-medium">Treinar</span>
+                            <span class="font-bold text-gray-800">${erp.phases.train}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Interatividade: Destaca as metas no painel lateral ao clicar no ERP
+        function highlightPhases(erp) {
+            alert(`Foco na Governança: ${erp.name}\n\nFases detalhadas:\n- Levantamento Requisitos: ${erp.phases.req}\n- Mapeamento AS-IS: ${erp.phases.asis}\n- Desenho TO-BE: ${erp.phases.tobe}\n- Treinamento: ${erp.phases.train}\n\nGerente responsável: ${erp.manager}`);
+        }
+
+        // Inicializar aplicação ao carregar a página
+        window.onload = () => {
+            renderERPCards();
+        };
+    </script>
+</body>
+</html>
