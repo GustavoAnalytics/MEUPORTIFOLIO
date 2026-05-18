@@ -878,150 +878,177 @@ animation:fadeIn .5s;
         }
     </style>
 </head>
-<body class="p-8">
+<body class="p-8 bg-gray-50">
 
-    <div class="bg-white p-8 rounded-3xl shadow-xl mb-10 animate-fadeIn">
+    <div class="max-w-7xl mx-auto space-y-12">
         
-        <div class="text-center mb-12">
-            <div class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm mb-4">
-                Portfólio Profissional
+        <div class="bg-white p-8 rounded-3xl shadow-xl animate-fadeIn">
+            
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm mb-4">
+                    Portfólio Profissional
+                </div>
+                
+                <h2 class="text-4xl font-bold text-gray-900">
+                    Projetos Estratégicos & Transformação Digital
+                </h2>
+                
+                <p class="text-gray-600 mt-4 max-w-5xl mx-auto">
+                    Experiência em PMO Sistemas, ERP, WMS, SAP, BI, Engenharia de Dados, Processos, Automações e soluções orientadas por indicadores.
+                </p>
             </div>
             
-            <h2 class="text-4xl font-bold text-gray-900">
-                Projetos Estratégicos & Transformação Digital
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png" class="h-52 w-full object-cover" alt="PMO Sistemas">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">🚀 PMO Sistemas & ERP</h3>
+                        <p class="text-gray-600 text-sm mt-3">
+                            Implantação e governança de ERP Sienge, SAP, WMS e TOTVS, levantamento requisitos, AS-IS, TO-BE e treinamento.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <button onclick="openModal('erp')" class="tag">ERP</button>
+                            <button onclick="openModal('pmo')" class="tag">PMO</button>
+                            <button onclick="openModal('sap')" class="tag">SAP</button>
+                            <button onclick="openModal('wms')" class="tag">WMS</button>
+                        </div>
+                        
+                        <div class="mt-5 flex gap-2">
+                            <button onclick="openModal('erp')" class="btn-project">Detalhes</button>
+                            <a href="pmo.html" class="btn-view" target="_blank">Ver Projeto →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png" class="h-52 w-full object-cover" alt="Fluxo de Caixa">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">💰 Dashboard Fluxo Caixa</h3>
+                        <p class="text-gray-600 text-sm mt-3">
+                            Monitoramento financeiro, projeção futura, controle diário e conciliação.
+                        </p>
+                        
+                        <div class="flex gap-2 mt-4 flex-wrap">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Financeiro</span>
+                        </div>
+
+                        <div class="mt-5 flex gap-2 items-center justify-between">
+                            <button type="button" class="btn-project" onclick="location.href='./fluxo_caixa.html';">
+                                Detalhes
+                            </button>
+                            <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9" class="btn-view">
+                                Ver Projeto →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                    <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png" class="h-52 w-full object-cover" alt="Viabilidade Financeira">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">📊 Viabilidade Financeira</h3>
+                        <p class="text-gray-600 text-sm mt-3">
+                            Fluxo caixa, VGV, RET, lucro e margem.
+                        </p>
+                        
+                        <div class="flex gap-2 mt-4 flex-wrap">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">Controladoria</span>
+                        </div>
+
+                        <div class="mt-5 flex gap-2 items-center justify-between">
+                            <button type="button" class="btn-project" onclick="location.href='./viabilidade.html'">
+                                Detalhes
+                            </button>
+                            <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9" class="btn-view">
+                                Ver Projeto →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div> 
+        </div> 
+
+        <div class="bg-white p-8 rounded-3xl shadow-xl mt-12">
+            <h2 class="text-3xl font-bold mb-8 text-gray-900">
+                Resultados Gerados
             </h2>
             
-            <p class="text-gray-600 mt-4 max-w-5xl mx-auto">
-                Experiência em PMO Sistemas, ERP, WMS, SAP, BI, Engenharia de Dados, Processos, Automações e soluções orientadas por indicadores.
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            
-            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png" class="h-52 w-full object-cover" alt="PMO Sistemas">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold">🚀 PMO Sistemas & ERP</h3>
-                    <p class="text-gray-600 text-sm mt-3">
-                        Implantação e governança de ERP Sienge, SAP, WMS e TOTVS, levantamento requisitos, AS-IS, TO-BE e treinamento.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <button onclick="openModal('erp')" class="tag">ERP</button>
-                        <button onclick="openModal('pmo')" class="tag">PMO</button>
-                        <button onclick="openModal('sap')" class="tag">SAP</button>
-                        <button onclick="openModal('wms')" class="tag">WMS</button>
-                    </div>
-                    
-                    <div class="mt-5 flex gap-2">
-                        <button onclick="openModal('erp')" class="btn-project">Detalhes</button>
-                        <a href="pmo.html" class="btn-view" target="_blank">Ver Projeto →</a>
-                    </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
+                    <h3 class="text-3xl font-bold text-blue-600">15%</h3>
+                    <p class="text-sm text-gray-600 mt-2">Redução custos operacionais</p>
                 </div>
-            </div>
-            
-            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png" class="h-52 w-full object-cover" alt="Fluxo de Caixa">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold">💰 Dashboard Fluxo Caixa</h3>
-                    <p class="text-gray-600 text-sm mt-3">
-                        Monitoramento financeiro, projeção futura, controle diário e conciliação.
-                    </p>
-                    
-                    <div class="flex gap-2 mt-4 flex-wrap">
-                        <span class="tag">Power BI</span>
-                        <span class="tag">Financeiro</span>
-                    </div>
-
-                    <div class="mt-5 flex gap-2 items-center justify-between">
-                        <button type="button" class="btn-project" onclick="location.href='./fluxo_caixa.html';">
-                            Detalhes
-                        </button>
-                        <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9" class="btn-view">
-                            Ver Projeto →
-                        </a>
-                    </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
+                    <h3 class="text-3xl font-bold text-green-600">+15h</h3>
+                    <p class="text-sm text-gray-600 mt-2">Economia semanal automações</p>
                 </div>
-            </div>
-            
-            <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png" class="h-52 w-full object-cover" alt="Viabilidade Financeira">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold">📊 Viabilidade Financeira</h3>
-                    <p class="text-gray-600 text-sm mt-3">
-                        Fluxo caixa, VGV, RET, lucro e margem.
-                    </p>
-                    
-                    <div class="flex gap-2 mt-4 flex-wrap">
-                        <span class="tag">Power BI</span>
-                        <span class="tag">Controladoria</span>
-                    </div>
-
-                    <div class="mt-5 flex gap-2 items-center justify-between">
-                        <button type="button" class="btn-project" onclick="location.href='./viabilidade.html'">
-                            Detalhes
-                        </button>
-                        <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9" class="btn-view">
-                            Ver Projeto →
-                        </a>
-                    </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
+                    <h3 class="text-3xl font-bold text-purple-600">40%</h3>
+                    <p class="text-sm text-gray-600 mt-2">Redução processamento</p>
                 </div>
-            </div>
-
-        </div> </div> <script>
-        function openModal(type) {
-            alert('Visualizando detalhes do escopo técnico: ' + type.toUpperCase());
-            // Aqui você pode acoplar a lógica de abertura de modais futuros se desejar.
-        }
-    </script>
-</body>
-</html>
-    
-    
-    <!-- RESULTADOS -->
-    
-    <div class="mt-14">
-        <h2 class="text-2xl font-bold mb-8 text-gray-900">
-            Resultados Gerados
-        </h2>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
-                <h3 class="text-3xl font-bold text-blue-600">
-                    15%
-                </h3>
-                <p class="text-sm text-gray-600 mt-2">
-                    Redução custos operacionais
-                </p>
-            </div>
-            
-            <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
-                <h3 class="text-3xl font-bold text-green-600">
-                    +15h
-                </h3>
-                <p class="text-sm text-gray-600 mt-2">
-                    Economia semanal automações
-                </p>
-            </div>
-            
-            <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
-                <h3 class="text-3xl font-bold text-purple-600">
-                    40%
-                </h3>
-                <p class="text-sm text-gray-600 mt-2">
-                    Redução processamento
-                </p>
-            </div>
-            
-            <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
-                <h3 class="text-3xl font-bold text-red-600">
-                    100%
-                </h3>
-                <p class="text-sm text-gray-600 mt-2">
-                    Confiabilidade indicadores
-                </p>
+                
+                <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
+                    <h3 class="text-3xl font-bold text-red-600">100%</h3>
+                    <p class="text-sm text-gray-600 mt-2">Confiabilidade indicadores</p>
+                </div>
             </div>
         </div>
+
+        <div class="bg-white p-8 rounded-3xl shadow-xl mt-12">
+            <h2 class="text-3xl font-bold mb-8 text-gray-900">
+                Depoimentos
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
+                    <p class="text-gray-600 italic text-sm">
+                        "A implantação conduzida pelo Gustavo trouxe organização, padronização e confiabilidade nos dados."
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-gray-200/60">
+                        <strong class="text-gray-900 block text-sm">Carlos Henrique</strong>
+                        <p class="text-xs text-gray-500">Gerente Administrativo</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
+                    <p class="text-gray-600 italic text-sm">
+                        "O diferencial é unir tecnologia, processos e pessoas."
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-gray-200/60">
+                        <strong class="text-gray-900 block text-sm">Eduardo Pacheco</strong>
+                        <p class="text-xs text-gray-500">CEO</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
+                    <p class="text-gray-600 italic text-sm">
+                        "Os dashboards transformaram a forma como acompanhamos resultados."
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-gray-200/60">
+                        <strong class="text-gray-900 block text-sm">Marcos Oliveira</strong>
+                        <p class="text-xs text-gray-500">Diretor Executivo</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
+                    <p class="text-gray-600 italic text-sm">
+                        "Gustavo é extremamente dedicado, colaborativo e sempre entrega soluções."
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-gray-200/60">
+                        <strong class="text-gray-900 block text-sm">Rodrigues Ademir</strong>
+                        <p class="text-xs text-gray-500">RH</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div id="modalProjetos" class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center p-6">
@@ -1029,7 +1056,6 @@ animation:fadeIn .5s;
             <button onclick="closeModal()" class="absolute top-5 right-5 text-3xl text-gray-400 hover:text-gray-600 transition cursor-pointer">
                 ✕
             </button>
-            
             <div id="modalContent"></div>
         </div>
     </div>
@@ -1109,51 +1135,5 @@ animation:fadeIn .5s;
             document.getElementById("modalProjetos").classList.add("hidden");
         }
     </script>
-
-    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-8 mt-10">
-        <h2 class="text-3xl font-bold mb-8 text-gray-900">
-            Depoimentos
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
-                <p class="text-gray-600 italic text-sm">
-                    "A implantação conduzida pelo Gustavo trouxe organização, padronização e confiabilidade nos dados."
-                </p>
-                <div class="mt-4 pt-3 border-t border-gray-200/60">
-                    <strong class="text-gray-900 block text-sm">Carlos Henrique</strong>
-                    <p class="text-xs text-gray-500">Gerente Administrativo</p>
-                </div>
-            </div>
-
-            <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
-                <p class="text-gray-600 italic text-sm">
-                    "O diferencial é unir tecnologia, processos e pessoas."
-                </p>
-                <div class="mt-4 pt-3 border-t border-gray-200/60">
-                    <strong class="text-gray-900 block text-sm">Eduardo Pacheco</strong>
-                    <p class="text-xs text-gray-500">CEO</p>
-                </div>
-            </div>
-
-            <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
-                <p class="text-gray-600 italic text-sm">
-                    "Os dashboards transformaram a forma como acompanhamos resultados."
-                </p>
-                <div class="mt-4 pt-3 border-t border-gray-200/60">
-                    <strong class="text-gray-900 block text-sm">Marcos Oliveira</strong>
-                    <p class="text-xs text-gray-500">Diretor Executivo</p>
-                </div>
-            </div>
-
-            <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
-                <p class="text-gray-600 italic text-sm">
-                    "Gustavo é extremamente dedicado, colaborativo e sempre entrega soluções."
-                </p>
-                <div class="mt-4 pt-3 border-t border-gray-200/60">
-                    <strong class="text-gray-900 block text-sm">Rodrigues Ademir</strong>
-                    <p class="text-xs text-gray-500">RH</p>
-                </div>
-            </div>
-        </div>
-    </div>
+</body>
+</html>
