@@ -407,53 +407,275 @@
     </section>
 
     <section id="projetos" class="mt-24">
-      <div class="max-w-3xl mb-10">
-        <span class="eyebrow">Portfólio estratégico</span>
-        <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Projetos que conectam sistemas, indicadores e operação.</h2>
-        <p class="mt-4 text-slate-400 leading-relaxed">Cases estruturados para demonstrar aplicação prática em ERP, PMO, BI, processos, finanças e transformação operacional.</p>
+  <div class="max-w-3xl mb-10">
+    <span class="eyebrow">Portfólio estratégico</span>
+    <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">
+      Projetos que conectam sistemas, indicadores e operação.
+    </h2>
+
+    <p class="mt-4 text-slate-400 leading-relaxed">
+      Cases estruturados para demonstrar aplicação prática em ERP, PMO,
+      BI, processos, finanças e transformação operacional.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+
+    <!-- PMO -->
+    <article class="card rounded-3xl overflow-hidden">
+      <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png"
+           alt="PMO Sistemas e ERP"
+           class="h-56 w-full object-cover opacity-90">
+
+      <div class="p-7">
+        <h3 class="text-2xl font-extrabold">PMO Sistemas & ERP</h3>
+
+        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+          Implantação e governança de ERP Sienge, SAP, WMS e TOTVS
+          com levantamento de requisitos, AS-IS, TO-BE,
+          treinamento e sustentação.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="tag">ERP</span>
+          <span class="tag">PMO</span>
+          <span class="tag">Governança</span>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <button onclick="openModal('erp')" class="btn-secondary">
+            Detalhes
+          </button>
+
+          <a href="pmo.html" target="_blank" class="btn-primary">
+            Ver projeto →
+          </a>
+        </div>
       </div>
+    </article>
 
-      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-7">
-        <article class="card rounded-3xl overflow-hidden">
-          <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png" alt="PMO Sistemas e ERP" class="h-56 w-full object-cover opacity-90">
-          <div class="p-7">
-            <h3 class="text-2xl font-extrabold">PMO Sistemas & ERP</h3>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Implantação e governança de ERP Sienge, SAP, WMS e TOTVS com levantamento de requisitos, AS-IS, TO-BE, treinamento e sustentação.</p>
-            <div class="mt-5 flex flex-wrap gap-2"><span class="tag">ERP</span><span class="tag">PMO</span><span class="tag">Governança</span></div>
-            <div class="mt-6 flex gap-3">
-              <button onclick="openModal('erp')" class="btn-secondary">Detalhes</button>
-              <a href="pmo.html" target="_blank" class="btn-primary">Ver projeto →</a>
-            </div>
-          </div>
-        </article>
+    <!-- Fluxo Caixa -->
+    <article class="card rounded-3xl overflow-hidden">
+      <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png"
+           alt="Dashboard Fluxo de Caixa"
+           class="h-56 w-full object-cover opacity-90">
 
-        <article class="card rounded-3xl overflow-hidden">
-          <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png" alt="Dashboard Fluxo de Caixa" class="h-56 w-full object-cover opacity-90">
-          <div class="p-7">
-            <h3 class="text-2xl font-extrabold">Dashboard Fluxo de Caixa</h3>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Monitoramento financeiro, projeção futura, controle diário, conciliação e visão executiva para gestão do caixa.</p>
-            <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Power BI</span><span class="tag">Financeiro</span><span class="tag">Cash Flow</span></div>
-            <div class="mt-6 flex gap-3">
-              <a href="fluxo_caixa.html" class="btn-secondary">Detalhes</a>
-              <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9" class="btn-primary">Ver projeto →</a>
-            </div>
-          </div>
-        </article>
+      <div class="p-7">
+        <h3 class="text-2xl font-extrabold">
+          Dashboard Fluxo de Caixa
+        </h3>
 
-        <article class="card rounded-3xl overflow-hidden">
-          <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png" alt="Viabilidade Financeira" class="h-56 w-full object-cover opacity-90">
-          <div class="p-7">
-            <h3 class="text-2xl font-extrabold">Viabilidade Financeira</h3>
-            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Fluxo de caixa, VGV, RET, lucro, margem, orçamento e indicadores para análise de empreendimentos imobiliários.</p>
-            <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Power BI</span><span class="tag">Controladoria</span><span class="tag">VGV</span></div>
-            <div class="mt-6 flex gap-3">
-              <a href="viabilidade.html" class="btn-secondary">Detalhes</a>
-              <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9" class="btn-primary">Ver projeto →</a>
-            </div>
-          </div>
-        </article>
+        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+          Monitoramento financeiro, projeção futura, controle diário,
+          conciliação e visão executiva para gestão do caixa.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="tag">Power BI</span>
+          <span class="tag">Financeiro</span>
+          <span class="tag">Cash Flow</span>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <a href="fluxo_caixa.html" class="btn-secondary">
+            Detalhes
+          </a>
+
+          <a target="_blank"
+             href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9"
+             class="btn-primary">
+            Ver projeto →
+          </a>
+        </div>
       </div>
-    </section>
+    </article>
+
+    <!-- Viabilidade -->
+    <article class="card rounded-3xl overflow-hidden">
+      <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png"
+           alt="Viabilidade Financeira"
+           class="h-56 w-full object-cover opacity-90">
+
+      <div class="p-7">
+        <h3 class="text-2xl font-extrabold">
+          Viabilidade Financeira
+        </h3>
+
+        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+          Fluxo de caixa, VGV, RET, lucro, margem, orçamento e
+          indicadores para análise de empreendimentos imobiliários.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="tag">Power BI</span>
+          <span class="tag">Controladoria</span>
+          <span class="tag">VGV</span>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <a href="viabilidade.html" class="btn-secondary">
+            Detalhes
+          </a>
+
+          <a target="_blank"
+             href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9"
+             class="btn-primary">
+            Ver projeto →
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Comercial -->
+    <article class="card rounded-3xl overflow-hidden">
+      <img src="comercial.png"
+           alt="Especialista Comercial"
+           class="h-56 w-full object-cover opacity-90">
+
+      <div class="p-7">
+        <h3 class="text-2xl font-extrabold">
+          Especialista Comercial
+        </h3>
+
+        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+          Gestão comercial com pipeline, funil de vendas,
+          forecast, metas, conversão, performance e
+          indicadores estratégicos.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="tag">Comercial</span>
+          <span class="tag">Pipeline</span>
+          <span class="tag">Forecast</span>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <button onclick="openModal('comercial')" class="btn-secondary">
+            Detalhes
+          </button>
+
+          <a href="comercial.html"
+             target="_blank"
+             class="btn-primary">
+            Ver projeto →
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Inadimplência -->
+    <article class="card rounded-3xl overflow-hidden">
+      <img src="inadimplencia.png"
+           alt="Especialista Inadimplência"
+           class="h-56 w-full object-cover opacity-90">
+
+      <div class="p-7">
+        <h3 class="text-2xl font-extrabold">
+          Especialista Inadimplência
+        </h3>
+
+        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+          Controle de inadimplência, aging da dívida,
+          cobrança ativa, acordos, risco de crédito,
+          recuperação financeira e carteira.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="tag">Cobrança</span>
+          <span class="tag">Aging</span>
+          <span class="tag">Crédito</span>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <button onclick="openModal('inadimplencia')" class="btn-secondary">
+            Detalhes
+          </button>
+
+          <a href="inadimplencia.html"
+             target="_blank"
+             class="btn-primary">
+            Ver projeto →
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Logística -->
+    <article class="card rounded-3xl overflow-hidden">
+      <img src="logistica-wms.png"
+           alt="Especialista Logística WMS"
+           class="h-56 w-full object-cover opacity-90">
+
+      <div class="p-7">
+        <h3 class="text-2xl font-extrabold">
+          Especialista Logística WMS
+        </h3>
+
+        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+          Recebimento, armazenagem, picking,
+          expedição, SLA operacional, produtividade,
+          backlog e governança logística WMS.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="tag">WMS</span>
+          <span class="tag">Logística</span>
+          <span class="tag">SLA</span>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <button onclick="openModal('logistica')" class="btn-secondary">
+            Detalhes
+          </button>
+
+          <a href="logistica.html"
+             target="_blank"
+             class="btn-primary">
+            Ver projeto →
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Obras -->
+    <article class="card rounded-3xl overflow-hidden">
+      <img src="obras-sienge.png"
+           alt="Especialista Obras Sienge"
+           class="h-56 w-full object-cover opacity-90">
+
+      <div class="p-7">
+        <h3 class="text-2xl font-extrabold">
+          Especialista Obras Sienge
+        </h3>
+
+        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+          Evolução física, curva S, custo orçado vs realizado,
+          VGV, margem, Lean Construction, PPC e
+          indicadores executivos de engenharia.
+        </p>
+
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="tag">Sienge</span>
+          <span class="tag">Obras</span>
+          <span class="tag">Lean</span>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <button onclick="openModal('obras')" class="btn-secondary">
+            Detalhes
+          </button>
+
+          <a href="obras.html"
+             target="_blank"
+             class="btn-primary">
+            Ver projeto →
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
 
     <section class="mt-24 glass rounded-[34px] p-8 md:p-10">
       <div class="max-w-3xl mb-8">
