@@ -1,1139 +1,543 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currículo Profissional</title>
-    <!-- Incluindo Tailwind CSS para facilitar o estilo -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fonte Inter para a consistência visual -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
-        }
-
-        .icon-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #f0f0f0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-
-        .icon-container:hover {
-            transform: translateY(-5px);
-        }
-        
-        .icon-small-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background-color: #f0f0f0;
-        }
-
-        .btn-project{
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            padding:12px 25px;
-            border-radius:10px;
-            text-decoration:none;
-            cursor:pointer;
-        }
-
-        /* Estilos para as barras de progresso simuladas */
-        .progress-bar-bg {
-            background-color: #e0e0e0;
-        }
-
-        .progress-bar-fill-1 {
-            background-color: #4CAF50;
-        }
-
-        .progress-bar-fill-2 {
-            background-color: #2196F3;
-        }
-
-        .testimonial-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            padding: 20px;
-        }
-        
-        .testimonial-image {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .project-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            padding: 20px;
-        }
-        
-        .project-image-placeholder {
-            width: 100px;
-            height: 100px;
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            margin-right: 16px;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800">
-
-    <!-- Container Principal do Layout -->
-    <div class="container mx-auto p-4 md:p-8 lg:p-12 max-w-5xl">
-
-        <!-- Seção de Cabeçalho -->
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-8">
-            <div class="md:w-3/4 mb-6 md:mb-0">
-                <h1 class="text-4xl lg:text-5xl font-bold leading-tight text-gray-900">
-                    Especialista em PMO de Sistemas | ERP | Lean | Governança de Dados
-                </h1>
-
-                <p class="mt-4 text-xl font-medium text-gray-700">
-                    Sienge • SAP • WMS • Lean Construction • Lean Operations
-                </p>
-
-                <p class="mt-4 text-gray-600 text-lg">
-                    Atuo conectando pessoas, processos e tecnologia para transformar sistemas corporativos em operações eficientes, escaláveis e orientadas por dados.
-                </p>
-
-                <p class="mt-3 text-sm text-gray-500">
-                    +5 anos de experiência | Power BI • Python • SQL • Airflow • ERP Sienge • TOTVS • SAP
-                </p>
-            </div>
-
-            <div class="md:w-1/4 flex justify-center md:justify-end">
-                <img 
-                    src="Imagem do WhatsApp de 2025-08-11 à(s) 12.10.37_380bc144.jpg" 
-                    alt="Gustavo Farias - Consultor Data Driven" 
-                    class="rounded-full w-36 h-36 md:w-48 md:h-48 shadow-md"
-                >
-            </div>
-        </div>
-
-
-        <!-- Seção de Habilidades -->
-        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-8">
-        
-            <div class="mb-8">
-        
-                <h2 class="text-3xl font-bold text-gray-900">
-                    Especialidades Técnicas & Estratégicas
-                </h2>
-        
-                <p class="text-gray-500 mt-2">
-                    Especialista na integração entre tecnologia, ERP, processos, governança de dados e metodologias Lean para transformação operacional orientada por dados.
-                </p>
-        
-            </div>
-        
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-                <!-- PMO -->
-        
-                <div class="project-card border-l-4 border-blue-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-blue-700">
-                        PMO de Sistemas & Governança
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Gestão de projetos e iniciativas sistêmicas, alinhando tecnologia e negócio através de:
-        
-                        <br><br>
-        
-                        • Implantação de sistemas corporativos<br>
-                        • Gestão de stakeholders<br>
-                        • Governança de processos<br>
-                        • Planejamento estratégico<br>
-                        • Gestão de mudanças<br>
-                        • Mapeamento AS-IS / TO-BE<br>
-                        • Estruturação de processos corporativos
-        
-                    </p>
-        
-                </div>
-        
-        
-                <!-- ERP -->
-        
-                <div class="project-card border-l-4 border-green-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-green-700">
-                        ERP & Transformação Sistêmica
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Implantação, sustentação e otimização de ambientes corporativos:
-        
-                        <br><br>
-        
-                        • Sienge<br>
-                        • SAP<br>
-                        • TOTVS<br>
-                        • WMS Senior<br>
-                        • CRM<br>
-                        • Integração financeira, comercial e operacional<br>
-                        • Governança de utilização
-        
-                    </p>
-        
-                </div>
-        
-        
-                <!-- Lean -->
-        
-                <div class="project-card border-l-4 border-orange-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-orange-700">
-                        Lean Construction & Lean Operations
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Aplicação de metodologias Lean voltadas para eficiência operacional:
-        
-                        <br><br>
-        
-                        • Redução de desperdícios<br>
-                        • Melhoria contínua<br>
-                        • Fluxos operacionais<br>
-                        • Padronização de processos<br>
-                        • Eliminação de gargalos<br>
-                        • Otimização operacional
-        
-                    </p>
-        
-                </div>
-        
-        
-                <!-- Dados -->
-        
-                <div class="project-card border-l-4 border-purple-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-purple-700">
-                        Engenharia & Governança de Dados
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Construção de ambientes de dados confiáveis:
-        
-                        <br><br>
-        
-                        • ETL com Python<br>
-                        • Apache Airflow<br>
-                        • APIs REST<br>
-                        • Data Warehouse<br>
-                        • Data Lake<br>
-                        • Modelagem dimensional<br>
-                        • Governança de dados
-        
-                    </p>
-        
-                </div>
-        
-        
-                <!-- BI -->
-        
-                <div class="project-card border-l-4 border-indigo-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-indigo-700">
-                        Business Intelligence & Analytics
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Construção de indicadores estratégicos para tomada de decisão:
-        
-                        <br><br>
-        
-                        • Power BI (DAX / M)<br>
-                        • Dashboards executivos<br>
-                        • KPIs estratégicos<br>
-                        • Cash Flow<br>
-                        • Curva de vendas<br>
-                        • Orçado x Realizado<br>
-                        • Viabilidade financeira
-        
-                    </p>
-        
-                </div>
-        
-        
-                <!-- Indicadores -->
-        
-                <div class="project-card border-l-4 border-red-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-red-700">
-                        Indicadores & Processos Corporativos
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Estruturação de indicadores e processos corporativos:
-        
-                        <br><br>
-        
-                        • Indicadores por hierarquia<br>
-                        • KPIs estratégicos<br>
-                        • Processos sistêmicos<br>
-                        • Gestão de desempenho<br>
-                        • Estrutura organizacional<br>
-                        • Performance operacional
-        
-                    </p>
-        
-                </div>
-        
-        
-                <!-- Automação -->
-        
-                <div class="project-card border-l-4 border-cyan-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-cyan-700">
-                        Automação & Eficiência Operacional
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Automação de processos e redução de atividades manuais:
-        
-                        <br><br>
-        
-                        • Python<br>
-                        • Streamlit<br>
-                        • RPA<br>
-                        • UiPath<br>
-                        • Automation Anywhere<br>
-                        • Ganho de produtividade
-        
-                    </p>
-        
-                </div>
-        
-        
-                <!-- Banco -->
-        
-                <div class="project-card border-l-4 border-gray-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">
-                        Banco de Dados & Performance
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Estruturação e otimização de ambientes de dados:
-        
-                        <br><br>
-        
-                        • SQL Server<br>
-                        • PostgreSQL<br>
-                        • Oracle<br>
-                        • MySQL<br>
-                        • Performance SQL<br>
-                        • Rastreamento e auditoria
-        
-                    </p>
-        
-                </div>
-        
-        
-                <!-- Treinamentos -->
-        
-                <div class="project-card border-l-4 border-pink-600 hover:shadow-xl transition">
-        
-                    <h3 class="font-bold text-lg mb-3 text-pink-700">
-                        Treinamentos & Cultura Data-Driven
-                    </h3>
-        
-                    <p class="text-gray-600 text-sm">
-        
-                        Adoção de sistemas e desenvolvimento de cultura organizacional:
-        
-                        <br><br>
-        
-                        • Treinamento de equipes<br>
-                        • Gestão de usabilidade<br>
-                        • Adoção de sistemas<br>
-                        • Gestão da mudança<br>
-                        • Capacitação corporativa
-        
-                    </p>
-        
-                </div>
-        
-            </div>
-        
-        </div>
-
-
-        <!-- Seção de Experiência -->
-        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg mb-8">
-        
-            <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
-        
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900">
-                        Experiência Profissional
-                    </h2>
-        
-                    <p class="text-gray-500 mt-2">
-                        Integração entre tecnologia, ERP, processos, Lean, dados e melhoria contínua para geração de resultados estratégicos.
-                    </p>
-                </div>
-        
-            </div>
-        
-        
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-                <!-- Grupo MNGT -->
-        
-                <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-blue-600 hover:shadow-lg transition">
-        
-                    <h3 class="text-xl font-bold text-gray-900">
-                        Grupo MNGT
-                    </h3>
-        
-                    <p class="text-blue-600 font-medium">
-                        Gestor ERP | WMS | SAP | PMO de Sistemas | Lean Operations
-                    </p>
-        
-                    <p class="text-gray-500 text-sm mb-4">
-                        Novembro de 2025 - Presente
-                    </p>
-        
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
-        
-                        <li>
-                            Gestão estratégica do ecossistema ERP, WMS e SAP com foco em eficiência operacional.
-                        </li>
-        
-                        <li>
-                            Aplicação de metodologias Lean Operations para redução de desperdícios e melhoria contínua.
-                        </li>
-        
-                        <li>
-                            Mapeamento e redesenho de processos utilizando metodologia AS-IS / TO-BE.
-                        </li>
-        
-                        <li>
-                            Estruturação de indicadores estratégicos baseados em hierarquias organizacionais para construção de processos sistêmicos.
-                        </li>
-        
-                        <li>
-                            Desenvolvimento de dashboards executivos e KPIs estratégicos para suporte à diretoria.
-                        </li>
-        
-                        <li>
-                            Integração entre sistemas corporativos, automações e governança de dados.
-                        </li>
-        
-                        <li>
-                            Treinamento e capacitação de equipes para adoção efetiva dos sistemas.
-                        </li>
-        
-                    </ul>
-        
-                </div>
-        
-        
-                <!-- Área Incrível -->
-        
-                <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-green-600 hover:shadow-lg transition">
-        
-                    <h3 class="text-xl font-bold text-gray-900">
-                        Área Incrível Incorporadora
-                    </h3>
-        
-                    <p class="text-green-600 font-medium">
-                        Gestor ERP | Sienge | PMO de Sistemas | Lean Construction
-                    </p>
-        
-                    <p class="text-gray-500 text-sm mb-4">
-                        Setembro de 2025 - Presente
-                    </p>
-        
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
-        
-                        <li>
-                            Liderança estratégica de ERP, dados e processos com foco em governança e eficiência operacional.
-                        </li>
-        
-                        <li>
-                            Gestão e evolução do ERP Sienge integrado às áreas financeira, engenharia, suprimentos e operação.
-                        </li>
-        
-                        <li>
-                            Aplicação de conceitos Lean Construction visando redução de desperdícios e melhoria contínua.
-                        </li>
-        
-                        <li>
-                            Implantação e reestruturação de processos conectando tecnologia às áreas de negócio.
-                        </li>
-        
-                        <li>
-                            Mapeamento AS-IS / TO-BE para identificação de gargalos e oportunidades.
-                        </li>
-        
-                        <li>
-                            Estruturação de indicadores estratégicos e KPIs baseados em hierarquias organizacionais.
-                        </li>
-        
-                        <li>
-                            Garantia da governança e confiabilidade dos dados para suporte executivo.
-                        </li>
-        
-                    </ul>
-        
-                </div>
-        
-        
-                <!-- GFFinance -->
-        
-                <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-yellow-500 hover:shadow-lg transition">
-        
-                    <h3 class="text-xl font-bold text-gray-900">
-                        GFFinance Consultoria
-                    </h3>
-        
-                    <p class="text-yellow-600 font-medium">
-                        Consultor em Dados Financeiros | BI | Estratégia Corporativa
-                    </p>
-        
-                    <p class="text-gray-500 text-sm mb-4">
-                        Agosto de 2025 - Presente
-                    </p>
-        
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
-        
-                        <li>
-                            Transformação de dados financeiros em informações estratégicas para tomada de decisão executiva.
-                        </li>
-        
-                        <li>
-                            Desenvolvimento de dashboards executivos para Cash Flow, Orçado x Realizado e Curva de Vendas.
-                        </li>
-        
-                        <li>
-                            Estruturação de análises de viabilidade econômica para suporte a investimentos.
-                        </li>
-        
-                        <li>
-                            Redução de custos através da integração entre ERP e BI.
-                        </li>
-        
-                        <li>
-                            Treinamento de equipes para utilização estratégica dos indicadores.
-                        </li>
-        
-                    </ul>
-        
-                </div>
-        
-        
-                <!-- Analista BI -->
-        
-                <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-purple-600 hover:shadow-lg transition">
-        
-                    <h3 class="text-xl font-bold text-gray-900">
-                        Analista de Dados (BI) & Automação de Processos
-                    </h3>
-        
-                    <p class="text-purple-600 font-medium">
-                        Data Analytics | Engenharia de Dados
-                    </p>
-        
-                    <p class="text-gray-500 text-sm mb-4">
-                        Maio de 2023 - Agosto de 2025
-                    </p>
-        
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
-        
-                        <li>
-                            Desenvolvimento de dashboards estratégicos para múltiplas áreas corporativas.
-                        </li>
-        
-                        <li>
-                            Criação de pipelines de dados utilizando Python, SQL, APIs e Airflow.
-                        </li>
-        
-                        <li>
-                            Automação de processos reduzindo atividades manuais e aumentando produtividade.
-                        </li>
-        
-                        <li>
-                            Atuação integrada entre áreas técnicas e negócio.
-                        </li>
-        
-                    </ul>
-        
-                </div>
-        
-        
-                <!-- Saffi -->
-        
-                <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-red-500 hover:shadow-lg transition">
-        
-                    <h3 class="text-xl font-bold text-gray-900">
-                        Saffi Consultoria
-                    </h3>
-        
-                    <p class="text-red-600 font-medium">
-                        Analista e Desenvolvedor de Sistemas (BI)
-                    </p>
-        
-                    <p class="text-gray-500 text-sm mb-4">
-                        Abril de 2023 - Abril de 2024
-                    </p>
-        
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
-        
-                        <li>
-                            Projetos de BI e engenharia de dados com foco em escalabilidade.
-                        </li>
-        
-                        <li>
-                            Modelagem de Data Warehouse, Data Mart e processos ETL.
-                        </li>
-        
-                        <li>
-                            Integração de APIs e suporte à tomada de decisão.
-                        </li>
-        
-                        <li>
-                            Criação de dashboards analíticos para múltiplos setores.
-                        </li>
-        
-                    </ul>
-        
-                </div>
-        
-        
-                <!-- Superprof -->
-        
-                <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-indigo-500 hover:shadow-lg transition">
-        
-                    <h3 class="text-xl font-bold text-gray-900">
-                        Superprof
-                    </h3>
-        
-                    <p class="text-indigo-600 font-medium">
-                        Professor de Análise de Dados
-                    </p>
-        
-                    <p class="text-gray-500 text-sm mb-4">
-                        Novembro de 2023 - Janeiro de 2026
-                    </p>
-        
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
-        
-                        <li>Ministração de aulas práticas e teóricas em análise de dados.</li>
-        
-                        <li>Estruturação de conteúdos sobre ETL, SQL, Python e BI.</li>
-        
-                        <li>Capacitação focada em aplicação prática e raciocínio analítico.</li>
-        
-                    </ul>
-        
-                </div>
-        
-        
-                <!-- NSF -->
-        
-                <div class="bg-gray-50 p-6 rounded-xl border-l-4 border-gray-500 hover:shadow-lg transition">
-        
-                    <h3 class="text-xl font-bold text-gray-900">
-                        NSF Tecnologia em Instalações Comerciais
-                    </h3>
-        
-                    <p class="text-gray-600 font-medium">
-                        Analista de TI Jr | Suporte & Dados
-                    </p>
-        
-                    <p class="text-gray-500 text-sm mb-4">
-                        Maio de 2021 - Março de 2022
-                    </p>
-        
-                    <ul class="list-disc pl-5 space-y-2 text-gray-700">
-        
-                        <li>Suporte a sistemas corporativos e gestão de usuários.</li>
-        
-                        <li>Extração e análise de dados utilizando Excel, SQL e Power BI.</li>
-        
-                        <li>Investigação de falhas sistêmicas e melhoria contínua.</li>
-        
-                        <li>Participação na melhoria de processos e qualidade da informação.</li>
-        
-                    </ul>
-        
-                </div>
-        
-            </div>
-        
-        </div>
-
-
-        <!-- ====================== PROJETOS ====================== -->
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<style>
-
-body{
-background:#f5f7fb;
-}
-
-.project-card{
-transition:all .4s ease;
-cursor:pointer;
-}
-
-.project-card:hover{
-transform:translateY(-8px);
-}
-
-.tag{
-padding:6px 14px;
-background:#EEF2FF;
-border-radius:30px;
-font-size:12px;
-cursor:pointer;
-transition:.4s;
-font-weight:500;
-}
-
-.tag:hover{
-background:#2563EB;
-color:white;
-transform:translateY(-2px);
-}
-
-.btn-project{
-
-padding:10px 18px;
-border-radius:10px;
-background:#f3f4f6;
-font-size:14px;
-transition:.3s;
-
-}
-
-.btn-project:hover{
-
-background:#e5e7eb;
-
-}
-
-
-.btn-view{
-
-padding:10px 18px;
-border-radius:10px;
-background:#2563EB;
-color:white;
-font-size:14px;
-transition:.3s;
-
-}
-
-.btn-view:hover{
-
-background:#1D4ED8;
-
-}
-
-@keyframes fadeIn{
-
-from{
-opacity:0;
-transform:translateY(20px);
-}
-
-to{
-opacity:1;
-transform:translateY(0px);
-}
-
-}
-
-.animate-fadeIn{
-
-animation:fadeIn .5s;
-
-}
-
-</style>
-
-</head>
-
-<body class="p-8">
-
-
-
-    <!-- ====================== PROJETOS ====================== -->
-    
-    <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio de Projetos Estratégicos</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gustavo Farias | Transformação Operacional & Sistemas Corporativos</title>
 
-    <style>
-        body {
-            background: #f5f7fb;
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        .project-card {
-            transition: all .4s ease;
-            cursor: pointer;
-        }
+  <style>
+    :root{
+      --bg:#07090d;
+      --surface:#10141c;
+      --surface-2:#151b26;
+      --line:#263041;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --soft:#cbd5e1;
+      --gold:#d6b25e;
+      --blue:#38bdf8;
+      --green:#22c55e;
+    }
 
-        .project-card:hover {
-            transform: translateY(-8px);
-        }
+    *{box-sizing:border-box}
 
-        .tag {
-            padding: 6px 14px;
-            background: #EEF2FF;
-            border-radius: 30px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: .4s;
-            font-weight: 500;
-        }
+    html{scroll-behavior:smooth}
 
-        .tag:hover {
-            background: #2563EB;
-            color: white;
-            transform: translateY(-2px);
-        }
+    body{
+      font-family:'Inter',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.12), transparent 32%),
+        radial-gradient(circle at top right, rgba(214,178,94,.10), transparent 34%),
+        linear-gradient(180deg,#06080c 0%,#0b1018 45%,#07090d 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
 
-        .btn-project {
-            padding: 10px 18px;
-            border-radius: 10px;
-            background: #f3f4f6;
-            font-size: 14px;
-            transition: .3s;
-            display: inline-block;
-            text-align: center;
-        }
+    .glass{
+      background:rgba(16,20,28,.82);
+      border:1px solid rgba(148,163,184,.16);
+      box-shadow:0 24px 80px rgba(0,0,0,.35);
+      backdrop-filter:blur(18px);
+    }
 
-        .btn-project:hover {
-            background: #e5e7eb;
-        }
+    .card{
+      background:linear-gradient(180deg,rgba(21,27,38,.96),rgba(12,16,23,.96));
+      border:1px solid rgba(148,163,184,.15);
+      box-shadow:0 18px 60px rgba(0,0,0,.28);
+      transition:.35s ease;
+    }
 
-        .btn-view {
-            padding: 10px 18px;
-            border-radius: 10px;
-            background: #2563EB;
-            color: white;
-            font-size: 14px;
-            transition: .3s;
-            display: inline-block;
-            text-align: center;
-        }
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(214,178,94,.45);
+      box-shadow:0 24px 90px rgba(0,0,0,.42);
+    }
 
-        .btn-view:hover {
-            background: #1D4ED8;
-        }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(214,178,94,.10);
+      border:1px solid rgba(214,178,94,.28);
+      color:#f8e7b0;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0px);
-            }
-        }
+    .accent{
+      background:linear-gradient(90deg,#f8e7b0,#d6b25e,#38bdf8);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
 
-        .animate-fadeIn {
-            animation: fadeIn .5s;
-        }
-    </style>
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:13px 20px;
+      border-radius:14px;
+      background:linear-gradient(135deg,#d6b25e,#f8e7b0);
+      color:#111827;
+      font-weight:800;
+      transition:.25s ease;
+      box-shadow:0 16px 40px rgba(214,178,94,.20);
+    }
+
+    .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05)}
+
+    .btn-secondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:13px 20px;
+      border-radius:14px;
+      background:rgba(148,163,184,.08);
+      border:1px solid rgba(148,163,184,.22);
+      color:#e2e8f0;
+      font-weight:700;
+      transition:.25s ease;
+    }
+
+    .btn-secondary:hover{transform:translateY(-2px);border-color:rgba(56,189,248,.45)}
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(56,189,248,.08);
+      border:1px solid rgba(56,189,248,.18);
+      color:#bae6fd;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .metric{
+      background:linear-gradient(180deg,rgba(21,27,38,.95),rgba(8,12,18,.95));
+      border:1px solid rgba(148,163,184,.16);
+      border-radius:22px;
+      padding:24px;
+    }
+
+    .timeline-line{
+      position:absolute;
+      left:17px;
+      top:34px;
+      bottom:0;
+      width:1px;
+      background:linear-gradient(180deg,rgba(214,178,94,.8),rgba(56,189,248,.15));
+    }
+
+    .dot{
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      background:rgba(214,178,94,.12);
+      border:1px solid rgba(214,178,94,.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:999;
+      background:rgba(0,0,0,.76);
+      backdrop-filter:blur(12px);
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .modal.active{display:flex}
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(18px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .fade-up{animation:fadeUp .7s ease both}
+  </style>
 </head>
-<body class="p-8 bg-gray-50">
 
-    <div class="max-w-7xl mx-auto space-y-12">
-        
-        <div class="bg-white p-8 rounded-3xl shadow-xl animate-fadeIn">
-            
-            <div class="text-center mb-12">
-                <div class="inline-block px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm mb-4">
-                    Portfólio Profissional
-                </div>
-                
-                <h2 class="text-4xl font-bold text-gray-900">
-                    Projetos Estratégicos & Transformação Digital
-                </h2>
-                
-                <p class="text-gray-600 mt-4 max-w-5xl mx-auto">
-                    Experiência em PMO Sistemas, ERP, WMS, SAP, BI, Engenharia de Dados, Processos, Automações e soluções orientadas por indicadores.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                
-                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                    <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png" class="h-52 w-full object-cover" alt="PMO Sistemas">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold">🚀 PMO Sistemas & ERP</h3>
-                        <p class="text-gray-600 text-sm mt-3">
-                            Implantação e governança de ERP Sienge, SAP, WMS e TOTVS, levantamento requisitos, AS-IS, TO-BE e treinamento.
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <button onclick="openModal('erp')" class="tag">ERP</button>
-                            <button onclick="openModal('pmo')" class="tag">PMO</button>
-                            <button onclick="openModal('sap')" class="tag">SAP</button>
-                            <button onclick="openModal('wms')" class="tag">WMS</button>
-                        </div>
-                        
-                        <div class="mt-5 flex gap-2">
-                            <button onclick="openModal('erp')" class="btn-project">Detalhes</button>
-                            <a href="pmo.html" class="btn-view" target="_blank">Ver Projeto →</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                    <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png" class="h-52 w-full object-cover" alt="Fluxo de Caixa">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold">💰 Dashboard Fluxo Caixa</h3>
-                        <p class="text-gray-600 text-sm mt-3">
-                            Monitoramento financeiro, projeção futura, controle diário e conciliação.
-                        </p>
-                        
-                        <div class="flex gap-2 mt-4 flex-wrap">
-                            <span class="tag">Power BI</span>
-                            <span class="tag">Financeiro</span>
-                        </div>
+<body>
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#07090d]/78 backdrop-blur-xl">
+    <nav class="max-w-7xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between">
+      <a href="#top" class="font-extrabold tracking-tight text-lg">
+        Gustavo <span class="accent">Farias</span>
+      </a>
 
-                        <div class="mt-5 flex gap-2 items-center justify-between">
-                            <button type="button" class="btn-project" onclick="location.href='./fluxo_caixa.html';">
-                                Detalhes
-                            </button>
-                            <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9" class="btn-view">
-                                Ver Projeto →
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                    <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png" class="h-52 w-full object-cover" alt="Viabilidade Financeira">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold">📊 Viabilidade Financeira</h3>
-                        <p class="text-gray-600 text-sm mt-3">
-                            Fluxo caixa, VGV, RET, lucro e margem.
-                        </p>
-                        
-                        <div class="flex gap-2 mt-4 flex-wrap">
-                            <span class="tag">Power BI</span>
-                            <span class="tag">Controladoria</span>
-                        </div>
+      <div class="hidden md:flex items-center gap-7 text-sm text-slate-300">
+        <a href="#especialidades" class="hover:text-white">Especialidades</a>
+        <a href="#experiencia" class="hover:text-white">Experiência</a>
+        <a href="#projetos" class="hover:text-white">Projetos</a>
+        <a href="#resultados" class="hover:text-white">Resultados</a>
+        <a href="#contato" class="hover:text-white">Contato</a>
+      </div>
+    </nav>
+  </header>
 
-                        <div class="mt-5 flex gap-2 items-center justify-between">
-                            <button type="button" class="btn-project" onclick="location.href='./viabilidade.html'">
-                                Detalhes
-                            </button>
-                            <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9" class="btn-view">
-                                Ver Projeto →
-                            </a>
-                        </div>
-                    </div>
-                </div>
+  <main id="top" class="max-w-7xl mx-auto px-5 md:px-8 py-10 md:py-16">
+    <section class="glass rounded-[34px] p-6 md:p-10 lg:p-12 overflow-hidden relative fade-up">
+      <div class="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-sky-400/10 blur-3xl"></div>
+      <div class="absolute -left-24 bottom-0 w-72 h-72 rounded-full bg-yellow-400/10 blur-3xl"></div>
 
-            </div> 
-        </div> 
+      <div class="relative grid lg:grid-cols-[1.25fr_.75fr] gap-10 items-center">
+        <div>
+          <span class="eyebrow">Transformação Operacional & Sistemas Corporativos</span>
 
-        <div class="bg-white p-8 rounded-3xl shadow-xl mt-12">
-            <h2 class="text-3xl font-bold mb-8 text-gray-900">
-                Resultados Gerados
-            </h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
-                    <h3 class="text-3xl font-bold text-blue-600">15%</h3>
-                    <p class="text-sm text-gray-600 mt-2">Redução custos operacionais</p>
-                </div>
-                
-                <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
-                    <h3 class="text-3xl font-bold text-green-600">+15h</h3>
-                    <p class="text-sm text-gray-600 mt-2">Economia semanal automações</p>
-                </div>
-                
-                <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
-                    <h3 class="text-3xl font-bold text-purple-600">40%</h3>
-                    <p class="text-sm text-gray-600 mt-2">Redução processamento</p>
-                </div>
-                
-                <div class="bg-gray-50 p-6 rounded-xl text-center border border-gray-100 shadow-xs">
-                    <h3 class="text-3xl font-bold text-red-600">100%</h3>
-                    <p class="text-sm text-gray-600 mt-2">Confiabilidade indicadores</p>
-                </div>
-            </div>
+          <h1 class="mt-6 text-4xl md:text-6xl font-extrabold leading-[1.03] tracking-tight">
+            Transformando <span class="accent">sistemas, dados e processos</span> em eficiência operacional.
+          </h1>
+
+          <p class="mt-6 text-lg md:text-xl text-slate-300 max-w-3xl leading-relaxed">
+            Especialista na integração entre ERP, BI, governança de dados, processos corporativos, automação e melhoria contínua para apoiar decisões executivas e operações mais previsíveis.
+          </p>
+
+          <div class="mt-7 flex flex-wrap gap-3">
+            <span class="tag">ERP Sienge</span>
+            <span class="tag">SAP</span>
+            <span class="tag">WMS</span>
+            <span class="tag">TOTVS</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">PMO</span>
+          </div>
+
+          <div class="mt-9 flex flex-wrap gap-4">
+            <a href="#projetos" class="btn-primary">Ver projetos estratégicos →</a>
+            <a href="https://www.linkedin.com/in/gustavohenriquefarias" target="_blank" class="btn-secondary">LinkedIn</a>
+            <a href="https://github.com/GustavoAnalytics" target="_blank" class="btn-secondary">GitHub</a>
+          </div>
         </div>
 
-        <div class="bg-white p-8 rounded-3xl shadow-xl mt-12">
-            <h2 class="text-3xl font-bold mb-8 text-gray-900">
-                Depoimentos
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
-                    <p class="text-gray-600 italic text-sm">
-                        "A implantação conduzida pelo Gustavo trouxe organização, padronização e confiabilidade nos dados."
-                    </p>
-                    <div class="mt-4 pt-3 border-t border-gray-200/60">
-                        <strong class="text-gray-900 block text-sm">Carlos Henrique</strong>
-                        <p class="text-xs text-gray-500">Gerente Administrativo</p>
-                    </div>
-                </div>
-
-                <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
-                    <p class="text-gray-600 italic text-sm">
-                        "O diferencial é unir tecnologia, processos e pessoas."
-                    </p>
-                    <div class="mt-4 pt-3 border-t border-gray-200/60">
-                        <strong class="text-gray-900 block text-sm">Eduardo Pacheco</strong>
-                        <p class="text-xs text-gray-500">CEO</p>
-                    </div>
-                </div>
-
-                <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
-                    <p class="text-gray-600 italic text-sm">
-                        "Os dashboards transformaram a forma como acompanhamos resultados."
-                    </p>
-                    <div class="mt-4 pt-3 border-t border-gray-200/60">
-                        <strong class="text-gray-900 block text-sm">Marcos Oliveira</strong>
-                        <p class="text-xs text-gray-500">Diretor Executivo</p>
-                    </div>
-                </div>
-
-                <div class="testimonial-card bg-gray-50 p-6 rounded-xl border border-gray-100 flex flex-col justify-between">
-                    <p class="text-gray-600 italic text-sm">
-                        "Gustavo é extremamente dedicado, colaborativo e sempre entrega soluções."
-                    </p>
-                    <div class="mt-4 pt-3 border-t border-gray-200/60">
-                        <strong class="text-gray-900 block text-sm">Rodrigues Ademir</strong>
-                        <p class="text-xs text-gray-500">RH</p>
-                    </div>
-                </div>
-            </div>
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="absolute inset-0 bg-gradient-to-br from-yellow-300/15 to-sky-400/10 rounded-full blur-3xl"></div>
+          <div class="relative p-2 rounded-full border border-white/15 bg-white/5 shadow-2xl">
+            <img
+              src="Imagem do WhatsApp de 2025-08-11 à(s) 12.10.37_380bc144.jpg"
+              alt="Gustavo Farias"
+              class="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border border-white/10"
+            />
+          </div>
         </div>
+      </div>
+    </section>
 
+    <section id="resultados" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 fade-up">
+      <div class="metric">
+        <p class="text-3xl md:text-4xl font-extrabold accent">15%</p>
+        <p class="mt-2 text-sm text-slate-400">Redução de custos ocultos</p>
+      </div>
+      <div class="metric">
+        <p class="text-3xl md:text-4xl font-extrabold accent">+15h</p>
+        <p class="mt-2 text-sm text-slate-400">Economia semanal com automações</p>
+      </div>
+      <div class="metric">
+        <p class="text-3xl md:text-4xl font-extrabold accent">40%</p>
+        <p class="mt-2 text-sm text-slate-400">Redução no processamento de dados</p>
+      </div>
+      <div class="metric">
+        <p class="text-3xl md:text-4xl font-extrabold accent">8 áreas</p>
+        <p class="mt-2 text-sm text-slate-400">Impactadas com BI e indicadores</p>
+      </div>
+    </section>
+
+    <section id="especialidades" class="mt-20">
+      <div class="max-w-3xl mb-10">
+        <span class="eyebrow">Pilares de atuação</span>
+        <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Menos ferramenta. Mais transformação corporativa.</h2>
+        <p class="mt-4 text-slate-400 leading-relaxed">
+          Minha atuação combina visão operacional, tecnologia, dados e governança para estruturar ambientes corporativos mais eficientes, integrados e orientados por indicadores.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="card rounded-3xl p-7">
+          <p class="text-3xl">🏢</p>
+          <h3 class="mt-5 text-xl font-extrabold">Sistemas Corporativos</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Implantação, sustentação e evolução de ERP, WMS, SAP, TOTVS e Sienge conectados à realidade operacional.</p>
+          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">ERP</span><span class="tag">WMS</span><span class="tag">SAP</span></div>
+        </article>
+
+        <article class="card rounded-3xl p-7">
+          <p class="text-3xl">⚙️</p>
+          <h3 class="mt-5 text-xl font-extrabold">PMO & Processos</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Mapeamento AS-IS / TO-BE, levantamento de requisitos, gestão de mudanças, stakeholders e governança de processos.</p>
+          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">PMO</span><span class="tag">BPM</span><span class="tag">Governança</span></div>
+        </article>
+
+        <article class="card rounded-3xl p-7">
+          <p class="text-3xl">📊</p>
+          <h3 class="mt-5 text-xl font-extrabold">BI & Indicadores</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Dashboards executivos, KPIs estratégicos, Power BI, DAX, indicadores financeiros, operacionais e gerenciais.</p>
+          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Power BI</span><span class="tag">KPIs</span><span class="tag">DAX</span></div>
+        </article>
+
+        <article class="card rounded-3xl p-7">
+          <p class="text-3xl">🔗</p>
+          <h3 class="mt-5 text-xl font-extrabold">Dados & Integrações</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Pipelines, APIs, bancos de dados, ETL, Airflow, modelagem e integração entre ERP, CRM, BI e plataformas externas.</p>
+          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">APIs</span></div>
+        </article>
+
+        <article class="card rounded-3xl p-7">
+          <p class="text-3xl">🚀</p>
+          <h3 class="mt-5 text-xl font-extrabold">Eficiência Operacional</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Aplicação de Lean Operations e Lean Construction para reduzir desperdícios, gargalos e retrabalho operacional.</p>
+          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Lean</span><span class="tag">Melhoria Contínua</span></div>
+        </article>
+
+        <article class="card rounded-3xl p-7">
+          <p class="text-3xl">🤖</p>
+          <h3 class="mt-5 text-xl font-extrabold">Automação Corporativa</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Automação de rotinas manuais, workflows, relatórios, integrações e processos repetitivos com foco em produtividade.</p>
+          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">RPA</span><span class="tag">Streamlit</span><span class="tag">Workflows</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experiencia" class="mt-24">
+      <div class="max-w-3xl mb-10">
+        <span class="eyebrow">Trajetória</span>
+        <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Experiência conectando operação, tecnologia e gestão.</h2>
+        <p class="mt-4 text-slate-400 leading-relaxed">Resumo executivo das principais atuações com foco em transformação operacional, sistemas corporativos e dados.</p>
+      </div>
+
+      <div class="relative space-y-7">
+        <div class="timeline-line hidden md:block"></div>
+
+        <article class="relative md:pl-14">
+          <div class="dot hidden md:flex absolute left-0 top-2">1</div>
+          <div class="card rounded-3xl p-7">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <h3 class="text-2xl font-extrabold">Grupo MNGT</h3>
+                <p class="text-[#d6b25e] font-bold">Gestor ERP | WMS | SAP | BI | PMO de Sistemas</p>
+              </div>
+              <span class="tag">2025 — Atual</span>
+            </div>
+            <p class="mt-5 text-slate-300 leading-relaxed">Evolução do ecossistema de sistemas corporativos integrando ERP, WMS, SAP, BI, dados, processos e operação com foco em governança e eficiência.</p>
+            <ul class="mt-5 grid md:grid-cols-2 gap-3 text-sm text-slate-400">
+              <li>• PMO de Sistemas entre tecnologia, operação e gestão</li>
+              <li>• Mapeamento AS-IS / TO-BE e melhoria contínua</li>
+              <li>• Indicadores estratégicos e dashboards executivos</li>
+              <li>• Governança, qualidade de dados e capacitação de equipes</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="relative md:pl-14">
+          <div class="dot hidden md:flex absolute left-0 top-2">2</div>
+          <div class="card rounded-3xl p-7">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <h3 class="text-2xl font-extrabold">Área Incrível Incorporadora</h3>
+                <p class="text-[#d6b25e] font-bold">Gestor ERP | Sienge | PMO de Sistemas | Lean Construction</p>
+              </div>
+              <span class="tag">2025 — Atual</span>
+            </div>
+            <p class="mt-5 text-slate-300 leading-relaxed">Gestão e evolução do ERP Sienge conectando engenharia, financeiro, suprimentos, operação e tecnologia para previsibilidade operacional.</p>
+            <ul class="mt-5 grid md:grid-cols-2 gap-3 text-sm text-slate-400">
+              <li>• Estruturação de processos no ERP Sienge</li>
+              <li>• Integrações entre ERP, BI, APIs e sistemas externos</li>
+              <li>• Indicadores executivos e governança de dados</li>
+              <li>• Lean Construction para redução de desperdícios</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="relative md:pl-14">
+          <div class="dot hidden md:flex absolute left-0 top-2">3</div>
+          <div class="card rounded-3xl p-7">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <h3 class="text-2xl font-extrabold">GFFinance Consultoria</h3>
+                <p class="text-[#d6b25e] font-bold">Consultor de Dados e Processos</p>
+              </div>
+              <span class="tag">2023 — Atual</span>
+            </div>
+            <p class="mt-5 text-slate-300 leading-relaxed">Transformação de dados financeiros em inteligência de gestão para construtoras, com foco em viabilidade, orçamento, fluxo de caixa e tomada de decisão.</p>
+            <ul class="mt-5 grid md:grid-cols-2 gap-3 text-sm text-slate-400">
+              <li>• Dashboards de Orçado x Realizado, cash flow e curva de vendas</li>
+              <li>• Análises de viabilidade e custos ocultos</li>
+              <li>• Integração entre ERP, BI e fontes financeiras</li>
+              <li>• Redução de custos ocultos em até 15%</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="relative md:pl-14">
+          <div class="dot hidden md:flex absolute left-0 top-2">4</div>
+          <div class="card rounded-3xl p-7">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <h3 class="text-2xl font-extrabold">Vilaurbe | Construtora e Incorporadora</h3>
+                <p class="text-[#d6b25e] font-bold">Data Analytics e Processos</p>
+              </div>
+              <span class="tag">2022 — 2025</span>
+            </div>
+            <p class="mt-5 text-slate-300 leading-relaxed">Liderança de iniciativas de dados, automação e integração entre ERP, CRM e APIs para suporte estratégico à operação e diretoria.</p>
+            <ul class="mt-5 grid md:grid-cols-2 gap-3 text-sm text-slate-400">
+              <li>• Redução de 40% no tempo de processamento de dados</li>
+              <li>• Redução de até 65% no tempo de tarefas operacionais</li>
+              <li>• Dashboards executivos para engenharia, comercial e diretoria</li>
+              <li>• Soluções de BI impactando 8 áreas da empresa</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projetos" class="mt-24">
+      <div class="max-w-3xl mb-10">
+        <span class="eyebrow">Portfólio estratégico</span>
+        <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Projetos que conectam sistemas, indicadores e operação.</h2>
+        <p class="mt-4 text-slate-400 leading-relaxed">Cases estruturados para demonstrar aplicação prática em ERP, PMO, BI, processos, finanças e transformação operacional.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+        <article class="card rounded-3xl overflow-hidden">
+          <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png" alt="PMO Sistemas e ERP" class="h-56 w-full object-cover opacity-90">
+          <div class="p-7">
+            <h3 class="text-2xl font-extrabold">PMO Sistemas & ERP</h3>
+            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Implantação e governança de ERP Sienge, SAP, WMS e TOTVS com levantamento de requisitos, AS-IS, TO-BE, treinamento e sustentação.</p>
+            <div class="mt-5 flex flex-wrap gap-2"><span class="tag">ERP</span><span class="tag">PMO</span><span class="tag">Governança</span></div>
+            <div class="mt-6 flex gap-3">
+              <button onclick="openModal('erp')" class="btn-secondary">Detalhes</button>
+              <a href="pmo.html" target="_blank" class="btn-primary">Ver projeto →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card rounded-3xl overflow-hidden">
+          <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png" alt="Dashboard Fluxo de Caixa" class="h-56 w-full object-cover opacity-90">
+          <div class="p-7">
+            <h3 class="text-2xl font-extrabold">Dashboard Fluxo de Caixa</h3>
+            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Monitoramento financeiro, projeção futura, controle diário, conciliação e visão executiva para gestão do caixa.</p>
+            <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Power BI</span><span class="tag">Financeiro</span><span class="tag">Cash Flow</span></div>
+            <div class="mt-6 flex gap-3">
+              <a href="fluxo_caixa.html" class="btn-secondary">Detalhes</a>
+              <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9" class="btn-primary">Ver projeto →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card rounded-3xl overflow-hidden">
+          <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png" alt="Viabilidade Financeira" class="h-56 w-full object-cover opacity-90">
+          <div class="p-7">
+            <h3 class="text-2xl font-extrabold">Viabilidade Financeira</h3>
+            <p class="mt-3 text-slate-400 text-sm leading-relaxed">Fluxo de caixa, VGV, RET, lucro, margem, orçamento e indicadores para análise de empreendimentos imobiliários.</p>
+            <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Power BI</span><span class="tag">Controladoria</span><span class="tag">VGV</span></div>
+            <div class="mt-6 flex gap-3">
+              <a href="viabilidade.html" class="btn-secondary">Detalhes</a>
+              <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9" class="btn-primary">Ver projeto →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mt-24 glass rounded-[34px] p-8 md:p-10">
+      <div class="max-w-3xl mb-8">
+        <span class="eyebrow">Prova social</span>
+        <h2 class="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Depoimentos profissionais</h2>
+        <p class="mt-4 text-slate-400">Utilize depoimentos reais, preferencialmente com cargo, empresa e link do LinkedIn para aumentar credibilidade.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="card rounded-3xl p-6">
+          <p class="text-slate-300 text-sm italic">“A implantação conduzida pelo Gustavo trouxe organização, padronização e confiabilidade nos dados.”</p>
+          <div class="mt-5 pt-4 border-t border-white/10">
+            <strong>Carlos Henrique</strong>
+            <p class="text-xs text-slate-500 mt-1">Gerente Administrativo</p>
+          </div>
+        </div>
+        <div class="card rounded-3xl p-6">
+          <p class="text-slate-300 text-sm italic">“O diferencial é unir tecnologia, processos e pessoas.”</p>
+          <div class="mt-5 pt-4 border-t border-white/10">
+            <strong>Eduardo Pacheco</strong>
+            <p class="text-xs text-slate-500 mt-1">CEO</p>
+          </div>
+        </div>
+        <div class="card rounded-3xl p-6">
+          <p class="text-slate-300 text-sm italic">“Os dashboards transformaram a forma como acompanhamos resultados.”</p>
+          <div class="mt-5 pt-4 border-t border-white/10">
+            <strong>Marcos Oliveira</strong>
+            <p class="text-xs text-slate-500 mt-1">Diretor Executivo</p>
+          </div>
+        </div>
+        <div class="card rounded-3xl p-6">
+          <p class="text-slate-300 text-sm italic">“Gustavo é dedicado, colaborativo e sempre entrega soluções aplicáveis ao negócio.”</p>
+          <div class="mt-5 pt-4 border-t border-white/10">
+            <strong>Rodrigues Ademir</strong>
+            <p class="text-xs text-slate-500 mt-1">RH</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="mt-24 mb-10 glass rounded-[34px] p-8 md:p-12 text-center">
+      <span class="eyebrow">Contato</span>
+      <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Vamos transformar sistemas em resultados?</h2>
+      <p class="mt-5 text-slate-400 max-w-2xl mx-auto">Disponível para conexões profissionais, projetos de ERP, BI, PMO de Sistemas, automação, governança de dados e transformação operacional.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-4">
+        <a href="mailto:gustavohenriquefarias161@gmail.com" class="btn-primary">Enviar e-mail</a>
+        <a href="https://www.linkedin.com/in/gustavohenriquefarias" target="_blank" class="btn-secondary">Conectar no LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="modalProjetos" class="modal">
+    <div class="glass rounded-[30px] w-full max-w-4xl p-7 md:p-9 relative">
+      <button onclick="closeModal()" class="absolute top-5 right-6 text-3xl text-slate-400 hover:text-white">×</button>
+      <div id="modalContent"></div>
     </div>
+  </div>
 
-    <div id="modalProjetos" class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center p-6">
-        <div class="bg-white rounded-3xl w-full max-w-5xl p-8 relative animate-fadeIn text-gray-900 shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-5 right-5 text-3xl text-gray-400 hover:text-gray-600 transition cursor-pointer">
-                ✕
-            </button>
-            <div id="modalContent"></div>
+  <script>
+    const conteudos = {
+      erp: `
+        <span class="eyebrow">Case estratégico</span>
+        <h2 class="mt-5 text-3xl md:text-4xl font-extrabold">PMO de Sistemas & Implantação ERP</h2>
+        <p class="mt-4 text-slate-400 leading-relaxed">Estruturação de projetos sistêmicos com foco em governança, processos, usuários-chave, indicadores e sustentação pós-implantação.</p>
+        <div class="mt-8 grid md:grid-cols-4 gap-4">
+          <div class="card rounded-2xl p-5"><p class="text-2xl">📋</p><h3 class="mt-3 font-bold">Requisitos</h3><p class="text-xs text-slate-500 mt-2">Levantamento com áreas de negócio</p></div>
+          <div class="card rounded-2xl p-5"><p class="text-2xl">⚙️</p><h3 class="mt-3 font-bold">AS-IS / TO-BE</h3><p class="text-xs text-slate-500 mt-2">Mapeamento e redesenho de processos</p></div>
+          <div class="card rounded-2xl p-5"><p class="text-2xl">🔗</p><h3 class="mt-3 font-bold">Integrações</h3><p class="text-xs text-slate-500 mt-2">ERP, BI, APIs e dados</p></div>
+          <div class="card rounded-2xl p-5"><p class="text-2xl">🚀</p><h3 class="mt-3 font-bold">Go Live</h3><p class="text-xs text-slate-500 mt-2">Treinamento e sustentação</p></div>
         </div>
-    </div>
+      `
+    };
 
-    <script>
-        const conteudos = {
-            erp: `
-                <h2 class="text-3xl font-bold mb-6 flex items-center gap-2">🏢 Implantação ERP</h2>
-                <p class="text-gray-600 mb-8">Estruturação completa do ERP.</p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-5 text-gray-800">
-                    <div class="bg-blue-50 p-5 rounded-xl text-center">
-                        <div class="text-2xl mb-1">📋</div>
-                        <h3 class="font-bold">Levantamento</h3>
-                        <p class="text-xs text-gray-500 mt-1">Requisitos</p>
-                    </div>
-                    <div class="bg-blue-50 p-5 rounded-xl text-center">
-                        <div class="text-2xl mb-1">⚙️</div>
-                        <h3 class="font-bold">AS-IS</h3>
-                        <p class="text-xs text-gray-500 mt-1">Processos</p>
-                    </div>
-                    <div class="bg-blue-50 p-5 rounded-xl text-center">
-                        <div class="text-2xl mb-1">🔄</div>
-                        <h3 class="font-bold">Integrações</h3>
-                        <p class="text-xs text-gray-500 mt-1">ERP + BI</p>
-                    </div>
-                    <div class="bg-blue-50 p-5 rounded-xl text-center">
-                        <div class="text-2xl mb-1">🚀</div>
-                        <h3 class="font-bold">Go Live</h3>
-                        <p class="text-xs text-gray-500 mt-1">Treinamento</p>
-                    </div>
-                </div>
-            `,
-            pmo: `
-                <h2 class="text-3xl font-bold mb-8">📊 PMO Sistemas</h2>
-                <div class="flex flex-wrap items-center gap-4 text-gray-800 text-sm">
-                    <div class="bg-gray-100 p-5 rounded-xl font-semibold">🎯 Escopo</div>
-                    <div class="text-gray-400">➡️</div>
-                    <div class="bg-gray-100 p-5 rounded-xl font-semibold">📅 Planejamento</div>
-                    <div class="text-gray-400">➡️</div>
-                    <div class="bg-gray-100 p-5 rounded-xl font-semibold">⚡ Execução</div>
-                    <div class="text-gray-400">➡️</div>
-                    <div class="bg-gray-100 p-5 rounded-xl font-semibold">📈 Indicadores</div>
-                </div>
-            `,
-            sap: `
-                <h2 class="text-3xl font-bold">🖥 SAP</h2>
-                <div class="bg-green-50 text-green-900 p-6 rounded-xl mt-6 space-y-2 font-medium max-w-xs">
-                    <div class="flex items-center gap-2">💰 Financeiro</div>
-                    <div class="text-xs text-green-400 pl-1">↓</div>
-                    <div class="flex items-center gap-2">🛒 Compras</div>
-                    <div class="text-xs text-green-400 pl-1">↓</div>
-                    <div class="flex items-center gap-2">📦 Estoque</div>
-                    <div class="text-xs text-green-400 pl-1">↓</div>
-                    <div class="flex items-center gap-2">🏭 Operações</div>
-                </div>
-            `,
-            wms: `
-                <h2 class="text-3xl font-bold">📦 WMS</h2>
-                <div class="flex gap-4 mt-6 flex-wrap text-orange-900 text-sm font-medium">
-                    <div class="bg-orange-100 p-4 rounded-xl">🚚 Recebimento</div>
-                    <div class="flex items-center text-orange-300">➡️</div>
-                    <div class="bg-orange-100 p-4 rounded-xl">📍 Armazenagem</div>
-                    <div class="flex items-center text-orange-300">➡️</div>
-                    <div class="bg-orange-100 p-4 rounded-xl">📦 Picking</div>
-                    <div class="flex items-center text-orange-300">➡️</div>
-                    <div class="bg-orange-100 p-4 rounded-xl">🚛 Expedição</div>
-                </div>
-            `
-        };
+    function openModal(tipo){
+      document.getElementById('modalProjetos').classList.add('active');
+      document.getElementById('modalContent').innerHTML = conteudos[tipo] || '';
+    }
 
-        function openModal(tipo) {
-            document.getElementById("modalProjetos").classList.remove("hidden");
-            document.getElementById("modalContent").innerHTML = conteudos[tipo];
-        }
+    function closeModal(){
+      document.getElementById('modalProjetos').classList.remove('active');
+    }
 
-        function closeModal() {
-            document.getElementById("modalProjetos").classList.add("hidden");
-        }
-    </script>
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeModal();
+    });
+  </script>
 </body>
 </html>
