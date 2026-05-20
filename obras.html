@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Especialista Obras Sienge | Engenharia, Custos & Lean Construction</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: #0f172a;
+      --card: #111827;
+      --border: #1f2937;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --red: #fb7185;
+      --amber: #f59e0b;
+      --blue: #38bdf8;
+      --purple: #a78bfa;
+      --cyan: #06b6d4;
+      --slate: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #020617, #0f172a);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: rgba(2, 6, 23, .96);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      background: rgba(245, 158, 11, .12);
+      border: 1px solid rgba(245, 158, 11, .35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+      font-size: 24px;
+    }
+
+    .brand h1 {
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .brand p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    main {
+      padding: 28px 32px;
+      max-width: 1560px;
+      margin: auto;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at top right, rgba(245, 158, 11, .18), transparent 34%),
+        linear-gradient(135deg, #020617, #111827);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 25px 60px rgba(0,0,0,.30);
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-weight: 900;
+      letter-spacing: .18em;
+      margin-bottom: 10px;
+    }
+
+    .hero h2 {
+      font-size: 33px;
+      line-height: 1.15;
+      max-width: 1050px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 1100px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 14px;
+      background: rgba(15,23,42,.84);
+      border: 1px solid var(--border);
+      padding: 18px;
+      border-radius: 18px;
+      margin-bottom: 22px;
+    }
+
+    .filter-group label {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 7px;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #020617;
+      color: var(--text);
+      outline: none;
+      font-weight: 800;
+    }
+
+    button {
+      background: var(--amber);
+      color: #020617;
+      border: none;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background: rgba(17,24,39,.92);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 900;
+      gap: 10px;
+    }
+
+    .card-top i {
+      font-size: 18px;
+    }
+
+    .value {
+      font-size: 26px;
+      font-weight: 900;
+      margin-top: 12px;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 7px;
+      line-height: 1.4;
+    }
+
+    .green { color: var(--green); }
+    .red { color: var(--red); }
+    .amber { color: var(--amber); }
+    .blue { color: var(--blue); }
+    .purple { color: var(--purple); }
+    .cyan { color: var(--cyan); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .section-title h3 {
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .chart-box {
+      height: 325px;
+    }
+
+    .lean-flow {
+      display: grid;
+      gap: 12px;
+    }
+
+    .stage {
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .stage-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+
+    .bar {
+      height: 8px;
+      background: #1e293b;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .bar div {
+      height: 100%;
+      border-radius: 99px;
+      background: var(--amber);
+      transition: width .4s ease;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead {
+      background: #020617;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    th, td {
+      padding: 13px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    tbody tr:hover {
+      background: rgba(245,158,11,.05);
+    }
+
+    .pill {
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      display: inline-block;
+    }
+
+    .status-planejado {
+      background: rgba(100,116,139,.16);
+      color: #cbd5e1;
+    }
+
+    .status-andamento {
+      background: rgba(56,189,248,.12);
+      color: var(--blue);
+    }
+
+    .status-atraso {
+      background: rgba(251,113,133,.12);
+      color: var(--red);
+    }
+
+    .status-concluido {
+      background: rgba(34,197,94,.12);
+      color: var(--green);
+    }
+
+    .risk-baixo { color: var(--green); font-weight: 900; }
+    .risk-medio { color: var(--amber); font-weight: 900; }
+    .risk-alto { color: var(--red); font-weight: 900; }
+
+    .insights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .insight {
+      background: rgba(2,6,23,.92);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .insight h4 {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .insight p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .mini-card {
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 20px;
+      margin-top: 8px;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    @media(max-width: 1250px) {
+      .filters { grid-template-columns: repeat(3, 1fr); }
+      .kpis { grid-template-columns: repeat(3, 1fr); }
+      .grid, .grid-2 { grid-template-columns: 1fr; }
+      .insights { grid-template-columns: 1fr; }
+      .mini-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media(max-width: 720px) {
+      header, main { padding: 18px; }
+      .filters, .kpis, .mini-grid { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 25px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-wrap">
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-helmet-safety"></i>
+      </div>
+      <div>
+        <h1>Obras Sienge | Engenharia, Custos & Lean Construction</h1>
+        <p>Evolução física, curva S, orçado vs realizado, VGV, margem, restrições e produtividade de obra</p>
+      </div>
+    </div>
+
+    <div class="badges">
+      <span class="badge"><i class="fa-solid fa-database amber"></i> Dados Sienge Tratados</span>
+      <span class="badge"><i class="fa-solid fa-chart-line blue"></i> Curva S & Forecast</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-tag">Sienge • Obras • Custos • VGV • Lean Construction</div>
+    <h2>Painel executivo de obras com visão técnica, financeira e operacional integrada.</h2>
+    <p>
+      Modelo especialista para acompanhamento de obras extraído de uma estrutura de PMO de Sistemas,
+      com dados limpos, consistentes e padronizados. Integra evolução física, custo orçado x realizado,
+      curva S, projeção de custo final, VGV, margem, restrições Lean, PPC, produtividade e status por etapa.
+    </p>
+  </section>
+
+  <section class="filters">
+    <div class="filter-group">
+      <label>Obra</label>
+      <select id="workFilter">
+        <option value="all">Todas</option>
+        <option value="Residencial Aurora">Residencial Aurora</option>
+        <option value="Vila Garden">Vila Garden</option>
+        <option value="Parque Horizonte">Parque Horizonte</option>
+        <option value="Torre Corporate">Torre Corporate</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Etapa</label>
+      <select id="stageFilter">
+        <option value="all">Todas</option>
+        <option value="Fundação">Fundação</option>
+        <option value="Estrutura">Estrutura</option>
+        <option value="Alvenaria">Alvenaria</option>
+        <option value="Instalações">Instalações</option>
+        <option value="Acabamento">Acabamento</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Status</label>
+      <select id="statusFilter">
+        <option value="all">Todos</option>
+        <option value="Planejado">Planejado</option>
+        <option value="Em andamento">Em andamento</option>
+        <option value="Atraso">Atraso</option>
+        <option value="Concluído">Concluído</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Responsável</label>
+      <select id="ownerFilter">
+        <option value="all">Todos</option>
+        <option value="Eng. Ana Souza">Eng. Ana Souza</option>
+        <option value="Eng. Bruno Lima">Eng. Bruno Lima</option>
+        <option value="Eng. Carla Mendes">Eng. Carla Mendes</option>
+        <option value="Eng. Diego Rocha">Eng. Diego Rocha</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Risco</label>
+      <select id="riskFilter">
+        <option value="all">Todos</option>
+        <option value="Baixo">Baixo</option>
+        <option value="Médio">Médio</option>
+        <option value="Alto">Alto</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Período</label>
+      <select id="periodFilter">
+        <option value="all">Todos</option>
+        <option value="2026-01">Jan/2026</option>
+        <option value="2026-02">Fev/2026</option>
+        <option value="2026-03">Mar/2026</option>
+        <option value="2026-04">Abr/2026</option>
+        <option value="2026-05">Mai/2026</option>
+        <option value="2026-06">Jun/2026</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Ação</label>
+      <button onclick="resetFilters()">
+        <i class="fa-solid fa-rotate-right"></i> Limpar
+      </button>
+    </div>
+  </section>
+
+  <section class="kpis">
+    <div class="card">
+      <div class="card-top">VGV Total <i class="fa-solid fa-building blue"></i></div>
+      <div class="value" id="kpiVGV">R$ 0</div>
+      <div class="sub">Valor geral de vendas filtrado</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Orçado <i class="fa-solid fa-calculator amber"></i></div>
+      <div class="value" id="kpiBudget">R$ 0</div>
+      <div class="sub">Custo previsto conforme orçamento</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Realizado <i class="fa-solid fa-file-invoice-dollar red"></i></div>
+      <div class="value" id="kpiActual">R$ 0</div>
+      <div class="sub">Custo apropriado realizado</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Desvio Custo <i class="fa-solid fa-scale-balanced purple"></i></div>
+      <div class="value" id="kpiVariance">R$ 0</div>
+      <div class="sub">Diferença realizado x orçado</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Evolução Física <i class="fa-solid fa-chart-simple green"></i></div>
+      <div class="value" id="kpiPhysical">0%</div>
+      <div class="sub">Média ponderada das etapas</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">PPC Lean <i class="fa-solid fa-bullseye cyan"></i></div>
+      <div class="value" id="kpiPPC">0%</div>
+      <div class="sub">Percentual de planos concluídos</div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Curva S — Planejado x Realizado x Projeção</h3>
+          <span>Evolução financeira acumulada da obra</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="curveChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Lean Construction</h3>
+          <span>Restrições, PPC e confiabilidade operacional</span>
+        </div>
+      </div>
+
+      <div class="lean-flow" id="leanStages"></div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Orçado x Realizado por Etapa</h3>
+          <span>Controle de custo por macroetapa da obra</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="costChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>VGV, Custo e Margem por Obra</h3>
+          <span>Visão executiva financeira consolidada</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="marginChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-bottom:22px;">
+    <div class="section-title">
+      <div>
+        <h3>Indicadores Gerenciais de Engenharia</h3>
+        <span>Base consolidada para diretoria, engenharia, controladoria e PMO</span>
+      </div>
+    </div>
+
+    <div class="mini-grid">
+      <div class="mini-card">
+        <span>Restrições Abertas</span>
+        <strong class="red" id="miniRestrictions">0</strong>
+      </div>
+
+      <div class="mini-card">
+        <span>Etapas em Atraso</span>
+        <strong class="amber" id="miniDelayed">0</strong>
+      </div>
+
+      <div class="mini-card">
+        <span>Forecast Custo Final</span>
+        <strong class="blue" id="miniForecast">R$ 0</strong>
+      </div>
+
+      <div class="mini-card">
+        <span>Margem Projetada</span>
+        <strong class="green" id="miniMargin">0%</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Base de Obras Extraída do Sienge</h3>
+          <span>Dados simulados após integração, saneamento e padronização pelo PMO</span>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Obra</th>
+              <th>Etapa</th>
+              <th>Responsável</th>
+              <th>Período</th>
+              <th>Orçado</th>
+              <th>Realizado</th>
+              <th>Físico</th>
+              <th>PPC</th>
+              <th>Restr.</th>
+              <th>Risco</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="worksTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Ranking de Desvio</h3>
+          <span>Maior variação de custo por obra</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="varianceChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="insights">
+    <div class="insight">
+      <h4><i class="fa-solid fa-brain amber"></i> Diagnóstico Executivo</h4>
+      <p id="insight1">Aguardando análise dos filtros aplicados.</p>
+    </div>
+
+    <div class="insight">
+      <h4><i class="fa-solid fa-database blue"></i> Governança Sienge / PMO</h4>
+      <p id="insight2">Base estruturada com obra, etapa, orçamento, realizado, VGV, evolução física, PPC, risco e restrições.</p>
+    </div>
+
+    <div class="insight">
+      <h4><i class="fa-solid fa-helmet-safety green"></i> Ação Recomendada</h4>
+      <p id="insight3">Utilize os filtros para identificar desvios de custo, gargalos de obra e restrições críticas.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const worksData = [
+  {
+    obra: "Residencial Aurora",
+    etapa: "Fundação",
+    responsavel: "Eng. Ana Souza",
+    periodo: "2026-01",
+    vgv: 42000000,
+    orcado: 2800000,
+    realizado: 2700000,
+    fisico: 100,
+    ppc: 92,
+    restricoes: 1,
+    risco: "Baixo",
+    status: "Concluído"
+  },
+  {
+    obra: "Residencial Aurora",
+    etapa: "Estrutura",
+    responsavel: "Eng. Ana Souza",
+    periodo: "2026-02",
+    vgv: 42000000,
+    orcado: 6200000,
+    realizado: 6550000,
+    fisico: 84,
+    ppc: 78,
+    restricoes: 4,
+    risco: "Médio",
+    status: "Em andamento"
+  },
+  {
+    obra: "Residencial Aurora",
+    etapa: "Alvenaria",
+    responsavel: "Eng. Bruno Lima",
+    periodo: "2026-03",
+    vgv: 42000000,
+    orcado: 3800000,
+    realizado: 4100000,
+    fisico: 58,
+    ppc: 71,
+    restricoes: 5,
+    risco: "Médio",
+    status: "Em andamento"
+  },
+  {
+    obra: "Vila Garden",
+    etapa: "Fundação",
+    responsavel: "Eng. Carla Mendes",
+    periodo: "2026-01",
+    vgv: 36000000,
+    orcado: 2400000,
+    realizado: 2500000,
+    fisico: 100,
+    ppc: 88,
+    restricoes: 2,
+    risco: "Baixo",
+    status: "Concluído"
+  },
+  {
+    obra: "Vila Garden",
+    etapa: "Estrutura",
+    responsavel: "Eng. Carla Mendes",
+    periodo: "2026-02",
+    vgv: 36000000,
+    orcado: 5400000,
+    realizado: 5900000,
+    fisico: 72,
+    ppc: 67,
+    restricoes: 7,
+    risco: "Alto",
+    status: "Atraso"
+  },
+  {
+    obra: "Vila Garden",
+    etapa: "Instalações",
+    responsavel: "Eng. Diego Rocha",
+    periodo: "2026-04",
+    vgv: 36000000,
+    orcado: 3200000,
+    realizado: 3050000,
+    fisico: 35,
+    ppc: 75,
+    restricoes: 3,
+    risco: "Médio",
+    status: "Em andamento"
+  },
+  {
+    obra: "Parque Horizonte",
+    etapa: "Fundação",
+    responsavel: "Eng. Bruno Lima",
+    periodo: "2026-02",
+    vgv: 51000000,
+    orcado: 3100000,
+    realizado: 2950000,
+    fisico: 100,
+    ppc: 95,
+    restricoes: 0,
+    risco: "Baixo",
+    status: "Concluído"
+  },
+  {
+    obra: "Parque Horizonte",
+    etapa: "Estrutura",
+    responsavel: "Eng. Bruno Lima",
+    periodo: "2026-03",
+    vgv: 51000000,
+    orcado: 7600000,
+    realizado: 8100000,
+    fisico: 69,
+    ppc: 64,
+    restricoes: 8,
+    risco: "Alto",
+    status: "Atraso"
+  },
+  {
+    obra: "Parque Horizonte",
+    etapa: "Alvenaria",
+    responsavel: "Eng. Ana Souza",
+    periodo: "2026-05",
+    vgv: 51000000,
+    orcado: 4300000,
+    realizado: 3900000,
+    fisico: 42,
+    ppc: 81,
+    restricoes: 2,
+    risco: "Médio",
+    status: "Em andamento"
+  },
+  {
+    obra: "Torre Corporate",
+    etapa: "Fundação",
+    responsavel: "Eng. Diego Rocha",
+    periodo: "2026-01",
+    vgv: 68000000,
+    orcado: 4200000,
+    realizado: 4350000,
+    fisico: 100,
+    ppc: 89,
+    restricoes: 2,
+    risco: "Baixo",
+    status: "Concluído"
+  },
+  {
+    obra: "Torre Corporate",
+    etapa: "Estrutura",
+    responsavel: "Eng. Diego Rocha",
+    periodo: "2026-03",
+    vgv: 68000000,
+    orcado: 9800000,
+    realizado: 10600000,
+    fisico: 76,
+    ppc: 70,
+    restricoes: 6,
+    risco: "Alto",
+    status: "Atraso"
+  },
+  {
+    obra: "Torre Corporate",
+    etapa: "Acabamento",
+    responsavel: "Eng. Carla Mendes",
+    periodo: "2026-06",
+    vgv: 68000000,
+    orcado: 7200000,
+    realizado: 6900000,
+    fisico: 22,
+    ppc: 83,
+    restricoes: 3,
+    risco: "Médio",
+    status: "Planejado"
+  }
+];
+
+let curveChart;
+let costChart;
+let marginChart;
+let varianceChart;
+
+function money(value) {
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    maximumFractionDigits: 0
+  });
+}
+
+function number(value) {
+  return value.toLocaleString("pt-BR");
+}
+
+function uniqueVGV(data) {
+  const map = new Map();
+
+  data.forEach(item => {
+    if (!map.has(item.obra)) {
+      map.set(item.obra, item.vgv);
+    }
+  });
+
+  return Array.from(map.values()).reduce((sum, value) => sum + value, 0);
+}
+
+function getFilters() {
+  return {
+    obra: document.getElementById("workFilter").value,
+    etapa: document.getElementById("stageFilter").value,
+    status: document.getElementById("statusFilter").value,
+    responsavel: document.getElementById("ownerFilter").value,
+    risco: document.getElementById("riskFilter").value,
+    periodo: document.getElementById("periodFilter").value
+  };
+}
+
+function filterWorks() {
+  const f = getFilters();
+
+  return worksData.filter(d =>
+    (f.obra === "all" || d.obra === f.obra) &&
+    (f.etapa === "all" || d.etapa === f.etapa) &&
+    (f.status === "all" || d.status === f.status) &&
+    (f.responsavel === "all" || d.responsavel === f.responsavel) &&
+    (f.risco === "all" || d.risco === f.risco) &&
+    (f.periodo === "all" || d.periodo === f.periodo)
+  );
+}
+
+function updateKPIs(data) {
+  const vgv = uniqueVGV(data);
+  const orcado = data.reduce((s, d) => s + d.orcado, 0);
+  const realizado = data.reduce((s, d) => s + d.realizado, 0);
+  const variancia = realizado - orcado;
+  const fisico = data.length ? data.reduce((s, d) => s + d.fisico, 0) / data.length : 0;
+  const ppc = data.length ? data.reduce((s, d) => s + d.ppc, 0) / data.length : 0;
+
+  document.getElementById("kpiVGV").textContent = money(vgv);
+  document.getElementById("kpiBudget").textContent = money(orcado);
+  document.getElementById("kpiActual").textContent = money(realizado);
+  document.getElementById("kpiVariance").textContent = money(variancia);
+  document.getElementById("kpiPhysical").textContent = fisico.toFixed(1) + "%";
+  document.getElementById("kpiPPC").textContent = ppc.toFixed(1) + "%";
+
+  document.getElementById("kpiVariance").className =
+    variancia > 0 ? "value red" : "value green";
+}
+
+function updateMiniIndicators(data) {
+  const vgv = uniqueVGV(data);
+  const orcado = data.reduce((s, d) => s + d.orcado, 0);
+  const realizado = data.reduce((s, d) => s + d.realizado, 0);
+  const restricoes = data.reduce((s, d) => s + d.restricoes, 0);
+  const atrasos = data.filter(d => d.status === "Atraso").length;
+
+  const forecast = realizado + Math.max(orcado - realizado, 0) * 1.08;
+  const margem = vgv ? ((vgv - forecast) / vgv) * 100 : 0;
+
+  document.getElementById("miniRestrictions").textContent = number(restricoes);
+  document.getElementById("miniDelayed").textContent = number(atrasos);
+  document.getElementById("miniForecast").textContent = money(forecast);
+  document.getElementById("miniMargin").textContent = margem.toFixed(1) + "%";
+
+  document.getElementById("miniMargin").className =
+    margem < 20 ? "red" : "green";
+}
+
+function updateTable(data) {
+  const tbody = document.getElementById("worksTable");
+  tbody.innerHTML = "";
+
+  if (data.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="11" style="text-align:center;color:#94a3b8;padding:24px;">
+          Nenhum registro encontrado para os filtros aplicados.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  data.forEach(d => {
+    const statusClass =
+      d.status === "Concluído" ? "status-concluido" :
+      d.status === "Em andamento" ? "status-andamento" :
+      d.status === "Atraso" ? "status-atraso" : "status-planejado";
+
+    const riskClass =
+      d.risco === "Alto" ? "risk-alto" :
+      d.risco === "Médio" ? "risk-medio" : "risk-baixo";
+
+    tbody.innerHTML += `
+      <tr>
+        <td><strong>${d.obra}</strong></td>
+        <td>${d.etapa}</td>
+        <td>${d.responsavel}</td>
+        <td>${d.periodo}</td>
+        <td>${money(d.orcado)}</td>
+        <td>${money(d.realizado)}</td>
+        <td>${d.fisico}%</td>
+        <td>${d.ppc}%</td>
+        <td>${d.restricoes}</td>
+        <td class="${riskClass}">${d.risco}</td>
+        <td><span class="pill ${statusClass}">${d.status}</span></td>
+      </tr>
+    `;
+  });
+}
+
+function updateLeanStages(data) {
+  const container = document.getElementById("leanStages");
+  container.innerHTML = "";
+
+  const total = data.length || 1;
+  const ppc = data.length ? data.reduce((s, d) => s + d.ppc, 0) / data.length : 0;
+  const restricoes = data.reduce((s, d) => s + d.restricoes, 0);
+  const atrasos = data.filter(d => d.status === "Atraso").length;
+  const altoRisco = data.filter(d => d.risco === "Alto").length;
+
+  const leanData = [
+    {
+      label: "PPC Médio",
+      valueText: ppc.toFixed(1) + "%",
+      percent: ppc
+    },
+    {
+      label: "Restrições Abertas",
+      valueText: restricoes + " itens",
+      percent: Math.min((restricoes / 20) * 100, 100)
+    },
+    {
+      label: "Etapas em Atraso",
+      valueText: atrasos + " etapas",
+      percent: (atrasos / total) * 100
+    },
+    {
+      label: "Risco Alto",
+      valueText: altoRisco + " etapas",
+      percent: (altoRisco / total) * 100
+    }
+  ];
+
+  leanData.forEach(item => {
+    container.innerHTML += `
+      <div class="stage">
+        <div class="stage-head">
+          <span>${item.label}</span>
+          <span>${item.valueText}</span>
+        </div>
+        <div class="bar">
+          <div style="width:${item.percent}%"></div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function groupByPeriod(data, field) {
+  const months = ["2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"];
+
+  return months.map(month =>
+    data
+      .filter(d => d.periodo === month)
+      .reduce((s, d) => s + d[field], 0)
+  );
+}
+
+function accumulated(values) {
+  let total = 0;
+  return values.map(v => {
+    total += v;
+    return total;
+  });
+}
+
+function updateCurveChart(data) {
+  const planned = accumulated(groupByPeriod(data, "orcado"));
+  const actual = accumulated(groupByPeriod(data, "realizado"));
+  const projected = planned.map((value, index) => {
+    const actualValue = actual[index] || 0;
+    return actualValue > 0 ? actualValue * 1.08 : value * 1.03;
+  });
+
+  if (curveChart) curveChart.destroy();
+
+  curveChart = new Chart(document.getElementById("curveChart"), {
+    type: "line",
+    data: {
+      labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
+      datasets: [
+        {
+          label: "Planejado Acumulado",
+          data: planned,
+          borderColor: "#38bdf8",
+          backgroundColor: "rgba(56,189,248,.08)",
+          borderWidth: 3,
+          fill: false,
+          tension: .35
+        },
+        {
+          label: "Realizado Acumulado",
+          data: actual,
+          borderColor: "#f59e0b",
+          backgroundColor: "rgba(245,158,11,.08)",
+          borderWidth: 3,
+          fill: false,
+          tension: .35
+        },
+        {
+          label: "Projeção Custo Final",
+          data: projected,
+          borderColor: "#fb7185",
+          borderWidth: 2,
+          borderDash: [6, 6],
+          fill: false,
+          tension: .35
+        }
+      ]
+    },
+    options: chartOptions()
+  });
+}
+
+function updateCostChart(data) {
+  const etapas = ["Fundação", "Estrutura", "Alvenaria", "Instalações", "Acabamento"];
+
+  const budget = etapas.map(etapa =>
+    data.filter(d => d.etapa === etapa).reduce((s, d) => s + d.orcado, 0)
+  );
+
+  const actual = etapas.map(etapa =>
+    data.filter(d => d.etapa === etapa).reduce((s, d) => s + d.realizado, 0)
+  );
+
+  if (costChart) costChart.destroy();
+
+  costChart = new Chart(document.getElementById("costChart"), {
+    type: "bar",
+    data: {
+      labels: etapas,
+      datasets: [
+        {
+          label: "Orçado",
+          data: budget,
+          backgroundColor: "#38bdf8",
+          borderRadius: 6
+        },
+        {
+          label: "Realizado",
+          data: actual,
+          backgroundColor: "#f59e0b",
+          borderRadius: 6
+        }
+      ]
+    },
+    options: chartOptions()
+  });
+}
+
+function updateMarginChart(data) {
+  const obras = ["Residencial Aurora", "Vila Garden", "Parque Horizonte", "Torre Corporate"];
+
+  const vgv = obras.map(obra => {
+    const item = data.find(d => d.obra === obra);
+    return item ? item.vgv : 0;
+  });
+
+  const cost = obras.map(obra =>
+    data.filter(d => d.obra === obra).reduce((s, d) => s + d.realizado, 0)
+  );
+
+  const margin = obras.map((obra, index) =>
+    vgv[index] ? vgv[index] - cost[index] : 0
+  );
+
+  if (marginChart) marginChart.destroy();
+
+  marginChart = new Chart(document.getElementById("marginChart"), {
+    type: "bar",
+    data: {
+      labels: obras,
+      datasets: [
+        {
+          label: "VGV",
+          data: vgv,
+          backgroundColor: "#22c55e",
+          borderRadius: 6
+        },
+        {
+          label: "Custo Realizado",
+          data: cost,
+          backgroundColor: "#fb7185",
+          borderRadius: 6
+        },
+        {
+          label: "Margem Bruta Projetada",
+          data: margin,
+          backgroundColor: "#a78bfa",
+          borderRadius: 6
+        }
+      ]
+    },
+    options: chartOptions()
+  });
+}
+
+function updateVarianceChart(data) {
+  const obras = ["Residencial Aurora", "Vila Garden", "Parque Horizonte", "Torre Corporate"];
+
+  const values = obras.map(obra => {
+    const items = data.filter(d => d.obra === obra);
+    const orcado = items.reduce((s, d) => s + d.orcado, 0);
+    const realizado = items.reduce((s, d) => s + d.realizado, 0);
+    return realizado - orcado;
+  });
+
+  if (varianceChart) varianceChart.destroy();
+
+  varianceChart = new Chart(document.getElementById("varianceChart"), {
+    type: "bar",
+    data: {
+      labels: obras,
+      datasets: [{
+        label: "Desvio de Custo",
+        data: values,
+        backgroundColor: values.map(v => v > 0 ? "#fb7185" : "#22c55e"),
+        borderRadius: 6
+      }]
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: "#94a3b8",
+            callback: value => "R$ " + (value / 1000000).toFixed(1) + "M"
+          },
+          grid: { color: "#1f2937" }
+        },
+        y: {
+          ticks: { color: "#94a3b8" },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
+function chartOptions() {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        labels: { color: "#cbd5e1" }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { color: "#94a3b8" },
+        grid: { display: false }
+      },
+      y: {
+        ticks: {
+          color: "#94a3b8",
+          callback: value => "R$ " + (value / 1000000).toFixed(1) + "M"
+        },
+        grid: { color: "#1f2937" }
+      }
+    }
+  };
+}
+
+function updateInsights(data) {
+  const vgv = uniqueVGV(data);
+  const orcado = data.reduce((s, d) => s + d.orcado, 0);
+  const realizado = data.reduce((s, d) => s + d.realizado, 0);
+  const variancia = realizado - orcado;
+  const restricoes = data.reduce((s, d) => s + d.restricoes, 0);
+  const atrasos = data.filter(d => d.status === "Atraso").length;
+  const ppc = data.length ? data.reduce((s, d) => s + d.ppc, 0) / data.length : 0;
+  const margem = vgv ? ((vgv - realizado) / vgv) * 100 : 0;
+
+  document.getElementById("insight1").textContent =
+    data.length === 0
+      ? "Nenhum registro encontrado para os filtros aplicados."
+      : `Foram analisadas ${data.length} etapas. O realizado soma ${money(realizado)}, com desvio de ${money(variancia)} frente ao orçamento e margem projetada de ${margem.toFixed(1)}%.`;
+
+  document.getElementById("insight2").textContent =
+    "A base está estruturada por obra, etapa, responsável, período, orçamento, realizado, avanço físico, PPC, restrições, risco e status, simulando uma extração consolidada do Sienge após governança de dados.";
+
+  document.getElementById("insight3").textContent =
+    atrasos > 0 || ppc < 75
+      ? `Priorizar remoção de ${restricoes} restrições e replanejamento das etapas em atraso. O PPC médio está em ${ppc.toFixed(1)}%, indicando necessidade de reforço na gestão semanal Lean.`
+      : "Cenário operacional controlado. Manter rotina de planejamento semanal, acompanhamento da curva S e controle preventivo de desvios de custo.";
+}
+
+function updateDashboard() {
+  const filtered = filterWorks();
+
+  updateKPIs(filtered);
+  updateMiniIndicators(filtered);
+  updateTable(filtered);
+  updateLeanStages(filtered);
+  updateCurveChart(filtered);
+  updateCostChart(filtered);
+  updateMarginChart(filtered);
+  updateVarianceChart(filtered);
+  updateInsights(filtered);
+}
+
+function resetFilters() {
+  document.getElementById("workFilter").value = "all";
+  document.getElementById("stageFilter").value = "all";
+  document.getElementById("statusFilter").value = "all";
+  document.getElementById("ownerFilter").value = "all";
+  document.getElementById("riskFilter").value = "all";
+  document.getElementById("periodFilter").value = "all";
+
+  updateDashboard();
+}
+
+document.querySelectorAll("select").forEach(select => {
+  select.addEventListener("change", updateDashboard);
+});
+
+window.onload = updateDashboard;
+</script>
+
+</body>
+</html>

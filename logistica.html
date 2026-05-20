@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Especialista Logística WMS Sênior</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#020617;
+      --panel:#0f172a;
+      --card:#111827;
+      --border:#1f2937;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --green:#22c55e;
+      --red:#fb7185;
+      --amber:#f59e0b;
+      --blue:#38bdf8;
+      --purple:#a78bfa;
+      --cyan:#06b6d4;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:Arial, sans-serif;
+      background:linear-gradient(135deg,#020617,#0f172a);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    header{
+      background:rgba(2,6,23,.96);
+      border-bottom:1px solid var(--border);
+      padding:20px 32px;
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+
+    .header-wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand-icon{
+      width:50px;
+      height:50px;
+      border-radius:15px;
+      background:rgba(6,182,212,.12);
+      border:1px solid rgba(6,182,212,.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--cyan);
+      font-size:24px;
+    }
+
+    .brand h1{
+      font-size:21px;
+      font-weight:900;
+    }
+
+    .brand p{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:4px;
+    }
+
+    .badge{
+      padding:8px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-left:6px;
+    }
+
+    main{
+      padding:28px 32px;
+      max-width:1540px;
+      margin:auto;
+    }
+
+    .hero{
+      background:
+        radial-gradient(circle at top right,rgba(6,182,212,.18),transparent 34%),
+        linear-gradient(135deg,#020617,#111827);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:28px;
+      margin-bottom:22px;
+      box-shadow:0 25px 60px rgba(0,0,0,.30);
+    }
+
+    .hero h2{
+      font-size:32px;
+      line-height:1.15;
+      max-width:980px;
+      margin-bottom:12px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      max-width:1040px;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .filters{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:14px;
+      background:rgba(15,23,42,.84);
+      border:1px solid var(--border);
+      padding:18px;
+      border-radius:18px;
+      margin-bottom:22px;
+    }
+
+    .filter-group label{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      font-weight:900;
+      margin-bottom:7px;
+    }
+
+    select,button{
+      width:100%;
+      padding:11px 12px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#020617;
+      color:var(--text);
+      outline:none;
+      font-weight:800;
+    }
+
+    button{
+      background:var(--cyan);
+      color:#020617;
+      border:none;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    button:hover{
+      filter:brightness(1.08);
+      transform:translateY(-1px);
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .card{
+      background:rgba(17,24,39,.92);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 12px 30px rgba(0,0,0,.18);
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      font-weight:900;
+      gap:10px;
+    }
+
+    .card-top i{font-size:18px}
+
+    .value{
+      font-size:26px;
+      font-weight:900;
+      margin-top:12px;
+    }
+
+    .sub{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:7px;
+      line-height:1.4;
+    }
+
+    .green{color:var(--green)}
+    .red{color:var(--red)}
+    .amber{color:var(--amber)}
+    .blue{color:var(--blue)}
+    .purple{color:var(--purple)}
+    .cyan{color:var(--cyan)}
+
+    .grid{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:18px;
+      margin-bottom:22px;
+    }
+
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .section-title h3{
+      font-size:16px;
+      font-weight:900;
+    }
+
+    .section-title span{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .chart-box{height:310px}
+
+    .flow{
+      display:grid;
+      gap:12px;
+    }
+
+    .stage{
+      background:#020617;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+    }
+
+    .stage-head{
+      display:flex;
+      justify-content:space-between;
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:8px;
+      gap:10px;
+    }
+
+    .bar{
+      height:8px;
+      background:#1e293b;
+      border-radius:99px;
+      overflow:hidden;
+    }
+
+    .bar div{
+      height:100%;
+      border-radius:99px;
+      background:var(--cyan);
+      transition:width .4s ease;
+    }
+
+    .table-wrap{overflow-x:auto}
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:12px;
+    }
+
+    thead{
+      background:#020617;
+      color:var(--muted);
+      text-transform:uppercase;
+      font-size:11px;
+    }
+
+    th,td{
+      padding:13px;
+      border-bottom:1px solid var(--border);
+      text-align:left;
+      white-space:nowrap;
+    }
+
+    tbody tr:hover{
+      background:rgba(6,182,212,.05);
+    }
+
+    .pill{
+      padding:5px 9px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      display:inline-block;
+    }
+
+    .finalizado{background:rgba(34,197,94,.12);color:var(--green)}
+    .andamento{background:rgba(56,189,248,.12);color:var(--blue)}
+    .pendente{background:rgba(245,158,11,.12);color:var(--amber)}
+    .critico{background:rgba(251,113,133,.12);color:var(--red)}
+
+    .prio-baixa{color:var(--green);font-weight:900}
+    .prio-media{color:var(--amber);font-weight:900}
+    .prio-alta{color:var(--red);font-weight:900}
+
+    .insights{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .insight{
+      background:rgba(2,6,23,.92);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+    }
+
+    .insight h4{
+      font-size:14px;
+      margin-bottom:8px;
+    }
+
+    .insight p{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    @media(max-width:1200px){
+      .filters{grid-template-columns:repeat(3,1fr)}
+      .kpis{grid-template-columns:repeat(3,1fr)}
+      .grid{grid-template-columns:1fr}
+      .insights{grid-template-columns:1fr}
+    }
+
+    @media(max-width:720px){
+      header,main{padding:18px}
+      .filters,.kpis{grid-template-columns:1fr}
+      .hero h2{font-size:25px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-wrap">
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-warehouse"></i>
+      </div>
+      <div>
+        <h1>Especialista Logística WMS Sênior | Warehouse Intelligence</h1>
+        <p>Recebimento, armazenagem, picking, expedição, SLA, produtividade e governança operacional</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="badge"><i class="fa-solid fa-database cyan"></i> Dados Tratados</span>
+      <span class="badge"><i class="fa-solid fa-barcode green"></i> Operação Rastreável</span>
+      <span class="badge"><i class="fa-solid fa-shield-halved amber"></i> Base WMS Consistente</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h2>Painel sênior de logística WMS estruturado.</h2>
+    <p>
+      Visão especialista para gestão de recebimento, conferência, armazenagem, separação, picking,
+      expedição, SLA operacional, backlog, produtividade por responsável, divergências, prioridades
+      e gargalos da cadeia logística com dados limpos e consistentes extraídos de um sistema WMS.
+    </p>
+  </section>
+
+  <section class="filters">
+    <div class="filter-group">
+      <label>Unidade</label>
+      <select id="unitFilter">
+        <option value="all">Todas</option>
+        <option value="CD Rio Claro">CD Rio Claro</option>
+        <option value="CD São Paulo">CD São Paulo</option>
+        <option value="CD Campinas">CD Campinas</option>
+        <option value="CD Ribeirão">CD Ribeirão</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Operação</label>
+      <select id="operationFilter">
+        <option value="all">Todas</option>
+        <option value="Recebimento">Recebimento</option>
+        <option value="Conferência">Conferência</option>
+        <option value="Armazenagem">Armazenagem</option>
+        <option value="Picking">Picking</option>
+        <option value="Expedição">Expedição</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Status</label>
+      <select id="statusFilter">
+        <option value="all">Todos</option>
+        <option value="Finalizado">Finalizado</option>
+        <option value="Em andamento">Em andamento</option>
+        <option value="Pendente">Pendente</option>
+        <option value="Crítico">Crítico</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Prioridade</label>
+      <select id="priorityFilter">
+        <option value="all">Todas</option>
+        <option value="Baixa">Baixa</option>
+        <option value="Média">Média</option>
+        <option value="Alta">Alta</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Turno</label>
+      <select id="shiftFilter">
+        <option value="all">Todos</option>
+        <option value="1º Turno">1º Turno</option>
+        <option value="2º Turno">2º Turno</option>
+        <option value="3º Turno">3º Turno</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Responsável</label>
+      <select id="ownerFilter">
+        <option value="all">Todos</option>
+        <option value="Ana Souza">Ana Souza</option>
+        <option value="Bruno Lima">Bruno Lima</option>
+        <option value="Carla Mendes">Carla Mendes</option>
+        <option value="Diego Rocha">Diego Rocha</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Ação</label>
+      <button onclick="resetFilters()">
+        <i class="fa-solid fa-rotate-right"></i> Limpar
+      </button>
+    </div>
+  </section>
+
+  <section class="kpis">
+    <div class="card">
+      <div class="card-top">Ordens Processadas <i class="fa-solid fa-boxes-stacked cyan"></i></div>
+      <div class="value" id="kpiOrders">0</div>
+      <div class="sub">Total de tarefas WMS filtradas</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Volume Movimentado <i class="fa-solid fa-dolly blue"></i></div>
+      <div class="value" id="kpiVolume">0</div>
+      <div class="sub">Unidades movimentadas na operação</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">SLA Operacional <i class="fa-solid fa-stopwatch green"></i></div>
+      <div class="value" id="kpiSLA">0%</div>
+      <div class="sub">Tarefas finalizadas dentro do prazo</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Backlog <i class="fa-solid fa-layer-group amber"></i></div>
+      <div class="value" id="kpiBacklog">0</div>
+      <div class="sub">Pendentes, críticos e em andamento</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Divergências <i class="fa-solid fa-triangle-exclamation red"></i></div>
+      <div class="value" id="kpiDivergence">0</div>
+      <div class="sub">Ocorrências de quantidade, etiqueta ou endereço</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Produtividade Média <i class="fa-solid fa-gauge-high purple"></i></div>
+      <div class="value" id="kpiProductivity">0/h</div>
+      <div class="sub">Volume médio processado por hora</div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Performance Operacional por Unidade</h3>
+          <span>Volume movimentado x backlog</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="unitChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Fluxo WMS</h3>
+          <span>Distribuição por etapa operacional</span>
+        </div>
+      </div>
+      <div class="flow" id="operationStages"></div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Base Operacional Extraída do WMS</h3>
+          <span>Dados simulados após padronização, integração e governança</span>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ordem</th>
+              <th>Unidade</th>
+              <th>Operação</th>
+              <th>Responsável</th>
+              <th>Turno</th>
+              <th>Volume</th>
+              <th>SLA</th>
+              <th>Diverg.</th>
+              <th>Prioridade</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="wmsTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Ranking de Produtividade</h3>
+          <span>Volume processado por responsável</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="ownerChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="insights">
+    <div class="insight">
+      <h4><i class="fa-solid fa-brain amber"></i> Diagnóstico Operacional</h4>
+      <p id="insight1">Aguardando análise dos filtros aplicados.</p>
+    </div>
+
+    <div class="insight">
+      <h4><i class="fa-solid fa-database cyan"></i> Governança de Dados WMS</h4>
+      <p id="insight2">Base estruturada com unidade, operação, status, prioridade, turno, responsável, SLA e divergências.</p>
+    </div>
+
+    <div class="insight">
+      <h4><i class="fa-solid fa-bullseye green"></i> Ação Recomendada</h4>
+      <p id="insight3">Utilize os filtros para priorizar gargalos por unidade, operação crítica e responsável.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const wmsData = [
+  { ordem:"WMS-1001", unidade:"CD Rio Claro", operacao:"Recebimento", responsavel:"Ana Souza", turno:"1º Turno", volume:1250, sla:true, divergencias:1, prioridade:"Média", status:"Finalizado" },
+  { ordem:"WMS-1002", unidade:"CD São Paulo", operacao:"Conferência", responsavel:"Bruno Lima", turno:"2º Turno", volume:890, sla:false, divergencias:4, prioridade:"Alta", status:"Crítico" },
+  { ordem:"WMS-1003", unidade:"CD Campinas", operacao:"Picking", responsavel:"Carla Mendes", turno:"1º Turno", volume:1740, sla:true, divergencias:0, prioridade:"Baixa", status:"Finalizado" },
+  { ordem:"WMS-1004", unidade:"CD Ribeirão", operacao:"Expedição", responsavel:"Diego Rocha", turno:"3º Turno", volume:980, sla:true, divergencias:2, prioridade:"Média", status:"Em andamento" },
+  { ordem:"WMS-1005", unidade:"CD Rio Claro", operacao:"Armazenagem", responsavel:"Ana Souza", turno:"2º Turno", volume:620, sla:false, divergencias:3, prioridade:"Alta", status:"Pendente" },
+  { ordem:"WMS-1006", unidade:"CD São Paulo", operacao:"Picking", responsavel:"Bruno Lima", turno:"1º Turno", volume:2150, sla:true, divergencias:1, prioridade:"Média", status:"Finalizado" },
+  { ordem:"WMS-1007", unidade:"CD Campinas", operacao:"Recebimento", responsavel:"Carla Mendes", turno:"2º Turno", volume:760, sla:false, divergencias:5, prioridade:"Alta", status:"Crítico" },
+  { ordem:"WMS-1008", unidade:"CD Ribeirão", operacao:"Conferência", responsavel:"Diego Rocha", turno:"1º Turno", volume:1320, sla:true, divergencias:0, prioridade:"Baixa", status:"Finalizado" },
+  { ordem:"WMS-1009", unidade:"CD Rio Claro", operacao:"Expedição", responsavel:"Ana Souza", turno:"3º Turno", volume:1640, sla:true, divergencias:2, prioridade:"Média", status:"Finalizado" },
+  { ordem:"WMS-1010", unidade:"CD São Paulo", operacao:"Armazenagem", responsavel:"Bruno Lima", turno:"2º Turno", volume:540, sla:false, divergencias:3, prioridade:"Alta", status:"Pendente" },
+  { ordem:"WMS-1011", unidade:"CD Campinas", operacao:"Expedição", responsavel:"Carla Mendes", turno:"3º Turno", volume:1890, sla:true, divergencias:1, prioridade:"Média", status:"Em andamento" },
+  { ordem:"WMS-1012", unidade:"CD Ribeirão", operacao:"Picking", responsavel:"Diego Rocha", turno:"1º Turno", volume:2310, sla:true, divergencias:0, prioridade:"Baixa", status:"Finalizado" },
+  { ordem:"WMS-1013", unidade:"CD Rio Claro", operacao:"Conferência", responsavel:"Ana Souza", turno:"1º Turno", volume:780, sla:false, divergencias:6, prioridade:"Alta", status:"Crítico" },
+  { ordem:"WMS-1014", unidade:"CD São Paulo", operacao:"Recebimento", responsavel:"Bruno Lima", turno:"3º Turno", volume:1140, sla:true, divergencias:1, prioridade:"Média", status:"Finalizado" },
+  { ordem:"WMS-1015", unidade:"CD Campinas", operacao:"Armazenagem", responsavel:"Carla Mendes", turno:"2º Turno", volume:930, sla:true, divergencias:2, prioridade:"Média", status:"Em andamento" },
+  { ordem:"WMS-1016", unidade:"CD Ribeirão", operacao:"Expedição", responsavel:"Diego Rocha", turno:"2º Turno", volume:1510, sla:false, divergencias:3, prioridade:"Alta", status:"Pendente" },
+  { ordem:"WMS-1017", unidade:"CD Rio Claro", operacao:"Picking", responsavel:"Ana Souza", turno:"2º Turno", volume:2460, sla:true, divergencias:1, prioridade:"Média", status:"Finalizado" },
+  { ordem:"WMS-1018", unidade:"CD São Paulo", operacao:"Expedição", responsavel:"Bruno Lima", turno:"1º Turno", volume:2020, sla:true, divergencias:0, prioridade:"Baixa", status:"Finalizado" }
+];
+
+let unitChart;
+let ownerChart;
+
+function number(value){
+  return value.toLocaleString("pt-BR");
+}
+
+function getFilters(){
+  return {
+    unidade:document.getElementById("unitFilter").value,
+    operacao:document.getElementById("operationFilter").value,
+    status:document.getElementById("statusFilter").value,
+    prioridade:document.getElementById("priorityFilter").value,
+    turno:document.getElementById("shiftFilter").value,
+    responsavel:document.getElementById("ownerFilter").value
+  };
+}
+
+function filterWMS(){
+  const f = getFilters();
+
+  return wmsData.filter(d =>
+    (f.unidade === "all" || d.unidade === f.unidade) &&
+    (f.operacao === "all" || d.operacao === f.operacao) &&
+    (f.status === "all" || d.status === f.status) &&
+    (f.prioridade === "all" || d.prioridade === f.prioridade) &&
+    (f.turno === "all" || d.turno === f.turno) &&
+    (f.responsavel === "all" || d.responsavel === f.responsavel)
+  );
+}
+
+function updateKPIs(data){
+  const totalOrdens = data.length;
+  const volume = data.reduce((s,d) => s + d.volume, 0);
+  const finalizadas = data.filter(d => d.status === "Finalizado").length;
+  const slaOk = data.filter(d => d.sla === true).length;
+  const slaRate = totalOrdens ? (slaOk / totalOrdens) * 100 : 0;
+  const backlog = data.filter(d => d.status !== "Finalizado").length;
+  const divergencias = data.reduce((s,d) => s + d.divergencias, 0);
+  const produtividade = totalOrdens ? volume / (totalOrdens * 2.5) : 0;
+
+  document.getElementById("kpiOrders").textContent = number(totalOrdens);
+  document.getElementById("kpiVolume").textContent = number(volume);
+  document.getElementById("kpiSLA").textContent = slaRate.toFixed(1) + "%";
+  document.getElementById("kpiBacklog").textContent = number(backlog);
+  document.getElementById("kpiDivergence").textContent = number(divergencias);
+  document.getElementById("kpiProductivity").textContent = number(Math.round(produtividade)) + "/h";
+}
+
+function updateTable(data){
+  const tbody = document.getElementById("wmsTable");
+  tbody.innerHTML = "";
+
+  if(data.length === 0){
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="10" style="text-align:center;color:#94a3b8;padding:24px;">
+          Nenhum registro encontrado para os filtros aplicados.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  data.forEach(d => {
+    const statusClass =
+      d.status === "Finalizado" ? "finalizado" :
+      d.status === "Em andamento" ? "andamento" :
+      d.status === "Pendente" ? "pendente" : "critico";
+
+    const prioClass =
+      d.prioridade === "Alta" ? "prio-alta" :
+      d.prioridade === "Média" ? "prio-media" : "prio-baixa";
+
+    tbody.innerHTML += `
+      <tr>
+        <td><strong>${d.ordem}</strong></td>
+        <td>${d.unidade}</td>
+        <td>${d.operacao}</td>
+        <td>${d.responsavel}</td>
+        <td>${d.turno}</td>
+        <td>${number(d.volume)}</td>
+        <td>${d.sla ? '<span class="green">Dentro</span>' : '<span class="red">Fora</span>'}</td>
+        <td>${d.divergencias}</td>
+        <td class="${prioClass}">${d.prioridade}</td>
+        <td><span class="pill ${statusClass}">${d.status}</span></td>
+      </tr>
+    `;
+  });
+}
+
+function updateOperations(data){
+  const operations = ["Recebimento","Conferência","Armazenagem","Picking","Expedição"];
+  const container = document.getElementById("operationStages");
+  container.innerHTML = "";
+
+  const total = data.reduce((s,d) => s + d.volume, 0) || 1;
+
+  operations.forEach(op => {
+    const items = data.filter(d => d.operacao === op);
+    const volume = items.reduce((s,d) => s + d.volume, 0);
+    const percent = (volume / total) * 100;
+
+    container.innerHTML += `
+      <div class="stage">
+        <div class="stage-head">
+          <span>${op}</span>
+          <span>${items.length} ordens | ${number(volume)} un.</span>
+        </div>
+        <div class="bar">
+          <div style="width:${percent}%"></div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function updateUnitChart(data){
+  const units = ["CD Rio Claro","CD São Paulo","CD Campinas","CD Ribeirão"];
+
+  const volume = units.map(unit =>
+    data.filter(d => d.unidade === unit).reduce((s,d) => s + d.volume, 0)
+  );
+
+  const backlog = units.map(unit =>
+    data.filter(d => d.unidade === unit && d.status !== "Finalizado").length
+  );
+
+  if(unitChart) unitChart.destroy();
+
+  unitChart = new Chart(document.getElementById("unitChart"), {
+    type:"bar",
+    data:{
+      labels:units,
+      datasets:[
+        {
+          label:"Volume Movimentado",
+          data:volume,
+          backgroundColor:"#06b6d4",
+          borderRadius:6
+        },
+        {
+          label:"Backlog",
+          data:backlog,
+          backgroundColor:"#f59e0b",
+          borderRadius:6,
+          yAxisID:"y1"
+        }
+      ]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{
+          labels:{color:"#cbd5e1"}
+        }
+      },
+      scales:{
+        x:{
+          ticks:{color:"#94a3b8"},
+          grid:{display:false}
+        },
+        y:{
+          ticks:{color:"#94a3b8"},
+          grid:{color:"#1f2937"}
+        },
+        y1:{
+          position:"right",
+          ticks:{color:"#94a3b8"},
+          grid:{drawOnChartArea:false}
+        }
+      }
+    }
+  });
+}
+
+function updateOwnerChart(data){
+  const owners = ["Ana Souza","Bruno Lima","Carla Mendes","Diego Rocha"];
+
+  const values = owners.map(owner =>
+    data.filter(d => d.responsavel === owner).reduce((s,d) => s + d.volume, 0)
+  );
+
+  if(ownerChart) ownerChart.destroy();
+
+  ownerChart = new Chart(document.getElementById("ownerChart"), {
+    type:"bar",
+    data:{
+      labels:owners,
+      datasets:[{
+        label:"Volume Processado",
+        data:values,
+        backgroundColor:"#a78bfa",
+        borderRadius:6
+      }]
+    },
+    options:{
+      indexAxis:"y",
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false}
+      },
+      scales:{
+        x:{
+          ticks:{color:"#94a3b8"},
+          grid:{color:"#1f2937"}
+        },
+        y:{
+          ticks:{color:"#94a3b8"},
+          grid:{display:false}
+        }
+      }
+    }
+  });
+}
+
+function updateInsights(data){
+  const total = data.length;
+  const backlog = data.filter(d => d.status !== "Finalizado").length;
+  const criticos = data.filter(d => d.status === "Crítico").length;
+  const divergencias = data.reduce((s,d) => s + d.divergencias, 0);
+  const volume = data.reduce((s,d) => s + d.volume, 0);
+
+  const criticalOps = ["Recebimento","Conferência","Armazenagem","Picking","Expedição"]
+    .map(op => ({
+      op,
+      count:data.filter(d => d.operacao === op && d.status !== "Finalizado").length
+    }))
+    .sort((a,b) => b.count - a.count)[0];
+
+  document.getElementById("insight1").textContent =
+    total === 0
+      ? "Nenhuma ordem WMS encontrada para os filtros aplicados."
+      : `Foram encontradas ${total} ordens, com ${number(volume)} unidades movimentadas, ${backlog} itens em backlog e ${criticos} ocorrências críticas.`;
+
+  document.getElementById("insight2").textContent =
+    "A base WMS está padronizada por unidade, operação, turno, responsável, status, prioridade, SLA e divergências, permitindo leitura executiva e operacional confiável.";
+
+  document.getElementById("insight3").textContent =
+    backlog > 0
+      ? `Priorizar a etapa de ${criticalOps.op}, que concentra maior volume de pendências no filtro atual. Revisar SLA, divergências e capacidade por turno.`
+      : "Operação sem backlog relevante no filtro atual. Manter monitoramento preventivo de SLA e divergências.";
+}
+
+function updateDashboard(){
+  const filtered = filterWMS();
+
+  updateKPIs(filtered);
+  updateTable(filtered);
+  updateOperations(filtered);
+  updateUnitChart(filtered);
+  updateOwnerChart(filtered);
+  updateInsights(filtered);
+}
+
+function resetFilters(){
+  document.getElementById("unitFilter").value = "all";
+  document.getElementById("operationFilter").value = "all";
+  document.getElementById("statusFilter").value = "all";
+  document.getElementById("priorityFilter").value = "all";
+  document.getElementById("shiftFilter").value = "all";
+  document.getElementById("ownerFilter").value = "all";
+
+  updateDashboard();
+}
+
+document.querySelectorAll("select").forEach(select => {
+  select.addEventListener("change", updateDashboard);
+});
+
+window.onload = updateDashboard;
+</script>
+
+</body>
+</html>

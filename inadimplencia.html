@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Especialista em Inadimplência | Credit & Collection Intelligence</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#020617;
+      --panel:#0f172a;
+      --card:#111827;
+      --border:#1f2937;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --green:#22c55e;
+      --red:#fb7185;
+      --amber:#f59e0b;
+      --blue:#38bdf8;
+      --purple:#a78bfa;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:Arial, sans-serif;
+      background:linear-gradient(135deg,#020617,#0f172a);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    header{
+      background:rgba(2,6,23,.96);
+      border-bottom:1px solid var(--border);
+      padding:20px 32px;
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+
+    .header-wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand-icon{
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      background:rgba(251,113,133,.12);
+      border:1px solid rgba(251,113,133,.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--red);
+      font-size:22px;
+    }
+
+    .brand h1{
+      font-size:21px;
+      font-weight:900;
+    }
+
+    .brand p{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:4px;
+    }
+
+    .badge{
+      padding:8px 12px;
+      border-radius:999px;
+      background:#0f172a;
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    main{
+      padding:28px 32px;
+      max-width:1500px;
+      margin:auto;
+    }
+
+    .hero{
+      background:
+        radial-gradient(circle at top right,rgba(251,113,133,.18),transparent 34%),
+        linear-gradient(135deg,#020617,#111827);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:28px;
+      margin-bottom:22px;
+      box-shadow:0 25px 60px rgba(0,0,0,.30);
+    }
+
+    .hero h2{
+      font-size:32px;
+      line-height:1.15;
+      max-width:950px;
+      margin-bottom:12px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      max-width:980px;
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .filters{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:14px;
+      background:rgba(15,23,42,.84);
+      border:1px solid var(--border);
+      padding:18px;
+      border-radius:18px;
+      margin-bottom:22px;
+    }
+
+    .filter-group label{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      font-weight:900;
+      margin-bottom:7px;
+    }
+
+    select,button{
+      width:100%;
+      padding:11px 12px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#020617;
+      color:var(--text);
+      outline:none;
+      font-weight:800;
+    }
+
+    button{
+      background:var(--red);
+      color:#020617;
+      border:none;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    button:hover{
+      filter:brightness(1.08);
+      transform:translateY(-1px);
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .card{
+      background:rgba(17,24,39,.92);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 12px 30px rgba(0,0,0,.18);
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      font-weight:900;
+      gap:10px;
+    }
+
+    .card-top i{font-size:18px}
+
+    .value{
+      font-size:26px;
+      font-weight:900;
+      margin-top:12px;
+    }
+
+    .sub{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:7px;
+      line-height:1.4;
+    }
+
+    .green{color:var(--green)}
+    .red{color:var(--red)}
+    .amber{color:var(--amber)}
+    .blue{color:var(--blue)}
+    .purple{color:var(--purple)}
+
+    .grid{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:18px;
+      margin-bottom:22px;
+    }
+
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .section-title h3{
+      font-size:16px;
+      font-weight:900;
+    }
+
+    .section-title span{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .chart-box{height:310px}
+
+    .aging{
+      display:grid;
+      gap:12px;
+    }
+
+    .stage{
+      background:#020617;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+    }
+
+    .stage-head{
+      display:flex;
+      justify-content:space-between;
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:8px;
+      gap:10px;
+    }
+
+    .bar{
+      height:8px;
+      background:#1e293b;
+      border-radius:99px;
+      overflow:hidden;
+    }
+
+    .bar div{
+      height:100%;
+      border-radius:99px;
+      background:var(--red);
+      transition:width .4s ease;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:12px;
+    }
+
+    thead{
+      background:#020617;
+      color:var(--muted);
+      text-transform:uppercase;
+      font-size:11px;
+    }
+
+    th,td{
+      padding:13px;
+      border-bottom:1px solid var(--border);
+      text-align:left;
+      white-space:nowrap;
+    }
+
+    tbody tr:hover{
+      background:rgba(251,113,133,.05);
+    }
+
+    .pill{
+      padding:5px 9px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      display:inline-block;
+    }
+
+    .pago{background:rgba(34,197,94,.12);color:var(--green)}
+    .aberto{background:rgba(56,189,248,.12);color:var(--blue)}
+    .negociacao{background:rgba(245,158,11,.12);color:var(--amber)}
+    .juridico{background:rgba(251,113,133,.12);color:var(--red)}
+
+    .risk-baixo{color:var(--green);font-weight:900}
+    .risk-medio{color:var(--amber);font-weight:900}
+    .risk-alto{color:var(--red);font-weight:900}
+
+    .insights{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .insight{
+      background:rgba(2,6,23,.92);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+    }
+
+    .insight h4{
+      font-size:14px;
+      margin-bottom:8px;
+    }
+
+    .insight p{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .table-wrap{
+      overflow-x:auto;
+    }
+
+    @media(max-width:1200px){
+      .filters{grid-template-columns:repeat(3,1fr)}
+      .kpis{grid-template-columns:repeat(3,1fr)}
+      .insights{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:720px){
+      header,main{padding:18px}
+      .filters,.kpis{grid-template-columns:1fr}
+      .hero h2{font-size:25px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-wrap">
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+      </div>
+      <div>
+        <h1>Especialista em Inadimplência | Credit & Collection Intelligence</h1>
+        <p>Gestão de cobrança, aging, recuperação, risco, carteira e governança financeira</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="badge"><i class="fa-solid fa-database blue"></i> Dados Limpos</span>
+      <span class="badge"><i class="fa-solid fa-shield-halved green"></i> Base Consistente</span>
+      <span class="badge"><i class="fa-solid fa-calendar amber"></i> Q2 2026</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h2>Painel executivo de inadimplência estruturado.</h2>
+    <p>
+      Visão especialista para controle de contas vencidas, aging da dívida, risco de crédito,
+      recuperação de valores, acordos, cobrança ativa, carteira por responsável e priorização
+      de clientes com maior impacto financeiro.
+    </p>
+  </section>
+
+  <section class="filters">
+    <div class="filter-group">
+      <label>Período</label>
+      <select id="periodFilter">
+        <option value="all">Todos</option>
+        <option value="2026-01">Jan/2026</option>
+        <option value="2026-02">Fev/2026</option>
+        <option value="2026-03">Mar/2026</option>
+        <option value="2026-04">Abr/2026</option>
+        <option value="2026-05">Mai/2026</option>
+        <option value="2026-06">Jun/2026</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Carteira</label>
+      <select id="portfolioFilter">
+        <option value="all">Todas</option>
+        <option value="Empresarial">Empresarial</option>
+        <option value="Imobiliária">Imobiliária</option>
+        <option value="Serviços">Serviços</option>
+        <option value="Logística">Logística</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Regional</label>
+      <select id="regionFilter">
+        <option value="all">Todas</option>
+        <option value="Sudeste">Sudeste</option>
+        <option value="Sul">Sul</option>
+        <option value="Centro-Oeste">Centro-Oeste</option>
+        <option value="Nordeste">Nordeste</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Aging</label>
+      <select id="agingFilter">
+        <option value="all">Todos</option>
+        <option value="1-30">1 a 30 dias</option>
+        <option value="31-60">31 a 60 dias</option>
+        <option value="61-90">61 a 90 dias</option>
+        <option value="90+">Acima de 90 dias</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Status Cobrança</label>
+      <select id="statusFilter">
+        <option value="all">Todos</option>
+        <option value="Aberto">Aberto</option>
+        <option value="Em negociação">Em negociação</option>
+        <option value="Jurídico">Jurídico</option>
+        <option value="Pago">Pago</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Responsável</label>
+      <select id="ownerFilter">
+        <option value="all">Todos</option>
+        <option value="Ana Souza">Ana Souza</option>
+        <option value="Bruno Lima">Bruno Lima</option>
+        <option value="Carla Mendes">Carla Mendes</option>
+        <option value="Diego Rocha">Diego Rocha</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Ação</label>
+      <button onclick="resetFilters()">
+        <i class="fa-solid fa-rotate-right"></i> Limpar
+      </button>
+    </div>
+  </section>
+
+  <section class="kpis">
+    <div class="card">
+      <div class="card-top">Total Vencido <i class="fa-solid fa-circle-exclamation red"></i></div>
+      <div class="value" id="kpiOverdue">R$ 0</div>
+      <div class="sub">Saldo em aberto vencido</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Recuperado <i class="fa-solid fa-circle-check green"></i></div>
+      <div class="value" id="kpiRecovered">R$ 0</div>
+      <div class="sub">Valores pagos após cobrança</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Em Negociação <i class="fa-solid fa-handshake amber"></i></div>
+      <div class="value" id="kpiNegotiation">R$ 0</div>
+      <div class="sub">Acordos e tratativas em andamento</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Taxa Recuperação <i class="fa-solid fa-chart-line blue"></i></div>
+      <div class="value" id="kpiRecoveryRate">0%</div>
+      <div class="sub">Pago sobre total da carteira filtrada</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Ticket Médio <i class="fa-solid fa-receipt purple"></i></div>
+      <div class="value" id="kpiTicket">R$ 0</div>
+      <div class="sub">Valor médio por título</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">Títulos <i class="fa-solid fa-file-invoice blue"></i></div>
+      <div class="value" id="kpiCount">0</div>
+      <div class="sub">Quantidade de registros filtrados</div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Evolução da Inadimplência por Mês</h3>
+          <span>Vencido x recuperado x negociação</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="monthlyChart"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Aging da Dívida</h3>
+          <span>Distribuição por faixa de atraso</span>
+        </div>
+      </div>
+      <div class="aging" id="agingStages"></div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Base de Inadimplência Extraída do Sistema</h3>
+          <span>Dados simulados após padronização, conciliação e governança</span>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Carteira</th>
+              <th>Regional</th>
+              <th>Responsável</th>
+              <th>Valor</th>
+              <th>Dias</th>
+              <th>Risco</th>
+              <th>Status</th>
+              <th>Período</th>
+            </tr>
+          </thead>
+          <tbody id="debtsTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h3>Ranking por Responsável</h3>
+          <span>Carteira vencida em aberto</span>
+        </div>
+      </div>
+      <div class="chart-box">
+        <canvas id="ownerChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section class="insights">
+    <div class="insight">
+      <h4><i class="fa-solid fa-brain amber"></i> Diagnóstico da Carteira</h4>
+      <p id="insight1">Aguardando análise dos filtros aplicados.</p>
+    </div>
+
+    <div class="insight">
+      <h4><i class="fa-solid fa-database blue"></i> Governança de Dados</h4>
+      <p id="insight2">Base estruturada com cliente, carteira, regional, aging, risco, status e responsável.</p>
+    </div>
+
+    <div class="insight">
+      <h4><i class="fa-solid fa-bullseye green"></i> Ação Recomendada</h4>
+      <p id="insight3">Utilize os filtros para priorizar cobrança por risco, valor e faixa de atraso.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const debts = [
+  { cliente:"Construtora Alfa", periodo:"2026-01", carteira:"Imobiliária", regional:"Sudeste", responsavel:"Ana Souza", valor:125000, dias:18, risco:"Baixo", status:"Aberto" },
+  { cliente:"Grupo Horizonte", periodo:"2026-01", carteira:"Empresarial", regional:"Sul", responsavel:"Bruno Lima", valor:210000, dias:45, risco:"Médio", status:"Em negociação" },
+  { cliente:"Norte Urbanismo", periodo:"2026-01", carteira:"Imobiliária", regional:"Nordeste", responsavel:"Carla Mendes", valor:98000, dias:72, risco:"Alto", status:"Aberto" },
+  { cliente:"Mais Armazéns", periodo:"2026-02", carteira:"Logística", regional:"Sudeste", responsavel:"Diego Rocha", valor:340000, dias:96, risco:"Alto", status:"Jurídico" },
+  { cliente:"Vila Engenharia", periodo:"2026-02", carteira:"Serviços", regional:"Centro-Oeste", responsavel:"Ana Souza", valor:76000, dias:12, risco:"Baixo", status:"Pago" },
+  { cliente:"Prime Incorporadora", periodo:"2026-02", carteira:"Imobiliária", regional:"Sul", responsavel:"Bruno Lima", valor:185000, dias:38, risco:"Médio", status:"Aberto" },
+  { cliente:"Capital Obras", periodo:"2026-03", carteira:"Empresarial", regional:"Sudeste", responsavel:"Carla Mendes", valor:270000, dias:64, risco:"Alto", status:"Em negociação" },
+  { cliente:"Logística Real", periodo:"2026-03", carteira:"Logística", regional:"Centro-Oeste", responsavel:"Diego Rocha", valor:155000, dias:25, risco:"Baixo", status:"Pago" },
+  { cliente:"Urban Prime", periodo:"2026-03", carteira:"Imobiliária", regional:"Nordeste", responsavel:"Ana Souza", valor:225000, dias:89, risco:"Alto", status:"Aberto" },
+  { cliente:"Beta Facilities", periodo:"2026-04", carteira:"Serviços", regional:"Sudeste", responsavel:"Bruno Lima", valor:64000, dias:29, risco:"Baixo", status:"Aberto" },
+  { cliente:"Tecno Obras", periodo:"2026-04", carteira:"Empresarial", regional:"Sul", responsavel:"Carla Mendes", valor:310000, dias:105, risco:"Alto", status:"Jurídico" },
+  { cliente:"Holding Serra", periodo:"2026-04", carteira:"Empresarial", regional:"Centro-Oeste", responsavel:"Diego Rocha", valor:142000, dias:53, risco:"Médio", status:"Em negociação" },
+  { cliente:"Construmais", periodo:"2026-05", carteira:"Imobiliária", regional:"Sudeste", responsavel:"Ana Souza", valor:420000, dias:117, risco:"Alto", status:"Jurídico" },
+  { cliente:"Delta Engenharia", periodo:"2026-05", carteira:"Serviços", regional:"Sul", responsavel:"Bruno Lima", valor:83000, dias:34, risco:"Médio", status:"Pago" },
+  { cliente:"Nova Gestão", periodo:"2026-05", carteira:"Serviços", regional:"Nordeste", responsavel:"Carla Mendes", valor:59000, dias:21, risco:"Baixo", status:"Aberto" },
+  { cliente:"Operações Max", periodo:"2026-06", carteira:"Logística", regional:"Centro-Oeste", responsavel:"Diego Rocha", valor:245000, dias:66, risco:"Alto", status:"Em negociação" },
+  { cliente:"Inova Real Estate", periodo:"2026-06", carteira:"Imobiliária", regional:"Sudeste", responsavel:"Ana Souza", valor:198000, dias:43, risco:"Médio", status:"Aberto" },
+  { cliente:"Soluções ERP Brasil", periodo:"2026-06", carteira:"Empresarial", regional:"Sul", responsavel:"Bruno Lima", valor:132000, dias:15, risco:"Baixo", status:"Pago" }
+];
+
+let monthlyChart;
+let ownerChart;
+
+function money(value){
+  return value.toLocaleString("pt-BR", {
+    style:"currency",
+    currency:"BRL",
+    maximumFractionDigits:0
+  });
+}
+
+function agingRange(days){
+  if(days <= 30) return "1-30";
+  if(days <= 60) return "31-60";
+  if(days <= 90) return "61-90";
+  return "90+";
+}
+
+function getFilters(){
+  return {
+    periodo:document.getElementById("periodFilter").value,
+    carteira:document.getElementById("portfolioFilter").value,
+    regional:document.getElementById("regionFilter").value,
+    aging:document.getElementById("agingFilter").value,
+    status:document.getElementById("statusFilter").value,
+    responsavel:document.getElementById("ownerFilter").value
+  };
+}
+
+function filterDebts(){
+  const f = getFilters();
+
+  return debts.filter(d =>
+    (f.periodo === "all" || d.periodo === f.periodo) &&
+    (f.carteira === "all" || d.carteira === f.carteira) &&
+    (f.regional === "all" || d.regional === f.regional) &&
+    (f.aging === "all" || agingRange(d.dias) === f.aging) &&
+    (f.status === "all" || d.status === f.status) &&
+    (f.responsavel === "all" || d.responsavel === f.responsavel)
+  );
+}
+
+function updateKPIs(data){
+  const vencido = data
+    .filter(d => d.status !== "Pago")
+    .reduce((s,d) => s + d.valor, 0);
+
+  const recuperado = data
+    .filter(d => d.status === "Pago")
+    .reduce((s,d) => s + d.valor, 0);
+
+  const negociacao = data
+    .filter(d => d.status === "Em negociação")
+    .reduce((s,d) => s + d.valor, 0);
+
+  const total = data.reduce((s,d) => s + d.valor, 0);
+  const taxa = total ? (recuperado / total) * 100 : 0;
+  const ticket = data.length ? total / data.length : 0;
+
+  document.getElementById("kpiOverdue").textContent = money(vencido);
+  document.getElementById("kpiRecovered").textContent = money(recuperado);
+  document.getElementById("kpiNegotiation").textContent = money(negociacao);
+  document.getElementById("kpiRecoveryRate").textContent = taxa.toFixed(1) + "%";
+  document.getElementById("kpiTicket").textContent = money(ticket);
+  document.getElementById("kpiCount").textContent = data.length;
+}
+
+function updateTable(data){
+  const tbody = document.getElementById("debtsTable");
+  tbody.innerHTML = "";
+
+  if(data.length === 0){
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="9" style="text-align:center;color:#94a3b8;padding:24px;">
+          Nenhum registro encontrado para os filtros aplicados.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  data.forEach(d => {
+    const statusClass =
+      d.status === "Pago" ? "pago" :
+      d.status === "Em negociação" ? "negociacao" :
+      d.status === "Jurídico" ? "juridico" : "aberto";
+
+    const riskClass =
+      d.risco === "Alto" ? "risk-alto" :
+      d.risco === "Médio" ? "risk-medio" : "risk-baixo";
+
+    tbody.innerHTML += `
+      <tr>
+        <td><strong>${d.cliente}</strong></td>
+        <td>${d.carteira}</td>
+        <td>${d.regional}</td>
+        <td>${d.responsavel}</td>
+        <td>${money(d.valor)}</td>
+        <td>${d.dias} dias</td>
+        <td class="${riskClass}">${d.risco}</td>
+        <td><span class="pill ${statusClass}">${d.status}</span></td>
+        <td>${d.periodo}</td>
+      </tr>
+    `;
+  });
+}
+
+function updateAging(data){
+  const stages = [
+    { key:"1-30", label:"1 a 30 dias" },
+    { key:"31-60", label:"31 a 60 dias" },
+    { key:"61-90", label:"61 a 90 dias" },
+    { key:"90+", label:"Acima de 90 dias" }
+  ];
+
+  const container = document.getElementById("agingStages");
+  container.innerHTML = "";
+
+  const total = data.reduce((s,d) => s + d.valor, 0) || 1;
+
+  stages.forEach(stage => {
+    const amount = data
+      .filter(d => agingRange(d.dias) === stage.key && d.status !== "Pago")
+      .reduce((s,d) => s + d.valor, 0);
+
+    const count = data
+      .filter(d => agingRange(d.dias) === stage.key && d.status !== "Pago").length;
+
+    const percent = (amount / total) * 100;
+
+    container.innerHTML += `
+      <div class="stage">
+        <div class="stage-head">
+          <span>${stage.label}</span>
+          <span>${count} | ${money(amount)}</span>
+        </div>
+        <div class="bar">
+          <div style="width:${percent}%"></div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function updateMonthlyChart(data){
+  const months = ["2026-01","2026-02","2026-03","2026-04","2026-05","2026-06"];
+
+  const vencido = months.map(m =>
+    data
+      .filter(d => d.periodo === m && d.status !== "Pago")
+      .reduce((s,d) => s + d.valor, 0)
+  );
+
+  const recuperado = months.map(m =>
+    data
+      .filter(d => d.periodo === m && d.status === "Pago")
+      .reduce((s,d) => s + d.valor, 0)
+  );
+
+  const negociacao = months.map(m =>
+    data
+      .filter(d => d.periodo === m && d.status === "Em negociação")
+      .reduce((s,d) => s + d.valor, 0)
+  );
+
+  if(monthlyChart) monthlyChart.destroy();
+
+  monthlyChart = new Chart(document.getElementById("monthlyChart"), {
+    type:"bar",
+    data:{
+      labels:["Jan","Fev","Mar","Abr","Mai","Jun"],
+      datasets:[
+        {
+          label:"Vencido",
+          data:vencido,
+          backgroundColor:"#fb7185",
+          borderRadius:6
+        },
+        {
+          label:"Recuperado",
+          data:recuperado,
+          backgroundColor:"#22c55e",
+          borderRadius:6
+        },
+        {
+          label:"Negociação",
+          data:negociacao,
+          backgroundColor:"#f59e0b",
+          borderRadius:6
+        }
+      ]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{
+          labels:{color:"#cbd5e1"}
+        }
+      },
+      scales:{
+        x:{
+          ticks:{color:"#94a3b8"},
+          grid:{display:false}
+        },
+        y:{
+          ticks:{
+            color:"#94a3b8",
+            callback:value => "R$ " + (value / 1000) + "k"
+          },
+          grid:{color:"#1f2937"}
+        }
+      }
+    }
+  });
+}
+
+function updateOwnerChart(data){
+  const owners = ["Ana Souza","Bruno Lima","Carla Mendes","Diego Rocha"];
+
+  const values = owners.map(owner =>
+    data
+      .filter(d => d.responsavel === owner && d.status !== "Pago")
+      .reduce((s,d) => s + d.valor, 0)
+  );
+
+  if(ownerChart) ownerChart.destroy();
+
+  ownerChart = new Chart(document.getElementById("ownerChart"), {
+    type:"bar",
+    data:{
+      labels:owners,
+      datasets:[{
+        label:"Carteira Vencida",
+        data:values,
+        backgroundColor:"#a78bfa",
+        borderRadius:6
+      }]
+    },
+    options:{
+      indexAxis:"y",
+      responsive:true,
+      maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false}
+      },
+      scales:{
+        x:{
+          ticks:{
+            color:"#94a3b8",
+            callback:value => "R$ " + (value / 1000) + "k"
+          },
+          grid:{color:"#1f2937"}
+        },
+        y:{
+          ticks:{color:"#94a3b8"},
+          grid:{display:false}
+        }
+      }
+    }
+  });
+}
+
+function updateInsights(data){
+  const totalAberto = data
+    .filter(d => d.status !== "Pago")
+    .reduce((s,d) => s + d.valor, 0);
+
+  const altoRisco = data
+    .filter(d => d.risco === "Alto" && d.status !== "Pago")
+    .reduce((s,d) => s + d.valor, 0);
+
+  const acima90 = data
+    .filter(d => d.dias > 90 && d.status !== "Pago")
+    .reduce((s,d) => s + d.valor, 0);
+
+  document.getElementById("insight1").textContent =
+    data.length === 0
+      ? "Nenhuma dívida encontrada para os filtros aplicados."
+      : `Foram identificados ${data.length} títulos, com ${money(totalAberto)} em aberto. O risco alto representa ${money(altoRisco)} da carteira filtrada.`;
+
+  document.getElementById("insight2").textContent =
+    "A base foi padronizada por cliente, carteira, período, aging, risco, status de cobrança e responsável, permitindo gestão confiável da inadimplência.";
+
+  document.getElementById("insight3").textContent =
+    acima90 > 0
+      ? `Priorizar títulos acima de 90 dias, que somam ${money(acima90)}, com atuação em renegociação, bloqueio comercial ou jurídico.`
+      : "Priorizar acompanhamento preventivo nas faixas de 31 a 60 dias para evitar evolução para cobrança crítica.";
+}
+
+function updateDashboard(){
+  const filtered = filterDebts();
+
+  updateKPIs(filtered);
+  updateTable(filtered);
+  updateAging(filtered);
+  updateMonthlyChart(filtered);
+  updateOwnerChart(filtered);
+  updateInsights(filtered);
+}
+
+function resetFilters(){
+  document.getElementById("periodFilter").value = "all";
+  document.getElementById("portfolioFilter").value = "all";
+  document.getElementById("regionFilter").value = "all";
+  document.getElementById("agingFilter").value = "all";
+  document.getElementById("statusFilter").value = "all";
+  document.getElementById("ownerFilter").value = "all";
+
+  updateDashboard();
+}
+
+document.querySelectorAll("select").forEach(select => {
+  select.addEventListener("change", updateDashboard);
+});
+
+window.onload = updateDashboard;
+</script>
+
+</body>
+</html>
