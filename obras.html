@@ -2,1363 +2,244 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Especialista Obras Sienge | Engenharia, Custos & Lean Construction</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Executivo de Obras | PMO de Sistemas</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    :root {
-      --bg: #020617;
-      --panel: #0f172a;
-      --card: #111827;
-      --border: #1f2937;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --green: #22c55e;
-      --red: #fb7185;
-      --amber: #f59e0b;
-      --blue: #38bdf8;
-      --purple: #a78bfa;
-      --cyan: #06b6d4;
-      --slate: #64748b;
+    :root{
+      --bg:#031016;
+      --bg2:#061923;
+      --panel:#071d27;
+      --panel2:#092532;
+      --card:#08212d;
+      --card2:#0b2b38;
+      --line:rgba(89,181,191,.22);
+      --line2:rgba(72,211,135,.36);
+      --txt:#f8fafc;
+      --muted:#9fb6c1;
+      --green:#22c55e;
+      --green2:#4ade80;
+      --blue:#0ea5e9;
+      --cyan:#22d3ee;
+      --amber:#f59e0b;
+      --orange:#fb923c;
+      --red:#ef4444;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #020617, #0f172a);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    header {
-      background: rgba(2, 6, 23, .96);
-      border-bottom: 1px solid var(--border);
-      padding: 20px 32px;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-
-    .header-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 15px;
-      background: rgba(245, 158, 11, .12);
-      border: 1px solid rgba(245, 158, 11, .35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--amber);
-      font-size: 24px;
-    }
-
-    .brand h1 {
-      font-size: 21px;
-      font-weight: 900;
-    }
-
-    .brand p {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 4px;
-    }
-
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .badge {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: #0f172a;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    main {
-      padding: 28px 32px;
-      max-width: 1560px;
-      margin: auto;
-    }
-
-    .hero {
+    body{
+      min-height:100vh;
+      font-family:"Segoe UI",Arial,sans-serif;
+      color:var(--txt);
       background:
-        radial-gradient(circle at top right, rgba(245, 158, 11, .18), transparent 34%),
-        linear-gradient(135deg, #020617, #111827);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 30px;
-      margin-bottom: 22px;
-      box-shadow: 0 25px 60px rgba(0,0,0,.30);
+        radial-gradient(circle at 16% 12%,rgba(34,197,94,.12),transparent 28%),
+        radial-gradient(circle at 85% 16%,rgba(14,165,233,.14),transparent 30%),
+        linear-gradient(135deg,#02070b,#05141b 45%,#061923);
+      overflow-x:hidden;
     }
 
-    .hero-tag {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--amber);
-      font-weight: 900;
-      letter-spacing: .18em;
-      margin-bottom: 10px;
+    body:before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;opacity:.22;
+      background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size:48px 48px;
+      mask-image:linear-gradient(to bottom,#000,transparent 85%);
     }
 
-    .hero h2 {
-      font-size: 33px;
-      line-height: 1.15;
-      max-width: 1050px;
-      margin-bottom: 12px;
+    .app{display:grid;grid-template-columns:270px 1fr;min-height:100vh;padding:16px;gap:16px}
+
+    aside{
+      position:sticky;top:16px;height:calc(100vh - 32px);
+      background:linear-gradient(180deg,rgba(8,33,45,.96),rgba(3,16,22,.94));
+      border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)
     }
 
-    .hero p {
-      color: var(--muted);
-      max-width: 1100px;
-      line-height: 1.6;
-      font-size: 14px;
-    }
+    .brand{padding:18px 18px 14px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line)}
+    .logo{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(from 180deg,var(--green),var(--amber),var(--green));font-weight:900;font-size:26px;color:#062016;box-shadow:0 0 24px rgba(34,197,94,.32)}
+    .brand h1{font-size:18px;letter-spacing:.18em;line-height:1.1}.brand small{display:block;margin-top:7px;color:var(--green2);letter-spacing:.32em;font-size:10px}
 
-    .filters {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 14px;
-      background: rgba(15,23,42,.84);
-      border: 1px solid var(--border);
-      padding: 18px;
-      border-radius: 18px;
-      margin-bottom: 22px;
-    }
+    .menu{padding:12px}.menu button{width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;padding:13px 14px;border-radius:7px;font-weight:700;display:flex;align-items:center;gap:13px;cursor:pointer;transition:.2s;font-size:13px}.menu button:hover,.menu button.active{background:linear-gradient(90deg,rgba(34,197,94,.22),rgba(34,197,94,.04));color:#fff}.menu button.active{border-left:5px solid var(--green)}
+    .side-img{position:absolute;left:14px;right:14px;bottom:14px;height:235px;border-radius:8px;background:linear-gradient(to top,rgba(3,16,22,.08),rgba(3,16,22,.85)),url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80") center/cover;border:1px solid var(--line)}
 
-    .filter-group label {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 900;
-      margin-bottom: 7px;
-    }
+    main{min-width:0}.top{display:grid;grid-template-columns:1fr 450px;gap:16px;align-items:start;margin-bottom:10px}.title{text-align:center;padding:4px 0 0}.title h2{font-size:37px;line-height:1;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 6px 18px rgba(0,0,0,.45)}.title p{margin-top:8px;color:var(--green2);font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
 
-    select, button {
-      width: 100%;
-      padding: 11px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #020617;
-      color: var(--text);
-      outline: none;
-      font-weight: 800;
-    }
+    .top-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.info-card{background:rgba(8,33,45,.72);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;align-items:center;gap:14px}.info-card i{font-size:24px}.info-card span{display:block;color:var(--muted);font-size:11px;font-weight:900;text-transform:uppercase}.info-card strong{font-size:22px;display:block;margin-top:4px}
 
-    button {
-      background: var(--amber);
-      color: #020617;
-      border: none;
-      cursor: pointer;
-      transition: .2s;
-    }
+    .filters{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin:10px 0 12px}.filter{background:rgba(8,33,45,.7);border:1px solid var(--line);border-radius:8px;padding:10px}.filter label{display:block;color:var(--green2);font-size:10px;font-weight:900;text-transform:uppercase;margin-bottom:7px}select,.reset{width:100%;background:#05141b;color:#fff;border:1px solid var(--line);border-radius:6px;padding:10px;font-weight:800;outline:none}.reset{background:linear-gradient(135deg,var(--green),#16a34a);color:#031016;cursor:pointer;border:0}
 
-    button:hover {
-      filter: brightness(1.08);
-      transform: translateY(-1px);
-    }
+    .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:10px}.kpi{background:linear-gradient(180deg,rgba(8,33,45,.94),rgba(4,20,27,.95));border:1px solid var(--line);border-radius:7px;padding:13px 14px;min-height:102px}.kpi-top{display:flex;justify-content:space-between;gap:8px;color:#d6edf3;font-size:11px;font-weight:900;text-transform:uppercase}.kpi i{font-size:22px;color:#cbd5e1}.kpi strong{display:block;font-size:24px;margin-top:12px}.kpi small{display:block;color:var(--muted);margin-top:7px}.green{color:var(--green2)!important}.red{color:#ff6b6b!important}.amber{color:var(--amber)!important}.blue{color:var(--blue)!important}.orange{color:var(--orange)!important}
 
-    .kpis {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
-      margin-bottom: 22px;
-    }
+    .grid{display:grid;gap:8px}.g-main{grid-template-columns:1.25fr .9fr 1.3fr;margin-bottom:8px}.g-mid{grid-template-columns:.95fr 1fr 1.08fr;margin-bottom:8px}.g-bottom{grid-template-columns:1.05fr .75fr 1.05fr;margin-bottom:8px}
+    .card{background:linear-gradient(180deg,rgba(8,33,45,.95),rgba(4,20,27,.96));border:1px solid var(--line);border-radius:7px;padding:13px;box-shadow:0 14px 35px rgba(0,0,0,.18);min-width:0}.card h3{font-size:14px;text-transform:uppercase;margin-bottom:10px}.card small{color:var(--muted)}.chart{height:245px}.chart-sm{height:196px}.chart-xs{height:150px}
 
-    .card {
-      background: rgba(17,24,39,.92);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.18);
-    }
+    .stage-row{display:grid;grid-template-columns:120px 1fr 42px;gap:10px;align-items:center;margin:9px 0;font-size:12px}.bar{height:14px;background:#09202b;border-radius:2px;overflow:hidden}.bar div{height:100%;background:linear-gradient(90deg,#148545,#22c55e)}
 
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: 900;
-      gap: 10px;
-    }
+    table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:9px 10px;border-bottom:1px solid rgba(89,181,191,.14);white-space:nowrap;text-align:left}th{background:rgba(15,47,61,.55);color:#fff;font-size:11px}td{color:#eaf5f7}.table-wrap{overflow:auto}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px}.pill{padding:4px 8px;border-radius:999px;font-weight:900;font-size:11px}.ok{color:var(--green2)}.att{color:var(--amber)}.crit{color:#ff6b6b}.pill.ok{background:rgba(34,197,94,.12)}.pill.att{background:rgba(245,158,11,.12)}.pill.crit{background:rgba(239,68,68,.12)}
 
-    .card-top i {
-      font-size: 18px;
-    }
+    .footer{display:grid;grid-template-columns:repeat(4,1fr) 1.4fr;gap:8px;margin-top:8px}.foot{background:rgba(5,20,27,.82);border:1px solid var(--line);border-radius:7px;padding:16px;display:flex;gap:13px;align-items:center}.foot i{font-size:30px;color:var(--green2)}.foot strong{display:block;color:var(--green2);font-size:12px;text-transform:uppercase}.foot span{display:block;color:var(--muted);font-size:12px;margin-top:5px}.footer .foot:last-child{border-color:var(--line2)}
 
-    .value {
-      font-size: 26px;
-      font-weight: 900;
-      margin-top: 12px;
-    }
-
-    .sub {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 7px;
-      line-height: 1.4;
-    }
-
-    .green { color: var(--green); }
-    .red { color: var(--red); }
-    .amber { color: var(--amber); }
-    .blue { color: var(--blue); }
-    .purple { color: var(--purple); }
-    .cyan { color: var(--cyan); }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 18px;
-      margin-bottom: 22px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-bottom: 22px;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .section-title h3 {
-      font-size: 16px;
-      font-weight: 900;
-    }
-
-    .section-title span {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .chart-box {
-      height: 325px;
-    }
-
-    .lean-flow {
-      display: grid;
-      gap: 12px;
-    }
-
-    .stage {
-      background: #020617;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-    }
-
-    .stage-head {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      font-weight: 900;
-      margin-bottom: 8px;
-      gap: 10px;
-    }
-
-    .bar {
-      height: 8px;
-      background: #1e293b;
-      border-radius: 99px;
-      overflow: hidden;
-    }
-
-    .bar div {
-      height: 100%;
-      border-radius: 99px;
-      background: var(--amber);
-      transition: width .4s ease;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-
-    thead {
-      background: #020617;
-      color: var(--muted);
-      text-transform: uppercase;
-      font-size: 11px;
-    }
-
-    th, td {
-      padding: 13px;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-      white-space: nowrap;
-    }
-
-    tbody tr:hover {
-      background: rgba(245,158,11,.05);
-    }
-
-    .pill {
-      padding: 5px 9px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 900;
-      display: inline-block;
-    }
-
-    .status-planejado {
-      background: rgba(100,116,139,.16);
-      color: #cbd5e1;
-    }
-
-    .status-andamento {
-      background: rgba(56,189,248,.12);
-      color: var(--blue);
-    }
-
-    .status-atraso {
-      background: rgba(251,113,133,.12);
-      color: var(--red);
-    }
-
-    .status-concluido {
-      background: rgba(34,197,94,.12);
-      color: var(--green);
-    }
-
-    .risk-baixo { color: var(--green); font-weight: 900; }
-    .risk-medio { color: var(--amber); font-weight: 900; }
-    .risk-alto { color: var(--red); font-weight: 900; }
-
-    .insights {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-
-    .insight {
-      background: rgba(2,6,23,.92);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-    }
-
-    .insight h4 {
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    .insight p {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .mini-card {
-      background: #020617;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-    }
-
-    .mini-card strong {
-      display: block;
-      font-size: 20px;
-      margin-top: 8px;
-    }
-
-    .mini-card span {
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-
-    @media(max-width: 1250px) {
-      .filters { grid-template-columns: repeat(3, 1fr); }
-      .kpis { grid-template-columns: repeat(3, 1fr); }
-      .grid, .grid-2 { grid-template-columns: 1fr; }
-      .insights { grid-template-columns: 1fr; }
-      .mini-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media(max-width: 720px) {
-      header, main { padding: 18px; }
-      .filters, .kpis, .mini-grid { grid-template-columns: 1fr; }
-      .hero h2 { font-size: 25px; }
-    }
+    @media(max-width:1350px){.app{grid-template-columns:1fr}aside{position:relative;height:auto}.side-img{display:none}.menu{display:grid;grid-template-columns:repeat(4,1fr)}.top{grid-template-columns:1fr}.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.g-main,.g-mid,.g-bottom,.footer{grid-template-columns:1fr 1fr}}
+    @media(max-width:760px){.app{padding:10px}.menu,.filters,.kpis,.g-main,.g-mid,.g-bottom,.footer{grid-template-columns:1fr}.title h2{font-size:26px}.top-actions{grid-template-columns:1fr}.chart,.chart-sm{height:260px}}
   </style>
 </head>
-
 <body>
+<div class="app">
+  <aside>
+    <div class="brand"><div class="logo">CF</div><div><h1>CRUZ & FARIAS</h1><small>PMO DE SISTEMAS</small></div></div>
+    <div class="menu">
+      <button class="active"><i class="fa-solid fa-house-chimney-window"></i> Visão Geral</button>
+      <button><i class="fa-solid fa-chart-line"></i> Evolução Física</button>
+      <button><i class="fa-solid fa-money-bill-trend-up"></i> Desempenho Financeiro</button>
+      <button><i class="fa-solid fa-chart-area"></i> Curva S</button>
+      <button><i class="fa-solid fa-chart-simple"></i> Produtividade</button>
+      <button><i class="fa-solid fa-shield-halved"></i> Lean / Restrições</button>
+      <button><i class="fa-solid fa-calendar-check"></i> PPC - Planejamento</button>
+      <button><i class="fa-solid fa-building"></i> Obras</button>
+    </div>
+    <div class="side-img"></div>
+  </aside>
 
-<header>
-  <div class="header-wrap">
-    <div class="brand">
-      <div class="brand-icon">
-        <i class="fa-solid fa-helmet-safety"></i>
+  <main>
+    <div class="top">
+      <div class="title">
+        <h2>Painel Executivo de Obras</h2>
+        <p>Visão técnica, financeira e operacional integrada</p>
       </div>
-      <div>
-        <h1>Obras Sienge | Engenharia, Custos & Lean Construction</h1>
-        <p>Evolução física, curva S, orçado vs realizado, VGV, margem, restrições e produtividade de obra</p>
-      </div>
-    </div>
-
-    <div class="badges">
-      <span class="badge"><i class="fa-solid fa-database amber"></i> Dados Sienge Tratados</span>
-      <span class="badge"><i class="fa-solid fa-chart-line blue"></i> Curva S & Forecast</span>
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <section class="hero">
-    <div class="hero-tag">Sienge • Obras • Custos • VGV • Lean Construction</div>
-    <h2>Painel executivo de obras com visão técnica, financeira e operacional integrada.</h2>
-    <p>
-      Modelo especialista para acompanhamento de obras extraído de uma estrutura de PMO de Sistemas,
-      com dados limpos, consistentes e padronizados. Integra evolução física, custo orçado x realizado,
-      curva S, projeção de custo final, VGV, margem, restrições Lean, PPC, produtividade e status por etapa.
-    </p>
-  </section>
-
-  <section class="filters">
-    <div class="filter-group">
-      <label>Obra</label>
-      <select id="workFilter">
-        <option value="all">Todas</option>
-        <option value="Residencial Aurora">Residencial Aurora</option>
-        <option value="Vila Garden">Vila Garden</option>
-        <option value="Parque Horizonte">Parque Horizonte</option>
-        <option value="Torre Corporate">Torre Corporate</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Etapa</label>
-      <select id="stageFilter">
-        <option value="all">Todas</option>
-        <option value="Fundação">Fundação</option>
-        <option value="Estrutura">Estrutura</option>
-        <option value="Alvenaria">Alvenaria</option>
-        <option value="Instalações">Instalações</option>
-        <option value="Acabamento">Acabamento</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Status</label>
-      <select id="statusFilter">
-        <option value="all">Todos</option>
-        <option value="Planejado">Planejado</option>
-        <option value="Em andamento">Em andamento</option>
-        <option value="Atraso">Atraso</option>
-        <option value="Concluído">Concluído</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Responsável</label>
-      <select id="ownerFilter">
-        <option value="all">Todos</option>
-        <option value="Eng. Ana Souza">Eng. Ana Souza</option>
-        <option value="Eng. Bruno Lima">Eng. Bruno Lima</option>
-        <option value="Eng. Carla Mendes">Eng. Carla Mendes</option>
-        <option value="Eng. Diego Rocha">Eng. Diego Rocha</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Risco</label>
-      <select id="riskFilter">
-        <option value="all">Todos</option>
-        <option value="Baixo">Baixo</option>
-        <option value="Médio">Médio</option>
-        <option value="Alto">Alto</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Período</label>
-      <select id="periodFilter">
-        <option value="all">Todos</option>
-        <option value="2026-01">Jan/2026</option>
-        <option value="2026-02">Fev/2026</option>
-        <option value="2026-03">Mar/2026</option>
-        <option value="2026-04">Abr/2026</option>
-        <option value="2026-05">Mai/2026</option>
-        <option value="2026-06">Jun/2026</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Ação</label>
-      <button onclick="resetFilters()">
-        <i class="fa-solid fa-rotate-right"></i> Limpar
-      </button>
-    </div>
-  </section>
-
-  <section class="kpis">
-    <div class="card">
-      <div class="card-top">VGV Total <i class="fa-solid fa-building blue"></i></div>
-      <div class="value" id="kpiVGV">R$ 0</div>
-      <div class="sub">Valor geral de vendas filtrado</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">Orçado <i class="fa-solid fa-calculator amber"></i></div>
-      <div class="value" id="kpiBudget">R$ 0</div>
-      <div class="sub">Custo previsto conforme orçamento</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">Realizado <i class="fa-solid fa-file-invoice-dollar red"></i></div>
-      <div class="value" id="kpiActual">R$ 0</div>
-      <div class="sub">Custo apropriado realizado</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">Desvio Custo <i class="fa-solid fa-scale-balanced purple"></i></div>
-      <div class="value" id="kpiVariance">R$ 0</div>
-      <div class="sub">Diferença realizado x orçado</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">Evolução Física <i class="fa-solid fa-chart-simple green"></i></div>
-      <div class="value" id="kpiPhysical">0%</div>
-      <div class="sub">Média ponderada das etapas</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">PPC Lean <i class="fa-solid fa-bullseye cyan"></i></div>
-      <div class="value" id="kpiPPC">0%</div>
-      <div class="sub">Percentual de planos concluídos</div>
-    </div>
-  </section>
-
-  <section class="grid">
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>Curva S — Planejado x Realizado x Projeção</h3>
-          <span>Evolução financeira acumulada da obra</span>
-        </div>
-      </div>
-      <div class="chart-box">
-        <canvas id="curveChart"></canvas>
+      <div class="top-actions">
+        <div class="info-card"><i class="fa-regular fa-calendar-days"></i><div><span>Última atualização</span><strong id="lastUpdate">23/05/2026 08:30</strong></div></div>
+        <div class="info-card"><i class="fa-regular fa-building"></i><div><span>Obras ativas</span><strong id="activeWorks">0</strong></div></div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>Lean Construction</h3>
-          <span>Restrições, PPC e confiabilidade operacional</span>
-        </div>
-      </div>
+    <section class="filters">
+      <div class="filter"><label>Obra</label><select id="obraFilter"><option value="all">Todas</option></select></div>
+      <div class="filter"><label>Etapa</label><select id="etapaFilter"><option value="all">Todas</option></select></div>
+      <div class="filter"><label>Status</label><select id="statusFilter"><option value="all">Todos</option><option>Atenção</option><option>Crítico</option><option>OK</option></select></div>
+      <div class="filter"><label>Responsável</label><select id="respFilter"><option value="all">Todos</option></select></div>
+      <div class="filter"><label>Mês</label><select id="mesFilter"><option value="all">Todos</option><option>Jan</option><option>Fev</option><option>Mar</option><option>Abr</option><option>Mai</option><option>Jun</option><option>Jul</option><option>Ago</option><option>Set</option><option>Out</option><option>Nov</option><option>Dez</option></select></div>
+      <div class="filter"><label>Risco</label><select id="riscoFilter"><option value="all">Todos</option><option>Baixo</option><option>Médio</option><option>Alto</option></select></div>
+      <div class="filter"><label>Ação</label><button class="reset" onclick="resetFilters()"><i class="fa-solid fa-rotate-right"></i> Limpar</button></div>
+    </section>
 
-      <div class="lean-flow" id="leanStages"></div>
-    </div>
-  </section>
+    <section class="kpis">
+      <div class="kpi"><div class="kpi-top">Evolução física média <i class="fa-solid fa-circle-notch green"></i></div><strong id="kpiFisico">0%</strong><small id="kpiFisicoSub">Previsto: 0%</small></div>
+      <div class="kpi"><div class="kpi-top">Custo real acumulado <i class="fa-solid fa-coins"></i></div><strong id="kpiReal">R$ 0</strong><small id="kpiRealSub">Orçado: R$ 0</small></div>
+      <div class="kpi"><div class="kpi-top">Projeção custo final <i class="fa-solid fa-shield-halved"></i></div><strong id="kpiEac">R$ 0</strong><small id="kpiEacSub">Orçado BAC: R$ 0</small></div>
+      <div class="kpi"><div class="kpi-top">VGV total <i class="fa-regular fa-building"></i></div><strong id="kpiVgv">R$ 0</strong><small id="kpiVgvSub">Realizado: R$ 0</small></div>
+      <div class="kpi"><div class="kpi-top">Margem prevista <i class="fa-solid fa-arrow-trend-up"></i></div><strong id="kpiMargem">0%</strong><small id="kpiMargemSub">Margem Real: 0%</small></div>
+      <div class="kpi"><div class="kpi-top">Status geral <i class="fa-solid fa-circle-exclamation orange"></i></div><strong id="kpiStatus" class="orange">OK</strong><small id="kpiStatusSub">0 obras críticas</small></div>
+    </section>
 
-  <section class="grid-2">
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>Orçado x Realizado por Etapa</h3>
-          <span>Controle de custo por macroetapa da obra</span>
-        </div>
-      </div>
-      <div class="chart-box">
-        <canvas id="costChart"></canvas>
-      </div>
-    </div>
+    <section class="grid g-main">
+      <div class="card"><h3>Curva S — Físico x Financeiro</h3><div class="chart"><canvas id="curveChart"></canvas></div></div>
+      <div class="card"><h3>Evolução física por etapa</h3><div id="stageBars"></div></div>
+      <div class="card"><h3>Custo orçado x realizado acumulado</h3><div class="chart"><canvas id="costChart"></canvas></div></div>
+    </section>
 
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>VGV, Custo e Margem por Obra</h3>
-          <span>Visão executiva financeira consolidada</span>
-        </div>
-      </div>
-      <div class="chart-box">
-        <canvas id="marginChart"></canvas>
-      </div>
-    </div>
-  </section>
+    <section class="grid g-mid">
+      <div class="card"><h3>Desempenho financeiro</h3><div class="table-wrap"><table><thead><tr><th>Indicador</th><th>Valor</th><th>Situação</th></tr></thead><tbody id="financeTable"></tbody></table></div></div>
+      <div class="card"><h3>Produtividade por frente</h3><div class="table-wrap"><table><thead><tr><th>Frente</th><th>Realizado</th><th>Meta</th><th>Índice</th></tr></thead><tbody id="prodTable"></tbody></table></div></div>
+      <div class="card"><h3>Restrições Lean</h3><div class="table-wrap"><table><thead><tr><th>Restrição</th><th>Impacto</th><th>Status</th><th>Responsável</th></tr></thead><tbody id="leanTable"></tbody></table></div></div>
+    </section>
 
-  <section class="card" style="margin-bottom:22px;">
-    <div class="section-title">
-      <div>
-        <h3>Indicadores Gerenciais de Engenharia</h3>
-        <span>Base consolidada para diretoria, engenharia, controladoria e PMO</span>
-      </div>
-    </div>
+    <section class="grid g-bottom">
+      <div class="card"><h3>Status por obra</h3><div class="table-wrap"><table><thead><tr><th>Obra</th><th>Físico</th><th>Custo</th><th>Prazo</th><th>Status</th></tr></thead><tbody id="obraTable"></tbody></table></div></div>
+      <div class="card"><h3>Margem por obra</h3><div class="table-wrap"><table><thead><tr><th>Obra</th><th>Prev.</th><th>Real</th><th>Var.</th></tr></thead><tbody id="marginTable"></tbody></table></div></div>
+      <div class="card"><h3>Próximas ações</h3><div class="table-wrap"><table><thead><tr><th>Ação</th><th>Obra</th><th>Prazo</th><th>Status</th></tr></thead><tbody id="actionsTable"></tbody></table></div></div>
+    </section>
 
-    <div class="mini-grid">
-      <div class="mini-card">
-        <span>Restrições Abertas</span>
-        <strong class="red" id="miniRestrictions">0</strong>
-      </div>
-
-      <div class="mini-card">
-        <span>Etapas em Atraso</span>
-        <strong class="amber" id="miniDelayed">0</strong>
-      </div>
-
-      <div class="mini-card">
-        <span>Forecast Custo Final</span>
-        <strong class="blue" id="miniForecast">R$ 0</strong>
-      </div>
-
-      <div class="mini-card">
-        <span>Margem Projetada</span>
-        <strong class="green" id="miniMargin">0%</strong>
-      </div>
-    </div>
-  </section>
-
-  <section class="grid">
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>Base de Obras Extraída do Sienge</h3>
-          <span>Dados simulados após integração, saneamento e padronização pelo PMO</span>
-        </div>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Obra</th>
-              <th>Etapa</th>
-              <th>Responsável</th>
-              <th>Período</th>
-              <th>Orçado</th>
-              <th>Realizado</th>
-              <th>Físico</th>
-              <th>PPC</th>
-              <th>Restr.</th>
-              <th>Risco</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="worksTable"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>Ranking de Desvio</h3>
-          <span>Maior variação de custo por obra</span>
-        </div>
-      </div>
-      <div class="chart-box">
-        <canvas id="varianceChart"></canvas>
-      </div>
-    </div>
-  </section>
-
-  <section class="insights">
-    <div class="insight">
-      <h4><i class="fa-solid fa-brain amber"></i> Diagnóstico Executivo</h4>
-      <p id="insight1">Aguardando análise dos filtros aplicados.</p>
-    </div>
-
-    <div class="insight">
-      <h4><i class="fa-solid fa-database blue"></i> Governança Sienge / PMO</h4>
-      <p id="insight2">Base estruturada com obra, etapa, orçamento, realizado, VGV, evolução física, PPC, risco e restrições.</p>
-    </div>
-
-    <div class="insight">
-      <h4><i class="fa-solid fa-helmet-safety green"></i> Ação Recomendada</h4>
-      <p id="insight3">Utilize os filtros para identificar desvios de custo, gargalos de obra e restrições críticas.</p>
-    </div>
-  </section>
-
-</main>
+    <section class="footer">
+      <div class="foot"><i class="fa-solid fa-database"></i><div><strong>Dados limpos e consistentes</strong><span>Extraídos do PMO de Sistemas</span></div></div>
+      <div class="foot"><i class="fa-solid fa-users-viewfinder"></i><div><strong>Integração total</strong><span>ERP, WMS, BI e sistemas de obras</span></div></div>
+      <div class="foot"><i class="fa-solid fa-arrows-spin"></i><div><strong>Visão 360° da obra</strong><span>Técnica, financeira e operacional</span></div></div>
+      <div class="foot"><i class="fa-regular fa-comments"></i><div><strong>Decisões inteligentes</strong><span>Com base em dados reais</span></div></div>
+      <div class="foot"><div class="logo" style="width:58px;height:58px;font-size:24px">CF</div><div><strong>PMO de Sistemas</strong><span>Transformando dados em resultados para construir o futuro</span></div></div>
+    </section>
+  </main>
+</div>
 
 <script>
-const worksData = [
-  {
-    obra: "Residencial Aurora",
-    etapa: "Fundação",
-    responsavel: "Eng. Ana Souza",
-    periodo: "2026-01",
-    vgv: 42000000,
-    orcado: 2800000,
-    realizado: 2700000,
-    fisico: 100,
-    ppc: 92,
-    restricoes: 1,
-    risco: "Baixo",
-    status: "Concluído"
-  },
-  {
-    obra: "Residencial Aurora",
-    etapa: "Estrutura",
-    responsavel: "Eng. Ana Souza",
-    periodo: "2026-02",
-    vgv: 42000000,
-    orcado: 6200000,
-    realizado: 6550000,
-    fisico: 84,
-    ppc: 78,
-    restricoes: 4,
-    risco: "Médio",
-    status: "Em andamento"
-  },
-  {
-    obra: "Residencial Aurora",
-    etapa: "Alvenaria",
-    responsavel: "Eng. Bruno Lima",
-    periodo: "2026-03",
-    vgv: 42000000,
-    orcado: 3800000,
-    realizado: 4100000,
-    fisico: 58,
-    ppc: 71,
-    restricoes: 5,
-    risco: "Médio",
-    status: "Em andamento"
-  },
-  {
-    obra: "Vila Garden",
-    etapa: "Fundação",
-    responsavel: "Eng. Carla Mendes",
-    periodo: "2026-01",
-    vgv: 36000000,
-    orcado: 2400000,
-    realizado: 2500000,
-    fisico: 100,
-    ppc: 88,
-    restricoes: 2,
-    risco: "Baixo",
-    status: "Concluído"
-  },
-  {
-    obra: "Vila Garden",
-    etapa: "Estrutura",
-    responsavel: "Eng. Carla Mendes",
-    periodo: "2026-02",
-    vgv: 36000000,
-    orcado: 5400000,
-    realizado: 5900000,
-    fisico: 72,
-    ppc: 67,
-    restricoes: 7,
-    risco: "Alto",
-    status: "Atraso"
-  },
-  {
-    obra: "Vila Garden",
-    etapa: "Instalações",
-    responsavel: "Eng. Diego Rocha",
-    periodo: "2026-04",
-    vgv: 36000000,
-    orcado: 3200000,
-    realizado: 3050000,
-    fisico: 35,
-    ppc: 75,
-    restricoes: 3,
-    risco: "Médio",
-    status: "Em andamento"
-  },
-  {
-    obra: "Parque Horizonte",
-    etapa: "Fundação",
-    responsavel: "Eng. Bruno Lima",
-    periodo: "2026-02",
-    vgv: 51000000,
-    orcado: 3100000,
-    realizado: 2950000,
-    fisico: 100,
-    ppc: 95,
-    restricoes: 0,
-    risco: "Baixo",
-    status: "Concluído"
-  },
-  {
-    obra: "Parque Horizonte",
-    etapa: "Estrutura",
-    responsavel: "Eng. Bruno Lima",
-    periodo: "2026-03",
-    vgv: 51000000,
-    orcado: 7600000,
-    realizado: 8100000,
-    fisico: 69,
-    ppc: 64,
-    restricoes: 8,
-    risco: "Alto",
-    status: "Atraso"
-  },
-  {
-    obra: "Parque Horizonte",
-    etapa: "Alvenaria",
-    responsavel: "Eng. Ana Souza",
-    periodo: "2026-05",
-    vgv: 51000000,
-    orcado: 4300000,
-    realizado: 3900000,
-    fisico: 42,
-    ppc: 81,
-    restricoes: 2,
-    risco: "Médio",
-    status: "Em andamento"
-  },
-  {
-    obra: "Torre Corporate",
-    etapa: "Fundação",
-    responsavel: "Eng. Diego Rocha",
-    periodo: "2026-01",
-    vgv: 68000000,
-    orcado: 4200000,
-    realizado: 4350000,
-    fisico: 100,
-    ppc: 89,
-    restricoes: 2,
-    risco: "Baixo",
-    status: "Concluído"
-  },
-  {
-    obra: "Torre Corporate",
-    etapa: "Estrutura",
-    responsavel: "Eng. Diego Rocha",
-    periodo: "2026-03",
-    vgv: 68000000,
-    orcado: 9800000,
-    realizado: 10600000,
-    fisico: 76,
-    ppc: 70,
-    restricoes: 6,
-    risco: "Alto",
-    status: "Atraso"
-  },
-  {
-    obra: "Torre Corporate",
-    etapa: "Acabamento",
-    responsavel: "Eng. Carla Mendes",
-    periodo: "2026-06",
-    vgv: 68000000,
-    orcado: 7200000,
-    realizado: 6900000,
-    fisico: 22,
-    ppc: 83,
-    restricoes: 3,
-    risco: "Médio",
-    status: "Planejado"
-  }
+const obras = [
+  {obra:'Residencial Alpha',etapa:'Serviços Preliminares',resp:'Compras',mes:'Jan',fisico:100,prevFisico:96,orcado:5200000,realizado:5000000,eac:5600000,vgv:18500000,mPrev:19.2,mReal:17.8,spi:1.08,cpi:1.04,ppc:94,risco:'Baixo',status:'OK'},
+  {obra:'Residencial Beta',etapa:'Fundação',resp:'Suprimentos',mes:'Fev',fisico:98,prevFisico:92,orcado:6400000,realizado:6800000,eac:7200000,vgv:22000000,mPrev:18.5,mReal:15.3,spi:.95,cpi:.91,ppc:82,risco:'Alto',status:'Atenção'},
+  {obra:'Comercial Gamma',etapa:'Estrutura',resp:'Engenharia',mes:'Mar',fisico:76,prevFisico:70,orcado:9100000,realizado:9350000,eac:9800000,vgv:28000000,mPrev:20.1,mReal:18.7,spi:1.12,cpi:.97,ppc:88,risco:'Médio',status:'OK'},
+  {obra:'Residencial Delta',etapa:'Alvenaria',resp:'RH',mes:'Abr',fisico:58,prevFisico:64,orcado:7800000,realizado:8560000,eac:9150000,vgv:20500000,mPrev:17.8,mReal:12.2,spi:.88,cpi:.89,ppc:69,risco:'Alto',status:'Crítico'},
+  {obra:'Residencial Épsilon',etapa:'Instalações',resp:'Infraestrutura',mes:'Mai',fisico:41,prevFisico:45,orcado:6100000,realizado:6450000,eac:6950000,vgv:17600000,mPrev:18.9,mReal:16.9,spi:1.03,cpi:.94,ppc:76,risco:'Médio',status:'Atenção'},
+  {obra:'Residencial Zeta',etapa:'Revestimento',resp:'Custos',mes:'Jun',fisico:22,prevFisico:20,orcado:4200000,realizado:3900000,eac:4500000,vgv:13400000,mPrev:21.2,mReal:20.1,spi:1.05,cpi:1.07,ppc:91,risco:'Baixo',status:'OK'},
+  {obra:'Torre Corporate',etapa:'Acabamento',resp:'Engenharia',mes:'Jul',fisico:8,prevFisico:12,orcado:3400000,realizado:3900000,eac:4300000,vgv:16300000,mPrev:16.7,mReal:13.5,spi:.82,cpi:.87,ppc:61,risco:'Alto',status:'Crítico'}
 ];
 
-let curveChart;
-let costChart;
-let marginChart;
-let varianceChart;
+const restricoes = [
+  ['Entrega de vergalhão','Alto','Aberta','Compras'],['Falta de Gesso Acartonado','Médio','Aberta','Suprimentos'],['Aprovação de Projeto Elétrico','Alto','Aberta','Engenharia'],['Falta de Mão de Obra','Médio','Em andamento','RH'],['Liberação de Elevador','Alto','Em andamento','Infraestrutura']
+];
+const acoes = [
+  ['Regularizar entrega de vergalhão','Residencial Beta','26/05/2026','Aberta'],['Revisar cronograma de instalações','Comercial Gamma','27/05/2026','Aberta'],['Contratação equipe de pintura','Residencial Delta','28/05/2026','Aberta'],['Acompanhar aprovação elétrico','Residencial Beta','29/05/2026','Em andamento'],['Revisão de orçamento de acabamento','Residencial Épsilon','30/05/2026','Aberta']
+];
+let curveChart,costChart;
+const brl=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:2});
+const mi=v=>'R$ '+(v/1000000).toLocaleString('pt-BR',{maximumFractionDigits:2})+' MI';
+const avg=(arr,key)=>arr.length?arr.reduce((s,d)=>s+d[key],0)/arr.length:0;
+const sum=(arr,key)=>arr.reduce((s,d)=>s+d[key],0);
+const uniq=arr=>[...new Set(arr)];
 
-function money(value) {
-  return value.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    maximumFractionDigits: 0
+function fillOptions(){
+  [['obraFilter','obra'],['etapaFilter','etapa'],['respFilter','resp']].forEach(([id,key])=>{
+    const s=document.getElementById(id); uniq(obras.map(o=>o[key])).forEach(v=>s.innerHTML+=`<option>${v}</option>`);
   });
 }
-
-function number(value) {
-  return value.toLocaleString("pt-BR");
+function getFiltered(){
+  const f={obra:obraFilter.value,etapa:etapaFilter.value,status:statusFilter.value,resp:respFilter.value,mes:mesFilter.value,risco:riscoFilter.value};
+  return obras.filter(o=>(f.obra==='all'||o.obra===f.obra)&&(f.etapa==='all'||o.etapa===f.etapa)&&(f.status==='all'||o.status===f.status)&&(f.resp==='all'||o.resp===f.resp)&&(f.mes==='all'||o.mes===f.mes)&&(f.risco==='all'||o.risco===f.risco));
 }
-
-function uniqueVGV(data) {
-  const map = new Map();
-
-  data.forEach(item => {
-    if (!map.has(item.obra)) {
-      map.set(item.obra, item.vgv);
-    }
-  });
-
-  return Array.from(map.values()).reduce((sum, value) => sum + value, 0);
+function setStatusClass(el,val){el.className=val==='OK'?'green':val==='Crítico'?'red':'orange'}
+function render(){
+  const d=getFiltered();
+  const real=sum(d,'realizado'),orc=sum(d,'orcado'),eac=sum(d,'eac'),vgv=sum(d,'vgv'),fis=avg(d,'fisico'),prev=avg(d,'prevFisico'),mPrev=avg(d,'mPrev'),mReal=avg(d,'mReal');
+  activeWorks.textContent=uniq(d.map(x=>x.obra)).length;
+  kpiFisico.textContent=fis.toFixed(1).replace('.',',')+'%'; kpiFisicoSub.textContent='Previsto: '+prev.toFixed(1).replace('.',',')+'%';
+  kpiReal.textContent=mi(real); kpiRealSub.textContent='Orçado: '+mi(orc);
+  kpiEac.textContent=mi(eac); kpiEacSub.textContent='Orçado BAC: '+mi(orc);
+  kpiVgv.textContent=mi(vgv); kpiVgvSub.textContent='Realizado: '+mi(real);
+  kpiMargem.textContent=mPrev.toFixed(1).replace('.',',')+'%'; kpiMargemSub.textContent='Margem Real: '+mReal.toFixed(1).replace('.',',')+'%';
+  const crit=d.filter(x=>x.status==='Crítico').length, att=d.filter(x=>x.status==='Atenção').length;
+  kpiStatus.textContent=crit?'CRÍTICO':att?'ATENÇÃO':'OK'; kpiStatusSub.textContent=`${crit} obras críticas · ${att} em alerta`; setStatusClass(kpiStatus,crit?'Crítico':att?'Atenção':'OK');
+  renderBars(d); renderTables(d,orc,real,eac,mPrev,mReal); renderCharts(d);
 }
-
-function getFilters() {
-  return {
-    obra: document.getElementById("workFilter").value,
-    etapa: document.getElementById("stageFilter").value,
-    status: document.getElementById("statusFilter").value,
-    responsavel: document.getElementById("ownerFilter").value,
-    risco: document.getElementById("riskFilter").value,
-    periodo: document.getElementById("periodFilter").value
-  };
+function renderBars(d){
+  const etapas=['Serviços Preliminares','Fundação','Estrutura','Alvenaria','Instalações','Revestimento','Acabamento','Finalização'];
+  stageBars.innerHTML=etapas.map(e=>{const vals=d.filter(x=>x.etapa===e); const v=vals.length?avg(vals,'fisico'):0; return `<div class="stage-row"><span>${e}</span><div class="bar"><div style="width:${v}%"></div></div><b>${v.toFixed(0)}%</b></div>`}).join('');
 }
-
-function filterWorks() {
-  const f = getFilters();
-
-  return worksData.filter(d =>
-    (f.obra === "all" || d.obra === f.obra) &&
-    (f.etapa === "all" || d.etapa === f.etapa) &&
-    (f.status === "all" || d.status === f.status) &&
-    (f.responsavel === "all" || d.responsavel === f.responsavel) &&
-    (f.risco === "all" || d.risco === f.risco) &&
-    (f.periodo === "all" || d.periodo === f.periodo)
-  );
+function renderTables(d,orc,real,eac,mPrev,mReal){
+  const cpi=real?orc/real:0, spi=avg(d,'spi');
+  financeTable.innerHTML=[['Custo Orçado (BAC)',mi(orc),'OK'],['Custo Real (AC)',mi(real),real>orc?'Atenção':'OK'],['Projeção Custo Final (EAC)',mi(eac),eac>orc?'Atenção':'OK'],['Variação (EAC x BAC)',((eac-orc)/Math.max(orc,1)*100).toFixed(1)+'%',eac>orc?'Atenção':'OK'],['Índice de Performance de Custo (CPI)',cpi.toFixed(2),cpi<.95?'Crítico':'OK'],['Índice de Performance de Prazo (SPI)',spi.toFixed(2),spi<.95?'Atenção':'OK'],['Margem Prevista',mPrev.toFixed(1)+'%','Atenção'],['Margem Real',mReal.toFixed(1)+'%',mReal<15?'Crítico':'OK']].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="${r[2]==='OK'?'ok':r[2]==='Crítico'?'crit':'att'}"><span class="dot" style="background:currentColor"></span>${r[2]}</td></tr>`).join('');
+  prodTable.innerHTML=d.map(x=>`<tr><td>${x.etapa}</td><td>${(x.realizado/10000).toFixed(2)}</td><td>${(x.orcado/10000).toFixed(2)}</td><td class="${x.ppc<75?'crit':x.ppc<85?'att':'ok'}">${x.ppc}%</td></tr>`).join('')||'<tr><td colspan="4">Sem dados</td></tr>';
+  leanTable.innerHTML=restricoes.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('');
+  obraTable.innerHTML=d.map(x=>`<tr><td>${x.obra}</td><td>${x.fisico.toFixed(1)}%</td><td class="${x.realizado>x.orcado?'red':'green'}">${(((x.realizado-x.orcado)/x.orcado)*100).toFixed(1)}%</td><td>${x.spi.toFixed(2)}</td><td><span class="pill ${x.status==='OK'?'ok':x.status==='Crítico'?'crit':'att'}">${x.status}</span></td></tr>`).join('')||'<tr><td colspan="5">Sem dados</td></tr>';
+  marginTable.innerHTML=d.map(x=>`<tr><td>${x.obra}</td><td>${x.mPrev.toFixed(1)}%</td><td>${x.mReal.toFixed(1)}%</td><td class="${x.mReal<x.mPrev?'red':'green'}">${(x.mReal-x.mPrev).toFixed(1)}</td></tr>`).join('')||'<tr><td colspan="4">Sem dados</td></tr>';
+  actionsTable.innerHTML=acoes.map(a=>`<tr><td>${a[0]}</td><td>${a[1]}</td><td>${a[2]}</td><td class="${a[3]==='Aberta'?'red':'amber'}">${a[3]}</td></tr>`).join('');
 }
-
-function updateKPIs(data) {
-  const vgv = uniqueVGV(data);
-  const orcado = data.reduce((s, d) => s + d.orcado, 0);
-  const realizado = data.reduce((s, d) => s + d.realizado, 0);
-  const variancia = realizado - orcado;
-  const fisico = data.length ? data.reduce((s, d) => s + d.fisico, 0) / data.length : 0;
-  const ppc = data.length ? data.reduce((s, d) => s + d.ppc, 0) / data.length : 0;
-
-  document.getElementById("kpiVGV").textContent = money(vgv);
-  document.getElementById("kpiBudget").textContent = money(orcado);
-  document.getElementById("kpiActual").textContent = money(realizado);
-  document.getElementById("kpiVariance").textContent = money(variancia);
-  document.getElementById("kpiPhysical").textContent = fisico.toFixed(1) + "%";
-  document.getElementById("kpiPPC").textContent = ppc.toFixed(1) + "%";
-
-  document.getElementById("kpiVariance").className =
-    variancia > 0 ? "value red" : "value green";
+function renderCharts(d){
+  const meses=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  const planned=meses.map(m=>sum(d.filter(x=>x.mes===m),'orcado'));
+  const actual=meses.map(m=>sum(d.filter(x=>x.mes===m),'realizado'));
+  const acc=a=>a.map((s=>v=>s+=v)(0));
+  if(curveChart)curveChart.destroy();
+  curveChart=new Chart(curveChartEl(),{type:'line',data:{labels:meses,datasets:[{label:'Previsto (R$)',data:acc(planned),borderColor:'#38bdf8',borderDash:[7,5],tension:.35},{label:'Realizado (R$)',data:acc(actual),borderColor:'#22c55e',tension:.35},{label:'Previsto (%)',data:meses.map((_,i)=>(i+1)*8),borderColor:'#94a3b8',borderDash:[7,5],tension:.35,yAxisID:'p'},{label:'Realizado (%)',data:meses.map((_,i)=>Math.min(100,(i+1)*avg(d,'fisico')/6)),borderColor:'#4ade80',tension:.35,yAxisID:'p'}]},options:opts(true)});
+  const monthBudget=meses.map(m=>sum(d.filter(x=>x.mes===m),'orcado')), monthActual=meses.map(m=>sum(d.filter(x=>x.mes===m),'realizado'));
+  if(costChart)costChart.destroy();
+  costChart=new Chart(costChartEl(),{type:'bar',data:{labels:meses,datasets:[{label:'Orçado (R$)',data:acc(monthBudget),backgroundColor:'#0ea5e9',borderRadius:4},{label:'Realizado (R$)',data:acc(monthActual),backgroundColor:'#22c55e',borderRadius:4}]},options:opts(false)});
 }
-
-function updateMiniIndicators(data) {
-  const vgv = uniqueVGV(data);
-  const orcado = data.reduce((s, d) => s + d.orcado, 0);
-  const realizado = data.reduce((s, d) => s + d.realizado, 0);
-  const restricoes = data.reduce((s, d) => s + d.restricoes, 0);
-  const atrasos = data.filter(d => d.status === "Atraso").length;
-
-  const forecast = realizado + Math.max(orcado - realizado, 0) * 1.08;
-  const margem = vgv ? ((vgv - forecast) / vgv) * 100 : 0;
-
-  document.getElementById("miniRestrictions").textContent = number(restricoes);
-  document.getElementById("miniDelayed").textContent = number(atrasos);
-  document.getElementById("miniForecast").textContent = money(forecast);
-  document.getElementById("miniMargin").textContent = margem.toFixed(1) + "%";
-
-  document.getElementById("miniMargin").className =
-    margem < 20 ? "red" : "green";
-}
-
-function updateTable(data) {
-  const tbody = document.getElementById("worksTable");
-  tbody.innerHTML = "";
-
-  if (data.length === 0) {
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="11" style="text-align:center;color:#94a3b8;padding:24px;">
-          Nenhum registro encontrado para os filtros aplicados.
-        </td>
-      </tr>
-    `;
-    return;
-  }
-
-  data.forEach(d => {
-    const statusClass =
-      d.status === "Concluído" ? "status-concluido" :
-      d.status === "Em andamento" ? "status-andamento" :
-      d.status === "Atraso" ? "status-atraso" : "status-planejado";
-
-    const riskClass =
-      d.risco === "Alto" ? "risk-alto" :
-      d.risco === "Médio" ? "risk-medio" : "risk-baixo";
-
-    tbody.innerHTML += `
-      <tr>
-        <td><strong>${d.obra}</strong></td>
-        <td>${d.etapa}</td>
-        <td>${d.responsavel}</td>
-        <td>${d.periodo}</td>
-        <td>${money(d.orcado)}</td>
-        <td>${money(d.realizado)}</td>
-        <td>${d.fisico}%</td>
-        <td>${d.ppc}%</td>
-        <td>${d.restricoes}</td>
-        <td class="${riskClass}">${d.risco}</td>
-        <td><span class="pill ${statusClass}">${d.status}</span></td>
-      </tr>
-    `;
-  });
-}
-
-function updateLeanStages(data) {
-  const container = document.getElementById("leanStages");
-  container.innerHTML = "";
-
-  const total = data.length || 1;
-  const ppc = data.length ? data.reduce((s, d) => s + d.ppc, 0) / data.length : 0;
-  const restricoes = data.reduce((s, d) => s + d.restricoes, 0);
-  const atrasos = data.filter(d => d.status === "Atraso").length;
-  const altoRisco = data.filter(d => d.risco === "Alto").length;
-
-  const leanData = [
-    {
-      label: "PPC Médio",
-      valueText: ppc.toFixed(1) + "%",
-      percent: ppc
-    },
-    {
-      label: "Restrições Abertas",
-      valueText: restricoes + " itens",
-      percent: Math.min((restricoes / 20) * 100, 100)
-    },
-    {
-      label: "Etapas em Atraso",
-      valueText: atrasos + " etapas",
-      percent: (atrasos / total) * 100
-    },
-    {
-      label: "Risco Alto",
-      valueText: altoRisco + " etapas",
-      percent: (altoRisco / total) * 100
-    }
-  ];
-
-  leanData.forEach(item => {
-    container.innerHTML += `
-      <div class="stage">
-        <div class="stage-head">
-          <span>${item.label}</span>
-          <span>${item.valueText}</span>
-        </div>
-        <div class="bar">
-          <div style="width:${item.percent}%"></div>
-        </div>
-      </div>
-    `;
-  });
-}
-
-function groupByPeriod(data, field) {
-  const months = ["2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"];
-
-  return months.map(month =>
-    data
-      .filter(d => d.periodo === month)
-      .reduce((s, d) => s + d[field], 0)
-  );
-}
-
-function accumulated(values) {
-  let total = 0;
-  return values.map(v => {
-    total += v;
-    return total;
-  });
-}
-
-function updateCurveChart(data) {
-  const planned = accumulated(groupByPeriod(data, "orcado"));
-  const actual = accumulated(groupByPeriod(data, "realizado"));
-  const projected = planned.map((value, index) => {
-    const actualValue = actual[index] || 0;
-    return actualValue > 0 ? actualValue * 1.08 : value * 1.03;
-  });
-
-  if (curveChart) curveChart.destroy();
-
-  curveChart = new Chart(document.getElementById("curveChart"), {
-    type: "line",
-    data: {
-      labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
-      datasets: [
-        {
-          label: "Planejado Acumulado",
-          data: planned,
-          borderColor: "#38bdf8",
-          backgroundColor: "rgba(56,189,248,.08)",
-          borderWidth: 3,
-          fill: false,
-          tension: .35
-        },
-        {
-          label: "Realizado Acumulado",
-          data: actual,
-          borderColor: "#f59e0b",
-          backgroundColor: "rgba(245,158,11,.08)",
-          borderWidth: 3,
-          fill: false,
-          tension: .35
-        },
-        {
-          label: "Projeção Custo Final",
-          data: projected,
-          borderColor: "#fb7185",
-          borderWidth: 2,
-          borderDash: [6, 6],
-          fill: false,
-          tension: .35
-        }
-      ]
-    },
-    options: chartOptions()
-  });
-}
-
-function updateCostChart(data) {
-  const etapas = ["Fundação", "Estrutura", "Alvenaria", "Instalações", "Acabamento"];
-
-  const budget = etapas.map(etapa =>
-    data.filter(d => d.etapa === etapa).reduce((s, d) => s + d.orcado, 0)
-  );
-
-  const actual = etapas.map(etapa =>
-    data.filter(d => d.etapa === etapa).reduce((s, d) => s + d.realizado, 0)
-  );
-
-  if (costChart) costChart.destroy();
-
-  costChart = new Chart(document.getElementById("costChart"), {
-    type: "bar",
-    data: {
-      labels: etapas,
-      datasets: [
-        {
-          label: "Orçado",
-          data: budget,
-          backgroundColor: "#38bdf8",
-          borderRadius: 6
-        },
-        {
-          label: "Realizado",
-          data: actual,
-          backgroundColor: "#f59e0b",
-          borderRadius: 6
-        }
-      ]
-    },
-    options: chartOptions()
-  });
-}
-
-function updateMarginChart(data) {
-  const obras = ["Residencial Aurora", "Vila Garden", "Parque Horizonte", "Torre Corporate"];
-
-  const vgv = obras.map(obra => {
-    const item = data.find(d => d.obra === obra);
-    return item ? item.vgv : 0;
-  });
-
-  const cost = obras.map(obra =>
-    data.filter(d => d.obra === obra).reduce((s, d) => s + d.realizado, 0)
-  );
-
-  const margin = obras.map((obra, index) =>
-    vgv[index] ? vgv[index] - cost[index] : 0
-  );
-
-  if (marginChart) marginChart.destroy();
-
-  marginChart = new Chart(document.getElementById("marginChart"), {
-    type: "bar",
-    data: {
-      labels: obras,
-      datasets: [
-        {
-          label: "VGV",
-          data: vgv,
-          backgroundColor: "#22c55e",
-          borderRadius: 6
-        },
-        {
-          label: "Custo Realizado",
-          data: cost,
-          backgroundColor: "#fb7185",
-          borderRadius: 6
-        },
-        {
-          label: "Margem Bruta Projetada",
-          data: margin,
-          backgroundColor: "#a78bfa",
-          borderRadius: 6
-        }
-      ]
-    },
-    options: chartOptions()
-  });
-}
-
-function updateVarianceChart(data) {
-  const obras = ["Residencial Aurora", "Vila Garden", "Parque Horizonte", "Torre Corporate"];
-
-  const values = obras.map(obra => {
-    const items = data.filter(d => d.obra === obra);
-    const orcado = items.reduce((s, d) => s + d.orcado, 0);
-    const realizado = items.reduce((s, d) => s + d.realizado, 0);
-    return realizado - orcado;
-  });
-
-  if (varianceChart) varianceChart.destroy();
-
-  varianceChart = new Chart(document.getElementById("varianceChart"), {
-    type: "bar",
-    data: {
-      labels: obras,
-      datasets: [{
-        label: "Desvio de Custo",
-        data: values,
-        backgroundColor: values.map(v => v > 0 ? "#fb7185" : "#22c55e"),
-        borderRadius: 6
-      }]
-    },
-    options: {
-      indexAxis: "y",
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false }
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: "#94a3b8",
-            callback: value => "R$ " + (value / 1000000).toFixed(1) + "M"
-          },
-          grid: { color: "#1f2937" }
-        },
-        y: {
-          ticks: { color: "#94a3b8" },
-          grid: { display: false }
-        }
-      }
-    }
-  });
-}
-
-function chartOptions() {
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        labels: { color: "#cbd5e1" }
-      }
-    },
-    scales: {
-      x: {
-        ticks: { color: "#94a3b8" },
-        grid: { display: false }
-      },
-      y: {
-        ticks: {
-          color: "#94a3b8",
-          callback: value => "R$ " + (value / 1000000).toFixed(1) + "M"
-        },
-        grid: { color: "#1f2937" }
-      }
-    }
-  };
-}
-
-function updateInsights(data) {
-  const vgv = uniqueVGV(data);
-  const orcado = data.reduce((s, d) => s + d.orcado, 0);
-  const realizado = data.reduce((s, d) => s + d.realizado, 0);
-  const variancia = realizado - orcado;
-  const restricoes = data.reduce((s, d) => s + d.restricoes, 0);
-  const atrasos = data.filter(d => d.status === "Atraso").length;
-  const ppc = data.length ? data.reduce((s, d) => s + d.ppc, 0) / data.length : 0;
-  const margem = vgv ? ((vgv - realizado) / vgv) * 100 : 0;
-
-  document.getElementById("insight1").textContent =
-    data.length === 0
-      ? "Nenhum registro encontrado para os filtros aplicados."
-      : `Foram analisadas ${data.length} etapas. O realizado soma ${money(realizado)}, com desvio de ${money(variancia)} frente ao orçamento e margem projetada de ${margem.toFixed(1)}%.`;
-
-  document.getElementById("insight2").textContent =
-    "A base está estruturada por obra, etapa, responsável, período, orçamento, realizado, avanço físico, PPC, restrições, risco e status, simulando uma extração consolidada do Sienge após governança de dados.";
-
-  document.getElementById("insight3").textContent =
-    atrasos > 0 || ppc < 75
-      ? `Priorizar remoção de ${restricoes} restrições e replanejamento das etapas em atraso. O PPC médio está em ${ppc.toFixed(1)}%, indicando necessidade de reforço na gestão semanal Lean.`
-      : "Cenário operacional controlado. Manter rotina de planejamento semanal, acompanhamento da curva S e controle preventivo de desvios de custo.";
-}
-
-function updateDashboard() {
-  const filtered = filterWorks();
-
-  updateKPIs(filtered);
-  updateMiniIndicators(filtered);
-  updateTable(filtered);
-  updateLeanStages(filtered);
-  updateCurveChart(filtered);
-  updateCostChart(filtered);
-  updateMarginChart(filtered);
-  updateVarianceChart(filtered);
-  updateInsights(filtered);
-}
-
-function resetFilters() {
-  document.getElementById("workFilter").value = "all";
-  document.getElementById("stageFilter").value = "all";
-  document.getElementById("statusFilter").value = "all";
-  document.getElementById("ownerFilter").value = "all";
-  document.getElementById("riskFilter").value = "all";
-  document.getElementById("periodFilter").value = "all";
-
-  updateDashboard();
-}
-
-document.querySelectorAll("select").forEach(select => {
-  select.addEventListener("change", updateDashboard);
-});
-
-window.onload = updateDashboard;
+function curveChartEl(){return document.getElementById('curveChart')}
+function costChartEl(){return document.getElementById('costChart')}
+function opts(percent){return{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#cbd5e1',boxWidth:12}}},scales:{x:{ticks:{color:'#cbd5e1'},grid:{color:'rgba(89,181,191,.08)'}},y:{ticks:{color:'#cbd5e1',callback:v=>percent&&v<=100?v+'%':'R$ '+(v/1000000).toFixed(0)+' MI'},grid:{color:'rgba(89,181,191,.12)'}},p:{display:percent,position:'right',ticks:{color:'#cbd5e1',callback:v=>v+'%'},grid:{display:false}}}}}
+function resetFilters(){['obraFilter','etapaFilter','statusFilter','respFilter','mesFilter','riscoFilter'].forEach(id=>document.getElementById(id).value='all');render()}
+document.querySelectorAll('select').forEach(s=>s.addEventListener('change',render));
+fillOptions(); render();
 </script>
-
 </body>
 </html>
