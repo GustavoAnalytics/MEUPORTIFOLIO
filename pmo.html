@@ -4,1149 +4,1215 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel VMO | PMO + Indicadores</title>
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
   <style>
-    :root{
-      --bg:#020711;
-      --bg2:#061321;
-      --panel:#071827;
-      --panel2:#0a2134;
-      --card:#0b1e31;
-      --stroke:rgba(89,181,255,.22);
-      --stroke2:rgba(28,235,194,.28);
-      --text:#f8fbff;
-      --muted:#9db2c8;
-      --cyan:#18d6ff;
-      --green:#26e67c;
-      --yellow:#ffd044;
-      --orange:#ff9d28;
-      --red:#ff4b55;
-      --purple:#8b5cf6;
-      --blue:#268bff;
-    }
+:root{
+  --bg:#030712;
+  --panel:#081626;
+  --panel2:#0d2034;
+  --card:#0b1c2e;
 
-    *{box-sizing:border-box;margin:0;padding:0}
+  --border:rgba(148,163,184,.22);
+  --border2:rgba(34,211,238,.28);
 
-    body{
-      min-height:100vh;
-      font-family:Inter,Segoe UI,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 20% -10%, rgba(24,214,255,.18), transparent 34%),
-        radial-gradient(circle at 90% 0%, rgba(38,230,124,.11), transparent 32%),
-        linear-gradient(135deg,#020711 0%,#04101d 45%,#020711 100%);
-      overflow-x:hidden;
-    }
+  --text:#f8fafc;
+  --muted:#a8bdd3;
 
-    .app{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+  --cyan:#22d3ee;
+  --green:#22c55e;
+  --amber:#f59e0b;
+  --red:#ef4444;
+  --blue:#3b82f6;
+  --purple:#8b5cf6;
 
-    aside{
-      position:sticky;top:0;height:100vh;
-      background:linear-gradient(180deg,rgba(6,19,33,.98),rgba(2,7,17,.98));
-      border-right:1px solid var(--stroke);
-      padding:18px 12px;
-      box-shadow:20px 0 80px rgba(0,0,0,.25);
-    }
+  --shadow:0 22px 60px rgba(0,0,0,.34);
+}
 
-    .logo{
-      height:112px;border:1px solid var(--stroke);border-radius:14px;
-      display:flex;flex-direction:column;justify-content:center;padding:20px;
-      background:linear-gradient(145deg,rgba(24,214,255,.08),rgba(38,230,124,.03));
-      margin-bottom:20px;
-    }
-    .logo h1{font-size:42px;line-height:.9;letter-spacing:-2px;background:linear-gradient(90deg,#58a6ff,#22e0a5,#ffd044);-webkit-background-clip:text;color:transparent}
-    .logo span{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:#eaf6ff;font-weight:800;margin-top:8px}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    .nav{display:grid;gap:8px}
-    .nav a{
-      color:#cbd9e8;text-decoration:none;display:flex;align-items:center;gap:12px;
-      padding:13px 14px;border-radius:12px;font-size:13px;border:1px solid transparent;
-      transition:.2s;
-    }
-    .nav a.active,.nav a:hover{background:rgba(24,214,255,.10);border-color:rgba(24,214,255,.20);color:white}
-    .nav i{width:20px;color:var(--cyan);font-size:16px}
+html{
+  scroll-behavior:smooth;
+}
 
-    .sidebar-note{
-      position:absolute;left:12px;right:12px;bottom:16px;
-      border:1px solid var(--stroke);border-radius:14px;padding:18px;
-      background:rgba(7,24,39,.75);
-    }
-    .sidebar-note h3{color:var(--cyan);font-size:18px;margin-bottom:12px}
-    .sidebar-note p{font-size:12px;color:#bdd0e4;line-height:1.55}
-    .sidebar-note .line{width:76px;height:1px;background:var(--cyan);margin-top:18px}
+body{
+  min-height:100vh;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  color:var(--text);
 
-    main{padding:22px 24px 28px;max-width:1720px;width:100%;margin:auto}
+  background:
+    radial-gradient(circle at 15% 0%,rgba(34,211,238,.16),transparent 34%),
+    radial-gradient(circle at 85% 4%,rgba(34,197,94,.11),transparent 30%),
+    linear-gradient(135deg,#020617,#071426 52%,#020617);
 
-    .top{
-      display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;margin-bottom:18px;
-    }
-    .title h2{font-size:38px;letter-spacing:-1px;font-weight:950}
-    .title p{font-size:18px;color:#e8f3ff;letter-spacing:.5px;margin-top:4px}
-    .title small{display:block;color:#c7d6e7;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-top:10px}
+  overflow-x:hidden;
+}
 
-    .formula{
-      min-width:480px;border:1px solid var(--stroke);border-radius:18px;padding:18px 26px;
-      background:rgba(2,7,17,.72);display:flex;align-items:center;justify-content:center;gap:22px;
-      box-shadow:inset 0 0 34px rgba(24,214,255,.05);
-    }
-    .formula strong{font-size:25px;color:#58a6ff}.formula b{font-size:25px;color:#22e0a5}.formula span{font-size:25px;color:#ffd044}.formula em{font-size:18px;color:#eaf6ff;font-style:normal;font-weight:900}
-    .formula small{display:block;font-size:10px;color:#d7e6f5;text-transform:uppercase;text-align:center;margin-top:6px}
+/* LAYOUT */
 
-    .filters{
-      display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px;
-      border:1px solid var(--stroke);border-radius:16px;padding:14px;background:rgba(6,19,33,.78);
-    }
-    .fg label{font-size:10px;color:#bcd0e4;text-transform:uppercase;font-weight:900;display:block;margin-bottom:6px}
-    select,button{
-      width:100%;height:42px;border-radius:10px;border:1px solid var(--stroke);
-      background:#04101d;color:#f8fbff;padding:0 12px;font-weight:800;outline:none;
-    }
-    button{cursor:pointer;background:linear-gradient(90deg,#18d6ff,#22e0a5);color:#02101a;border:none;transition:.2s}
-    button:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.layout{
+  display:grid;
+  grid-template-columns:250px minmax(0,1fr);
+  min-height:100vh;
+}
 
-    .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:16px}
-    .card{
-      background:linear-gradient(145deg,rgba(11,30,49,.96),rgba(5,16,28,.96));
-      border:1px solid var(--stroke);border-radius:14px;padding:16px;box-shadow:0 14px 38px rgba(0,0,0,.22);
-    }
-    .kpi{display:grid;grid-template-columns:50px 1fr;gap:12px;align-items:center;min-height:116px}
-    .icon{
-      width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-      background:radial-gradient(circle,rgba(24,214,255,.3),rgba(24,214,255,.06));
-      border:1px solid rgba(24,214,255,.3);font-size:23px;color:var(--cyan);
-    }
-    .kpi h3{font-size:11px;text-transform:uppercase;color:#e7f4ff;margin-bottom:8px}
-    .kpi .val{font-size:28px;font-weight:950;letter-spacing:.2px}.kpi .sub{font-size:12px;color:var(--muted);margin-top:4px}.ok{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}.info{color:var(--cyan)}
+/* SIDEBAR */
 
-    .grid-a{display:grid;grid-template-columns:1.08fr 1.15fr .9fr;gap:14px;margin-bottom:14px}
-    .grid-b{display:grid;grid-template-columns:.95fr 1fr 1fr;gap:14px;margin-bottom:14px}
-    .grid-c{display:grid;grid-template-columns:1.2fr 1.05fr;gap:14px}
+.sidebar{
+  position:sticky;
+  top:0;
+  height:100vh;
 
-    .section-title{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}
-    .section-title h3{font-size:15px;text-transform:uppercase;letter-spacing:.2px}.section-title span{font-size:11px;color:var(--muted)}
-    .chart{height:260px}.chart-sm{height:210px}
+  padding:18px 14px;
 
-    .venn{height:250px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .circle{position:absolute;width:245px;height:245px;border-radius:50%;border:1px solid rgba(24,214,255,.62);background:rgba(24,214,255,.11);display:flex;flex-direction:column;justify-content:center;padding:34px;font-size:12px;color:#e8f4ff}
-    .circle.right{transform:translateX(80px);border-color:rgba(38,230,124,.62);background:rgba(38,230,124,.10)}
-    .circle.left{transform:translateX(-80px)}
-    .center-vmo{position:absolute;width:112px;height:112px;border-radius:50%;background:rgba(5,16,28,.82);border:1px solid var(--stroke2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:3;box-shadow:0 0 45px rgba(24,214,255,.18)}
-    .center-vmo b{font-size:18px}.center-vmo span{font-size:11px;color:#e6f7ff;margin-top:4px}
-    .circle h4{font-size:18px;margin-bottom:8px}.circle ul{padding-left:16px;line-height:1.65}
+  background:rgba(2,6,23,.88);
 
-    table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:10px 8px;border-bottom:1px solid rgba(157,178,200,.12);text-align:left}th{color:#bcd0e4;text-transform:uppercase;font-size:10px}td{color:#eef7ff}.pill{padding:4px 8px;border-radius:999px;font-size:11px;font-weight:900;display:inline-block}.p-ok{background:rgba(38,230,124,.12);color:var(--green)}.p-warn{background:rgba(255,208,68,.14);color:var(--yellow)}.p-bad{background:rgba(255,75,85,.14);color:var(--red)}
-    .footer-note{display:flex;justify-content:center;gap:26px;color:#e4f3ff;margin-top:18px;font-size:14px;letter-spacing:.8px}.footer-note b{color:var(--cyan)}
+  border-right:1px solid var(--border);
 
-    @media(max-width:1300px){.app{grid-template-columns:1fr}aside{position:relative;height:auto}.sidebar-note{position:relative;left:auto;right:auto;bottom:auto;margin-top:16px}.top,.grid-a,.grid-b,.grid-c{grid-template-columns:1fr}.formula{min-width:auto}.filters{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:700px){#highlights>div{grid-template-columns:1fr!important} main{padding:16px}.filters,.kpis{grid-template-columns:1fr}.title h2{font-size:28px}.formula{flex-wrap:wrap}.venn{height:330px}.circle{width:210px;height:210px}.circle.left{transform:translate(-45px,-20px)}.circle.right{transform:translate(45px,45px)}}
-  </style>
+  backdrop-filter:blur(18px);
+
+  z-index:30;
+
+  overflow-y:auto;
+}
+
+/* BRAND */
+
+.brand{
+  border:1px solid var(--border2);
+
+  border-radius:20px;
+
+  padding:18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(34,211,238,.13),
+      rgba(34,197,94,.06)
+    );
+
+  margin-bottom:16px;
+
+  backdrop-filter:blur(12px);
+}
+
+.brand h1{
+  font-size:42px;
+
+  letter-spacing:-2px;
+
+  line-height:.9;
+
+  background:
+    linear-gradient(
+      90deg,
+      #38bdf8,
+      #22c55e,
+      #facc15
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  color:transparent;
+}
+
+.brand p{
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.9px;
+
+  color:#dbeafe;
+
+  font-weight:900;
+
+  margin-top:8px;
+}
+
+/* MENU */
+
+.menu{
+  display:grid;
+  gap:8px;
+}
+
+.menu a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  color:#cbd5e1;
+
+  text-decoration:none;
+
+  padding:12px 13px;
+
+  border-radius:14px;
+
+  border:1px solid transparent;
+
+  font-size:13px;
+  font-weight:800;
+
+  transition:.25s ease;
+}
+
+.menu a:hover,
+.menu a.active{
+  background:rgba(34,211,238,.10);
+
+  border-color:rgba(34,211,238,.24);
+
+  color:white;
+
+  transform:translateX(2px);
+}
+
+.menu i{
+  width:20px;
+  color:var(--cyan);
+}
+
+/* SIDECARD */
+
+.side-card{
+  margin-top:16px;
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:16px;
+
+  background:rgba(15,23,42,.65);
+
+  backdrop-filter:blur(10px);
+}
+
+.side-card h3{
+  color:var(--cyan);
+  font-size:16px;
+}
+
+.side-card p{
+  margin-top:8px;
+
+  font-size:12px;
+
+  line-height:1.55;
+
+  color:var(--muted);
+}
+
+/* MOBILE */
+
+.mobilebar{
+  display:none;
+
+  position:sticky;
+  top:0;
+
+  z-index:40;
+
+  padding:12px 16px;
+
+  background:rgba(2,6,23,.92);
+
+  border-bottom:1px solid var(--border);
+
+  backdrop-filter:blur(14px);
+}
+
+.mobile-title{
+  font-weight:950;
+  letter-spacing:.4px;
+}
+
+/* MAIN */
+
+main{
+  min-width:0;
+  width:100%;
+  max-width:1640px;
+
+  margin:0 auto;
+
+  padding:24px;
+}
+
+section{
+  scroll-margin-top:20px;
+}
+
+/* HERO */
+
+.hero{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(320px,520px);
+
+  gap:18px;
+
+  align-items:stretch;
+
+  margin-bottom:18px;
+}
+
+.hero-card,
+.formula,
+.filters,
+.card{
+  border:1px solid var(--border);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(11,28,46,.96),
+      rgba(5,16,28,.96)
+    );
+
+  box-shadow:var(--shadow);
+
+  border-radius:22px;
+}
+
+.hero-card{
+  padding:26px;
+}
+
+.eyebrow{
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:1.6px;
+
+  color:var(--cyan);
+
+  font-weight:950;
+}
+
+.hero h2{
+  font-size:clamp(28px,4vw,48px);
+
+  line-height:1.02;
+
+  letter-spacing:-1.6px;
+
+  margin-top:10px;
+}
+
+.hero p{
+  font-size:14px;
+
+  line-height:1.65;
+
+  color:#d6e3f2;
+
+  margin-top:12px;
+
+  max-width:900px;
+}
+
+/* FORMULA */
+
+.formula{
+  padding:20px;
+
+  display:grid;
+  align-content:center;
+  gap:14px;
+}
+
+.formula-row{
+  display:grid;
+
+  grid-template-columns:
+    1fr auto 1fr auto 1fr;
+
+  gap:10px;
+
+  align-items:center;
+
+  text-align:center;
+}
+
+.formula strong,
+.formula b,
+.formula span{
+  font-size:25px;
+}
+
+.formula strong{
+  color:#38bdf8;
+}
+
+.formula b{
+  color:#22c55e;
+}
+
+.formula span{
+  color:#facc15;
+}
+
+.formula small{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  font-weight:900;
+
+  margin-top:5px;
+}
+
+.formula em{
+  font-style:normal;
+  font-weight:950;
+  color:white;
+  font-size:22px;
+}
+
+/* FILTERS */
+
+.filters{
+  padding:14px;
+
+  display:grid;
+
+  grid-template-columns:repeat(6,minmax(0,1fr));
+
+  gap:12px;
+
+  margin-bottom:18px;
+}
+
+.fg label{
+  font-size:10px;
+
+  color:#b8c9dc;
+
+  text-transform:uppercase;
+
+  font-weight:950;
+
+  display:block;
+
+  margin-bottom:7px;
+}
+
+select,
+button{
+  width:100%;
+  height:42px;
+
+  border-radius:12px;
+
+  border:1px solid var(--border);
+
+  background:#061221;
+
+  color:var(--text);
+
+  padding:0 12px;
+
+  font-weight:850;
+
+  outline:none;
+}
+
+button{
+  cursor:pointer;
+
+  border:none;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      #22c55e
+    );
+
+  color:#02101a;
+
+  transition:.25s ease;
+}
+
+button:hover{
+  filter:brightness(1.08);
+
+  transform:translateY(-1px);
+}
+
+/* KPIS */
+
+.kpis{
+  display:grid;
+
+  grid-template-columns:repeat(6,minmax(0,1fr));
+
+  gap:14px;
+
+  margin-bottom:18px;
+}
+
+.card{
+  padding:18px;
+}
+
+.kpi{
+  min-height:130px;
+
+  display:grid;
+
+  grid-template-columns:50px 1fr;
+
+  gap:12px;
+
+  align-items:center;
+}
+
+.icon{
+  width:50px;
+  height:50px;
+
+  border-radius:16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(34,211,238,.11);
+
+  border:1px solid rgba(34,211,238,.25);
+
+  color:var(--cyan);
+
+  font-size:22px;
+}
+
+.kpi h3{
+  font-size:10px;
+
+  text-transform:uppercase;
+
+  color:#dbeafe;
+
+  letter-spacing:.5px;
+
+  margin-bottom:8px;
+}
+
+.val{
+  font-size:clamp(22px,2vw,30px);
+
+  font-weight:950;
+}
+
+.sub{
+  font-size:12px;
+
+  color:var(--muted);
+
+  margin-top:5px;
+}
+
+.ok{color:var(--green);}
+.warn{color:var(--amber);}
+.bad{color:var(--red);}
+.info{color:var(--cyan);}
+
+/* GRID */
+
+.grid-3{
+  display:grid;
+  grid-template-columns:360px minmax(620px,1fr) 420px;
+  gap:16px;
+  margin-bottom:16px;
+  align-items:stretch;
+  overflow-x:auto;
+  padding-bottom:6px;
+}
+
+.grid-2{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:14px;
+
+  margin-bottom:14px;
+}
+
+.grid-wide{
+  display:grid;
+
+  grid-template-columns:1.3fr .9fr;
+
+  gap:14px;
+
+  margin-bottom:14px;
+}
+
+/* TITLES */
+
+.section-title{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:14px;
+}
+
+.section-title h3{
+  font-size:15px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.4px;
+}
+
+.section-title span{
+  font-size:11px;
+
+  color:var(--muted);
+}
+
+/* CHARTS */
+
+.chart{
+  height:300px;
+  min-width:560px;
+}
+
+.chart-sm{
+  height:280px;
+  min-width:520px;
+}
+
+/* VENN */
+
+.venn{
+  height:300px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+  margin-top:10px;
+}
+
+.circle{
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:999px;
+  border:1px solid rgba(34,211,238,.45);
+  background:rgba(34,211,238,.07);
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+
+.circle.left{
+  transform:translateX(-75px);
+  padding-left:36px;
+  padding-right:64px;
+}
+
+.circle.right{
+  transform:translateX(75px);
+  border-color:rgba(34,197,94,.45);
+  background:rgba(34,197,94,.07);
+  padding-left:70px;
+  padding-right:26px;
+}
+
+.circle h4{
+  font-size:18px;
+  margin-bottom:8px;
+  color:#fff;
+}
+
+.circle ul{
+  padding-left:16px;
+  line-height:1.6;
+  font-size:12px;
+  color:#e2e8f0;
+}
+
+/* CENTER VMO */
+
+.center-vmo{
+  position:absolute;
+  z-index:5;
+  width:92px;
+  height:92px;
+  border-radius:999px;
+  background:rgba(3,7,18,.72);
+  border:1px solid rgba(255,255,255,.10);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 0 24px rgba(34,211,238,.18);
+}
+
+.center-vmo:hover{
+  transform:scale(1.03);
+
+  box-shadow:
+    0 0 45px rgba(34,211,238,.18),
+    inset 0 0 24px rgba(255,255,255,.04);
+}
+
+.center-vmo b{
+  font-size:18px;
+}
+
+.center-vmo span{
+  font-size:10px;
+  color:#dbeafe;
+  margin-top:4px;
+}
+
+/* TABLE */
+
+table{
+  width:100%;
+
+  border-collapse:collapse;
+
+  font-size:12px;
+}
+
+th,
+td{
+  padding:10px 8px;
+
+  border-bottom:1px solid rgba(148,163,184,.14);
+
+  text-align:left;
+
+  white-space:nowrap;
+}
+
+th{
+  font-size:10px;
+
+  color:#bcd0e4;
+
+  text-transform:uppercase;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+.pill{
+  display:inline-block;
+
+  padding:5px 9px;
+
+  border-radius:999px;
+
+  font-size:11px;
+
+  font-weight:950;
+}
+
+.p-ok{
+  background:rgba(34,197,94,.12);
+  color:var(--green);
+}
+
+.p-warn{
+  background:rgba(245,158,11,.14);
+  color:var(--amber);
+}
+
+.p-bad{
+  background:rgba(239,68,68,.14);
+  color:var(--red);
+}
+
+/* SYSTEMS */
+
+.systems-grid{
+  display:grid;
+
+  grid-template-columns:repeat(4,minmax(0,1fr));
+
+  gap:14px;
+}
+
+.sys-card{
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  background:rgba(2,6,23,.35);
+
+  padding:16px;
+
+  transition:.25s ease;
+}
+
+.sys-card:hover{
+  transform:translateY(-2px);
+
+  border-color:rgba(34,211,238,.45);
+}
+
+.sys-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+}
+
+.sys-top h4{
+  font-size:15px;
+}
+
+.progress{
+  height:9px;
+
+  background:rgba(148,163,184,.15);
+
+  border-radius:99px;
+
+  overflow:hidden;
+
+  margin:12px 0;
+}
+
+.progress div{
+  height:100%;
+
+  border-radius:99px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--cyan),
+      var(--green)
+    );
+}
+
+.sys-meta{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:8px;
+
+  font-size:11px;
+
+  color:var(--muted);
+}
+
+.sys-meta b{
+  color:white;
+
+  display:block;
+
+  font-size:14px;
+
+  margin-top:2px;
+}
+
+/* HIGHLIGHTS */
+
+.highlights{
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:14px;
+
+  text-align:center;
+}
+
+.mini{
+  padding:14px;
+
+  border-radius:16px;
+
+  background:rgba(2,6,23,.32);
+
+  border:1px solid var(--border);
+}
+
+.mini .icon{
+  margin:0 auto 10px;
+}
+
+/* FOOTER */
+
+.footer-note{
+  text-align:center;
+
+  color:#dbeafe;
+
+  font-size:13px;
+
+  letter-spacing:.5px;
+
+  margin:18px 0 2px;
+}
+
+.footer-note b{
+  color:var(--cyan);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1400px){
+
+  .kpis{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .filters{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .grid-3,
+  .grid-wide{
+    grid-template-columns:1fr;
+    overflow-x:visible;
+  }
+
+  .systems-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:980px){
+
+  .layout{
+    display:block;
+  }
+
+  .mobilebar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .sidebar{
+    position:fixed;
+
+    left:-280px;
+
+    top:0;
+
+    width:270px;
+
+    height:100vh;
+
+    transition:.25s ease;
+  }
+
+  .sidebar.open{
+    left:0;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .formula-row{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+
+  .formula em{
+    font-size:16px;
+  }
+
+  .grid-2{
+    grid-template-columns:1fr;
+  }
+
+  .highlights{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  main{
+    padding:16px;
+  }
+
+  .chart,
+  .chart-sm{
+    min-width:0;
+    width:100%;
+  }
+
+  .venn{
+    height:320px;
+  }
+
+  .circle{
+    width:215px;
+    height:215px;
+    padding:26px;
+  }
+
+  .circle.left{
+    transform:translate(-48px,-24px);
+  }
+
+  .circle.right{
+    transform:translate(48px,42px);
+  }
+}
+
+@media(max-width:640px){
+
+  .filters,
+  .kpis,
+  .systems-grid,
+  .highlights{
+    grid-template-columns:1fr;
+  }
+
+  .hero-card,
+  .formula,
+  .card{
+    padding:20px;
+    overflow:hidden;
+  }
+
+  .kpi{
+    min-height:110px;
+  }
+
+  .section-title{
+    display:block;
+  }
+
+  .section-title span{
+    display:block;
+    margin-top:4px;
+  }
+
+  .venn{
+    height:360px;
+  }
+
+  .circle{
+    width:205px;
+    height:205px;
+  }
+
+  .circle ul{
+    font-size:11px;
+  }
+
+  .circle.left{
+    transform:translate(-38px,-56px);
+  }
+
+  .circle.right{
+    transform:translate(38px,66px);
+  }
+
+  .center-vmo{
+    width:106px;
+    height:106px;
+  }
+
+  .mobile-title{
+    font-size:13px;
+  }
+}
+</style>
 </head>
 <body>
-<div class="app">
-  <aside>
-    <div class="logo"><h1>VMO</h1><span>Value Management Office</span></div>
-    <nav class="nav">
-      <a class="active" href="#"><i class="fa-solid fa-house"></i>Visão Geral</a>
-      <a href="#"><i class="fa-solid fa-briefcase"></i>Portfólio</a>
-      <a href="#"><i class="fa-solid fa-chart-line"></i>Indicadores</a>
-      <a href="#"><i class="fa-solid fa-diagram-project"></i>Projetos</a>
-      <a href="#"><i class="fa-regular fa-gem"></i>Benefícios</a>
-      <a href="#"><i class="fa-solid fa-shield-halved"></i>Riscos</a>
-      <a href="#"><i class="fa-regular fa-file-lines"></i>Relatórios</a>
-      <a href="#"><i class="fa-solid fa-gear"></i>Configurações</a>
-    </nav>
-    <div class="sidebar-note"><h3>VMO</h3><p>Integra estratégia, execução e mensuração de valor para transformar projetos em resultados sustentáveis.</p><div class="line"></div></div>
-  </aside>
+  <div class="mobilebar">
+    <div class="mobile-title">PAINEL VMO</div>
+    <button id="menuToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+  </div>
 
-  <main>
-    <section class="top">
-      <div class="title">
-        <h2>PAINEL VMO</h2>
-        <p>CRUZAMENTO ENTRE PMO E INDICADORES</p>
-        <small>Alinhamento e geração de valor com governança, desempenho, riscos e benefícios</small>
-      </div>
-      <div class="formula">
-        <div><strong>PMO</strong><small>Gestão de projetos</small></div><em>+</em>
-        <div><b>V Indicadores</b><small>Gestão por indicadores</small></div><em>=</em>
-        <div><span>VMO</span><small>Geração de valor</small></div>
-      </div>
-    </section>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><h1>VMO</h1><p>Value Management Office</p></div>
+      <nav class="menu" id="menu">
+        <a class="active" href="#visao"><i class="fa-solid fa-house"></i>Visão Geral</a>
+        <a href="#sistemas"><i class="fa-solid fa-server"></i>Sistemas</a>
+        <a href="#portfolio"><i class="fa-solid fa-chart-line"></i>Portfólio</a>
+        <a href="#indicadores"><i class="fa-solid fa-gauge-high"></i>Indicadores</a>
+        <a href="#riscos"><i class="fa-solid fa-shield-halved"></i>Riscos</a>
+        <a href="#destaques"><i class="fa-regular fa-gem"></i>Destaques</a>
+      </nav>
+      <div class="side-card"><h3>VMO</h3><p>Integra PMO, indicadores, benefícios e geração de valor em uma visão executiva única.</p></div>
+    </aside>
 
-    <section class="filters">
-      <div class="fg"><label>Período</label><select id="periodFilter"><option value="all">Todos</option><option>Jan/2026</option><option>Fev/2026</option><option>Mar/2026</option><option>Abr/2026</option><option>Mai/2026</option></select></div>
-      <div class="fg"><label>Sistema</label><select id="systemFilter"><option value="all">Todos</option><option>ERP WMS Senior</option><option>ERP Sienge</option><option>ERP Omie</option><option>ERP Sankhya</option><option>ERP SAP</option><option>Prevision</option><option>Mobuss</option><option>OnSafety</option></select></div>
-      <div class="fg"><label>Fase</label><select id="phaseFilter"><option value="all">Todas</option><option>Iniciação</option><option>Planejamento</option><option>Execução</option><option>Monitoramento</option><option>Encerramento</option></select></div>
-      <div class="fg"><label>Saúde</label><select id="healthFilter"><option value="all">Todas</option><option>Saudável</option><option>Atenção</option><option>Crítico</option></select></div>
-      <div class="fg"><label>Responsável</label><select id="ownerFilter"><option value="all">Todos</option><option>PMO Sistemas</option><option>Controladoria</option><option>Operações</option><option>TI Corporativo</option><option>Engenharia</option></select></div>
-      <div class="fg"><label>Ação</label><button onclick="resetFilters()"><i class="fa-solid fa-rotate-right"></i> Limpar filtros</button></div>
-    </section>
-
-    <section class="kpis">
-      <div class="card kpi"><div class="icon"><i class="fa-solid fa-dollar-sign"></i></div><div><h3>Investimento Total</h3><div class="val" id="kInvest">R$ 0</div><div class="sub" id="kBudget">Orçado: R$ 0</div></div></div>
-      <div class="card kpi"><div class="icon"><i class="fa-solid fa-folder-open"></i></div><div><h3>Projetos Ativos</h3><div class="val" id="kProjects">0</div><div class="sub">Portfólio filtrado</div></div></div>
-      <div class="card kpi"><div class="icon"><i class="fa-solid fa-circle-half-stroke"></i></div><div><h3>% Conclusão</h3><div class="val" id="kProgress">0%</div><div class="sub" id="kPlan">Planejado: 0%</div></div></div>
-      <div class="card kpi"><div class="icon"><i class="fa-solid fa-bullseye"></i></div><div><h3>Benefícios Previstos</h3><div class="val" id="kBenefit">R$ 0</div><div class="sub" id="kRealized">Realizado: R$ 0</div></div></div>
-      <div class="card kpi"><div class="icon"><i class="fa-solid fa-chart-column"></i></div><div><h3>ROI do Portfólio</h3><div class="val" id="kRoi">0x</div><div class="sub">Meta: 2,5x</div></div></div>
-      <div class="card kpi"><div class="icon"><i class="fa-solid fa-shield-heart"></i></div><div><h3>Saúde do Portfólio</h3><div class="val" id="kHealth">0%</div><div class="sub" id="kHealthText">Status</div></div></div>
-    </section>
-
-    <section class="grid-a">
-      <div class="card">
-        <div class="section-title"><h3>Alinhamento Estratégico (PMO ↔ V)</h3><span>Interseção gera VMO</span></div>
-        <div class="venn">
-          <div class="circle left"><h4>PMO</h4><ul><li>Escopo</li><li>Prazos</li><li>Custos</li><li>Qualidade</li><li>Riscos</li></ul></div>
-          <div class="circle right"><h4>V Indicadores</h4><ul><li>Desempenho</li><li>Valor</li><li>Benefícios</li><li>Eficiência</li><li>Impacto</li></ul></div>
-          <div class="center-vmo"><b>VMO</b><span>Valor Gerado</span><i class="fa-regular fa-gem" style="font-size:28px;margin-top:8px;color:#d9f7ff"></i></div>
+    <main>
+      <section class="hero" id="visao">
+        <div class="hero-card">
+          <div class="eyebrow">Painel Executivo</div>
+          <h2>VMO: cruzamento entre PMO e indicadores de valor.</h2>
+          <p>Gestão integrada para acompanhar sistemas, evolução de projetos, ROI, benefícios realizados, riscos, saúde do portfólio e aderência ao planejado.</p>
         </div>
-      </div>
-      <div class="card"><div class="section-title"><h3>Desempenho do Portfólio</h3><span>Tempo, conclusão e ROI</span></div><div class="chart"><canvas id="portfolioChart"></canvas></div></div>
-      <div class="card"><div class="section-title"><h3>Geração de Valor por Perspectiva</h3><span>Meta x realizado</span></div><div class="chart"><canvas id="radarChart"></canvas></div></div>
-    </section>
+        <div class="formula">
+          <div class="formula-row">
+            <div><strong>PMO</strong><small>Projetos</small></div><em>+</em>
+            <div><b>V Indicadores</b><small>Valor e Performance</small></div><em>=</em>
+            <div><span>VMO</span><small>Resultado Mensurável</small></div>
+          </div>
+        </div>
+      </section>
 
-    <section class="grid-b">
-      <div class="card"><div class="section-title"><h3>Status dos Projetos por Fase</h3><span>Quantidade e saúde</span></div><div id="phaseTable"></div></div>
-      <div class="card"><div class="section-title"><h3>Indicadores Chave (V)</h3><span>Status e tendência</span></div><div id="indicatorTable"></div></div>
-      <div class="card"><div class="section-title"><h3>Benefícios Realizados</h3><span>Acumulado por categoria</span></div><div class="chart-sm"><canvas id="benefitChart"></canvas></div></div>
-    </section>
+      <section class="filters">
+        <div class="fg"><label>Período</label><select id="periodFilter"></select></div>
+        <div class="fg"><label>Sistema</label><select id="systemFilter"></select></div>
+        <div class="fg"><label>Fase</label><select id="phaseFilter"></select></div>
+        <div class="fg"><label>Saúde</label><select id="healthFilter"></select></div>
+        <div class="fg"><label>Responsável</label><select id="ownerFilter"></select></div>
+        <div class="fg"><label>Ação</label><button onclick="resetFilters()"><i class="fa-solid fa-rotate-right"></i> Limpar filtros</button></div>
+      </section>
 
-    <section class="grid-c">
-      <div class="card"><div class="section-title"><h3>Riscos Principais do Portfólio</h3><span>Impacto, probabilidade e ação</span></div><div id="riskTable"></div></div>
-      <div class="card"><div class="section-title"><h3>Destaques do Mês</h3><span>Resultados do filtro atual</span></div><div id="highlights"></div></div>
-    </section>
+      <section class="kpis">
+        <div class="card kpi"><div class="icon"><i class="fa-solid fa-dollar-sign"></i></div><div><h3>Investimento</h3><div class="val" id="kInvest">R$ 0</div><div class="sub" id="kBudget">Orçado: R$ 0</div></div></div>
+        <div class="card kpi"><div class="icon"><i class="fa-solid fa-folder-open"></i></div><div><h3>Projetos</h3><div class="val" id="kProjects">0</div><div class="sub">Portfólio filtrado</div></div></div>
+        <div class="card kpi"><div class="icon"><i class="fa-solid fa-circle-half-stroke"></i></div><div><h3>Conclusão</h3><div class="val" id="kProgress">0%</div><div class="sub" id="kPlan">Planejado: 0%</div></div></div>
+        <div class="card kpi"><div class="icon"><i class="fa-solid fa-bullseye"></i></div><div><h3>Benefícios</h3><div class="val" id="kBenefit">R$ 0</div><div class="sub" id="kRealized">Realizado: R$ 0</div></div></div>
+        <div class="card kpi"><div class="icon"><i class="fa-solid fa-chart-column"></i></div><div><h3>ROI</h3><div class="val" id="kRoi">0x</div><div class="sub">Meta: 2,5x</div></div></div>
+        <div class="card kpi"><div class="icon"><i class="fa-solid fa-shield-heart"></i></div><div><h3>Saúde</h3><div class="val" id="kHealth">0%</div><div class="sub" id="kHealthText">Status</div></div></div>
+      </section>
 
-    <div class="footer-note"><span><b>VMO</b> transforma execução em valor mensurável.</span><span><b>ALINHAR</b> • EXECUTAR • MEDIR • GERAR VALOR</span></div>
-  </main>
-</div>
+      <section class="card" id="sistemas" style="margin-bottom:14px">
+        <div class="section-title"><div><h3>Evolução por Sistema</h3><span>Visão consolidada dos sistemas do portfólio</span></div></div>
+        <div class="systems-grid" id="systemsGrid"></div>
+      </section>
+
+      <section class="grid-3" id="portfolio">
+        <div class="card"><div class="section-title"><h3>PMO ↔ V Indicadores</h3><span>Interseção gera VMO</span></div><div class="venn"><div class="circle left"><h4>PMO</h4><ul><li>Escopo</li><li>Prazos</li><li>Custos</li><li>Qualidade</li><li>Riscos</li></ul></div><div class="circle right"><h4>V Indicadores</h4><ul><li>Valor</li><li>ROI</li><li>Benefícios</li><li>Eficiência</li><li>Impacto</li></ul></div><div class="center-vmo"><b>VMO</b><span>Valor Gerado</span><i class="fa-regular fa-gem" style="font-size:28px;margin-top:8px;color:#d9f7ff"></i></div></div></div>
+        <div class="card"><div class="section-title"><h3>Desempenho do Portfólio</h3><span>Real x planejado x ROI</span></div><div class="chart"><canvas id="portfolioChart"></canvas></div></div>
+        <div class="card"><div class="section-title"><h3>Geração de Valor</h3><span>Meta x realizado</span></div><div class="chart"><canvas id="radarChart"></canvas></div></div>
+      </section>
+
+      <section class="grid-2" id="indicadores">
+        <div class="card"><div class="section-title"><h3>Indicadores Chave</h3><span>Status e tendência</span></div><div class="table-wrap" id="indicatorTable"></div></div>
+        <div class="card"><div class="section-title"><h3>Benefícios Realizados</h3><span>Acumulado por categoria</span></div><div class="chart-sm"><canvas id="benefitChart"></canvas></div></div>
+      </section>
+
+      <section class="grid-wide" id="riscos">
+        <div class="card"><div class="section-title"><h3>Riscos Principais</h3><span>Impacto, probabilidade e ação</span></div><div class="table-wrap" id="riskTable"></div></div>
+        <div class="card"><div class="section-title"><h3>Status por Fase</h3><span>Quantidade e saúde</span></div><div class="table-wrap" id="phaseTable"></div></div>
+      </section>
+
+      <section class="card" id="destaques">
+        <div class="section-title"><h3>Destaques do Filtro Atual</h3><span>Resumo executivo dinâmico</span></div>
+        <div class="highlights" id="highlights"></div>
+      </section>
+
+      <div class="footer-note"><b>VMO</b> transforma execução em valor mensurável • ALINHAR • EXECUTAR • MEDIR • GERAR VALOR</div>
+    </main>
+  </div>
 
 <script>
-const systems = ["ERP WMS Senior","ERP Sienge","ERP Omie","ERP Sankhya","ERP SAP","Prevision","Mobuss","OnSafety"];
-const data = [
-  {
-    "id": "P-01",
-    "period": "Jan/2026",
-    "system": "ERP WMS Senior",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "PMO Sistemas",
-    "invest": 198551,
-    "budget": 214196,
-    "progress": 26,
-    "planned": 21,
-    "benefit": 591355,
-    "realized": 126181,
-    "roi": 0.64,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Operação"
-  },
-  {
-    "id": "P-02",
-    "period": "Fev/2026",
-    "system": "ERP WMS Senior",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "Operações",
-    "invest": 213438,
-    "budget": 210990,
-    "progress": 20,
-    "planned": 36,
-    "benefit": 393250,
-    "realized": 49512,
-    "roi": 0.23,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Operação"
-  },
-  {
-    "id": "P-03",
-    "period": "Mar/2026",
-    "system": "ERP WMS Senior",
-    "phase": "Execução",
-    "health": "Atenção",
-    "owner": "Operações",
-    "invest": 164998,
-    "budget": 151703,
-    "progress": 58,
-    "planned": 58,
-    "benefit": 339145,
-    "realized": 141439,
-    "roi": 0.86,
-    "score": 58,
-    "risk": "Médio",
-    "category": "Operação"
-  },
-  {
-    "id": "P-04",
-    "period": "Abr/2026",
-    "system": "ERP WMS Senior",
-    "phase": "Monitoramento",
-    "health": "Crítico",
-    "owner": "Operações",
-    "invest": 169688,
-    "budget": 175353,
-    "progress": 51,
-    "planned": 67,
-    "benefit": 398822,
-    "realized": 133390,
-    "roi": 0.79,
-    "score": 55,
-    "risk": "Alto",
-    "category": "Operação"
-  },
-  {
-    "id": "P-05",
-    "period": "Mai/2026",
-    "system": "ERP WMS Senior",
-    "phase": "Monitoramento",
-    "health": "Saudável",
-    "owner": "Operações",
-    "invest": 251540,
-    "budget": 226854,
-    "progress": 71,
-    "planned": 87,
-    "benefit": 701703,
-    "realized": 445739,
-    "roi": 1.77,
-    "score": 80,
-    "risk": "Baixo",
-    "category": "Operação"
-  },
-  {
-    "id": "P-06",
-    "period": "Jan/2026",
-    "system": "ERP Sienge",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 224341,
-    "budget": 200916,
-    "progress": 20,
-    "planned": 31,
-    "benefit": 714834,
-    "realized": 100369,
-    "roi": 0.45,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Processos"
-  },
-  {
-    "id": "P-07",
-    "period": "Fev/2026",
-    "system": "ERP Sienge",
-    "phase": "Planejamento",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 415296,
-    "budget": 363977,
-    "progress": 29,
-    "planned": 41,
-    "benefit": 1178135,
-    "realized": 271158,
-    "roi": 0.65,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-08",
-    "period": "Mar/2026",
-    "system": "ERP Sienge",
-    "phase": "Execução",
-    "health": "Crítico",
-    "owner": "PMO Sistemas",
-    "invest": 370880,
-    "budget": 347772,
-    "progress": 52,
-    "planned": 58,
-    "benefit": 797905,
-    "realized": 282020,
-    "roi": 0.76,
-    "score": 52,
-    "risk": "Alto",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-09",
-    "period": "Abr/2026",
-    "system": "ERP Sienge",
-    "phase": "Execução",
-    "health": "Atenção",
-    "owner": "Engenharia",
-    "invest": 220127,
-    "budget": 250186,
-    "progress": 70,
-    "planned": 78,
-    "benefit": 717838,
-    "realized": 390367,
-    "roi": 1.77,
-    "score": 74,
-    "risk": "Médio",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-10",
-    "period": "Mai/2026",
-    "system": "ERP Sienge",
-    "phase": "Encerramento",
-    "health": "Saudável",
-    "owner": "Engenharia",
-    "invest": 271115,
-    "budget": 300285,
-    "progress": 97,
-    "planned": 87,
-    "benefit": 548576,
-    "realized": 451234,
-    "roi": 1.66,
-    "score": 96,
-    "risk": "Baixo",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-11",
-    "period": "Jan/2026",
-    "system": "ERP Omie",
-    "phase": "Planejamento",
-    "health": "Crítico",
-    "owner": "PMO Sistemas",
-    "invest": 102874,
-    "budget": 88746,
-    "progress": 24,
-    "planned": 30,
-    "benefit": 207942,
-    "realized": 37300,
-    "roi": 0.36,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-12",
-    "period": "Fev/2026",
-    "system": "ERP Omie",
-    "phase": "Planejamento",
-    "health": "Crítico",
-    "owner": "Controladoria",
-    "invest": 121461,
-    "budget": 138172,
-    "progress": 51,
-    "planned": 48,
-    "benefit": 292792,
-    "realized": 141626,
-    "roi": 1.17,
-    "score": 56,
-    "risk": "Alto",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-13",
-    "period": "Mar/2026",
-    "system": "ERP Omie",
-    "phase": "Planejamento",
-    "health": "Saudável",
-    "owner": "Controladoria",
-    "invest": 148921,
-    "budget": 158419,
-    "progress": 71,
-    "planned": 61,
-    "benefit": 420782,
-    "realized": 177646,
-    "roi": 1.19,
-    "score": 80,
-    "risk": "Baixo",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-14",
-    "period": "Abr/2026",
-    "system": "ERP Omie",
-    "phase": "Monitoramento",
-    "health": "Atenção",
-    "owner": "Controladoria",
-    "invest": 143471,
-    "budget": 126542,
-    "progress": 80,
-    "planned": 74,
-    "benefit": 458078,
-    "realized": 245301,
-    "roi": 1.71,
-    "score": 77,
-    "risk": "Médio",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-15",
-    "period": "Mai/2026",
-    "system": "ERP Omie",
-    "phase": "Encerramento",
-    "health": "Saudável",
-    "owner": "Controladoria",
-    "invest": 149785,
-    "budget": 130697,
-    "progress": 92,
-    "planned": 86,
-    "benefit": 490679,
-    "realized": 414135,
-    "roi": 2.76,
-    "score": 89,
-    "risk": "Baixo",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-16",
-    "period": "Jan/2026",
-    "system": "ERP Sankhya",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "TI Corporativo",
-    "invest": 329491,
-    "budget": 375541,
-    "progress": 36,
-    "planned": 26,
-    "benefit": 1055957,
-    "realized": 353070,
-    "roi": 1.07,
-    "score": 37,
-    "risk": "Alto",
-    "category": "Processos"
-  },
-  {
-    "id": "P-17",
-    "period": "Fev/2026",
-    "system": "ERP Sankhya",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "TI Corporativo",
-    "invest": 335694,
-    "budget": 317314,
-    "progress": 47,
-    "planned": 48,
-    "benefit": 1112811,
-    "realized": 322207,
-    "roi": 0.96,
-    "score": 43,
-    "risk": "Alto",
-    "category": "Processos"
-  },
-  {
-    "id": "P-18",
-    "period": "Mar/2026",
-    "system": "ERP Sankhya",
-    "phase": "Execução",
-    "health": "Atenção",
-    "owner": "TI Corporativo",
-    "invest": 405035,
-    "budget": 413429,
-    "progress": 65,
-    "planned": 59,
-    "benefit": 1164353,
-    "realized": 529302,
-    "roi": 1.31,
-    "score": 63,
-    "risk": "Médio",
-    "category": "Processos"
-  },
-  {
-    "id": "P-19",
-    "period": "Abr/2026",
-    "system": "ERP Sankhya",
-    "phase": "Monitoramento",
-    "health": "Crítico",
-    "owner": "TI Corporativo",
-    "invest": 384186,
-    "budget": 370646,
-    "progress": 59,
-    "planned": 67,
-    "benefit": 695954,
-    "realized": 342096,
-    "roi": 0.89,
-    "score": 51,
-    "risk": "Alto",
-    "category": "Processos"
-  },
-  {
-    "id": "P-20",
-    "period": "Mai/2026",
-    "system": "ERP Sankhya",
-    "phase": "Monitoramento",
-    "health": "Saudável",
-    "owner": "Engenharia",
-    "invest": 353622,
-    "budget": 374782,
-    "progress": 70,
-    "planned": 86,
-    "benefit": 911164,
-    "realized": 488370,
-    "roi": 1.38,
-    "score": 78,
-    "risk": "Baixo",
-    "category": "Processos"
-  },
-  {
-    "id": "P-21",
-    "period": "Jan/2026",
-    "system": "ERP SAP",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "Controladoria",
-    "invest": 550592,
-    "budget": 619829,
-    "progress": 30,
-    "planned": 33,
-    "benefit": 1571594,
-    "realized": 326130,
-    "roi": 0.59,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Financeiro"
-  },
-  {
-    "id": "P-22",
-    "period": "Fev/2026",
-    "system": "ERP SAP",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "Controladoria",
-    "invest": 539531,
-    "budget": 577288,
-    "progress": 30,
-    "planned": 36,
-    "benefit": 1135353,
-    "realized": 248453,
-    "roi": 0.46,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Integração"
-  },
-  {
-    "id": "P-23",
-    "period": "Mar/2026",
-    "system": "ERP SAP",
-    "phase": "Execução",
-    "health": "Crítico",
-    "owner": "Controladoria",
-    "invest": 500016,
-    "budget": 571332,
-    "progress": 48,
-    "planned": 52,
-    "benefit": 1699480,
-    "realized": 721458,
-    "roi": 1.44,
-    "score": 57,
-    "risk": "Alto",
-    "category": "Integração"
-  },
-  {
-    "id": "P-24",
-    "period": "Abr/2026",
-    "system": "ERP SAP",
-    "phase": "Encerramento",
-    "health": "Atenção",
-    "owner": "TI Corporativo",
-    "invest": 500838,
-    "budget": 550741,
-    "progress": 61,
-    "planned": 73,
-    "benefit": 903235,
-    "realized": 389080,
-    "roi": 0.78,
-    "score": 65,
-    "risk": "Médio",
-    "category": "Integração"
-  },
-  {
-    "id": "P-25",
-    "period": "Mai/2026",
-    "system": "ERP SAP",
-    "phase": "Encerramento",
-    "health": "Atenção",
-    "owner": "PMO Sistemas",
-    "invest": 729646,
-    "budget": 634137,
-    "progress": 71,
-    "planned": 83,
-    "benefit": 1989517,
-    "realized": 1083259,
-    "roi": 1.48,
-    "score": 72,
-    "risk": "Médio",
-    "category": "Integração"
-  },
-  {
-    "id": "P-26",
-    "period": "Jan/2026",
-    "system": "Prevision",
-    "phase": "Planejamento",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 88263,
-    "budget": 100635,
-    "progress": 38,
-    "planned": 29,
-    "benefit": 230589,
-    "realized": 78032,
-    "roi": 0.88,
-    "score": 46,
-    "risk": "Alto",
-    "category": "Planejamento"
-  },
-  {
-    "id": "P-27",
-    "period": "Fev/2026",
-    "system": "Prevision",
-    "phase": "Planejamento",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 116051,
-    "budget": 112271,
-    "progress": 27,
-    "planned": 42,
-    "benefit": 216271,
-    "realized": 34031,
-    "roi": 0.29,
-    "score": 37,
-    "risk": "Alto",
-    "category": "Planejamento"
-  },
-  {
-    "id": "P-28",
-    "period": "Mar/2026",
-    "system": "Prevision",
-    "phase": "Execução",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 104572,
-    "budget": 111285,
-    "progress": 43,
-    "planned": 55,
-    "benefit": 210127,
-    "realized": 73024,
-    "roi": 0.7,
-    "score": 45,
-    "risk": "Alto",
-    "category": "Cliente"
-  },
-  {
-    "id": "P-29",
-    "period": "Abr/2026",
-    "system": "Prevision",
-    "phase": "Execução",
-    "health": "Saudável",
-    "owner": "PMO Sistemas",
-    "invest": 82115,
-    "budget": 93104,
-    "progress": 74,
-    "planned": 73,
-    "benefit": 175812,
-    "realized": 85356,
-    "roi": 1.04,
-    "score": 84,
-    "risk": "Baixo",
-    "category": "Operação"
-  },
-  {
-    "id": "P-30",
-    "period": "Mai/2026",
-    "system": "Prevision",
-    "phase": "Encerramento",
-    "health": "Saudável",
-    "owner": "Engenharia",
-    "invest": 163733,
-    "budget": 172214,
-    "progress": 79,
-    "planned": 83,
-    "benefit": 552462,
-    "realized": 380946,
-    "roi": 2.33,
-    "score": 88,
-    "risk": "Baixo",
-    "category": "Planejamento"
-  },
-  {
-    "id": "P-31",
-    "period": "Jan/2026",
-    "system": "Mobuss",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 93635,
-    "budget": 104664,
-    "progress": 16,
-    "planned": 31,
-    "benefit": 184578,
-    "realized": 22778,
-    "roi": 0.24,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Campo"
-  },
-  {
-    "id": "P-32",
-    "period": "Fev/2026",
-    "system": "Mobuss",
-    "phase": "Planejamento",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 105815,
-    "budget": 104600,
-    "progress": 42,
-    "planned": 39,
-    "benefit": 232982,
-    "realized": 89365,
-    "roi": 0.84,
-    "score": 54,
-    "risk": "Alto",
-    "category": "Campo"
-  },
-  {
-    "id": "P-33",
-    "period": "Mar/2026",
-    "system": "Mobuss",
-    "phase": "Execução",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 153835,
-    "budget": 171072,
-    "progress": 33,
-    "planned": 51,
-    "benefit": 518066,
-    "realized": 105078,
-    "roi": 0.68,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Campo"
-  },
-  {
-    "id": "P-34",
-    "period": "Abr/2026",
-    "system": "Mobuss",
-    "phase": "Execução",
-    "health": "Crítico",
-    "owner": "Engenharia",
-    "invest": 123228,
-    "budget": 141511,
-    "progress": 51,
-    "planned": 67,
-    "benefit": 294606,
-    "realized": 115843,
-    "roi": 0.94,
-    "score": 47,
-    "risk": "Alto",
-    "category": "Campo"
-  },
-  {
-    "id": "P-35",
-    "period": "Mai/2026",
-    "system": "Mobuss",
-    "phase": "Encerramento",
-    "health": "Saudável",
-    "owner": "TI Corporativo",
-    "invest": 107899,
-    "budget": 116898,
-    "progress": 99,
-    "planned": 93,
-    "benefit": 237296,
-    "realized": 138867,
-    "roi": 1.29,
-    "score": 92,
-    "risk": "Baixo",
-    "category": "Processos"
-  },
-  {
-    "id": "P-36",
-    "period": "Jan/2026",
-    "system": "OnSafety",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "Controladoria",
-    "invest": 90248,
-    "budget": 104040,
-    "progress": 30,
-    "planned": 23,
-    "benefit": 268803,
-    "realized": 55067,
-    "roi": 0.61,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Segurança"
-  },
-  {
-    "id": "P-37",
-    "period": "Fev/2026",
-    "system": "OnSafety",
-    "phase": "Iniciação",
-    "health": "Crítico",
-    "owner": "Operações",
-    "invest": 103510,
-    "budget": 111694,
-    "progress": 51,
-    "planned": 42,
-    "benefit": 321557,
-    "realized": 120391,
-    "roi": 1.16,
-    "score": 44,
-    "risk": "Alto",
-    "category": "Segurança"
-  },
-  {
-    "id": "P-38",
-    "period": "Mar/2026",
-    "system": "OnSafety",
-    "phase": "Execução",
-    "health": "Crítico",
-    "owner": "Operações",
-    "invest": 97982,
-    "budget": 102227,
-    "progress": 36,
-    "planned": 54,
-    "benefit": 311873,
-    "realized": 105173,
-    "roi": 1.07,
-    "score": 35,
-    "risk": "Alto",
-    "category": "Segurança"
-  },
-  {
-    "id": "P-39",
-    "period": "Abr/2026",
-    "system": "OnSafety",
-    "phase": "Encerramento",
-    "health": "Saudável",
-    "owner": "Operações",
-    "invest": 106645,
-    "budget": 93404,
-    "progress": 84,
-    "planned": 76,
-    "benefit": 211641,
-    "realized": 166784,
-    "roi": 1.56,
-    "score": 93,
-    "risk": "Baixo",
-    "category": "Segurança"
-  },
-  {
-    "id": "P-40",
-    "period": "Mai/2026",
-    "system": "OnSafety",
-    "phase": "Monitoramento",
-    "health": "Saudável",
-    "owner": "Operações",
-    "invest": 102796,
-    "budget": 95309,
-    "progress": 83,
-    "planned": 82,
-    "benefit": 236624,
-    "realized": 155642,
-    "roi": 1.51,
-    "score": 88,
-    "risk": "Baixo",
-    "category": "Segurança"
-  }
-];
-
-
-let portfolioChart = null;
-let radarChart = null;
-let benefitChart = null;
-
-const $ = (id) => document.getElementById(id);
-const money = (v) => {
-  const n = Number(v) || 0;
-  if (Math.abs(n) >= 1000000) return "R$ " + (n / 1000000).toFixed(1).replace('.', ',') + "M";
-  if (Math.abs(n) >= 1000) return "R$ " + Math.round(n / 1000).toLocaleString('pt-BR') + "K";
-  return "R$ " + Math.round(n).toLocaleString('pt-BR');
-};
-const avg = (arr) => arr.length ? arr.reduce((a,b)=>a+(Number(b)||0),0)/arr.length : 0;
-
-function getFilters(){
-  return {
-    period: $('periodFilter').value,
-    system: $('systemFilter').value,
-    phase: $('phaseFilter').value,
-    health: $('healthFilter').value,
-    owner: $('ownerFilter').value
-  };
-}
-
-function getFilteredData(){
-  const f = getFilters();
-  return data.filter(d =>
-    (f.period === 'all' || d.period === f.period) &&
-    (f.system === 'all' || d.system === f.system) &&
-    (f.phase === 'all' || d.phase === f.phase) &&
-    (f.health === 'all' || d.health === f.health) &&
-    (f.owner === 'all' || d.owner === f.owner)
-  );
-}
-
-function safeDestroy(chart){
-  if(chart && typeof chart.destroy === 'function') chart.destroy();
-}
-
-function updateDashboard(){
-  const rows = getFilteredData();
-  updateKpis(rows);
-  updateCharts(rows);
-  updateTables(rows);
-}
-
-function updateKpis(rows){
-  const invest = rows.reduce((s,x)=>s+x.invest,0);
-  const budget = rows.reduce((s,x)=>s+x.budget,0);
-  const benefit = rows.reduce((s,x)=>s+x.benefit,0);
-  const realized = rows.reduce((s,x)=>s+x.realized,0);
-  const progress = avg(rows.map(x=>x.progress));
-  const planned = avg(rows.map(x=>x.planned));
-  const roi = invest ? realized / invest : 0;
-  const health = avg(rows.map(x=>x.score));
-
-  $('kInvest').textContent = money(invest);
-  $('kBudget').textContent = 'Orçado: ' + money(budget);
-  $('kProjects').textContent = rows.length.toLocaleString('pt-BR');
-  $('kProgress').textContent = progress.toFixed(0) + '%';
-  $('kPlan').textContent = 'Planejado: ' + planned.toFixed(0) + '%';
-  $('kBenefit').textContent = money(benefit);
-  $('kRealized').textContent = 'Realizado: ' + money(realized);
-  $('kRoi').textContent = roi.toFixed(1).replace('.', ',') + 'x';
-  $('kHealth').textContent = health.toFixed(0) + '%';
-  $('kHealthText').textContent = health >= 80 ? 'Portfólio saudável' : health >= 60 ? 'Atenção necessária' : rows.length ? 'Crítico' : 'Sem registros';
-  $('kHealthText').className = 'sub ' + (health >= 80 ? 'ok' : health >= 60 ? 'warn' : 'bad');
-}
-
-function chartBaseOptions(){
-  return {
-    responsive:true,
-    maintainAspectRatio:false,
-    plugins:{legend:{labels:{color:'#d9e8f7'}}},
-    scales:{
-      x:{ticks:{color:'#9db2c8'},grid:{color:'rgba(157,178,200,.08)'}},
-      y:{ticks:{color:'#9db2c8',callback:v=>v+'%'},grid:{color:'rgba(157,178,200,.14)'},min:0,max:100},
-      y1:{position:'right',ticks:{color:'#ffd044',callback:v=>v+'x'},grid:{drawOnChartArea:false},min:0,max:4}
-    }
-  };
-}
-
-function updateCharts(rows){
-  const months = ['Jan/2026','Fev/2026','Mar/2026','Abr/2026','Mai/2026'];
-  const real = months.map(m => avg(rows.filter(x=>x.period===m).map(x=>x.progress)));
-  const plan = months.map(m => avg(rows.filter(x=>x.period===m).map(x=>x.planned)));
-  const roiLine = months.map(m => avg(rows.filter(x=>x.period===m).map(x=>x.roi)));
-
-  safeDestroy(portfolioChart);
-  portfolioChart = new Chart($('portfolioChart'), {
-    type:'line',
-    data:{labels:months,datasets:[
-      {label:'% Conclusão Real',data:real,borderColor:'#26e67c',backgroundColor:'rgba(38,230,124,.12)',tension:.35},
-      {label:'% Conclusão Planejada',data:plan,borderColor:'#18d6ff',borderDash:[7,5],tension:.35},
-      {label:'ROI Real',data:roiLine,borderColor:'#ffd044',yAxisID:'y1',tension:.35}
-    ]},
-    options: chartBaseOptions()
+const periods=['Jan/2026','Fev/2026','Mar/2026','Abr/2026','Mai/2026'];
+const systems=['ERP WMS Senior','ERP Sienge','ERP Omie','ERP Sankhya','ERP SAP','Prevision','Mobuss','OnSafety'];
+const phases=['Iniciação','Planejamento','Execução','Monitoramento','Encerramento'];
+const owners=['PMO Sistemas','Controladoria','Operações','TI Corporativo','Engenharia'];
+const categories=['Financeiro','Cliente','Processos','Integração','Operação','Segurança','Planejamento','Campo'];
+const baseInvest=[210000,310000,135000,370000,560000,115000,118000,98000];
+const data=[];
+systems.forEach((sys,si)=>{
+  periods.forEach((p,mi)=>{
+    const progress=Math.min(99,18+mi*15+((si*7+mi*3)%17));
+    const planned=Math.min(96,25+mi*15+((si*5)%10));
+    const invest=Math.round(baseInvest[si]*(.82+((mi+si)%5)*.08));
+    const budget=Math.round(baseInvest[si]*(.9+((mi+2)%5)*.05));
+    const benefit=Math.round(invest*(1.9+((si+mi)%5)*.38));
+    const realized=Math.round(benefit*(progress/100)*(.42+((si+mi)%4)*.09));
+    const roi=realized/invest;
+    let health='Crítico', risk='Alto', score=Math.round((progress*.55)+(roi*22)+(planned-progress>12?-12:8));
+    score=Math.max(35,Math.min(96,score));
+    if(score>=78){health='Saudável';risk='Baixo'} else if(score>=60){health='Atenção';risk='Médio'}
+    data.push({id:`P-${String(si*5+mi+1).padStart(2,'0')}`,period:p,system:sys,phase:phases[Math.min(4,Math.floor((progress+8)/22))],health,owner:owners[(si+mi)%owners.length],invest,budget,progress,planned,benefit,realized,roi,score,risk,category:categories[(si+mi)%categories.length]});
   });
-
-  const perspectives = ['Financeira','Cliente','Processos','Aprendizado','Sustentabilidade'];
-  const mapCategory = {
-    Financeira: ['Financeiro'],
-    Cliente: ['Cliente'],
-    Processos: ['Processos','Integração','Operação','Campo'],
-    Aprendizado: ['Planejamento'],
-    Sustentabilidade: ['Segurança']
-  };
-  const radarValues = perspectives.map(p => {
-    const subset = rows.filter(x => mapCategory[p].includes(x.category));
-    return avg((subset.length ? subset : rows).map(x=>x.score));
-  });
-
-  safeDestroy(radarChart);
-  radarChart = new Chart($('radarChart'), {
-    type:'radar',
-    data:{labels:perspectives,datasets:[
-      {label:'Meta',data:[90,85,88,82,80],borderColor:'#18d6ff',backgroundColor:'rgba(24,214,255,.08)'},
-      {label:'Realizado',data:radarValues,borderColor:'#26e67c',backgroundColor:'rgba(38,230,124,.14)'}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#d9e8f7'}}},scales:{r:{grid:{color:'rgba(157,178,200,.25)'},angleLines:{color:'rgba(157,178,200,.25)'},pointLabels:{color:'#d9e8f7'},ticks:{display:false},min:0,max:100}}}
-  });
-
-  const categories = ['Financeiro','Cliente','Processos','Segurança'];
-  const vals = categories.map(c => rows.filter(x => x.category===c || (c==='Processos' && ['Integração','Operação','Campo','Planejamento'].includes(x.category))).reduce((s,x)=>s+x.realized,0));
-
-  safeDestroy(benefitChart);
-  benefitChart = new Chart($('benefitChart'), {
-    type:'bar',
-    data:{labels:categories,datasets:[{label:'Benefício realizado',data:vals,backgroundColor:['#18d6ff','#26e67c','#268bff','#8b5cf6'],borderRadius:8}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#9db2c8',callback:v=>money(v)},grid:{color:'rgba(157,178,200,.12)'}},y:{ticks:{color:'#e8f4ff'},grid:{display:false}}}}
-  });
-}
-
-function statusPill(score){
-  if(score >= 80) return '<span class="pill p-ok">Saudável</span>';
-  if(score >= 60) return '<span class="pill p-warn">Atenção</span>';
-  return '<span class="pill p-bad">Crítico</span>';
-}
-
-function updateTables(rows){
-  const phases = ['Iniciação','Planejamento','Execução','Monitoramento','Encerramento'];
-  $('phaseTable').innerHTML = '<table><thead><tr><th>Fase</th><th>Qtd</th><th>%</th><th>Saúde</th></tr></thead><tbody>' +
-    phases.map(p => {
-      const subset = rows.filter(x=>x.phase===p);
-      const q = subset.length;
-      const pct = rows.length ? q / rows.length * 100 : 0;
-      const score = avg(subset.map(x=>x.score));
-      return `<tr><td>${p}</td><td>${q}</td><td>${pct.toFixed(0)}%</td><td>${q ? statusPill(score) : '<span class="pill p-warn">Sem dados</span>'}</td></tr>`;
-    }).join('') + '</tbody></table>';
-
-  const invest = rows.reduce((s,x)=>s+x.invest,0);
-  const budget = rows.reduce((s,x)=>s+x.budget,0);
-  const realized = rows.reduce((s,x)=>s+x.realized,0);
-  const benefit = rows.reduce((s,x)=>s+x.benefit,0);
-  const indicators = [
-    ['ROI do Portfólio', invest ? realized/invest : 0, 2.5, 'x'],
-    ['% Benefícios Realizados', benefit ? realized/benefit*100 : 0, 80, '%'],
-    ['Satisfação do Cliente', avg(rows.map(x=>x.score)), 90, '%'],
-    ['Aderência Orçamentária', budget ? 100 - (Math.abs(invest-budget)/budget*100) : 0, 95, '%'],
-    ['Produtividade das Equipes', avg(rows.map(x=>x.progress)), 90, '%']
-  ];
-  $('indicatorTable').innerHTML = '<table><thead><tr><th>Indicador</th><th>Real</th><th>Meta</th><th>Status</th></tr></thead><tbody>' +
-    indicators.map(i => {
-      const ok = i[0].includes('Aderência') ? i[1] >= 90 : i[1] >= i[2];
-      const real = i[3] === 'x' ? i[1].toFixed(1).replace('.', ',') + 'x' : i[1].toFixed(0) + '%';
-      const meta = i[3] === 'x' ? i[2].toFixed(1).replace('.', ',') + 'x' : i[2].toFixed(0) + '%';
-      return `<tr><td>${i[0]}</td><td>${real}</td><td>${meta}</td><td><span class="pill ${ok?'p-ok':'p-warn'}">${ok?'Saudável':'Atenção'}</span></td></tr>`;
-    }).join('') + '</tbody></table>';
-
-  const riskRank = {Alto:3,Médio:2,Baixo:1};
-  const risks = rows.slice().sort((a,b)=>riskRank[b.risk]-riskRank[a.risk]).slice(0,6);
-  $('riskTable').innerHTML = '<table><thead><tr><th>Risco</th><th>Projeto</th><th>Impacto</th><th>Prob.</th><th>Ação</th></tr></thead><tbody>' +
-    (risks.length ? risks.map(r => `<tr><td>${r.risk==='Alto'?'🔴':r.risk==='Médio'?'🟡':'🟢'} ${riskText(r)}</td><td>${r.id}</td><td><span class="pill ${r.risk==='Alto'?'p-bad':r.risk==='Médio'?'p-warn':'p-ok'}">${r.risk}</span></td><td>${r.risk==='Alto'?'Alta':r.risk==='Médio'?'Média':'Baixa'}</td><td>${r.risk==='Alto'?'Plano de contingência ativo':r.risk==='Médio'?'Mitigação em andamento':'Monitoramento preventivo'}</td></tr>`).join('') : '<tr><td colspan="5">Nenhum registro encontrado.</td></tr>') +
-    '</tbody></table>';
-
-  const concluded = rows.filter(x=>x.progress>=90).length;
-  const monthBenefit = realized;
-  const avgScore = avg(rows.map(x=>x.score));
-  const roi = invest ? realized/invest : 0;
-  $('highlights').innerHTML = `<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center">
-    <div><div class="icon" style="margin:auto"><i class="fa-solid fa-check"></i></div><h3 class="ok">${concluded} projetos</h3><p class="sub">concluídos ou em fase final</p></div>
-    <div><div class="icon" style="margin:auto"><i class="fa-solid fa-bullseye"></i></div><h3 class="info">${money(monthBenefit)}</h3><p class="sub">em benefícios realizados</p></div>
-    <div><div class="icon" style="margin:auto"><i class="fa-solid fa-users"></i></div><h3 class="warn">${avgScore.toFixed(0)}%</h3><p class="sub">saúde média do portfólio</p></div>
-    <div><div class="icon" style="margin:auto"><i class="fa-solid fa-arrow-trend-up"></i></div><h3>${roi.toFixed(1).replace('.', ',')}x</h3><p class="sub">ROI projetado</p></div>
-  </div>`;
-}
-
-function riskText(r){
-  return r.risk === 'Alto' ? 'Atraso ou dependência crítica' : r.risk === 'Médio' ? 'Mudança de escopo recorrente' : 'Risco controlado';
-}
-
-function resetFilters(){
-  ['periodFilter','systemFilter','phaseFilter','healthFilter','ownerFilter'].forEach(id => $(id).value = 'all');
-  updateDashboard();
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('select').forEach(s => s.addEventListener('change', updateDashboard));
-  updateDashboard();
 });
 
+let portfolioChart, radarChart, benefitChart;
+const money=v=>'R$ '+(Math.abs(v)>=1000000?(v/1000000).toFixed(1).replace('.',',')+'M':Math.round(v/1000)+'K');
+const avg=arr=>arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:0;
+function byId(id){return document.getElementById(id)}
+function fillSelect(id,items,allText){byId(id).innerHTML=`<option value="all">${allText}</option>`+items.map(x=>`<option value="${x}">${x}</option>`).join('')}
+function initFilters(){fillSelect('periodFilter',periods,'Todos');fillSelect('systemFilter',systems,'Todos');fillSelect('phaseFilter',phases,'Todas');fillSelect('healthFilter',['Saudável','Atenção','Crítico'],'Todas');fillSelect('ownerFilter',owners,'Todos')}
+function getFilters(){return {period:byId('periodFilter').value,system:byId('systemFilter').value,phase:byId('phaseFilter').value,health:byId('healthFilter').value,owner:byId('ownerFilter').value}}
+function filtered(){const f=getFilters();return data.filter(d=>(f.period==='all'||d.period===f.period)&&(f.system==='all'||d.system===f.system)&&(f.phase==='all'||d.phase===f.phase)&&(f.health==='all'||d.health===f.health)&&(f.owner==='all'||d.owner===f.owner))}
+function destroyChart(c){if(c){c.destroy()}}
+function update(){const d=filtered();updateKpis(d);updateSystems(d);updateCharts(d);updateTables(d);updateHighlights(d)}
+function updateKpis(d){
+  const invest=d.reduce((s,x)=>s+x.invest,0), budget=d.reduce((s,x)=>s+x.budget,0), benefit=d.reduce((s,x)=>s+x.benefit,0), realized=d.reduce((s,x)=>s+x.realized,0);
+  const progress=avg(d.map(x=>x.progress)), planned=avg(d.map(x=>x.planned)), roi=invest?realized/invest:0, health=avg(d.map(x=>x.score));
+  byId('kInvest').textContent=money(invest); byId('kBudget').textContent='Orçado: '+money(budget); byId('kProjects').textContent=d.length; byId('kProgress').textContent=progress.toFixed(0)+'%'; byId('kPlan').textContent='Planejado: '+planned.toFixed(0)+'%'; byId('kBenefit').textContent=money(benefit); byId('kRealized').textContent='Realizado: '+money(realized); byId('kRoi').textContent=roi.toFixed(1).replace('.',',')+'x'; byId('kHealth').textContent=health.toFixed(0)+'%';
+  byId('kHealthText').textContent=health>=78?'Portfólio saudável':health>=60?'Atenção necessária':'Crítico'; byId('kHealthText').className='sub '+(health>=78?'ok':health>=60?'warn':'bad');
+}
+function statusClass(score){return score>=78?'p-ok':score>=60?'p-warn':'p-bad'}
+function statusName(score){return score>=78?'Saudável':score>=60?'Atenção':'Crítico'}
+function updateSystems(d){
+  byId('systemsGrid').innerHTML=systems.map(sys=>{
+    const arr=d.filter(x=>x.system===sys), all=data.filter(x=>x.system===sys);
+    const source=arr.length?arr:all, progress=avg(source.map(x=>x.progress)), score=avg(source.map(x=>x.score)), realized=source.reduce((s,x)=>s+x.realized,0), roi=source.reduce((s,x)=>s+x.invest,0)?realized/source.reduce((s,x)=>s+x.invest,0):0;
+    return `<div class="sys-card"><div class="sys-top"><h4>${sys}</h4><span class="pill ${statusClass(score)}">${statusName(score)}</span></div><div class="progress"><div style="width:${progress.toFixed(0)}%"></div></div><div class="sys-meta"><div>Evolução<b>${progress.toFixed(0)}%</b></div><div>ROI<b>${roi.toFixed(1).replace('.',',')}x</b></div><div>Benefício<b>${money(realized)}</b></div><div>Projetos<b>${source.length}</b></div></div></div>`
+  }).join('')
+}
+function updateCharts(d){
+  const real=periods.map(m=>avg(d.filter(x=>x.period===m).map(x=>x.progress)));
+  const plan=periods.map(m=>avg(d.filter(x=>x.period===m).map(x=>x.planned)));
+  const roi=periods.map(m=>avg(d.filter(x=>x.period===m).map(x=>x.roi)));
+  destroyChart(portfolioChart);
+  portfolioChart=new Chart(byId('portfolioChart'),{type:'line',data:{labels:periods,datasets:[{label:'% Real',data:real,borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.12)',tension:.35,fill:true},{label:'% Planejado',data:plan,borderColor:'#22d3ee',borderDash:[7,5],tension:.35},{label:'ROI',data:roi,borderColor:'#facc15',yAxisID:'y1',tension:.35}]},options:chartOptions(true)});
+  const catVal=[avg(d.map(x=>x.score)),avg(d.map(x=>x.progress)),avg(d.map(x=>Math.min(100,x.roi*38))),avg(d.map(x=>x.planned)),avg(d.map(x=>Math.max(0,x.score-4)))];
+  destroyChart(radarChart);
+  radarChart=new Chart(byId('radarChart'),{type:'radar',data:{labels:['Financeira','Cliente','Processos','Aprendizado','Sustentabilidade'],datasets:[{label:'Meta',data:[90,85,88,82,80],borderColor:'#22d3ee',backgroundColor:'rgba(34,211,238,.08)'},{label:'Realizado',data:catVal,borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.16)'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#dbeafe'}}},scales:{r:{grid:{color:'rgba(148,163,184,.25)'},angleLines:{color:'rgba(148,163,184,.25)'},pointLabels:{color:'#dbeafe'},ticks:{display:false},min:0,max:100}}}});
+  const benefitCats=['Financeiro','Cliente','Processos','Segurança'];
+  const vals=benefitCats.map(c=>d.filter(x=>x.category===c||(c==='Processos'&&x.category==='Integração')).reduce((s,x)=>s+x.realized,0));
+  destroyChart(benefitChart);
+  benefitChart=new Chart(byId('benefitChart'),{type:'bar',data:{labels:benefitCats,datasets:[{label:'Benefício realizado',data:vals,backgroundColor:['#22d3ee','#22c55e','#3b82f6','#8b5cf6'],borderRadius:8}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#a8bdd3',callback:v=>money(v)},grid:{color:'rgba(148,163,184,.12)'}},y:{ticks:{color:'#e8f4ff'},grid:{display:false}}}}});
+}
+function chartOptions(withY1){return{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#dbeafe'}}},scales:{x:{ticks:{color:'#a8bdd3'},grid:{color:'rgba(148,163,184,.08)'}},y:{ticks:{color:'#a8bdd3',callback:v=>v+'%'},grid:{color:'rgba(148,163,184,.14)'},min:0,max:100},...(withY1?{y1:{position:'right',ticks:{color:'#facc15',callback:v=>v+'x'},grid:{drawOnChartArea:false},min:0,max:4}}:{})}}}
+function updateTables(d){
+  byId('phaseTable').innerHTML='<table><thead><tr><th>Fase</th><th>Qtd</th><th>%</th><th>Saúde</th></tr></thead><tbody>'+phases.map(p=>{const arr=d.filter(x=>x.phase===p), q=arr.length, pct=d.length?q/d.length*100:0, score=avg(arr.map(x=>x.score));return `<tr><td>${p}</td><td>${q}</td><td>${pct.toFixed(0)}%</td><td><span class="pill ${statusClass(score)}">${statusName(score)}</span></td></tr>`}).join('')+'</tbody></table>';
+  const invest=d.reduce((s,x)=>s+x.invest,0), budget=d.reduce((s,x)=>s+x.budget,0), realized=d.reduce((s,x)=>s+x.realized,0), benefit=d.reduce((s,x)=>s+x.benefit,0);
+  const indicators=[['ROI do Portfólio',invest?realized/invest:0,2.5,'x'],['% Benefícios Realizados',benefit?realized/benefit*100:0,80,'%'],['Saúde Média',avg(d.map(x=>x.score)),80,'%'],['Aderência Orçamentária',budget?100-(Math.abs(invest-budget)/budget*100):0,95,'%'],['Produtividade',avg(d.map(x=>x.progress)),85,'%']];
+  byId('indicatorTable').innerHTML='<table><thead><tr><th>Indicador</th><th>Real</th><th>Meta</th><th>Status</th></tr></thead><tbody>'+indicators.map(i=>{const ok=i[1]>=i[2]||(i[0].includes('Aderência')&&i[1]>=90);return `<tr><td>${i[0]}</td><td>${i[3]==='x'?i[1].toFixed(1).replace('.',',')+'x':i[1].toFixed(0)+'%'}</td><td>${i[3]==='x'?i[2].toFixed(1).replace('.',',')+'x':i[2].toFixed(0)+'%'}</td><td><span class="pill ${ok?'p-ok':'p-warn'}">${ok?'Saudável':'Atenção'}</span></td></tr>`}).join('')+'</tbody></table>';
+  const risks=d.slice().sort((a,b)=>({Alto:3,Médio:2,Baixo:1}[b.risk]-{Alto:3,Médio:2,Baixo:1}[a.risk])).slice(0,8);
+  byId('riskTable').innerHTML='<table><thead><tr><th>Risco</th><th>Sistema</th><th>Projeto</th><th>Impacto</th><th>Ação</th></tr></thead><tbody>'+risks.map(r=>`<tr><td>${r.risk==='Alto'?'🔴':r.risk==='Médio'?'🟡':'🟢'} ${riskText(r)}</td><td>${r.system}</td><td>${r.id}</td><td><span class="pill ${r.risk==='Alto'?'p-bad':r.risk==='Médio'?'p-warn':'p-ok'}">${r.risk}</span></td><td>${r.risk==='Alto'?'Plano de contingência ativo':r.risk==='Médio'?'Mitigação em andamento':'Monitoramento preventivo'}</td></tr>`).join('')+'</tbody></table>';
+}
+function updateHighlights(d){const invest=d.reduce((s,x)=>s+x.invest,0), realized=d.reduce((s,x)=>s+x.realized,0), roi=invest?realized/invest:0, concluded=d.filter(x=>x.progress>=90).length, avgScore=avg(d.map(x=>x.score));byId('highlights').innerHTML=`<div class="mini"><div class="icon"><i class="fa-solid fa-check"></i></div><h3 class="ok">${concluded} projetos</h3><p class="sub">em fase final ou concluídos</p></div><div class="mini"><div class="icon"><i class="fa-solid fa-bullseye"></i></div><h3 class="info">${money(realized)}</h3><p class="sub">benefícios realizados</p></div><div class="mini"><div class="icon"><i class="fa-solid fa-users"></i></div><h3 class="warn">${avgScore.toFixed(0)}%</h3><p class="sub">saúde média do portfólio</p></div><div class="mini"><div class="icon"><i class="fa-solid fa-arrow-trend-up"></i></div><h3>${roi.toFixed(1).replace('.',',')}x</h3><p class="sub">ROI consolidado</p></div>`}
+function riskText(r){return r.risk==='Alto'?'Atraso ou dependência crítica':r.risk==='Médio'?'Mudança de escopo recorrente':'Risco controlado'}
+function resetFilters(){['periodFilter','systemFilter','phaseFilter','healthFilter','ownerFilter'].forEach(id=>byId(id).value='all');update()}
+document.addEventListener('DOMContentLoaded',()=>{
+  initFilters(); document.querySelectorAll('select').forEach(s=>s.addEventListener('change',update)); update();
+  byId('menuToggle').addEventListener('click',()=>byId('sidebar').classList.toggle('open'));
+  document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('#menu a').forEach(x=>x.classList.remove('active'));a.classList.add('active');byId('sidebar').classList.remove('open')}));
+});
 </script>
 </body>
 </html>
