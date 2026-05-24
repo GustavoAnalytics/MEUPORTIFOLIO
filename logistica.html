@@ -2,284 +2,562 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Especialista Logística WMS Sênior</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Sênior de Logística WMS</title>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root{
-      --bg:#020617;
-      --panel:#0f172a;
-      --card:#111827;
-      --border:#1f2937;
+      --bg:#020b10;
+      --bg2:#05161d;
+      --panel:#071820;
+      --panel2:#0a202a;
+      --card:#0b1f29;
+      --card2:#102b36;
+      --border:rgba(34,197,94,.24);
+      --border2:rgba(148,163,184,.15);
       --text:#f8fafc;
-      --muted:#94a3b8;
-      --green:#22c55e;
-      --red:#fb7185;
-      --amber:#f59e0b;
+      --muted:#a8b8c3;
+      --soft:#d7e2e8;
+      --green:#34d978;
+      --green2:#16a34a;
+      --cyan:#22d3ee;
       --blue:#38bdf8;
-      --purple:#a78bfa;
-      --cyan:#06b6d4;
+      --amber:#fbbf24;
+      --orange:#fb923c;
+      --red:#ef4444;
+      --shadow:0 22px 70px rgba(0,0,0,.42);
+      --radius:20px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
 
     body{
-      font-family:Arial, sans-serif;
-      background:linear-gradient(135deg,#020617,#0f172a);
-      color:var(--text);
       min-height:100vh;
+      color:var(--text);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 12% 18%,rgba(34,197,94,.22),transparent 28%),
+        radial-gradient(circle at 80% 10%,rgba(34,211,238,.16),transparent 32%),
+        linear-gradient(135deg,#02080d 0%,#061923 52%,#021016 100%);
+      overflow-x:hidden;
     }
 
-    header{
-      background:rgba(2,6,23,.96);
-      border-bottom:1px solid var(--border);
-      padding:20px 32px;
-      position:sticky;
-      top:0;
-      z-index:20;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(115deg,transparent 0 44%,rgba(34,197,94,.12) 44.2%,transparent 47%),
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:auto,70px 70px,70px 70px;
+      opacity:.55;
+      z-index:-2;
     }
 
-    .header-wrap{
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.45) 78%);
+      z-index:-1;
+    }
+
+    .page{
+      width:min(1880px,100%);
+      margin:auto;
+      padding:44px 56px 34px;
+    }
+
+    .topline{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:20px;
-      flex-wrap:wrap;
+      gap:28px;
+      margin-bottom:34px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:15px;
+      font-weight:800;
+      color:#ecfeff;
     }
 
-    .brand{
+    .topline .green{color:var(--green)}
+    .rule{
+      flex:1;
+      max-width:630px;
+      height:2px;
+      background:linear-gradient(90deg,var(--green),rgba(34,197,94,.1));
+      position:relative;
+    }
+
+    .rule::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      width:100%;
+      height:1px;
+      background:linear-gradient(90deg,rgba(34,197,94,.8),transparent);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:42% 58%;
+      gap:34px;
+      align-items:stretch;
+    }
+
+    .hero-left{
+      position:relative;
+      min-height:710px;
+      border-radius:26px;
+      overflow:hidden;
+      padding:34px 34px 26px;
       display:flex;
-      align-items:center;
-      gap:14px;
+      flex-direction:column;
+      justify-content:space-between;
+      border:1px solid rgba(34,197,94,.08);
+      background:
+        linear-gradient(90deg,rgba(2,8,13,.92) 0%,rgba(2,8,13,.75) 45%,rgba(2,8,13,.25) 100%),
+        url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1400&q=80");
+      background-size:cover;
+      background-position:center;
+      box-shadow:var(--shadow);
     }
 
-    .brand-icon{
-      width:50px;
-      height:50px;
-      border-radius:15px;
-      background:rgba(6,182,212,.12);
-      border:1px solid rgba(6,182,212,.35);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--cyan);
-      font-size:24px;
+    .hero-left::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(0deg,rgba(2,8,13,.85),transparent 38%,rgba(2,8,13,.28));
+      pointer-events:none;
     }
 
-    .brand h1{
-      font-size:21px;
+    .hero-left > *{position:relative;z-index:1}
+
+    .eyebrow{
+      width:104px;
+      height:3px;
+      background:linear-gradient(90deg,var(--green),transparent);
+      margin:0 0 28px;
+    }
+
+    h1{
+      font-size:clamp(48px,5vw,86px);
+      line-height:1.04;
+      letter-spacing:-.05em;
+      text-shadow:0 6px 24px rgba(0,0,0,.65);
+    }
+
+    h1 .wms{
+      color:var(--green);
+      font-weight:950;
+    }
+
+    .spaced{
+      margin-top:14px;
+      color:var(--green);
+      letter-spacing:.38em;
+      font-size:clamp(24px,2.7vw,42px);
       font-weight:900;
     }
 
-    .brand p{
-      color:var(--muted);
-      font-size:12px;
+    .subtitle{
+      max-width:670px;
+      margin-top:26px;
+      font-size:23px;
+      line-height:1.38;
+      color:#ecfeff;
+    }
+
+    .subtitle strong{color:var(--green)}
+
+    .bullets{
+      margin-top:36px;
+      display:grid;
+      gap:24px;
+      max-width:610px;
+    }
+
+    .bullet{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+
+    .bullet-icon{
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#22c55e,#6ee7b7);
+      color:white;
+      font-size:25px;
+      box-shadow:0 14px 36px rgba(34,197,94,.28);
+      flex:0 0 auto;
+    }
+
+    .bullet h3{
+      font-size:17px;
+      color:var(--green);
+      text-transform:uppercase;
+      letter-spacing:.03em;
+    }
+
+    .bullet p{
+      margin-top:6px;
+      font-size:14px;
+      color:#f8fafc;
+    }
+
+    .brand-row{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      margin-top:28px;
+    }
+
+    .logo{
+      width:100px;
+      height:76px;
+      display:grid;
+      place-items:center;
+      font-size:58px;
+      font-weight:900;
+      color:var(--green);
+      border-right:1px solid rgba(255,255,255,.28);
+      padding-right:18px;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:30px;
+      letter-spacing:.18em;
+    }
+
+    .brand-text span{
+      display:block;
+      letter-spacing:.55em;
+      font-size:14px;
       margin-top:4px;
     }
 
-    .badge{
-      padding:8px 12px;
-      border-radius:999px;
-      background:#0f172a;
-      border:1px solid var(--border);
-      color:var(--muted);
-      font-size:12px;
-      font-weight:800;
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      margin-left:6px;
+    .brand-tag{
+      color:var(--green);
+      padding-left:10px;
+      border-left:1px solid rgba(34,197,94,.35);
+      line-height:1.45;
+      font-size:15px;
+      text-transform:uppercase;
     }
 
-    main{
-      padding:28px 32px;
-      max-width:1540px;
-      margin:auto;
-    }
-
-    .hero{
-      background:
-        radial-gradient(circle at top right,rgba(6,182,212,.18),transparent 34%),
-        linear-gradient(135deg,#020617,#111827);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:28px;
-      margin-bottom:22px;
-      box-shadow:0 25px 60px rgba(0,0,0,.30);
-    }
-
-    .hero h2{
-      font-size:32px;
-      line-height:1.15;
-      max-width:980px;
-      margin-bottom:12px;
-    }
-
-    .hero p{
-      color:var(--muted);
-      max-width:1040px;
-      line-height:1.6;
-      font-size:14px;
+    .dashboard{
+      border:1px solid rgba(34,197,94,.36);
+      border-radius:26px;
+      padding:24px;
+      background:rgba(5,22,29,.82);
+      backdrop-filter:blur(16px);
+      box-shadow:var(--shadow);
+      min-height:710px;
     }
 
     .filters{
       display:grid;
-      grid-template-columns:repeat(7,1fr);
-      gap:14px;
-      background:rgba(15,23,42,.84);
-      border:1px solid var(--border);
-      padding:18px;
+      grid-template-columns:1.25fr 1fr 1fr 1fr 1fr auto;
+      gap:12px;
+      margin-bottom:18px;
+      padding:14px;
+      border:1px solid var(--border2);
       border-radius:18px;
-      margin-bottom:22px;
+      background:rgba(2,10,15,.52);
     }
 
-    .filter-group label{
+    .filter label{
       display:block;
-      color:var(--muted);
-      font-size:11px;
+      color:var(--green);
+      font-size:10px;
       text-transform:uppercase;
       font-weight:900;
-      margin-bottom:7px;
+      letter-spacing:.12em;
+      margin:0 0 7px;
     }
 
     select,button{
       width:100%;
-      padding:11px 12px;
-      border-radius:10px;
-      border:1px solid var(--border);
-      background:#020617;
-      color:var(--text);
+      height:42px;
+      border-radius:12px;
+      border:1px solid rgba(34,197,94,.22);
+      background:#07151c;
+      color:#f8fafc;
+      padding:0 11px;
       outline:none;
       font-weight:800;
+      font-size:12px;
     }
 
     button{
-      background:var(--cyan);
-      color:#020617;
-      border:none;
+      margin-top:17px;
       cursor:pointer;
-      transition:.2s;
+      background:linear-gradient(135deg,var(--green),#86efac);
+      color:#021016;
+      border:0;
+      transition:.2s ease;
+      white-space:nowrap;
     }
 
-    button:hover{
-      filter:brightness(1.08);
-      transform:translateY(-1px);
-    }
+    button:hover{transform:translateY(-1px);filter:brightness(1.05)}
 
     .kpis{
       display:grid;
-      grid-template-columns:repeat(6,1fr);
-      gap:16px;
-      margin-bottom:22px;
+      grid-template-columns:repeat(5,1fr);
+      gap:8px;
+      margin-bottom:18px;
     }
 
     .card{
-      background:rgba(17,24,39,.92);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:20px;
-      box-shadow:0 12px 30px rgba(0,0,0,.18);
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--border2);
+      border-radius:13px;
+      background:
+        linear-gradient(180deg,rgba(19,48,59,.88),rgba(6,20,28,.92));
+      box-shadow:0 14px 28px rgba(0,0,0,.23);
     }
 
-    .card-top{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      color:var(--muted);
+    .card::before{
+      content:"";
+      position:absolute;
+      left:18px;
+      top:18px;
+      width:42px;
+      height:2px;
+      background:linear-gradient(90deg,var(--green),transparent);
+      opacity:.9;
+    }
+
+    .kpi{
+      min-height:150px;
+      padding:30px 15px 16px;
+      text-align:center;
+    }
+
+    .kpi .icon{
+      font-size:24px;
+      margin-bottom:8px;
+      color:#f8fafc;
+    }
+
+    .kpi .label{
       font-size:12px;
       text-transform:uppercase;
-      font-weight:900;
-      gap:10px;
+      color:#fff;
+      font-weight:850;
     }
 
-    .card-top i{font-size:18px}
-
-    .value{
-      font-size:26px;
-      font-weight:900;
-      margin-top:12px;
+    .kpi .value{
+      margin-top:10px;
+      font-size:28px;
+      font-weight:950;
+      letter-spacing:-.04em;
     }
 
-    .sub{
+    .kpi .sub{
+      margin-top:9px;
       color:var(--muted);
-      font-size:12px;
-      margin-top:7px;
-      line-height:1.4;
+      font-size:11px;
     }
 
-    .green{color:var(--green)}
-    .red{color:var(--red)}
-    .amber{color:var(--amber)}
-    .blue{color:var(--blue)}
-    .purple{color:var(--purple)}
-    .cyan{color:var(--cyan)}
+    .delta{color:var(--green);font-weight:900}
 
-    .grid{
+    .mid-grid{
       display:grid;
-      grid-template-columns:2fr 1fr;
-      gap:18px;
-      margin-bottom:22px;
+      grid-template-columns:1.02fr 1.55fr 1.12fr;
+      gap:12px;
+      margin-bottom:12px;
     }
 
-    .section-title{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:14px;
-      margin-bottom:14px;
+    .low-grid{
+      display:grid;
+      grid-template-columns:1fr 1.1fr 1.45fr;
+      gap:12px;
+      margin-bottom:12px;
     }
 
-    .section-title h3{
-      font-size:16px;
+    .panel{
+      padding:22px;
+      min-height:230px;
+    }
+
+    .panel-title{
+      font-size:13px;
+      text-transform:uppercase;
       font-weight:900;
+      margin-bottom:12px;
+      color:#f8fafc;
     }
 
-    .section-title span{
-      color:var(--muted);
-      font-size:12px;
+    .metric-large{
+      font-size:31px;
+      font-weight:950;
+      margin-bottom:3px;
     }
 
-    .chart-box{height:310px}
+    .muted{color:var(--muted);font-size:12px}
 
-    .flow{
+    .chart-box{height:165px}
+    .chart-tall{height:185px}
+
+    .priority-list{
       display:grid;
       gap:12px;
+      margin-top:12px;
+      font-size:12px;
     }
 
-    .stage{
-      background:#020617;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:14px;
-    }
-
-    .stage-head{
-      display:flex;
-      justify-content:space-between;
-      font-size:13px;
-      font-weight:900;
-      margin-bottom:8px;
+    .priority-item{
+      display:grid;
+      grid-template-columns:28px 1fr auto;
+      align-items:center;
       gap:10px;
     }
 
-    .bar{
-      height:8px;
-      background:#1e293b;
-      border-radius:99px;
+    .num{
+      width:22px;height:22px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.35);
+      color:#cbd5e1;
+      font-size:11px;
+    }
+
+    .tag{
+      padding:7px 10px;
+      min-width:48px;
+      text-align:center;
+      border-radius:7px;
+      font-weight:900;
+      color:white;
+    }
+    .tag.red{background:linear-gradient(135deg,#ef4444,#b91c1c)}
+    .tag.orange{background:linear-gradient(135deg,#fb923c,#f97316)}
+    .tag.amber{background:linear-gradient(135deg,#fbbf24,#d97706)}
+    .tag.blue{background:linear-gradient(135deg,#38bdf8,#0284c7)}
+
+    .flow-end{
+      padding:18px 22px;
+      min-height:auto;
+    }
+
+    .flow-icons{
+      display:grid;
+      grid-template-columns:1fr 38px 1fr 38px 1fr 38px 1fr 38px 1fr;
+      gap:8px;
+      align-items:center;
+      margin-top:10px;
+    }
+
+    .flow-step{
+      text-align:center;
+      display:grid;
+      gap:8px;
+      justify-items:center;
+      font-size:11px;
+      text-transform:uppercase;
+      color:#f8fafc;
+    }
+
+    .flow-step i{font-size:25px;color:#eafff4}
+    .arrow{color:var(--green);text-align:center}
+
+    .bottom-strip{
+      margin-top:22px;
+      border-top:1px solid rgba(34,197,94,.33);
+      padding-top:24px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr) 1.6fr;
+      gap:22px;
+      align-items:center;
+    }
+
+    .strip-item{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      min-height:70px;
+      border-right:1px solid rgba(255,255,255,.19);
+    }
+
+    .strip-item i{
+      color:var(--green);
+      font-size:35px;
+      width:44px;
+      text-align:center;
+    }
+
+    .strip-item strong{
+      color:var(--green);
+      display:block;
+      font-size:13px;
+      text-transform:uppercase;
+      margin-bottom:6px;
+    }
+
+    .strip-item span{
+      color:#dbeafe;
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .cta{
+      border:1px solid rgba(34,197,94,.48);
+      border-radius:14px;
+      padding:18px 20px;
+      display:flex;
+      gap:16px;
+      align-items:center;
+      color:var(--green);
+      text-transform:uppercase;
+      line-height:1.5;
+      font-weight:900;
+      font-size:13px;
+    }
+
+    .cta i{
+      width:42px;height:42px;border-radius:50%;
+      border:1px solid rgba(34,197,94,.56);
+      display:grid;place-items:center;
+      flex:0 0 auto;
+    }
+
+    .table-section{
+      margin-top:18px;
+      border:1px solid rgba(34,197,94,.22);
+      border-radius:20px;
+      background:rgba(5,22,29,.78);
       overflow:hidden;
     }
 
-    .bar div{
-      height:100%;
-      border-radius:99px;
-      background:var(--cyan);
-      transition:width .4s ease;
+    .table-head{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      padding:18px 22px;
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
 
-    .table-wrap{overflow-x:auto}
+    .table-head h2{
+      font-size:16px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
 
     table{
       width:100%;
@@ -287,264 +565,312 @@
       font-size:12px;
     }
 
-    thead{
-      background:#020617;
-      color:var(--muted);
-      text-transform:uppercase;
-      font-size:11px;
-    }
-
     th,td{
-      padding:13px;
-      border-bottom:1px solid var(--border);
+      padding:13px 14px;
+      border-bottom:1px solid rgba(255,255,255,.06);
       text-align:left;
       white-space:nowrap;
     }
 
-    tbody tr:hover{
-      background:rgba(6,182,212,.05);
+    th{
+      color:var(--green);
+      text-transform:uppercase;
+      font-size:11px;
+      background:rgba(2,10,15,.74);
     }
 
-    .pill{
+    tbody tr:hover{background:rgba(34,197,94,.06)}
+
+    .status{
       padding:5px 9px;
       border-radius:999px;
-      font-size:11px;
       font-weight:900;
       display:inline-block;
+      font-size:11px;
     }
+    .ok{color:#86efac;background:rgba(34,197,94,.12)}
+    .and{color:#7dd3fc;background:rgba(56,189,248,.12)}
+    .pend{color:#fde68a;background:rgba(251,191,36,.12)}
+    .crit{color:#fca5a5;background:rgba(239,68,68,.12)}
 
-    .finalizado{background:rgba(34,197,94,.12);color:var(--green)}
-    .andamento{background:rgba(56,189,248,.12);color:var(--blue)}
-    .pendente{background:rgba(245,158,11,.12);color:var(--amber)}
-    .critico{background:rgba(251,113,133,.12);color:var(--red)}
-
-    .prio-baixa{color:var(--green);font-weight:900}
-    .prio-media{color:var(--amber);font-weight:900}
-    .prio-alta{color:var(--red);font-weight:900}
-
-    .insights{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-bottom:22px;
-    }
-
-    .insight{
-      background:rgba(2,6,23,.92);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:18px;
-    }
-
-    .insight h4{
-      font-size:14px;
-      margin-bottom:8px;
-    }
-
-    .insight p{
-      font-size:12px;
-      color:var(--muted);
-      line-height:1.55;
-    }
-
-    @media(max-width:1200px){
+    @media(max-width:1400px){
+      .page{padding:28px}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-left,.dashboard{min-height:auto}
+      .bottom-strip{grid-template-columns:repeat(2,1fr)}
       .filters{grid-template-columns:repeat(3,1fr)}
-      .kpis{grid-template-columns:repeat(3,1fr)}
-      .grid{grid-template-columns:1fr}
-      .insights{grid-template-columns:1fr}
     }
 
-    @media(max-width:720px){
-      header,main{padding:18px}
-      .filters,.kpis{grid-template-columns:1fr}
-      .hero h2{font-size:25px}
+    @media(max-width:880px){
+      .topline{display:block;font-size:12px}
+      .rule{margin:18px 0}
+      .filters,.kpis,.mid-grid,.low-grid,.bottom-strip{grid-template-columns:1fr}
+      .flow-icons{grid-template-columns:1fr}
+      .arrow{transform:rotate(90deg)}
+      .table-section{overflow:auto}
+      .brand-row{align-items:flex-start;flex-direction:column}
+      .brand-tag{border-left:0;padding-left:0}
     }
   </style>
 </head>
 
 <body>
-
-<header>
-  <div class="header-wrap">
-    <div class="brand">
-      <div class="brand-icon">
-        <i class="fa-solid fa-warehouse"></i>
-      </div>
-      <div>
-        <h1>Especialista Logística WMS Sênior | Warehouse Intelligence</h1>
-        <p>Recebimento, armazenagem, picking, expedição, SLA, produtividade e governança operacional</p>
-      </div>
+  <main class="page">
+    <div class="topline">
+      <div>VISÃO ESPECIALISTA. DECISÕES <span class="green">INTELIGENTES</span>. OPERAÇÃO DE ALTO DESEMPENHO.</div>
+      <div class="rule"></div>
+      <div>DADOS CONSISTENTES. PROCESSOS VISÍVEIS. RESULTADOS <span class="green">REAIS</span>.</div>
     </div>
 
-    <div>
-      <span class="badge"><i class="fa-solid fa-database cyan"></i> Dados Tratados</span>
-      <span class="badge"><i class="fa-solid fa-barcode green"></i> Operação Rastreável</span>
-      <span class="badge"><i class="fa-solid fa-shield-halved amber"></i> Base WMS Consistente</span>
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <section class="hero">
-    <h2>Painel sênior de logística WMS estruturado.</h2>
-    <p>
-      Visão especialista para gestão de recebimento, conferência, armazenagem, separação, picking,
-      expedição, SLA operacional, backlog, produtividade por responsável, divergências, prioridades
-      e gargalos da cadeia logística com dados limpos e consistentes extraídos de um sistema WMS.
-    </p>
-  </section>
-
-  <section class="filters">
-    <div class="filter-group">
-      <label>Unidade</label>
-      <select id="unitFilter">
-        <option value="all">Todas</option>
-        <option value="CD Rio Claro">CD Rio Claro</option>
-        <option value="CD São Paulo">CD São Paulo</option>
-        <option value="CD Campinas">CD Campinas</option>
-        <option value="CD Ribeirão">CD Ribeirão</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Operação</label>
-      <select id="operationFilter">
-        <option value="all">Todas</option>
-        <option value="Recebimento">Recebimento</option>
-        <option value="Conferência">Conferência</option>
-        <option value="Armazenagem">Armazenagem</option>
-        <option value="Picking">Picking</option>
-        <option value="Expedição">Expedição</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Status</label>
-      <select id="statusFilter">
-        <option value="all">Todos</option>
-        <option value="Finalizado">Finalizado</option>
-        <option value="Em andamento">Em andamento</option>
-        <option value="Pendente">Pendente</option>
-        <option value="Crítico">Crítico</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Prioridade</label>
-      <select id="priorityFilter">
-        <option value="all">Todas</option>
-        <option value="Baixa">Baixa</option>
-        <option value="Média">Média</option>
-        <option value="Alta">Alta</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Turno</label>
-      <select id="shiftFilter">
-        <option value="all">Todos</option>
-        <option value="1º Turno">1º Turno</option>
-        <option value="2º Turno">2º Turno</option>
-        <option value="3º Turno">3º Turno</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Responsável</label>
-      <select id="ownerFilter">
-        <option value="all">Todos</option>
-        <option value="Ana Souza">Ana Souza</option>
-        <option value="Bruno Lima">Bruno Lima</option>
-        <option value="Carla Mendes">Carla Mendes</option>
-        <option value="Diego Rocha">Diego Rocha</option>
-      </select>
-    </div>
-
-    <div class="filter-group">
-      <label>Ação</label>
-      <button onclick="resetFilters()">
-        <i class="fa-solid fa-rotate-right"></i> Limpar
-      </button>
-    </div>
-  </section>
-
-  <section class="kpis">
-    <div class="card">
-      <div class="card-top">Ordens Processadas <i class="fa-solid fa-boxes-stacked cyan"></i></div>
-      <div class="value" id="kpiOrders">0</div>
-      <div class="sub">Total de tarefas WMS filtradas</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">Volume Movimentado <i class="fa-solid fa-dolly blue"></i></div>
-      <div class="value" id="kpiVolume">0</div>
-      <div class="sub">Unidades movimentadas na operação</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">SLA Operacional <i class="fa-solid fa-stopwatch green"></i></div>
-      <div class="value" id="kpiSLA">0%</div>
-      <div class="sub">Tarefas finalizadas dentro do prazo</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">Backlog <i class="fa-solid fa-layer-group amber"></i></div>
-      <div class="value" id="kpiBacklog">0</div>
-      <div class="sub">Pendentes, críticos e em andamento</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">Divergências <i class="fa-solid fa-triangle-exclamation red"></i></div>
-      <div class="value" id="kpiDivergence">0</div>
-      <div class="sub">Ocorrências de quantidade, etiqueta ou endereço</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">Produtividade Média <i class="fa-solid fa-gauge-high purple"></i></div>
-      <div class="value" id="kpiProductivity">0/h</div>
-      <div class="sub">Volume médio processado por hora</div>
-    </div>
-  </section>
-
-  <section class="grid">
-    <div class="card">
-      <div class="section-title">
+    <section class="hero-grid">
+      <aside class="hero-left">
         <div>
-          <h3>Performance Operacional por Unidade</h3>
-          <span>Volume movimentado x backlog</span>
-        </div>
-      </div>
-      <div class="chart-box">
-        <canvas id="unitChart"></canvas>
-      </div>
-    </div>
+          <div class="eyebrow"></div>
+          <h1>Painel Sênior de<br>Logística <span class="wms">WMS</span></h1>
+          <div class="spaced">ESTRUTURADO</div>
+          <p class="subtitle">
+            Inteligência logística para transformar dados operacionais em
+            <strong>controle, eficiência</strong> e resultados.
+          </p>
 
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>Fluxo WMS</h3>
-          <span>Distribuição por etapa operacional</span>
+          <div class="bullets">
+            <div class="bullet">
+              <div class="bullet-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <div>
+                <h3>Visão completa</h3>
+                <p>da cadeia logística ponta a ponta</p>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="bullet-icon"><i class="fa-solid fa-crosshairs"></i></div>
+              <div>
+                <h3>Controle e precisão</h3>
+                <p>com dados limpos e consistentes</p>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="bullet-icon"><i class="fa-solid fa-gauge-high"></i></div>
+              <div>
+                <h3>Eficiência operacional</h3>
+                <p>reduzindo custos e gargalos</p>
+              </div>
+            </div>
+            <div class="bullet">
+              <div class="bullet-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+              <div>
+                <h3>Desempenho & produtividade</h3>
+                <p>por responsável, processo, empresa e unidade</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="flow" id="operationStages"></div>
-    </div>
-  </section>
 
-  <section class="grid">
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>Base Operacional Extraída do WMS</h3>
-          <span>Dados simulados após padronização, integração e governança</span>
+        <div class="brand-row">
+          <div class="logo">G</div>
+          <div class="brand-text">
+            <strong>CRUZ & FARIAS</strong>
+            <span>CONSULTORIA</span>
+          </div>
+          <div class="brand-tag">
+            Inteligência logística<br>baseada em dados reais
+          </div>
         </div>
+      </aside>
+
+      <section class="dashboard">
+        <section class="filters">
+          <div class="filter">
+            <label>Empresa</label>
+            <select id="companyFilter">
+              <option value="all">Todas</option>
+              <option value="GWM">GWM</option>
+              <option value="Eletrolux">Eletrolux</option>
+              <option value="Agroceres">Agroceres</option>
+              <option value="OG Papéis">OG Papéis</option>
+            </select>
+          </div>
+
+          <div class="filter">
+            <label>Unidade</label>
+            <select id="unitFilter">
+              <option value="all">Todas</option>
+              <option value="CD São Paulo">CD São Paulo</option>
+              <option value="CD Campinas">CD Campinas</option>
+              <option value="CD Ribeirão">CD Ribeirão</option>
+              <option value="CD Rio Claro">CD Rio Claro</option>
+            </select>
+          </div>
+
+          <div class="filter">
+            <label>Operação</label>
+            <select id="operationFilter">
+              <option value="all">Todas</option>
+              <option value="Recebimento">Recebimento</option>
+              <option value="Conferência">Conferência</option>
+              <option value="Armazenagem">Armazenagem</option>
+              <option value="Separação">Separação</option>
+              <option value="Expedição">Expedição</option>
+            </select>
+          </div>
+
+          <div class="filter">
+            <label>Status</label>
+            <select id="statusFilter">
+              <option value="all">Todos</option>
+              <option value="Finalizado">Finalizado</option>
+              <option value="Em andamento">Em andamento</option>
+              <option value="Pendente">Pendente</option>
+              <option value="Crítico">Crítico</option>
+            </select>
+          </div>
+
+          <div class="filter">
+            <label>Turno</label>
+            <select id="shiftFilter">
+              <option value="all">Todos</option>
+              <option value="1º Turno">1º Turno</option>
+              <option value="2º Turno">2º Turno</option>
+              <option value="3º Turno">3º Turno</option>
+            </select>
+          </div>
+
+          <div class="filter">
+            <label>Ação</label>
+            <button onclick="resetFilters()"><i class="fa-solid fa-rotate-right"></i> Limpar</button>
+          </div>
+        </section>
+
+        <section class="kpis">
+          <div class="card kpi">
+            <i class="icon fa-solid fa-box-open"></i>
+            <div class="label">Recebimento</div>
+            <div class="value" id="kpiRecebimento">0</div>
+            <div class="sub"><span class="delta" id="deltaRecebimento">+0%</span> vs mês anterior</div>
+          </div>
+
+          <div class="card kpi">
+            <i class="icon fa-solid fa-barcode"></i>
+            <div class="label">Conferência</div>
+            <div class="value" id="kpiConferencia">0%</div>
+            <div class="sub">Acuracidade</div>
+          </div>
+
+          <div class="card kpi">
+            <i class="icon fa-solid fa-warehouse"></i>
+            <div class="label">Armazenagem</div>
+            <div class="value" id="kpiArmazenagem">0%</div>
+            <div class="sub">Ocupação</div>
+          </div>
+
+          <div class="card kpi">
+            <i class="icon fa-solid fa-cart-flatbed"></i>
+            <div class="label">Separação</div>
+            <div class="value" id="kpiSeparacao">0</div>
+            <div class="sub"><span class="delta" id="deltaSeparacao">+0%</span> vs mês anterior</div>
+          </div>
+
+          <div class="card kpi">
+            <i class="icon fa-solid fa-truck"></i>
+            <div class="label">Expedição</div>
+            <div class="value" id="kpiExpedicao">0</div>
+            <div class="sub"><span class="delta" id="deltaExpedicao">+0%</span> vs mês anterior</div>
+          </div>
+        </section>
+
+        <section class="mid-grid">
+          <div class="card panel">
+            <div class="panel-title">SLA Operacional</div>
+            <div class="chart-tall"><canvas id="slaChart"></canvas></div>
+            <div class="muted" style="text-align:center;margin-top:4px;">Meta: ≥ 95%</div>
+          </div>
+
+          <div class="card panel">
+            <div class="panel-title">Backlog de Pedidos</div>
+            <div class="metric-large" id="kpiBacklog">0</div>
+            <div class="muted">Pedidos em aberto</div>
+            <div class="chart-box"><canvas id="backlogChart"></canvas></div>
+          </div>
+
+          <div class="card panel">
+            <div class="panel-title">Produtividade por Responsável</div>
+            <div class="chart-tall"><canvas id="ownerChart"></canvas></div>
+          </div>
+        </section>
+
+        <section class="low-grid">
+          <div class="card panel">
+            <div class="panel-title">Divergências</div>
+            <div class="metric-large" id="kpiDivergencias">0</div>
+            <div class="muted">Ocorrências</div>
+            <div class="chart-box"><canvas id="divergenceChart"></canvas></div>
+          </div>
+
+          <div class="card panel">
+            <div class="panel-title">Prioridades</div>
+            <div class="priority-list" id="priorityList"></div>
+          </div>
+
+          <div class="card panel">
+            <div class="panel-title">Gargalos da Operação</div>
+            <div class="chart-tall"><canvas id="bottleneckChart"></canvas></div>
+          </div>
+        </section>
+
+        <section class="card flow-end">
+          <div class="panel-title">Fluxo Logístico Ponta a Ponta</div>
+          <div class="flow-icons">
+            <div class="flow-step"><i class="fa-solid fa-boxes-packing"></i><span>Recebimento</span></div>
+            <div class="arrow">→</div>
+            <div class="flow-step"><i class="fa-solid fa-barcode"></i><span>Conferência</span></div>
+            <div class="arrow">→</div>
+            <div class="flow-step"><i class="fa-solid fa-warehouse"></i><span>Armazenagem</span></div>
+            <div class="arrow">→</div>
+            <div class="flow-step"><i class="fa-solid fa-cart-shopping"></i><span>Separação / Picking</span></div>
+            <div class="arrow">→</div>
+            <div class="flow-step"><i class="fa-solid fa-truck-fast"></i><span>Expedição</span></div>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="bottom-strip">
+      <div class="strip-item">
+        <i class="fa-solid fa-database"></i>
+        <div><strong>Dados limpos</strong><span>Informações confiáveis extraídas do seu WMS</span></div>
       </div>
 
-      <div class="table-wrap">
+      <div class="strip-item">
+        <i class="fa-solid fa-user-check"></i>
+        <div><strong>Visão especialista</strong><span>Análises aprofundadas para decisões estratégicas</span></div>
+      </div>
+
+      <div class="strip-item">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div><strong>Controle total</strong><span>Indicadores e alertas para gestão proativa</span></div>
+      </div>
+
+      <div class="strip-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <div><strong>Resultados reais</strong><span>Mais eficiência, menos custos e melhor nível de serviço</span></div>
+      </div>
+
+      <div class="cta">
+        <i class="fa-solid fa-chess-rook"></i>
+        <div>Transformamos dados operacionais em inteligência logística para decisões que geram valor.</div>
+      </div>
+    </section>
+
+    <section class="table-section">
+      <div class="table-head">
+        <h2>Base Operacional WMS</h2>
+        <span class="muted" id="tableSummary">Registros filtrados</span>
+      </div>
+      <div style="overflow:auto;">
         <table>
           <thead>
             <tr>
               <th>Ordem</th>
+              <th>Empresa</th>
               <th>Unidade</th>
               <th>Operação</th>
               <th>Responsável</th>
@@ -559,336 +885,325 @@
           <tbody id="wmsTable"></tbody>
         </table>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="card">
-      <div class="section-title">
-        <div>
-          <h3>Ranking de Produtividade</h3>
-          <span>Volume processado por responsável</span>
-        </div>
-      </div>
-      <div class="chart-box">
-        <canvas id="ownerChart"></canvas>
-      </div>
-    </div>
-  </section>
+  <script>
+    const wmsData = [
+      {ordem:"GWM-1001",empresa:"GWM",unidade:"CD São Paulo",operacao:"Recebimento",responsavel:"João Silva",turno:"1º Turno",volume:1285,sla:true,divergencias:1,prioridade:"Média",status:"Finalizado",ocupacao:91,acuracidade:98.7,backlog:[410,455,430,510,365,390,430,520,480,560]},
+      {ordem:"GWM-1002",empresa:"GWM",unidade:"CD Campinas",operacao:"Separação",responsavel:"Maria Santos",turno:"2º Turno",volume:2167,sla:true,divergencias:2,prioridade:"Alta",status:"Em andamento",ocupacao:94,acuracidade:98.2,backlog:[360,420,480,430,405,455,520,610,540,600]},
+      {ordem:"GWM-1003",empresa:"GWM",unidade:"CD Ribeirão",operacao:"Expedição",responsavel:"Pedro Lima",turno:"1º Turno",volume:1987,sla:true,divergencias:0,prioridade:"Baixa",status:"Finalizado",ocupacao:92,acuracidade:99.1,backlog:[380,440,410,460,390,430,470,540,515,580]},
+      {ordem:"GWM-1004",empresa:"GWM",unidade:"CD Rio Claro",operacao:"Conferência",responsavel:"Ana Costa",turno:"3º Turno",volume:980,sla:false,divergencias:6,prioridade:"Alta",status:"Crítico",ocupacao:88,acuracidade:95.4,backlog:[480,510,540,620,590,640,700,680,730,760]},
 
-  <section class="insights">
-    <div class="insight">
-      <h4><i class="fa-solid fa-brain amber"></i> Diagnóstico Operacional</h4>
-      <p id="insight1">Aguardando análise dos filtros aplicados.</p>
-    </div>
+      {ordem:"ELX-2001",empresa:"Eletrolux",unidade:"CD São Paulo",operacao:"Recebimento",responsavel:"Carlos Souza",turno:"1º Turno",volume:1540,sla:true,divergencias:2,prioridade:"Média",status:"Finalizado",ocupacao:89,acuracidade:98.4,backlog:[300,330,350,390,370,420,450,470,460,490]},
+      {ordem:"ELX-2002",empresa:"Eletrolux",unidade:"CD Campinas",operacao:"Armazenagem",responsavel:"João Silva",turno:"2º Turno",volume:1420,sla:false,divergencias:4,prioridade:"Alta",status:"Pendente",ocupacao:96,acuracidade:96.9,backlog:[430,450,500,540,510,560,600,630,610,660]},
+      {ordem:"ELX-2003",empresa:"Eletrolux",unidade:"CD Ribeirão",operacao:"Separação",responsavel:"Maria Santos",turno:"2º Turno",volume:1870,sla:true,divergencias:1,prioridade:"Média",status:"Finalizado",ocupacao:93,acuracidade:98.8,backlog:[340,380,410,450,430,470,490,520,500,540]},
+      {ordem:"ELX-2004",empresa:"Eletrolux",unidade:"CD Rio Claro",operacao:"Expedição",responsavel:"Pedro Lima",turno:"3º Turno",volume:1660,sla:true,divergencias:1,prioridade:"Baixa",status:"Em andamento",ocupacao:90,acuracidade:99.0,backlog:[320,360,395,410,430,470,455,500,510,530]},
 
-    <div class="insight">
-      <h4><i class="fa-solid fa-database cyan"></i> Governança de Dados WMS</h4>
-      <p id="insight2">Base estruturada com unidade, operação, status, prioridade, turno, responsável, SLA e divergências.</p>
-    </div>
+      {ordem:"AGR-3001",empresa:"Agroceres",unidade:"CD Ribeirão",operacao:"Recebimento",responsavel:"Ana Costa",turno:"1º Turno",volume:1180,sla:true,divergencias:3,prioridade:"Média",status:"Finalizado",ocupacao:86,acuracidade:97.8,backlog:[280,310,335,360,350,390,420,405,430,460]},
+      {ordem:"AGR-3002",empresa:"Agroceres",unidade:"CD Campinas",operacao:"Conferência",responsavel:"Carlos Souza",turno:"2º Turno",volume:910,sla:false,divergencias:7,prioridade:"Alta",status:"Crítico",ocupacao:85,acuracidade:94.8,backlog:[520,560,590,640,610,680,720,760,740,790]},
+      {ordem:"AGR-3003",empresa:"Agroceres",unidade:"CD São Paulo",operacao:"Armazenagem",responsavel:"João Silva",turno:"3º Turno",volume:1320,sla:true,divergencias:2,prioridade:"Média",status:"Em andamento",ocupacao:95,acuracidade:97.9,backlog:[390,420,460,440,480,510,530,570,555,590]},
+      {ordem:"AGR-3004",empresa:"Agroceres",unidade:"CD Rio Claro",operacao:"Separação",responsavel:"Maria Santos",turno:"1º Turno",volume:2050,sla:true,divergencias:1,prioridade:"Baixa",status:"Finalizado",ocupacao:92,acuracidade:98.6,backlog:[260,300,320,340,360,390,370,410,430,450]},
 
-    <div class="insight">
-      <h4><i class="fa-solid fa-bullseye green"></i> Ação Recomendada</h4>
-      <p id="insight3">Utilize os filtros para priorizar gargalos por unidade, operação crítica e responsável.</p>
-    </div>
-  </section>
+      {ordem:"OGP-4001",empresa:"OG Papéis",unidade:"CD Rio Claro",operacao:"Recebimento",responsavel:"Pedro Lima",turno:"1º Turno",volume:1240,sla:true,divergencias:2,prioridade:"Média",status:"Finalizado",ocupacao:91,acuracidade:98.2,backlog:[310,340,360,390,420,400,450,480,460,500]},
+      {ordem:"OGP-4002",empresa:"OG Papéis",unidade:"CD Campinas",operacao:"Separação",responsavel:"Ana Costa",turno:"2º Turno",volume:1785,sla:false,divergencias:5,prioridade:"Alta",status:"Pendente",ocupacao:94,acuracidade:96.1,backlog:[450,490,520,560,540,590,630,670,650,690]},
+      {ordem:"OGP-4003",empresa:"OG Papéis",unidade:"CD São Paulo",operacao:"Expedição",responsavel:"Carlos Souza",turno:"3º Turno",volume:1975,sla:true,divergencias:0,prioridade:"Baixa",status:"Finalizado",ocupacao:89,acuracidade:99.2,backlog:[290,320,350,370,390,410,430,450,440,470]},
+      {ordem:"OGP-4004",empresa:"OG Papéis",unidade:"CD Ribeirão",operacao:"Conferência",responsavel:"João Silva",turno:"1º Turno",volume:1040,sla:false,divergencias:6,prioridade:"Alta",status:"Crítico",ocupacao:87,acuracidade:95.7,backlog:[500,530,570,610,590,650,690,720,710,760]}
+    ];
 
-</main>
+    const charts = {};
+    const fmt = n => n.toLocaleString("pt-BR");
 
-<script>
-const wmsData = [
-  { ordem:"WMS-1001", unidade:"CD Rio Claro", operacao:"Recebimento", responsavel:"Ana Souza", turno:"1º Turno", volume:1250, sla:true, divergencias:1, prioridade:"Média", status:"Finalizado" },
-  { ordem:"WMS-1002", unidade:"CD São Paulo", operacao:"Conferência", responsavel:"Bruno Lima", turno:"2º Turno", volume:890, sla:false, divergencias:4, prioridade:"Alta", status:"Crítico" },
-  { ordem:"WMS-1003", unidade:"CD Campinas", operacao:"Picking", responsavel:"Carla Mendes", turno:"1º Turno", volume:1740, sla:true, divergencias:0, prioridade:"Baixa", status:"Finalizado" },
-  { ordem:"WMS-1004", unidade:"CD Ribeirão", operacao:"Expedição", responsavel:"Diego Rocha", turno:"3º Turno", volume:980, sla:true, divergencias:2, prioridade:"Média", status:"Em andamento" },
-  { ordem:"WMS-1005", unidade:"CD Rio Claro", operacao:"Armazenagem", responsavel:"Ana Souza", turno:"2º Turno", volume:620, sla:false, divergencias:3, prioridade:"Alta", status:"Pendente" },
-  { ordem:"WMS-1006", unidade:"CD São Paulo", operacao:"Picking", responsavel:"Bruno Lima", turno:"1º Turno", volume:2150, sla:true, divergencias:1, prioridade:"Média", status:"Finalizado" },
-  { ordem:"WMS-1007", unidade:"CD Campinas", operacao:"Recebimento", responsavel:"Carla Mendes", turno:"2º Turno", volume:760, sla:false, divergencias:5, prioridade:"Alta", status:"Crítico" },
-  { ordem:"WMS-1008", unidade:"CD Ribeirão", operacao:"Conferência", responsavel:"Diego Rocha", turno:"1º Turno", volume:1320, sla:true, divergencias:0, prioridade:"Baixa", status:"Finalizado" },
-  { ordem:"WMS-1009", unidade:"CD Rio Claro", operacao:"Expedição", responsavel:"Ana Souza", turno:"3º Turno", volume:1640, sla:true, divergencias:2, prioridade:"Média", status:"Finalizado" },
-  { ordem:"WMS-1010", unidade:"CD São Paulo", operacao:"Armazenagem", responsavel:"Bruno Lima", turno:"2º Turno", volume:540, sla:false, divergencias:3, prioridade:"Alta", status:"Pendente" },
-  { ordem:"WMS-1011", unidade:"CD Campinas", operacao:"Expedição", responsavel:"Carla Mendes", turno:"3º Turno", volume:1890, sla:true, divergencias:1, prioridade:"Média", status:"Em andamento" },
-  { ordem:"WMS-1012", unidade:"CD Ribeirão", operacao:"Picking", responsavel:"Diego Rocha", turno:"1º Turno", volume:2310, sla:true, divergencias:0, prioridade:"Baixa", status:"Finalizado" },
-  { ordem:"WMS-1013", unidade:"CD Rio Claro", operacao:"Conferência", responsavel:"Ana Souza", turno:"1º Turno", volume:780, sla:false, divergencias:6, prioridade:"Alta", status:"Crítico" },
-  { ordem:"WMS-1014", unidade:"CD São Paulo", operacao:"Recebimento", responsavel:"Bruno Lima", turno:"3º Turno", volume:1140, sla:true, divergencias:1, prioridade:"Média", status:"Finalizado" },
-  { ordem:"WMS-1015", unidade:"CD Campinas", operacao:"Armazenagem", responsavel:"Carla Mendes", turno:"2º Turno", volume:930, sla:true, divergencias:2, prioridade:"Média", status:"Em andamento" },
-  { ordem:"WMS-1016", unidade:"CD Ribeirão", operacao:"Expedição", responsavel:"Diego Rocha", turno:"2º Turno", volume:1510, sla:false, divergencias:3, prioridade:"Alta", status:"Pendente" },
-  { ordem:"WMS-1017", unidade:"CD Rio Claro", operacao:"Picking", responsavel:"Ana Souza", turno:"2º Turno", volume:2460, sla:true, divergencias:1, prioridade:"Média", status:"Finalizado" },
-  { ordem:"WMS-1018", unidade:"CD São Paulo", operacao:"Expedição", responsavel:"Bruno Lima", turno:"1º Turno", volume:2020, sla:true, divergencias:0, prioridade:"Baixa", status:"Finalizado" }
-];
-
-let unitChart;
-let ownerChart;
-
-function number(value){
-  return value.toLocaleString("pt-BR");
-}
-
-function getFilters(){
-  return {
-    unidade:document.getElementById("unitFilter").value,
-    operacao:document.getElementById("operationFilter").value,
-    status:document.getElementById("statusFilter").value,
-    prioridade:document.getElementById("priorityFilter").value,
-    turno:document.getElementById("shiftFilter").value,
-    responsavel:document.getElementById("ownerFilter").value
-  };
-}
-
-function filterWMS(){
-  const f = getFilters();
-
-  return wmsData.filter(d =>
-    (f.unidade === "all" || d.unidade === f.unidade) &&
-    (f.operacao === "all" || d.operacao === f.operacao) &&
-    (f.status === "all" || d.status === f.status) &&
-    (f.prioridade === "all" || d.prioridade === f.prioridade) &&
-    (f.turno === "all" || d.turno === f.turno) &&
-    (f.responsavel === "all" || d.responsavel === f.responsavel)
-  );
-}
-
-function updateKPIs(data){
-  const totalOrdens = data.length;
-  const volume = data.reduce((s,d) => s + d.volume, 0);
-  const finalizadas = data.filter(d => d.status === "Finalizado").length;
-  const slaOk = data.filter(d => d.sla === true).length;
-  const slaRate = totalOrdens ? (slaOk / totalOrdens) * 100 : 0;
-  const backlog = data.filter(d => d.status !== "Finalizado").length;
-  const divergencias = data.reduce((s,d) => s + d.divergencias, 0);
-  const produtividade = totalOrdens ? volume / (totalOrdens * 2.5) : 0;
-
-  document.getElementById("kpiOrders").textContent = number(totalOrdens);
-  document.getElementById("kpiVolume").textContent = number(volume);
-  document.getElementById("kpiSLA").textContent = slaRate.toFixed(1) + "%";
-  document.getElementById("kpiBacklog").textContent = number(backlog);
-  document.getElementById("kpiDivergence").textContent = number(divergencias);
-  document.getElementById("kpiProductivity").textContent = number(Math.round(produtividade)) + "/h";
-}
-
-function updateTable(data){
-  const tbody = document.getElementById("wmsTable");
-  tbody.innerHTML = "";
-
-  if(data.length === 0){
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="10" style="text-align:center;color:#94a3b8;padding:24px;">
-          Nenhum registro encontrado para os filtros aplicados.
-        </td>
-      </tr>
-    `;
-    return;
-  }
-
-  data.forEach(d => {
-    const statusClass =
-      d.status === "Finalizado" ? "finalizado" :
-      d.status === "Em andamento" ? "andamento" :
-      d.status === "Pendente" ? "pendente" : "critico";
-
-    const prioClass =
-      d.prioridade === "Alta" ? "prio-alta" :
-      d.prioridade === "Média" ? "prio-media" : "prio-baixa";
-
-    tbody.innerHTML += `
-      <tr>
-        <td><strong>${d.ordem}</strong></td>
-        <td>${d.unidade}</td>
-        <td>${d.operacao}</td>
-        <td>${d.responsavel}</td>
-        <td>${d.turno}</td>
-        <td>${number(d.volume)}</td>
-        <td>${d.sla ? '<span class="green">Dentro</span>' : '<span class="red">Fora</span>'}</td>
-        <td>${d.divergencias}</td>
-        <td class="${prioClass}">${d.prioridade}</td>
-        <td><span class="pill ${statusClass}">${d.status}</span></td>
-      </tr>
-    `;
-  });
-}
-
-function updateOperations(data){
-  const operations = ["Recebimento","Conferência","Armazenagem","Picking","Expedição"];
-  const container = document.getElementById("operationStages");
-  container.innerHTML = "";
-
-  const total = data.reduce((s,d) => s + d.volume, 0) || 1;
-
-  operations.forEach(op => {
-    const items = data.filter(d => d.operacao === op);
-    const volume = items.reduce((s,d) => s + d.volume, 0);
-    const percent = (volume / total) * 100;
-
-    container.innerHTML += `
-      <div class="stage">
-        <div class="stage-head">
-          <span>${op}</span>
-          <span>${items.length} ordens | ${number(volume)} un.</span>
-        </div>
-        <div class="bar">
-          <div style="width:${percent}%"></div>
-        </div>
-      </div>
-    `;
-  });
-}
-
-function updateUnitChart(data){
-  const units = ["CD Rio Claro","CD São Paulo","CD Campinas","CD Ribeirão"];
-
-  const volume = units.map(unit =>
-    data.filter(d => d.unidade === unit).reduce((s,d) => s + d.volume, 0)
-  );
-
-  const backlog = units.map(unit =>
-    data.filter(d => d.unidade === unit && d.status !== "Finalizado").length
-  );
-
-  if(unitChart) unitChart.destroy();
-
-  unitChart = new Chart(document.getElementById("unitChart"), {
-    type:"bar",
-    data:{
-      labels:units,
-      datasets:[
-        {
-          label:"Volume Movimentado",
-          data:volume,
-          backgroundColor:"#06b6d4",
-          borderRadius:6
-        },
-        {
-          label:"Backlog",
-          data:backlog,
-          backgroundColor:"#f59e0b",
-          borderRadius:6,
-          yAxisID:"y1"
-        }
-      ]
-    },
-    options:{
-      responsive:true,
-      maintainAspectRatio:false,
-      plugins:{
-        legend:{
-          labels:{color:"#cbd5e1"}
-        }
-      },
-      scales:{
-        x:{
-          ticks:{color:"#94a3b8"},
-          grid:{display:false}
-        },
-        y:{
-          ticks:{color:"#94a3b8"},
-          grid:{color:"#1f2937"}
-        },
-        y1:{
-          position:"right",
-          ticks:{color:"#94a3b8"},
-          grid:{drawOnChartArea:false}
-        }
-      }
+    function css(name){
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
     }
-  });
-}
 
-function updateOwnerChart(data){
-  const owners = ["Ana Souza","Bruno Lima","Carla Mendes","Diego Rocha"];
-
-  const values = owners.map(owner =>
-    data.filter(d => d.responsavel === owner).reduce((s,d) => s + d.volume, 0)
-  );
-
-  if(ownerChart) ownerChart.destroy();
-
-  ownerChart = new Chart(document.getElementById("ownerChart"), {
-    type:"bar",
-    data:{
-      labels:owners,
-      datasets:[{
-        label:"Volume Processado",
-        data:values,
-        backgroundColor:"#a78bfa",
-        borderRadius:6
-      }]
-    },
-    options:{
-      indexAxis:"y",
-      responsive:true,
-      maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false}
-      },
-      scales:{
-        x:{
-          ticks:{color:"#94a3b8"},
-          grid:{color:"#1f2937"}
-        },
-        y:{
-          ticks:{color:"#94a3b8"},
-          grid:{display:false}
-        }
-      }
+    function getFilters(){
+      return {
+        empresa:document.getElementById("companyFilter").value,
+        unidade:document.getElementById("unitFilter").value,
+        operacao:document.getElementById("operationFilter").value,
+        status:document.getElementById("statusFilter").value,
+        turno:document.getElementById("shiftFilter").value
+      };
     }
-  });
-}
 
-function updateInsights(data){
-  const total = data.length;
-  const backlog = data.filter(d => d.status !== "Finalizado").length;
-  const criticos = data.filter(d => d.status === "Crítico").length;
-  const divergencias = data.reduce((s,d) => s + d.divergencias, 0);
-  const volume = data.reduce((s,d) => s + d.volume, 0);
+    function filteredData(){
+      const f = getFilters();
+      return wmsData.filter(d =>
+        (f.empresa === "all" || d.empresa === f.empresa) &&
+        (f.unidade === "all" || d.unidade === f.unidade) &&
+        (f.operacao === "all" || d.operacao === f.operacao) &&
+        (f.status === "all" || d.status === f.status) &&
+        (f.turno === "all" || d.turno === f.turno)
+      );
+    }
 
-  const criticalOps = ["Recebimento","Conferência","Armazenagem","Picking","Expedição"]
-    .map(op => ({
-      op,
-      count:data.filter(d => d.operacao === op && d.status !== "Finalizado").length
-    }))
-    .sort((a,b) => b.count - a.count)[0];
+    function sum(data, field){
+      return data.reduce((acc, item) => acc + item[field], 0);
+    }
 
-  document.getElementById("insight1").textContent =
-    total === 0
-      ? "Nenhuma ordem WMS encontrada para os filtros aplicados."
-      : `Foram encontradas ${total} ordens, com ${number(volume)} unidades movimentadas, ${backlog} itens em backlog e ${criticos} ocorrências críticas.`;
+    function average(data, field){
+      return data.length ? data.reduce((acc, item) => acc + item[field], 0) / data.length : 0;
+    }
 
-  document.getElementById("insight2").textContent =
-    "A base WMS está padronizada por unidade, operação, turno, responsável, status, prioridade, SLA e divergências, permitindo leitura executiva e operacional confiável.";
+    function countOperation(data, op){
+      return data.filter(d => d.operacao === op).reduce((s,d) => s + d.volume, 0);
+    }
 
-  document.getElementById("insight3").textContent =
-    backlog > 0
-      ? `Priorizar a etapa de ${criticalOps.op}, que concentra maior volume de pendências no filtro atual. Revisar SLA, divergências e capacidade por turno.`
-      : "Operação sem backlog relevante no filtro atual. Manter monitoramento preventivo de SLA e divergências.";
-}
+    function updateKPIs(data){
+      const recebimento = countOperation(data,"Recebimento");
+      const separacao = countOperation(data,"Separação");
+      const expedicao = countOperation(data,"Expedição");
+      const acuracidade = average(data,"acuracidade");
+      const ocupacao = average(data,"ocupacao");
+      const sla = data.length ? data.filter(d => d.sla).length / data.length * 100 : 0;
+      const backlog = data.filter(d => d.status !== "Finalizado").reduce((s,d) => s + Math.round(d.volume * .18), 0);
+      const divergencias = sum(data,"divergencias");
 
-function updateDashboard(){
-  const filtered = filterWMS();
+      document.getElementById("kpiRecebimento").textContent = fmt(recebimento);
+      document.getElementById("kpiConferencia").textContent = acuracidade.toFixed(1).replace(".",",") + "%";
+      document.getElementById("kpiArmazenagem").textContent = ocupacao.toFixed(1).replace(".",",") + "%";
+      document.getElementById("kpiSeparacao").textContent = fmt(separacao);
+      document.getElementById("kpiExpedicao").textContent = fmt(expedicao);
+      document.getElementById("kpiBacklog").textContent = fmt(backlog);
+      document.getElementById("kpiDivergencias").textContent = fmt(divergencias);
+      document.getElementById("deltaRecebimento").textContent = recebimento ? "+12,3%" : "+0%";
+      document.getElementById("deltaSeparacao").textContent = separacao ? "+8,7%" : "+0%";
+      document.getElementById("deltaExpedicao").textContent = expedicao ? "+10,2%" : "+0%";
 
-  updateKPIs(filtered);
-  updateTable(filtered);
-  updateOperations(filtered);
-  updateUnitChart(filtered);
-  updateOwnerChart(filtered);
-  updateInsights(filtered);
-}
+      updateSlaChart(sla);
+    }
 
-function resetFilters(){
-  document.getElementById("unitFilter").value = "all";
-  document.getElementById("operationFilter").value = "all";
-  document.getElementById("statusFilter").value = "all";
-  document.getElementById("priorityFilter").value = "all";
-  document.getElementById("shiftFilter").value = "all";
-  document.getElementById("ownerFilter").value = "all";
+    function destroyChart(id){
+      if(charts[id]) charts[id].destroy();
+    }
 
-  updateDashboard();
-}
+    function updateSlaChart(value){
+      destroyChart("slaChart");
+      charts.slaChart = new Chart(document.getElementById("slaChart"),{
+        type:"doughnut",
+        data:{
+          labels:["SLA Atendido","Fora do SLA"],
+          datasets:[{
+            data:[value, Math.max(0,100-value)],
+            backgroundColor:[css("--green"),"rgba(148,163,184,.22)"],
+            borderWidth:0,
+            cutout:"72%"
+          }]
+        },
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          plugins:{
+            legend:{display:false},
+            tooltip:{enabled:true}
+          }
+        },
+        plugins:[{
+          id:"centerText",
+          afterDraw(chart){
+            const {ctx, chartArea:{left,right,top,bottom}} = chart;
+            ctx.save();
+            ctx.fillStyle = "#f8fafc";
+            ctx.font = "900 25px Segoe UI";
+            ctx.textAlign = "center";
+            ctx.fillText(value.toFixed(1).replace(".",",") + "%", (left+right)/2, (top+bottom)/2 + 3);
+            ctx.fillStyle = "#a8b8c3";
+            ctx.font = "11px Segoe UI";
+            ctx.fillText("SLA ATENDIDO", (left+right)/2, (top+bottom)/2 + 25);
+            ctx.restore();
+          }
+        }]
+      });
+    }
 
-document.querySelectorAll("select").forEach(select => {
-  select.addEventListener("change", updateDashboard);
-});
+    function updateBacklogChart(data){
+      const series = data.length ? data.flatMap(d => d.backlog).slice(-10) : [0,0,0,0,0,0,0,0,0,0];
+      destroyChart("backlogChart");
+      charts.backlogChart = new Chart(document.getElementById("backlogChart"),{
+        type:"line",
+        data:{
+          labels:["-7d","-6d","-5d","-4d","-3d","-2d","-1d","Hoje"],
+          datasets:[{
+            data:series.slice(-8),
+            borderColor:"#00b7e9",
+            backgroundColor:"rgba(0,183,233,.18)",
+            fill:true,
+            tension:.35,
+            pointRadius:2
+          }]
+        },
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          plugins:{legend:{display:false}},
+          scales:{
+            x:{ticks:{color:"#a8b8c3",font:{size:10}},grid:{display:false}},
+            y:{ticks:{color:"#a8b8c3",font:{size:10}},grid:{color:"rgba(255,255,255,.08)"}}
+          }
+        }
+      });
+    }
 
-window.onload = updateDashboard;
-</script>
+    function updateOwnerChart(data){
+      const owners = [...new Set(wmsData.map(d => d.responsavel))];
+      const values = owners.map(o => data.filter(d => d.responsavel === o).reduce((s,d) => s + d.volume, 0) / 18);
+      destroyChart("ownerChart");
+      charts.ownerChart = new Chart(document.getElementById("ownerChart"),{
+        type:"bar",
+        data:{
+          labels:owners,
+          datasets:[{
+            data:values,
+            backgroundColor:"rgba(52,217,120,.72)",
+            borderRadius:4
+          }]
+        },
+        options:{
+          indexAxis:"y",
+          responsive:true,
+          maintainAspectRatio:false,
+          plugins:{legend:{display:false}},
+          scales:{
+            x:{ticks:{color:"#cbd5e1",font:{size:10}},grid:{display:false},title:{display:true,text:"Linhas/Hora",color:"#a8b8c3",font:{size:10}}},
+            y:{ticks:{color:"#f8fafc",font:{size:10}},grid:{display:false}}
+          }
+        }
+      });
+    }
 
+    function updateDivergenceChart(data){
+      const total = sum(data,"divergencias") || 1;
+      const labels = ["Qtd Divergente","Produto Divergente","Endereço Divergente","Outros"];
+      const values = [
+        Math.round(total * .42),
+        Math.round(total * .28),
+        Math.round(total * .18),
+        Math.max(0,total - Math.round(total*.42) - Math.round(total*.28) - Math.round(total*.18))
+      ];
+      destroyChart("divergenceChart");
+      charts.divergenceChart = new Chart(document.getElementById("divergenceChart"),{
+        type:"doughnut",
+        data:{
+          labels,
+          datasets:[{
+            data:values,
+            backgroundColor:[css("--green"),"#22d3ee","#fbbf24","#64748b"],
+            borderWidth:0,
+            cutout:"62%"
+          }]
+        },
+        options:{
+          responsive:true,
+          maintainAspectRatio:false,
+          plugins:{
+            legend:{position:"right",labels:{color:"#cbd5e1",boxWidth:8,font:{size:9}}}
+          }
+        }
+      });
+    }
+
+    function updatePriorityList(data){
+      const priorities = [
+        ["Pedidos com atraso","Alta","red"],
+        ["Pedidos críticos","Alta","orange"],
+        ["Expedição urgente","Média","amber"],
+        ["Reposição estoque","Baixa","blue"]
+      ];
+      const container = document.getElementById("priorityList");
+      container.innerHTML = "";
+      priorities.forEach((p,i) => {
+        const count = data.filter(d => d.prioridade === p[1]).length * (i === 0 ? 32 : i === 1 ? 22 : i === 2 ? 18 : 14);
+        container.innerHTML += `
+          <div class="priority-item">
+            <span class="num">${i+1}</span>
+            <span>${p[0]}</span>
+            <span class="tag ${p[2]}">${count || 0}</span>
+          </div>
+        `;
+      });
+    }
+
+    function updateBottleneckChart(data){
+      const ops = ["Conferência","Separação","Armazenagem","Expedição","Recebimento"];
+      const values = ops.map(op => data.filter(d => d.operacao === op && d.status !== "Finalizado").length);
+      const total = values.reduce((a,b)=>a+b,0) || 1;
+      const percent = values.map(v => Math.round(v / total * 100));
+      destroyChart("bottleneckChart");
+      charts.bottleneckChart = new Chart(document.getElementById("bottleneckChart"),{
+        type:"bar",
+        data:{
+          labels:ops,
+          datasets:[{
+            data:percent,
+            backgroundColor:["#ef4444","#fb923c","#fbbf24","#38bdf8","#64748b"],
+            borderRadius:3
+          }]
+        },
+        options:{
+          indexAxis:"y",
+          responsive:true,
+          maintainAspectRatio:false,
+          plugins:{legend:{display:false}},
+          scales:{
+            x:{ticks:{color:"#cbd5e1",callback:v=>v+"%"},grid:{display:false}},
+            y:{ticks:{color:"#f8fafc",font:{size:10}},grid:{display:false}}
+          }
+        }
+      });
+    }
+
+    function updateTable(data){
+      const tbody = document.getElementById("wmsTable");
+      tbody.innerHTML = "";
+      document.getElementById("tableSummary").textContent = `${data.length} registros encontrados | Volume ${fmt(sum(data,"volume"))}`;
+
+      if(!data.length){
+        tbody.innerHTML = `<tr><td colspan="11" style="text-align:center;color:#a8b8c3;padding:26px;">Nenhum registro encontrado para os filtros aplicados.</td></tr>`;
+        return;
+      }
+
+      data.forEach(d => {
+        const statusClass = d.status === "Finalizado" ? "ok" : d.status === "Em andamento" ? "and" : d.status === "Pendente" ? "pend" : "crit";
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${d.ordem}</strong></td>
+            <td>${d.empresa}</td>
+            <td>${d.unidade}</td>
+            <td>${d.operacao}</td>
+            <td>${d.responsavel}</td>
+            <td>${d.turno}</td>
+            <td>${fmt(d.volume)}</td>
+            <td>${d.sla ? '<span style="color:#86efac;font-weight:900;">Dentro</span>' : '<span style="color:#fca5a5;font-weight:900;">Fora</span>'}</td>
+            <td>${d.divergencias}</td>
+            <td>${d.prioridade}</td>
+            <td><span class="status ${statusClass}">${d.status}</span></td>
+          </tr>
+        `;
+      });
+    }
+
+    function updateDashboard(){
+      const data = filteredData();
+      updateKPIs(data);
+      updateBacklogChart(data);
+      updateOwnerChart(data);
+      updateDivergenceChart(data);
+      updatePriorityList(data);
+      updateBottleneckChart(data);
+      updateTable(data);
+    }
+
+    function resetFilters(){
+      ["companyFilter","unitFilter","operationFilter","statusFilter","shiftFilter"].forEach(id => {
+        document.getElementById(id).value = "all";
+      });
+      updateDashboard();
+    }
+
+    document.querySelectorAll("select").forEach(el => el.addEventListener("change", updateDashboard));
+    window.addEventListener("load", updateDashboard);
+  </script>
 </body>
 </html>
