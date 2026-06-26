@@ -31,6 +31,7 @@
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
 
     body{
       min-height:100vh;
@@ -63,7 +64,13 @@
     .logo{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(from 180deg,var(--green),var(--amber),var(--green));font-weight:900;font-size:26px;color:#062016;box-shadow:0 0 24px rgba(34,197,94,.32)}
     .brand h1{font-size:18px;letter-spacing:.18em;line-height:1.1}.brand small{display:block;margin-top:7px;color:var(--green2);letter-spacing:.32em;font-size:10px}
 
-    .menu{padding:12px}.menu button{width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;padding:13px 14px;border-radius:7px;font-weight:700;display:flex;align-items:center;gap:13px;cursor:pointer;transition:.2s;font-size:13px}.menu button:hover,.menu button.active{background:linear-gradient(90deg,rgba(34,197,94,.22),rgba(34,197,94,.04));color:#fff}.menu button.active{border-left:5px solid var(--green)}
+    .menu{padding:12px}
+    .menu button{width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;padding:13px 14px;border-radius:7px;font-weight:700;display:flex;align-items:center;gap:13px;cursor:pointer;transition:.2s;font-size:13px;position:relative}
+    .menu button i{width:18px;text-align:center}
+    .menu button:hover,.menu button.active{background:linear-gradient(90deg,rgba(34,197,94,.22),rgba(34,197,94,.04));color:#fff;transform:translateX(2px)}
+    .menu button.active{border-left:5px solid var(--green);padding-left:9px}
+    .menu button.active:after{content:"";position:absolute;right:12px;width:7px;height:7px;border-radius:50%;background:var(--green2);box-shadow:0 0 12px rgba(74,222,128,.75)}
+    .menu-toggle{display:none;margin-left:auto;width:42px;height:42px;border:1px solid var(--line);border-radius:7px;background:#061923;color:#fff;cursor:pointer;font-size:18px}
     .side-img{position:absolute;left:14px;right:14px;bottom:14px;height:235px;border-radius:8px;background:linear-gradient(to top,rgba(3,16,22,.08),rgba(3,16,22,.85)),url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80") center/cover;border:1px solid var(--line)}
 
     main{min-width:0}.top{display:grid;grid-template-columns:1fr 450px;gap:16px;align-items:start;margin-bottom:10px}.title{text-align:center;padding:4px 0 0}.title h2{font-size:37px;line-height:1;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 6px 18px rgba(0,0,0,.45)}.title p{margin-top:8px;color:var(--green2);font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
@@ -74,32 +81,62 @@
 
     .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:10px}.kpi{background:linear-gradient(180deg,rgba(8,33,45,.94),rgba(4,20,27,.95));border:1px solid var(--line);border-radius:7px;padding:13px 14px;min-height:102px}.kpi-top{display:flex;justify-content:space-between;gap:8px;color:#d6edf3;font-size:11px;font-weight:900;text-transform:uppercase}.kpi i{font-size:22px;color:#cbd5e1}.kpi strong{display:block;font-size:24px;margin-top:12px}.kpi small{display:block;color:var(--muted);margin-top:7px}.green{color:var(--green2)!important}.red{color:#ff6b6b!important}.amber{color:var(--amber)!important}.blue{color:var(--blue)!important}.orange{color:var(--orange)!important}
 
-    .grid{display:grid;gap:8px}.g-main{grid-template-columns:1.25fr .9fr 1.3fr;margin-bottom:8px}.g-mid{grid-template-columns:.95fr 1fr 1.08fr;margin-bottom:8px}.g-bottom{grid-template-columns:1.05fr .75fr 1.05fr;margin-bottom:8px}
+    .grid{display:grid;gap:8px}.g-main{grid-template-columns:1.25fr .9fr 1.3fr;margin-bottom:8px}.g-mid{grid-template-columns:.95fr 1fr 1.08fr;margin-bottom:8px}.g-bottom{grid-template-columns:1.05fr .75fr 1.05fr;margin-bottom:8px}.g-plan{grid-template-columns:1fr 1fr;margin-bottom:8px}
     .card{background:linear-gradient(180deg,rgba(8,33,45,.95),rgba(4,20,27,.96));border:1px solid var(--line);border-radius:7px;padding:13px;box-shadow:0 14px 35px rgba(0,0,0,.18);min-width:0}.card h3{font-size:14px;text-transform:uppercase;margin-bottom:10px}.card small{color:var(--muted)}.chart{height:245px}.chart-sm{height:196px}.chart-xs{height:150px}
 
     .stage-row{display:grid;grid-template-columns:120px 1fr 42px;gap:10px;align-items:center;margin:9px 0;font-size:12px}.bar{height:14px;background:#09202b;border-radius:2px;overflow:hidden}.bar div{height:100%;background:linear-gradient(90deg,#148545,#22c55e)}
 
     table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:9px 10px;border-bottom:1px solid rgba(89,181,191,.14);white-space:nowrap;text-align:left}th{background:rgba(15,47,61,.55);color:#fff;font-size:11px}td{color:#eaf5f7}.table-wrap{overflow:auto}.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px}.pill{padding:4px 8px;border-radius:999px;font-weight:900;font-size:11px}.ok{color:var(--green2)}.att{color:var(--amber)}.crit{color:#ff6b6b}.pill.ok{background:rgba(34,197,94,.12)}.pill.att{background:rgba(245,158,11,.12)}.pill.crit{background:rgba(239,68,68,.12)}
 
+    .view-status{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:2px 0 10px;padding:10px 13px;border:1px solid var(--line);border-radius:7px;background:rgba(8,33,45,.54);color:var(--muted);font-size:12px}
+    .view-status strong{color:var(--green2);text-transform:uppercase;letter-spacing:.06em}
+    .panel-hidden{display:none!important}
+    .kpis.view-filtered,.grid.view-filtered{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+    .dashboard-panel{animation:panelIn .28s ease}
+    @keyframes panelIn{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .ppc-bars{display:grid;gap:10px}.ppc-row{display:grid;grid-template-columns:minmax(145px,1fr) 2fr 48px;gap:10px;align-items:center;font-size:12px}.ppc-track{height:13px;background:#09202b;border-radius:999px;overflow:hidden}.ppc-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#0ea5e9,#22c55e)}
+
     .footer{display:grid;grid-template-columns:repeat(4,1fr) 1.4fr;gap:8px;margin-top:8px}.foot{background:rgba(5,20,27,.82);border:1px solid var(--line);border-radius:7px;padding:16px;display:flex;gap:13px;align-items:center}.foot i{font-size:30px;color:var(--green2)}.foot strong{display:block;color:var(--green2);font-size:12px;text-transform:uppercase}.foot span{display:block;color:var(--muted);font-size:12px;margin-top:5px}.footer .foot:last-child{border-color:var(--line2)}
 
-    @media(max-width:1350px){.app{grid-template-columns:1fr}aside{position:relative;height:auto}.side-img{display:none}.menu{display:grid;grid-template-columns:repeat(4,1fr)}.top{grid-template-columns:1fr}.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.g-main,.g-mid,.g-bottom,.footer{grid-template-columns:1fr 1fr}}
-    @media(max-width:760px){.app{padding:10px}.menu,.filters,.kpis,.g-main,.g-mid,.g-bottom,.footer{grid-template-columns:1fr}.title h2{font-size:26px}.top-actions{grid-template-columns:1fr}.chart,.chart-sm{height:260px}}
+    @media(max-width:1350px){
+      .app{grid-template-columns:1fr}
+      aside{position:relative;top:0;height:auto}
+      .brand{padding:12px 14px}
+      .brand .logo{width:50px;height:50px;font-size:21px}
+      .menu-toggle{display:block}
+      .side-img{display:none}
+      .menu{display:none;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+      aside.menu-open .menu{display:grid}
+      .top{grid-template-columns:1fr}
+      .filters{grid-template-columns:repeat(3,1fr)}
+      .kpis{grid-template-columns:repeat(3,1fr)}
+      .g-main,.g-mid,.g-bottom,.g-plan,.footer{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:760px){
+      .app{padding:10px}
+      .menu,.filters,.kpis,.g-main,.g-mid,.g-bottom,.g-plan,.footer{grid-template-columns:1fr}
+      .menu button{justify-content:flex-start}
+      .title h2{font-size:26px}
+      .top-actions{grid-template-columns:1fr}
+      .chart,.chart-sm{height:260px}
+      .view-status{align-items:flex-start;flex-direction:column}
+      .ppc-row{grid-template-columns:115px 1fr 42px}
+    }
   </style>
 </head>
 <body>
 <div class="app">
   <aside>
-    <div class="brand"><div class="logo">GF</div><div><h1>GUSTAVO FARIAS</h1><small></small></div></div>
+    <div class="brand"><div class="logo">GF</div><div><h1>GUSTAVO FARIAS</h1><small>PMO DE SISTEMAS</small></div><button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir ou fechar menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button></div>
     <div class="menu">
-      <button class="active"><i class="fa-solid fa-house-chimney-window"></i> Visão Geral</button>
-      <button><i class="fa-solid fa-chart-line"></i> Evolução Física</button>
-      <button><i class="fa-solid fa-money-bill-trend-up"></i> Desempenho Financeiro</button>
-      <button><i class="fa-solid fa-chart-area"></i> Curva S</button>
-      <button><i class="fa-solid fa-chart-simple"></i> Produtividade</button>
-      <button><i class="fa-solid fa-shield-halved"></i> Lean / Restrições</button>
-      <button><i class="fa-solid fa-calendar-check"></i> PPC - Planejamento</button>
-      <button><i class="fa-solid fa-building"></i> Obras</button>
+      <button type="button" class="active" data-view="overview" aria-current="page"><i class="fa-solid fa-house-chimney-window"></i> Visão Geral</button>
+      <button type="button" data-view="fisico"><i class="fa-solid fa-chart-line"></i> Evolução Física</button>
+      <button type="button" data-view="financeiro"><i class="fa-solid fa-money-bill-trend-up"></i> Desempenho Financeiro</button>
+      <button type="button" data-view="curva"><i class="fa-solid fa-chart-area"></i> Curva S</button>
+      <button type="button" data-view="produtividade"><i class="fa-solid fa-chart-simple"></i> Produtividade</button>
+      <button type="button" data-view="lean"><i class="fa-solid fa-shield-halved"></i> Lean / Restrições</button>
+      <button type="button" data-view="ppc"><i class="fa-solid fa-calendar-check"></i> PPC - Planejamento</button>
+      <button type="button" data-view="obras"><i class="fa-solid fa-building"></i> Obras</button>
     </div>
     <div class="side-img"></div>
   </aside>
@@ -107,8 +144,8 @@
   <main>
     <div class="top">
       <div class="title">
-        <h2>Painel Executivo de Obras</h2>
-        <p>Visão técnica, financeira e operacional integrada</p>
+        <h2 id="pageTitle">Painel Executivo de Obras</h2>
+        <p id="pageSubtitle">Visão técnica, financeira e operacional integrada</p>
       </div>
       <div class="top-actions">
         <div class="info-card"><i class="fa-regular fa-calendar-days"></i><div><span>Última atualização</span><strong id="lastUpdate">23/05/2026 08:30</strong></div></div>
@@ -116,7 +153,9 @@
       </div>
     </div>
 
-    <section class="filters">
+    <div class="view-status" id="viewStatus"><span>Exibindo: <strong>Visão Geral</strong></span><span>Use o menu para navegar entre os módulos do painel.</span></div>
+
+    <section class="filters" id="filtersSection">
       <div class="filter"><label>Obra</label><select id="obraFilter"><option value="all">Todas</option></select></div>
       <div class="filter"><label>Etapa</label><select id="etapaFilter"><option value="all">Todas</option></select></div>
       <div class="filter"><label>Status</label><select id="statusFilter"><option value="all">Todos</option><option>Atenção</option><option>Crítico</option><option>OK</option></select></div>
@@ -126,31 +165,42 @@
       <div class="filter"><label>Ação</label><button class="reset" onclick="resetFilters()"><i class="fa-solid fa-rotate-right"></i> Limpar</button></div>
     </section>
 
-    <section class="kpis">
-      <div class="kpi"><div class="kpi-top">Evolução física média <i class="fa-solid fa-circle-notch green"></i></div><strong id="kpiFisico">0%</strong><small id="kpiFisicoSub">Previsto: 0%</small></div>
-      <div class="kpi"><div class="kpi-top">Custo real acumulado <i class="fa-solid fa-coins"></i></div><strong id="kpiReal">R$ 0</strong><small id="kpiRealSub">Orçado: R$ 0</small></div>
-      <div class="kpi"><div class="kpi-top">Projeção custo final <i class="fa-solid fa-shield-halved"></i></div><strong id="kpiEac">R$ 0</strong><small id="kpiEacSub">Orçado BAC: R$ 0</small></div>
-      <div class="kpi"><div class="kpi-top">VGV total <i class="fa-regular fa-building"></i></div><strong id="kpiVgv">R$ 0</strong><small id="kpiVgvSub">Realizado: R$ 0</small></div>
-      <div class="kpi"><div class="kpi-top">Margem prevista <i class="fa-solid fa-arrow-trend-up"></i></div><strong id="kpiMargem">0%</strong><small id="kpiMargemSub">Margem Real: 0%</small></div>
-      <div class="kpi"><div class="kpi-top">Status geral <i class="fa-solid fa-circle-exclamation orange"></i></div><strong id="kpiStatus" class="orange">OK</strong><small id="kpiStatusSub">0 obras críticas</small></div>
+    <section class="kpis module-section" data-section="cards">
+      <div class="kpi dashboard-panel" data-views="fisico curva obras ppc"><div class="kpi-top">Evolução física média <i class="fa-solid fa-circle-notch green"></i></div><strong id="kpiFisico">0%</strong><small id="kpiFisicoSub">Previsto: 0%</small></div>
+      <div class="kpi dashboard-panel" data-views="financeiro curva obras"><div class="kpi-top">Custo real acumulado <i class="fa-solid fa-coins"></i></div><strong id="kpiReal">R$ 0</strong><small id="kpiRealSub">Orçado: R$ 0</small></div>
+      <div class="kpi dashboard-panel" data-views="financeiro obras"><div class="kpi-top">Projeção custo final <i class="fa-solid fa-shield-halved"></i></div><strong id="kpiEac">R$ 0</strong><small id="kpiEacSub">Orçado BAC: R$ 0</small></div>
+      <div class="kpi dashboard-panel" data-views="financeiro obras"><div class="kpi-top">VGV total <i class="fa-regular fa-building"></i></div><strong id="kpiVgv">R$ 0</strong><small id="kpiVgvSub">Realizado: R$ 0</small></div>
+      <div class="kpi dashboard-panel" data-views="financeiro obras"><div class="kpi-top">Margem prevista <i class="fa-solid fa-arrow-trend-up"></i></div><strong id="kpiMargem">0%</strong><small id="kpiMargemSub">Margem Real: 0%</small></div>
+      <div class="kpi dashboard-panel" data-views="obras lean ppc"><div class="kpi-top">Status geral <i class="fa-solid fa-circle-exclamation orange"></i></div><strong id="kpiStatus" class="orange">OK</strong><small id="kpiStatusSub">0 obras críticas</small></div>
     </section>
 
-    <section class="grid g-main">
-      <div class="card"><h3>Curva S — Físico x Financeiro</h3><div class="chart"><canvas id="curveChart"></canvas></div></div>
-      <div class="card"><h3>Evolução física por etapa</h3><div id="stageBars"></div></div>
-      <div class="card"><h3>Custo orçado x realizado acumulado</h3><div class="chart"><canvas id="costChart"></canvas></div></div>
+    <section class="grid g-main module-section" data-section="cards">
+      <div class="card dashboard-panel" data-views="curva fisico financeiro"><h3>Curva S — Físico x Financeiro</h3><div class="chart"><canvas id="curveChart"></canvas></div></div>
+      <div class="card dashboard-panel" data-views="fisico obras"><h3>Evolução física por etapa</h3><div id="stageBars"></div></div>
+      <div class="card dashboard-panel" data-views="financeiro curva"><h3>Custo orçado x realizado acumulado</h3><div class="chart"><canvas id="costChart"></canvas></div></div>
     </section>
 
-    <section class="grid g-mid">
-      <div class="card"><h3>Desempenho financeiro</h3><div class="table-wrap"><table><thead><tr><th>Indicador</th><th>Valor</th><th>Situação</th></tr></thead><tbody id="financeTable"></tbody></table></div></div>
-      <div class="card"><h3>Produtividade por frente</h3><div class="table-wrap"><table><thead><tr><th>Frente</th><th>Realizado</th><th>Meta</th><th>Índice</th></tr></thead><tbody id="prodTable"></tbody></table></div></div>
-      <div class="card"><h3>Restrições Lean</h3><div class="table-wrap"><table><thead><tr><th>Restrição</th><th>Impacto</th><th>Status</th><th>Responsável</th></tr></thead><tbody id="leanTable"></tbody></table></div></div>
+    <section class="grid g-mid module-section" data-section="cards">
+      <div class="card dashboard-panel" data-views="financeiro"><h3>Desempenho financeiro</h3><div class="table-wrap"><table><thead><tr><th>Indicador</th><th>Valor</th><th>Situação</th></tr></thead><tbody id="financeTable"></tbody></table></div></div>
+      <div class="card dashboard-panel" data-views="produtividade ppc"><h3>Produtividade por frente</h3><div class="table-wrap"><table><thead><tr><th>Frente</th><th>Realizado</th><th>Meta</th><th>Índice</th></tr></thead><tbody id="prodTable"></tbody></table></div></div>
+      <div class="card dashboard-panel" data-views="lean"><h3>Restrições Lean</h3><div class="table-wrap"><table><thead><tr><th>Restrição</th><th>Impacto</th><th>Status</th><th>Responsável</th></tr></thead><tbody id="leanTable"></tbody></table></div></div>
     </section>
 
-    <section class="grid g-bottom">
-      <div class="card"><h3>Status por obra</h3><div class="table-wrap"><table><thead><tr><th>Obra</th><th>Físico</th><th>Custo</th><th>Prazo</th><th>Status</th></tr></thead><tbody id="obraTable"></tbody></table></div></div>
-      <div class="card"><h3>Margem por obra</h3><div class="table-wrap"><table><thead><tr><th>Obra</th><th>Prev.</th><th>Real</th><th>Var.</th></tr></thead><tbody id="marginTable"></tbody></table></div></div>
-      <div class="card"><h3>Próximas ações</h3><div class="table-wrap"><table><thead><tr><th>Ação</th><th>Obra</th><th>Prazo</th><th>Status</th></tr></thead><tbody id="actionsTable"></tbody></table></div></div>
+    <section class="grid g-bottom module-section" data-section="cards">
+      <div class="card dashboard-panel" data-views="obras"><h3>Status por obra</h3><div class="table-wrap"><table><thead><tr><th>Obra</th><th>Físico</th><th>Custo</th><th>Prazo</th><th>Status</th></tr></thead><tbody id="obraTable"></tbody></table></div></div>
+      <div class="card dashboard-panel" data-views="obras financeiro"><h3>Margem por obra</h3><div class="table-wrap"><table><thead><tr><th>Obra</th><th>Prev.</th><th>Real</th><th>Var.</th></tr></thead><tbody id="marginTable"></tbody></table></div></div>
+      <div class="card dashboard-panel" data-views="obras ppc lean"><h3>Próximas ações</h3><div class="table-wrap"><table><thead><tr><th>Ação</th><th>Obra</th><th>Prazo</th><th>Status</th></tr></thead><tbody id="actionsTable"></tbody></table></div></div>
+    </section>
+
+    <section class="grid g-plan module-section" data-section="cards">
+      <div class="card dashboard-panel" data-views="ppc">
+        <h3>PPC por obra</h3>
+        <div class="ppc-bars" id="ppcBars"></div>
+      </div>
+      <div class="card dashboard-panel" data-views="ppc">
+        <h3>Resumo do planejamento semanal</h3>
+        <div class="table-wrap"><table><thead><tr><th>Obra</th><th>PPC</th><th>SPI</th><th>Situação</th></tr></thead><tbody id="ppcTable"></tbody></table></div>
+      </div>
     </section>
 
     <section class="footer">
@@ -164,6 +214,18 @@
 </div>
 
 <script>
+const viewConfig = {
+  overview:{title:'Painel Executivo de Obras',subtitle:'Visão técnica, financeira e operacional integrada',label:'Visão Geral'},
+  fisico:{title:'Evolução Física',subtitle:'Avanço realizado, previsto e evolução por etapa',label:'Evolução Física'},
+  financeiro:{title:'Desempenho Financeiro',subtitle:'Custos, projeções, margens e indicadores de desempenho',label:'Desempenho Financeiro'},
+  curva:{title:'Curva S',subtitle:'Comparativo acumulado físico e financeiro',label:'Curva S'},
+  produtividade:{title:'Produtividade',subtitle:'Desempenho das frentes de trabalho e aderência às metas',label:'Produtividade'},
+  lean:{title:'Lean e Restrições',subtitle:'Gestão de impedimentos, impactos e responsáveis',label:'Lean / Restrições'},
+  ppc:{title:'PPC - Planejamento',subtitle:'Percentual de planos concluídos e desempenho semanal',label:'PPC - Planejamento'},
+  obras:{title:'Gestão de Obras',subtitle:'Status consolidado, margem, prazo e ações prioritárias',label:'Obras'}
+};
+let currentView='overview';
+
 const obras = [
   {obra:'Residencial Alpha',etapa:'Serviços Preliminares',resp:'Compras',mes:'Jan',fisico:100,prevFisico:96,orcado:5200000,realizado:5000000,eac:5600000,vgv:18500000,mPrev:19.2,mReal:17.8,spi:1.08,cpi:1.04,ppc:94,risco:'Baixo',status:'OK'},
   {obra:'Residencial Beta',etapa:'Fundação',resp:'Suprimentos',mes:'Fev',fisico:98,prevFisico:92,orcado:6400000,realizado:6800000,eac:7200000,vgv:22000000,mPrev:18.5,mReal:15.3,spi:.95,cpi:.91,ppc:82,risco:'Alto',status:'Atenção'},
@@ -222,6 +284,8 @@ function renderTables(d,orc,real,eac,mPrev,mReal){
   obraTable.innerHTML=d.map(x=>`<tr><td>${x.obra}</td><td>${x.fisico.toFixed(1)}%</td><td class="${x.realizado>x.orcado?'red':'green'}">${(((x.realizado-x.orcado)/x.orcado)*100).toFixed(1)}%</td><td>${x.spi.toFixed(2)}</td><td><span class="pill ${x.status==='OK'?'ok':x.status==='Crítico'?'crit':'att'}">${x.status}</span></td></tr>`).join('')||'<tr><td colspan="5">Sem dados</td></tr>';
   marginTable.innerHTML=d.map(x=>`<tr><td>${x.obra}</td><td>${x.mPrev.toFixed(1)}%</td><td>${x.mReal.toFixed(1)}%</td><td class="${x.mReal<x.mPrev?'red':'green'}">${(x.mReal-x.mPrev).toFixed(1)}</td></tr>`).join('')||'<tr><td colspan="4">Sem dados</td></tr>';
   actionsTable.innerHTML=acoes.map(a=>`<tr><td>${a[0]}</td><td>${a[1]}</td><td>${a[2]}</td><td class="${a[3]==='Aberta'?'red':'amber'}">${a[3]}</td></tr>`).join('');
+  ppcBars.innerHTML=d.map(x=>`<div class="ppc-row"><span>${x.obra}</span><div class="ppc-track"><div class="ppc-fill" style="width:${Math.min(100,x.ppc)}%"></div></div><b class="${x.ppc<75?'red':x.ppc<85?'amber':'green'}">${x.ppc}%</b></div>`).join('')||'<small>Sem dados para os filtros selecionados.</small>';
+  ppcTable.innerHTML=d.map(x=>{const situacao=x.ppc<75?'Crítico':x.ppc<85?'Atenção':'OK';return `<tr><td>${x.obra}</td><td>${x.ppc}%</td><td>${x.spi.toFixed(2)}</td><td><span class="pill ${situacao==='OK'?'ok':situacao==='Crítico'?'crit':'att'}">${situacao}</span></td></tr>`}).join('')||'<tr><td colspan="4">Sem dados</td></tr>';
 }
 function renderCharts(d){
   const meses=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
@@ -238,8 +302,58 @@ function curveChartEl(){return document.getElementById('curveChart')}
 function costChartEl(){return document.getElementById('costChart')}
 function opts(percent){return{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#cbd5e1',boxWidth:12}}},scales:{x:{ticks:{color:'#cbd5e1'},grid:{color:'rgba(89,181,191,.08)'}},y:{ticks:{color:'#cbd5e1',callback:v=>percent&&v<=100?v+'%':'R$ '+(v/1000000).toFixed(0)+' MI'},grid:{color:'rgba(89,181,191,.12)'}},p:{display:percent,position:'right',ticks:{color:'#cbd5e1',callback:v=>v+'%'},grid:{display:false}}}}}
 function resetFilters(){['obraFilter','etapaFilter','statusFilter','respFilter','mesFilter','riscoFilter'].forEach(id=>document.getElementById(id).value='all');render()}
-document.querySelectorAll('select').forEach(s=>s.addEventListener('change',render));
-fillOptions(); render();
+
+function applyView(view,scroll=true){
+  currentView=viewConfig[view]?view:'overview';
+  const config=viewConfig[currentView];
+  document.querySelectorAll('.menu button[data-view]').forEach(button=>{
+    const active=button.dataset.view===currentView;
+    button.classList.toggle('active',active);
+    if(active)button.setAttribute('aria-current','page'); else button.removeAttribute('aria-current');
+  });
+
+  document.querySelectorAll('.dashboard-panel').forEach(panel=>{
+    const views=(panel.dataset.views||'').split(/\s+/);
+    const visible=currentView==='overview'||views.includes(currentView);
+    panel.classList.toggle('panel-hidden',!visible);
+  });
+
+  document.querySelectorAll('.module-section').forEach(section=>{
+    const visibleChildren=[...section.querySelectorAll('.dashboard-panel')].filter(el=>!el.classList.contains('panel-hidden'));
+    section.classList.toggle('panel-hidden',visibleChildren.length===0);
+    section.classList.toggle('view-filtered',currentView!=='overview');
+  });
+
+  pageTitle.textContent=config.title;
+  pageSubtitle.textContent=config.subtitle;
+  viewStatus.innerHTML=`<span>Exibindo: <strong>${config.label}</strong></span><span>${currentView==='overview'?'Todos os módulos estão visíveis.':'Clique em Visão Geral para retornar ao painel completo.'}</span>`;
+  document.title=`${config.title} | PMO de Sistemas`;
+
+  if(window.innerWidth<=1350){
+    document.querySelector('aside').classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded','false');
+    menuToggle.innerHTML='<i class="fa-solid fa-bars"></i>';
+  }
+
+  requestAnimationFrame(()=>{
+    if(curveChart)curveChart.resize();
+    if(costChart)costChart.resize();
+  });
+  if(scroll)document.querySelector('main').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.querySelectorAll('.menu button[data-view]').forEach(button=>button.addEventListener('click',()=>applyView(button.dataset.view)));
+menuToggle.addEventListener('click',()=>{
+  const aside=document.querySelector('aside');
+  const opened=aside.classList.toggle('menu-open');
+  menuToggle.setAttribute('aria-expanded',String(opened));
+  menuToggle.innerHTML=opened?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-bars"></i>';
+});
+window.addEventListener('keydown',event=>{if(event.key==='Escape'&&window.innerWidth<=1350){document.querySelector('aside').classList.remove('menu-open');menuToggle.setAttribute('aria-expanded','false');menuToggle.innerHTML='<i class="fa-solid fa-bars"></i>';}});
+document.querySelectorAll('select').forEach(select=>select.addEventListener('change',render));
+fillOptions();
+render();
+applyView('overview',false);
 </script>
 </body>
 </html>
