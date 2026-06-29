@@ -1,767 +1,1041 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gustavo Farias | Transformação Operacional & Sistemas Corporativos</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gustavo Farias — Consultoria executiva em transformação operacional, sistemas corporativos, dados, indicadores, automação e governança.">
+  <meta name="theme-color" content="#07111f">
+  <title>Gustavo Farias | Transformação Operacional, Sistemas e Dados</title>
   <style>
     :root{
-      --bg:#07090d;
-      --surface:#10141c;
-      --surface-2:#151b26;
-      --line:#263041;
-      --text:#f8fafc;
-      --muted:#94a3b8;
-      --soft:#cbd5e1;
-      --gold:#d6b25e;
-      --blue:#38bdf8;
-      --green:#22c55e;
+      --navy-950:#030a13;
+      --navy-900:#07111f;
+      --navy-850:#0a1728;
+      --navy-800:#0d1d31;
+      --navy-700:#142844;
+      --gold:#c9a251;
+      --gold-2:#e4c47a;
+      --gold-soft:rgba(201,162,81,.14);
+      --blue:#4fb3ff;
+      --green:#36c68d;
+      --red:#ff6b6b;
+      --white:#f7f9fc;
+      --muted:#aeb9ca;
+      --line:rgba(255,255,255,.10);
+      --surface:rgba(255,255,255,.045);
+      --surface-2:rgba(255,255,255,.075);
+      --shadow:0 28px 90px rgba(0,0,0,.35);
+      --radius-xl:30px;
+      --radius-lg:22px;
+      --radius-md:16px;
+      --max:1240px;
     }
 
     *{box-sizing:border-box}
-
     html{scroll-behavior:smooth}
-
     body{
-      font-family:'Inter',sans-serif;
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(56,189,248,.12), transparent 32%),
-        radial-gradient(circle at top right, rgba(214,178,94,.10), transparent 34%),
-        linear-gradient(180deg,#06080c 0%,#0b1018 45%,#07090d 100%);
-      color:var(--text);
+        radial-gradient(circle at 8% 0%,rgba(79,179,255,.10),transparent 28%),
+        radial-gradient(circle at 92% 8%,rgba(201,162,81,.11),transparent 28%),
+        linear-gradient(180deg,var(--navy-950),var(--navy-900) 26%,#050d18 100%);
+      color:var(--white);
+      line-height:1.6;
       overflow-x:hidden;
     }
 
-    .glass{
-      background:rgba(16,20,28,.82);
-      border:1px solid rgba(148,163,184,.16);
-      box-shadow:0 24px 80px rgba(0,0,0,.35);
-      backdrop-filter:blur(18px);
-    }
-
-    .card{
-      background:linear-gradient(180deg,rgba(21,27,38,.96),rgba(12,16,23,.96));
-      border:1px solid rgba(148,163,184,.15);
-      box-shadow:0 18px 60px rgba(0,0,0,.28);
-      transition:.35s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(214,178,94,.45);
-      box-shadow:0 24px 90px rgba(0,0,0,.42);
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(214,178,94,.10);
-      border:1px solid rgba(214,178,94,.28);
-      color:#f8e7b0;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-
-    .accent{
-      background:linear-gradient(90deg,#f8e7b0,#d6b25e,#38bdf8);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    .btn-primary{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:13px 20px;
-      border-radius:14px;
-      background:linear-gradient(135deg,#d6b25e,#f8e7b0);
-      color:#111827;
-      font-weight:800;
-      transition:.25s ease;
-      box-shadow:0 16px 40px rgba(214,178,94,.20);
-    }
-
-    .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05)}
-
-    .btn-secondary{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:13px 20px;
-      border-radius:14px;
-      background:rgba(148,163,184,.08);
-      border:1px solid rgba(148,163,184,.22);
-      color:#e2e8f0;
-      font-weight:700;
-      transition:.25s ease;
-    }
-
-    .btn-secondary:hover{transform:translateY(-2px);border-color:rgba(56,189,248,.45)}
-
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      padding:7px 11px;
-      border-radius:999px;
-      background:rgba(56,189,248,.08);
-      border:1px solid rgba(56,189,248,.18);
-      color:#bae6fd;
-      font-size:12px;
-      font-weight:700;
-    }
-
-    .metric{
-      background:linear-gradient(180deg,rgba(21,27,38,.95),rgba(8,12,18,.95));
-      border:1px solid rgba(148,163,184,.16);
-      border-radius:22px;
-      padding:24px;
-    }
-
-    .timeline-line{
-      position:absolute;
-      left:17px;
-      top:34px;
-      bottom:0;
-      width:1px;
-      background:linear-gradient(180deg,rgba(214,178,94,.8),rgba(56,189,248,.15));
-    }
-
-    .dot{
-      width:34px;
-      height:34px;
-      border-radius:999px;
-      background:rgba(214,178,94,.12);
-      border:1px solid rgba(214,178,94,.45);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-shrink:0;
-    }
-
-    .modal{
-      display:none;
+    body::before{
+      content:"";
       position:fixed;
       inset:0;
-      z-index:999;
-      background:rgba(0,0,0,.76);
-      backdrop-filter:blur(12px);
-      align-items:center;
-      justify-content:center;
-      padding:24px;
+      pointer-events:none;
+      z-index:-1;
+      opacity:.035;
+      background-image:
+        linear-gradient(rgba(255,255,255,.9) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.9) 1px,transparent 1px);
+      background-size:56px 56px;
+      mask-image:linear-gradient(to bottom,black,transparent 70%);
     }
 
-    .modal.active{display:flex}
+    a{color:inherit}
+    button,input{font:inherit}
+    img{max-width:100%}
 
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(18px)}
-      to{opacity:1;transform:translateY(0)}
+    .skip-link{
+      position:fixed;left:16px;top:-80px;z-index:999;
+      background:var(--gold);color:#111;padding:12px 16px;border-radius:12px;
+      font-weight:800;text-decoration:none;
+    }
+    .skip-link:focus{top:16px}
+
+    .topbar{
+      position:fixed;inset:0 0 auto 0;height:78px;z-index:50;
+      display:flex;align-items:center;
+      background:rgba(3,10,19,.80);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      width:min(var(--max),calc(100% - 40px));
+      margin:auto;
+      display:flex;align-items:center;justify-content:space-between;gap:24px;
     }
 
-    .fade-up{animation:fadeUp .7s ease both}
+    .brand{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:max-content}
+    .monogram{
+      width:48px;height:48px;border:1px solid rgba(201,162,81,.65);
+      border-radius:15px;display:grid;place-items:center;
+      color:var(--gold-2);font-weight:900;letter-spacing:-.08em;font-size:19px;
+      background:linear-gradient(145deg,rgba(201,162,81,.15),rgba(255,255,255,.02));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 12px 35px rgba(0,0,0,.25);
+    }
+    .brand-text strong{display:block;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+    .brand-text span{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2)}
+
+    .desktop-nav{display:flex;align-items:center;gap:6px}
+    .desktop-nav a{
+      text-decoration:none;color:#d8e0eb;padding:10px 12px;border-radius:12px;
+      font-size:13px;font-weight:700;transition:.22s;
+    }
+    .desktop-nav a:hover,.desktop-nav a.active{background:var(--gold-soft);color:#fff}
+    .top-actions{display:flex;align-items:center;gap:10px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      min-height:46px;padding:0 18px;border-radius:14px;border:1px solid var(--line);
+      text-decoration:none;font-weight:850;font-size:14px;cursor:pointer;
+      transition:transform .2s,border-color .2s,background .2s;
+      background:rgba(255,255,255,.04);color:#fff;
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(201,162,81,.55)}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--gold),#ab7f2e);
+      color:#0a0f18;border-color:transparent;
+      box-shadow:0 16px 45px rgba(201,162,81,.20);
+    }
+    .btn-small{min-height:40px;padding:0 14px;font-size:12px}
+    .menu-btn{display:none}
+
+    main{padding-top:78px}
+    section{position:relative;padding:108px 0;border-bottom:1px solid rgba(255,255,255,.065)}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .section-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:64px;align-items:start}
+    .section-head{position:sticky;top:112px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:900;color:var(--gold-2);
+      margin-bottom:18px;
+    }
+    .eyebrow::before{content:"";width:32px;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+    h1,h2,h3,p{margin-top:0}
+    h1{
+      font-size:clamp(48px,7vw,104px);
+      line-height:.93;letter-spacing:-.065em;margin-bottom:26px;
+      max-width:980px;
+    }
+    h2{
+      font-size:clamp(38px,5.2vw,72px);
+      line-height:.98;letter-spacing:-.055em;margin-bottom:22px;
+    }
+    h3{line-height:1.16;letter-spacing:-.025em}
+    .lead{
+      color:#dbe3ef;font-size:clamp(18px,2vw,24px);line-height:1.5;max-width:880px;
+    }
+    .muted{color:var(--muted)}
+    .gold{color:var(--gold-2)}
+    .rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:24px 0}
+
+    .hero{
+      min-height:calc(100vh - 78px);
+      display:flex;align-items:center;padding:72px 0 54px;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";position:absolute;width:760px;height:760px;border-radius:50%;
+      right:-280px;top:-240px;
+      background:radial-gradient(circle,rgba(201,162,81,.16),transparent 65%);
+      pointer-events:none;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:60px;align-items:center}
+    .hero-copy{position:relative;z-index:2}
+    .hero-copy h1 span{display:block;color:var(--gold-2)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+    .trust-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+    .trust-pill{
+      border:1px solid var(--line);border-radius:999px;padding:9px 13px;
+      font-size:12px;font-weight:800;color:#d6deea;background:rgba(255,255,255,.035)
+    }
+
+    .executive-visual{
+      min-height:620px;border-radius:36px;border:1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(145deg,rgba(201,162,81,.09),rgba(79,179,255,.035)),
+        rgba(7,17,31,.80);
+      box-shadow:var(--shadow);position:relative;overflow:hidden;padding:28px;
+    }
+    .executive-visual::before{
+      content:"";position:absolute;inset:-30%;
+      background:
+        conic-gradient(from 10deg,transparent,rgba(201,162,81,.09),transparent 28%,rgba(79,179,255,.07),transparent 55%);
+      animation:rotate 18s linear infinite;
+    }
+    @keyframes rotate{to{transform:rotate(1turn)}}
+    .visual-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:22px}
+    .visual-top{display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .status{
+      display:flex;align-items:center;gap:8px;font-size:12px;font-weight:850;
+      color:#cfeadb;border:1px solid rgba(54,198,141,.28);background:rgba(54,198,141,.08);
+      border-radius:999px;padding:8px 12px;
+    }
+    .status i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(54,198,141,.10)}
+    .visual-title{font-size:14px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+    .operating-model{
+      align-self:center;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+    }
+    .model-node{
+      min-height:118px;border:1px solid var(--line);border-radius:22px;padding:20px;
+      background:rgba(255,255,255,.055);display:flex;flex-direction:column;justify-content:space-between;
+      transition:.25s;
+    }
+    .model-node:hover{transform:translateY(-4px);border-color:rgba(201,162,81,.45);background:rgba(201,162,81,.07)}
+    .model-node span{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-2);font-weight:900}
+    .model-node strong{font-size:20px}
+    .center-node{
+      grid-column:1/-1;min-height:145px;
+      background:linear-gradient(135deg,rgba(201,162,81,.18),rgba(255,255,255,.055));
+      border-color:rgba(201,162,81,.35);
+    }
+    .visual-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .mini-metric{border-top:1px solid var(--line);padding-top:14px}
+    .mini-metric strong{font-size:20px;display:block}
+    .mini-metric span{font-size:11px;color:var(--muted)}
+
+    .executive-strip{
+      margin-top:42px;display:grid;grid-template-columns:repeat(4,1fr);
+      border:1px solid var(--line);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.025)
+    }
+    .strip-item{padding:22px;border-right:1px solid var(--line)}
+    .strip-item:last-child{border-right:0}
+    .strip-item strong{display:block;font-size:17px;margin-bottom:4px}
+    .strip-item span{font-size:12px;color:var(--muted)}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .cards.two{grid-template-columns:repeat(2,1fr)}
+    .cards.four{grid-template-columns:repeat(4,1fr)}
+    .card{
+      position:relative;border:1px solid var(--line);border-radius:var(--radius-lg);
+      background:linear-gradient(145deg,rgba(255,255,255,.060),rgba(255,255,255,.025));
+      padding:26px;overflow:hidden;box-shadow:0 18px 55px rgba(0,0,0,.16);
+    }
+    .card::after{
+      content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-90px;top:-90px;
+      background:radial-gradient(circle,rgba(201,162,81,.16),transparent 70%);
+    }
+    .card .index{font-size:11px;letter-spacing:.14em;color:var(--gold-2);font-weight:900;text-transform:uppercase}
+    .card h3{font-size:21px;margin:18px 0 10px}
+    .card p{color:#c2ccda;margin-bottom:0}
+    .card ul{padding-left:18px;color:#c2ccda;margin-bottom:0}
+    .card li+li{margin-top:7px}
+    .icon-box{
+      width:48px;height:48px;border:1px solid rgba(201,162,81,.3);border-radius:15px;
+      display:grid;place-items:center;color:var(--gold-2);background:var(--gold-soft);font-weight:900;
+    }
+    .icon-box svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+    .problem-map{display:grid;gap:12px}
+    .problem-row{
+      display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;
+      padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.035)
+    }
+    .problem-row strong{font-size:15px}
+    .problem-row p{margin:3px 0 0;color:var(--muted);font-size:13px}
+    .impact-tag{white-space:nowrap;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900}
+    .impact-red{color:#ffd4d4;background:rgba(255,107,107,.09);border:1px solid rgba(255,107,107,.22)}
+    .impact-gold{color:#ffe8b7;background:rgba(201,162,81,.09);border:1px solid rgba(201,162,81,.22)}
+
+    .method{display:grid;gap:0}
+    .method-step{
+      display:grid;grid-template-columns:92px 1fr 1.15fr;gap:24px;
+      padding:26px 0;border-bottom:1px solid var(--line);align-items:start;
+    }
+    .method-step:first-child{padding-top:0}
+    .method-step:last-child{border-bottom:0}
+    .method-num{
+      width:64px;height:64px;border-radius:19px;background:linear-gradient(145deg,var(--gold),#a87826);
+      color:#10141c;display:grid;place-items:center;font-size:20px;font-weight:950;
+      box-shadow:0 16px 42px rgba(201,162,81,.17);
+    }
+    .method-step h3{font-size:23px;margin:4px 0 8px}
+    .method-step p{color:var(--muted);margin:0}
+    .deliverables{display:flex;gap:8px;flex-wrap:wrap}
+    .deliverables span{
+      border:1px solid var(--line);border-radius:999px;padding:7px 10px;
+      font-size:11px;color:#dbe3ef;background:rgba(255,255,255,.035);font-weight:750;
+    }
+
+    .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .case{
+      border:1px solid var(--line);border-radius:26px;overflow:hidden;background:rgba(255,255,255,.035);
+    }
+    .case-top{
+      min-height:180px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;
+      background:
+        linear-gradient(135deg,rgba(201,162,81,.13),transparent),
+        radial-gradient(circle at 100% 0%,rgba(79,179,255,.12),transparent 45%);
+      border-bottom:1px solid var(--line);
+    }
+    .case-sector{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2);font-weight:900}
+    .case-top h3{font-size:27px;margin:18px 0 0;max-width:520px}
+    .case-body{padding:26px;display:grid;gap:18px}
+    .case-line span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:850;margin-bottom:5px}
+    .case-line p{margin:0;color:#d3dce8}
+    .evidence-note{
+      padding:14px 16px;border-left:3px solid var(--gold);background:rgba(201,162,81,.08);
+      border-radius:0 14px 14px 0;color:#e8dfca;font-size:13px;
+    }
+
+    .outcome-board{
+      border:1px solid var(--line);border-radius:28px;overflow:hidden;background:rgba(255,255,255,.03)
+    }
+    .outcome-row{
+      display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid var(--line)
+    }
+    .outcome-row:last-child{border-bottom:0}
+    .outcome-cell{padding:24px;border-right:1px solid var(--line)}
+    .outcome-cell:last-child{border-right:0}
+    .outcome-cell span{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-2);font-weight:900}
+    .outcome-cell strong{display:block;margin-top:8px;font-size:18px}
+    .outcome-cell p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    .offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .offer{
+      border:1px solid var(--line);border-radius:28px;padding:28px;position:relative;
+      background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.025));
+    }
+    .offer.featured{
+      border-color:rgba(201,162,81,.52);
+      background:linear-gradient(145deg,rgba(201,162,81,.13),rgba(255,255,255,.035));
+      transform:translateY(-10px);
+      box-shadow:0 22px 70px rgba(0,0,0,.24);
+    }
+    .offer-tag{
+      display:inline-flex;border:1px solid rgba(201,162,81,.30);background:var(--gold-soft);
+      color:var(--gold-2);border-radius:999px;padding:7px 10px;font-size:10px;font-weight:950;
+      text-transform:uppercase;letter-spacing:.12em;
+    }
+    .offer h3{font-size:26px;margin:20px 0 10px}
+    .offer .subtitle{color:var(--muted);min-height:50px}
+    .offer ul{padding-left:18px;color:#d5deea;margin:22px 0 26px}
+    .offer li+li{margin-top:8px}
+    .offer-foot{border-top:1px solid var(--line);padding-top:18px;color:#cad4e2;font-size:13px}
+
+    .profile-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:42px}
+    .profile-card{
+      min-height:500px;border:1px solid var(--line);border-radius:30px;padding:34px;
+      background:
+        radial-gradient(circle at 85% 8%,rgba(201,162,81,.16),transparent 31%),
+        linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.025));
+      display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .profile-mark{
+      width:118px;height:118px;border:1px solid rgba(201,162,81,.48);border-radius:32px;
+      display:grid;place-items:center;font-size:46px;font-weight:950;color:var(--gold-2);
+      background:rgba(201,162,81,.09);box-shadow:0 20px 65px rgba(0,0,0,.28);
+    }
+    .profile-card h3{font-size:37px;margin:30px 0 12px}
+    .profile-card p{color:#ccd6e4}
+    .profile-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}
+    .profile-meta div{border-top:1px solid var(--line);padding-top:13px}
+    .profile-meta span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-2);font-weight:900}
+    .profile-meta strong{display:block;margin-top:6px;font-size:14px}
+    .capability-list{display:grid;gap:12px}
+    .capability{
+      display:grid;grid-template-columns:160px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)
+    }
+    .capability:last-child{border-bottom:0}
+    .capability strong{font-size:15px}
+    .capability p{margin:0;color:var(--muted)}
+
+    .maturity{
+      display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:center;
+      border:1px solid var(--line);border-radius:30px;padding:34px;background:rgba(255,255,255,.035)
+    }
+    .score-card{
+      text-align:center;border:1px solid var(--line);border-radius:24px;padding:28px;background:rgba(255,255,255,.035)
+    }
+    .score-number{font-size:82px;line-height:1;font-weight:950;color:var(--gold-2);letter-spacing:-.08em}
+    .score-card p{color:var(--muted);margin:10px 0 0}
+    .maturity-bars{display:grid;gap:15px}
+    .bar-head{display:flex;justify-content:space-between;gap:20px;font-size:13px;font-weight:800;margin-bottom:7px}
+    .bar{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+    .bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gold),var(--blue));width:var(--w)}
+
+    .roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .calculator,.roi-result{
+      border:1px solid var(--line);border-radius:28px;padding:30px;background:rgba(255,255,255,.035)
+    }
+    .field{margin-bottom:18px}
+    .field label{display:block;color:#dbe3ed;font-weight:800;font-size:13px;margin-bottom:8px}
+    .field input{
+      width:100%;height:52px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.05);color:#fff;padding:0 15px;outline:none;
+    }
+    .field input:focus{border-color:rgba(201,162,81,.7);box-shadow:0 0 0 4px rgba(201,162,81,.08)}
+    .roi-result{display:flex;flex-direction:column;justify-content:center;text-align:center}
+    .roi-result span{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:var(--gold-2);font-weight:900}
+    .roi-result strong{font-size:clamp(44px,6vw,78px);line-height:1;margin:20px 0;color:var(--green);letter-spacing:-.06em}
+    .roi-result p{color:var(--muted);margin-bottom:0}
+    .disclaimer{margin-top:14px;font-size:11px;color:#7f8c9f}
+
+    .cta-section{padding:120px 0}
+    .cta-box{
+      border:1px solid rgba(201,162,81,.32);border-radius:36px;padding:64px;
+      background:
+        radial-gradient(circle at 90% 0%,rgba(201,162,81,.18),transparent 34%),
+        linear-gradient(135deg,rgba(201,162,81,.08),rgba(79,179,255,.035));
+      box-shadow:var(--shadow);text-align:center;
+    }
+    .cta-box h2{max-width:950px;margin-left:auto;margin-right:auto}
+    .cta-box .lead{margin-left:auto;margin-right:auto}
+    .cta-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
+    .contact-line{margin-top:28px;color:var(--muted);font-size:13px}
+
+    footer{padding:34px 0 50px}
+    .footer-inner{
+      display:flex;justify-content:space-between;gap:24px;align-items:center;color:var(--muted);font-size:12px
+    }
+
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media(max-width:1080px){
+      .desktop-nav{display:none}
+      .menu-btn{display:inline-flex}
+      .top-actions .print-btn{display:none}
+      .mobile-nav{
+        position:fixed;top:78px;left:0;right:0;z-index:49;
+        display:none;padding:14px 20px 20px;background:rgba(3,10,19,.97);border-bottom:1px solid var(--line)
+      }
+      .mobile-nav.open{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+      .mobile-nav a{padding:12px;border-radius:12px;text-decoration:none;background:rgba(255,255,255,.04);font-weight:750;font-size:13px}
+      .hero-grid,.section-grid,.profile-grid,.maturity{grid-template-columns:1fr}
+      .section-head{position:static}
+      .executive-visual{min-height:560px}
+      .executive-strip,.cards.four{grid-template-columns:repeat(2,1fr)}
+      .strip-item:nth-child(2){border-right:0}
+      .strip-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .cards,.offer-grid{grid-template-columns:1fr}
+      .offer.featured{transform:none}
+      .method-step{grid-template-columns:74px 1fr}
+      .method-step .deliverables{grid-column:2}
+    }
+    @media(max-width:760px){
+      .topbar-inner,.container{width:min(100% - 28px,var(--max))}
+      section{padding:78px 0}
+      h1{font-size:clamp(44px,15vw,70px)}
+      h2{font-size:clamp(35px,11vw,56px)}
+      .hero{padding-top:52px}
+      .hero-actions .btn{width:100%}
+      .executive-visual{min-height:620px;padding:20px}
+      .operating-model{grid-template-columns:1fr}
+      .center-node{grid-column:auto}
+      .visual-bottom{grid-template-columns:1fr}
+      .executive-strip,.cards.two,.cards.four,.case-grid,.roi-grid{grid-template-columns:1fr}
+      .strip-item{border-right:0;border-bottom:1px solid var(--line)}
+      .strip-item:last-child{border-bottom:0}
+      .problem-row{grid-template-columns:38px 1fr}
+      .impact-tag{grid-column:2;justify-self:start}
+      .method-step{grid-template-columns:58px 1fr;gap:14px}
+      .method-num{width:50px;height:50px;border-radius:15px}
+      .outcome-row{grid-template-columns:1fr}
+      .outcome-cell{border-right:0;border-bottom:1px solid var(--line)}
+      .outcome-cell:last-child{border-bottom:0}
+      .profile-meta{grid-template-columns:1fr}
+      .capability{grid-template-columns:1fr;gap:5px}
+      .cta-box{padding:42px 22px}
+      .footer-inner{flex-direction:column;text-align:center}
+      .brand-text{display:none}
+    }
+
+    @media print{
+      :root{--white:#101722;--muted:#46556a;--line:rgba(12,24,42,.15)}
+      body{background:#fff;color:#101722}
+      body::before,.topbar,.mobile-nav,.hero::after{display:none!important}
+      main{padding-top:0}
+      section{padding:42px 0;page-break-inside:avoid;border-bottom:1px solid #dce2ea}
+      .container{width:92%}
+      .hero{min-height:auto}
+      .hero-grid,.section-grid,.profile-grid,.maturity{grid-template-columns:1fr 1fr;gap:26px}
+      .executive-visual,.card,.case,.offer,.profile-card,.maturity,.calculator,.roi-result,.cta-box,.outcome-board{
+        background:#fff!important;box-shadow:none!important;border-color:#d9e0e9!important;color:#101722
+      }
+      .lead,.muted,.card p,.card li,.case-line p,.profile-card p,.capability p,.calculator p,.roi-result p,.contact-line{color:#46556a!important}
+      .btn{border-color:#aeb8c5;color:#101722}
+      .btn-primary{background:#c9a251!important;color:#101722!important}
+      .reveal{opacity:1!important;transform:none!important}
+      .executive-visual::before{display:none}
+      .model-node{background:#f6f8fb!important;color:#101722}
+      a{text-decoration:none}
+    }
   </style>
 </head>
-
 <body>
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#07090d]/78 backdrop-blur-xl">
-    <nav class="max-w-7xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between">
-      <a href="#top" class="font-extrabold tracking-tight text-lg">
-        Gustavo <span class="accent">Farias</span>
-      </a>
+<a href="#conteudo" class="skip-link">Ir para o conteúdo</a>
 
-      <div class="hidden md:flex items-center gap-7 text-sm text-slate-300">
-        <a href="#especialidades" class="hover:text-white">Especialidades</a>
-        <a href="#experiencia" class="hover:text-white">Experiência</a>
-        <a href="#projetos" class="hover:text-white">Projetos</a>
-        <a href="#resultados" class="hover:text-white">Resultados</a>
-        <a href="#contato" class="hover:text-white">Contato</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#inicio" aria-label="Início">
+      <div class="monogram">CF</div>
+      <div class="brand-text">
+        <strong>Cruz &amp; Farias</strong>
+        <span>Consultoria Executiva</span>
       </div>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Navegação principal">
+      <a href="#desafio">Desafio</a>
+      <a href="#atuacao">Atuação</a>
+      <a href="#metodo">Método</a>
+      <a href="#experiencias">Experiências</a>
+      <a href="#modelos">Contratação</a>
+      <a href="#sobre">Gustavo</a>
     </nav>
-  </header>
 
-  <main id="top" class="max-w-7xl mx-auto px-5 md:px-8 py-10 md:py-16">
-    <section class="glass rounded-[34px] p-6 md:p-10 lg:p-12 overflow-hidden relative fade-up">
-      <div class="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-sky-400/10 blur-3xl"></div>
-      <div class="absolute -left-24 bottom-0 w-72 h-72 rounded-full bg-yellow-400/10 blur-3xl"></div>
-
-      <div class="relative grid lg:grid-cols-[1.25fr_.75fr] gap-10 items-center">
-        <div>
-          <span class="eyebrow">Transformação Operacional & Sistemas Corporativos</span>
-
-          <h1 class="mt-6 text-4xl md:text-6xl font-extrabold leading-[1.03] tracking-tight">
-            Transformando <span class="accent">sistemas, dados e processos</span> em eficiência operacional.
-          </h1>
-
-          <p class="mt-6 text-lg md:text-xl text-slate-300 max-w-3xl leading-relaxed">
-            Especialista na integração entre ERP, BI, governança de dados, processos corporativos, automação e melhoria contínua para apoiar decisões executivas e operações mais previsíveis.
-          </p>
-
-          <div class="mt-7 flex flex-wrap gap-3">
-            <span class="tag">ERP Sienge</span>
-            <span class="tag">SAP</span>
-            <span class="tag">WMS</span>
-            <span class="tag">TOTVS</span>
-            <span class="tag">Sankhya</span>
-            <span class="tag">Power BI</span>
-            <span class="tag">Python</span>
-            <span class="tag">SQL</span>
-            <span class="tag">PMO</span>
-          </div>
-
-          <div class="mt-9 flex flex-wrap gap-4">
-            <a href="#projetos" class="btn-primary">Ver projetos estratégicos →</a>
-            <a href="https://www.linkedin.com/in/gustavohenriquefarias" target="_blank" class="btn-secondary">LinkedIn</a>
-            <a href="https://github.com/GustavoAnalytics" target="_blank" class="btn-secondary">GitHub</a>
-            <a href="https://www.instagram.com/gustavo_hfarias/" target="_blank" class="btn-secondary">Instagram</a>
-          </div>
-        </div>
-
-        <div class="relative flex justify-center lg:justify-end">
-          <div class="absolute inset-0 bg-gradient-to-br from-yellow-300/15 to-sky-400/10 rounded-full blur-3xl"></div>
-          <div class="relative p-2 rounded-full border border-white/15 bg-white/5 shadow-2xl">
-            <img
-              src="ChatGPT Image May 20, 2026, 11_16_50 AM.png"
-              alt="Gustavo Farias"
-              class="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border border-white/10"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="resultados" class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 fade-up">
-      <div class="metric">
-        <p class="text-3xl md:text-4xl font-extrabold accent">15%</p>
-        <p class="mt-2 text-sm text-slate-400">Redução de custos ocultos</p>
-      </div>
-      <div class="metric">
-        <p class="text-3xl md:text-4xl font-extrabold accent">+15h</p>
-        <p class="mt-2 text-sm text-slate-400">Economia semanal com automações</p>
-      </div>
-      <div class="metric">
-        <p class="text-3xl md:text-4xl font-extrabold accent">40%</p>
-        <p class="mt-2 text-sm text-slate-400">Redução no processamento de dados</p>
-      </div>
-      <div class="metric">
-        <p class="text-3xl md:text-4xl font-extrabold accent">8 áreas</p>
-        <p class="mt-2 text-sm text-slate-400">Impactadas com BI e indicadores</p>
-      </div>
-    </section>
-
-    <section id="especialidades" class="mt-20">
-      <div class="max-w-3xl mb-10">
-        <span class="eyebrow">Pilares de atuação</span>
-        <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Menos ferramenta. Mais transformação corporativa.</h2>
-        <p class="mt-4 text-slate-400 leading-relaxed">
-          Minha atuação combina visão operacional, tecnologia, dados e governança para estruturar ambientes corporativos mais eficientes, integrados e orientados por indicadores.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="card rounded-3xl p-7">
-          <p class="text-3xl">🏢</p>
-          <h3 class="mt-5 text-xl font-extrabold">Sistemas Corporativos</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Implantação, sustentação e evolução de ERP, WMS, SAP, Sankhya, TOTVS e Sienge conectados à realidade operacional.</p>
-          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">ERP</span><span class="tag">WMS</span><span class="tag">SAP</span></div>
-        </article>
-
-        <article class="card rounded-3xl p-7">
-          <p class="text-3xl">⚙️</p>
-          <h3 class="mt-5 text-xl font-extrabold">PMO & Processos</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Mapeamento AS-IS / TO-BE, levantamento de requisitos, gestão de mudanças, stakeholders e governança de processos.</p>
-          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">PMO</span><span class="tag">BPM</span><span class="tag">Governança</span></div>
-        </article>
-
-        <article class="card rounded-3xl p-7">
-          <p class="text-3xl">📊</p>
-          <h3 class="mt-5 text-xl font-extrabold">BI & Indicadores</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Dashboards executivos, KPIs estratégicos, Power BI, DAX, indicadores financeiros, operacionais e gerenciais.</p>
-          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Power BI</span><span class="tag">KPIs</span><span class="tag">DAX</span></div>
-        </article>
-
-        <article class="card rounded-3xl p-7">
-          <p class="text-3xl">🔗</p>
-          <h3 class="mt-5 text-xl font-extrabold">Dados & Integrações</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Pipelines, APIs, bancos de dados, ETL, Airflow, modelagem e integração entre ERP, CRM, BI e plataformas externas.</p>
-          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">APIs</span></div>
-        </article>
-
-        <article class="card rounded-3xl p-7">
-          <p class="text-3xl">🚀</p>
-          <h3 class="mt-5 text-xl font-extrabold">Eficiência Operacional</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Aplicação de Lean Operations e Lean Construction para reduzir desperdícios, gargalos e retrabalho operacional.</p>
-          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">Lean</span><span class="tag">Melhoria Contínua</span></div>
-        </article>
-
-        <article class="card rounded-3xl p-7">
-          <p class="text-3xl">🤖</p>
-          <h3 class="mt-5 text-xl font-extrabold">Automação Corporativa</h3>
-          <p class="mt-3 text-slate-400 text-sm leading-relaxed">Automação de rotinas manuais, workflows, relatórios, integrações e processos repetitivos com foco em produtividade.</p>
-          <div class="mt-5 flex flex-wrap gap-2"><span class="tag">RPA</span><span class="tag">Streamlit</span><span class="tag">Workflows</span></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="experiencia" class="mt-24">
-      <div class="max-w-3xl mb-10">
-        <span class="eyebrow">Trajetória</span>
-        <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Experiência conectando operação, tecnologia e gestão.</h2>
-        <p class="mt-4 text-slate-400 leading-relaxed">Resumo executivo das principais atuações com foco em transformação operacional, sistemas corporativos e dados.</p>
-      </div>
-
-      <div class="relative space-y-7">
-        <div class="timeline-line hidden md:block"></div>
-
-        <article class="relative md:pl-14">
-          <div class="dot hidden md:flex absolute left-0 top-2">1</div>
-          <div class="card rounded-3xl p-7">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <h3 class="text-2xl font-extrabold">Grupo MNGT</h3>
-                <p class="text-[#d6b25e] font-bold">Gestor ERP | WMS | SAP | BI | PMO de Sistemas</p>
-              </div>
-              <span class="tag">2025 — Atual</span>
-            </div>
-            <p class="mt-5 text-slate-300 leading-relaxed">Evolução do ecossistema de sistemas corporativos integrando ERP, WMS, SAP, BI, dados, processos e operação com foco em governança e eficiência.</p>
-            <ul class="mt-5 grid md:grid-cols-2 gap-3 text-sm text-slate-400">
-              <li>• PMO de Sistemas entre tecnologia, operação e gestão</li>
-              <li>• Mapeamento AS-IS / TO-BE e melhoria contínua</li>
-              <li>• Indicadores estratégicos e dashboards executivos</li>
-              <li>• Governança, qualidade de dados e capacitação de equipes</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="relative md:pl-14">
-          <div class="dot hidden md:flex absolute left-0 top-2">2</div>
-          <div class="card rounded-3xl p-7">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <h3 class="text-2xl font-extrabold">Área Incrível Incorporadora</h3>
-                <p class="text-[#d6b25e] font-bold">Gestor ERP | Sienge | PMO de Sistemas | Lean Construction</p>
-              </div>
-              <span class="tag">2025 — Atual</span>
-            </div>
-            <p class="mt-5 text-slate-300 leading-relaxed">Gestão e evolução do ERP Sienge conectando engenharia, financeiro, suprimentos, operação e tecnologia para previsibilidade operacional.</p>
-            <ul class="mt-5 grid md:grid-cols-2 gap-3 text-sm text-slate-400">
-              <li>• Estruturação de processos no ERP Sienge</li>
-              <li>• Integrações entre ERP, BI, APIs e sistemas externos</li>
-              <li>• Indicadores executivos e governança de dados</li>
-              <li>• Lean Construction para redução de desperdícios</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="relative md:pl-14">
-          <div class="dot hidden md:flex absolute left-0 top-2">3</div>
-          <div class="card rounded-3xl p-7">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <h3 class="text-2xl font-extrabold">GFFinance Consultoria</h3>
-                <p class="text-[#d6b25e] font-bold">Consultor de Dados e Processos</p>
-              </div>
-              <span class="tag">2023 — Atual</span>
-            </div>
-            <p class="mt-5 text-slate-300 leading-relaxed">Transformação de dados financeiros em inteligência de gestão para construtoras, com foco em viabilidade, orçamento, fluxo de caixa e tomada de decisão.</p>
-            <ul class="mt-5 grid md:grid-cols-2 gap-3 text-sm text-slate-400">
-              <li>• Dashboards de Orçado x Realizado, cash flow e curva de vendas</li>
-              <li>• Análises de viabilidade e custos ocultos</li>
-              <li>• Integração entre ERP, BI e fontes financeiras</li>
-              <li>• Redução de custos ocultos em até 15%</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="relative md:pl-14">
-          <div class="dot hidden md:flex absolute left-0 top-2">4</div>
-          <div class="card rounded-3xl p-7">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <h3 class="text-2xl font-extrabold">Vilaurbe | Construtora e Incorporadora</h3>
-                <p class="text-[#d6b25e] font-bold">Data Analytics e Processos</p>
-              </div>
-              <span class="tag">2022 — 2025</span>
-            </div>
-            <p class="mt-5 text-slate-300 leading-relaxed">Liderança de iniciativas de dados, automação e integração entre ERP, CRM e APIs para suporte estratégico à operação e diretoria.</p>
-            <ul class="mt-5 grid md:grid-cols-2 gap-3 text-sm text-slate-400">
-              <li>• Redução de 40% no tempo de processamento de dados</li>
-              <li>• Redução de até 65% no tempo de tarefas operacionais</li>
-              <li>• Dashboards executivos para engenharia, comercial e diretoria</li>
-              <li>• Soluções de BI impactando 8 áreas da empresa</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="projetos" class="mt-24">
-  <div class="max-w-3xl mb-10">
-    <span class="eyebrow">Portfólio estratégico</span>
-    <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">
-      Projetos que conectam sistemas, indicadores e operação.
-    </h2>
-
-    <p class="mt-4 text-slate-400 leading-relaxed">
-      Cases estruturados para demonstrar aplicação prática em ERP, PMO,
-      BI, processos, finanças e transformação operacional.
-    </p>
-  </div>
-
-  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-7">
-
-    <!-- PMO -->
-    <article class="card rounded-3xl overflow-hidden">
-      <img src="ChatGPT Image May 17, 2026, 08_03_28 PM.png"
-           alt="PMO Sistemas e ERP"
-           class="h-56 w-full object-cover opacity-90">
-
-      <div class="p-7">
-        <h3 class="text-2xl font-extrabold">PMO Sistemas & ERP</h3>
-
-        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
-          Implantação e governança de ERP Sienge, SAP, WMS e TOTVS
-          com levantamento de requisitos, AS-IS, TO-BE,
-          treinamento e sustentação.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span class="tag">ERP</span>
-          <span class="tag">PMO</span>
-          <span class="tag">Governança</span>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <button onclick="openModal('erp')" class="btn-secondary">
-            Detalhes
-          </button>
-
-          <a href="pmo.html" target="_blank" class="btn-primary">
-            Ver projeto →
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Fluxo Caixa -->
-    <article class="card rounded-3xl overflow-hidden">
-      <img src="ChatGPT Image May 17, 2026, 08_10_27 PM.png"
-           alt="Dashboard Fluxo de Caixa"
-           class="h-56 w-full object-cover opacity-90">
-
-      <div class="p-7">
-        <h3 class="text-2xl font-extrabold">
-          Dashboard Fluxo de Caixa
-        </h3>
-
-        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
-          Monitoramento financeiro, projeção futura, controle diário,
-          conciliação e visão executiva para gestão do caixa.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span class="tag">Power BI</span>
-          <span class="tag">Financeiro</span>
-          <span class="tag">Cash Flow</span>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <a href="fluxo_caixa.html" class="btn-secondary">
-            Detalhes
-          </a>
-
-          <a target="_blank"
-             href="https://app.powerbi.com/view?r=eyJrIjoiNWQ4NzM2YWItNDBjZS00MzUwLWJiNzUtZjUyNDk2OGZhN2NhIiwidCI6IjJhMjZjMDM5LTRmYWYtNDc1OS1iZGI0LWIxMGQwNDJhNzc0YSJ9"
-             class="btn-primary">
-            Ver projeto →
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Viabilidade -->
-    <article class="card rounded-3xl overflow-hidden">
-      <img src="ChatGPT Image May 17, 2026, 08_05_12 PM.png"
-           alt="Viabilidade Financeira"
-           class="h-56 w-full object-cover opacity-90">
-
-      <div class="p-7">
-        <h3 class="text-2xl font-extrabold">
-          Viabilidade Financeira
-        </h3>
-
-        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
-          Fluxo de caixa, VGV, RET, lucro, margem, orçamento e
-          indicadores para análise de empreendimentos imobiliários.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span class="tag">Power BI</span>
-          <span class="tag">Controladoria</span>
-          <span class="tag">VGV</span>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <a href="viabilidade.html" class="btn-secondary">
-            Detalhes
-          </a>
-
-          <a target="_blank"
-             href="https://app.powerbi.com/view?r=eyJrIjoiZmVmZWY0ZWMtNjZkYS00ODg4LThkY2UtN2Y0YTM1MjJlMDM0IiwidCI6IjBiNDNkYmFjLTM5NjgtNDljYS05YWE1LTU0MzA0N2QxMTUxZCJ9"
-             class="btn-primary">
-            Ver projeto →
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Comercial -->
-    <article class="card rounded-3xl overflow-hidden">
-      <img src="comercial.png"
-           alt="Especialista Comercial"
-           class="h-56 w-full object-cover opacity-90">
-
-      <div class="p-7">
-        <h3 class="text-2xl font-extrabold">
-          Especialista Comercial
-        </h3>
-
-        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
-          Gestão comercial com pipeline, funil de vendas,
-          forecast, metas, conversão, performance e
-          indicadores estratégicos.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span class="tag">Comercial</span>
-          <span class="tag">Pipeline</span>
-          <span class="tag">Forecast</span>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <button onclick="openModal('comercial')" class="btn-secondary">
-            Detalhes
-          </button>
-
-          <a href="comercial.html"
-             target="_blank"
-             class="btn-primary">
-            Ver projeto →
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Inadimplência -->
-    <article class="card rounded-3xl overflow-hidden">
-      <img src="inadimplencia.png"
-           alt="Especialista Inadimplência"
-           class="h-56 w-full object-cover opacity-90">
-
-      <div class="p-7">
-        <h3 class="text-2xl font-extrabold">
-          Especialista Inadimplência
-        </h3>
-
-        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
-          Controle de inadimplência, aging da dívida,
-          cobrança ativa, acordos, risco de crédito,
-          recuperação financeira e carteira.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span class="tag">Cobrança</span>
-          <span class="tag">Aging</span>
-          <span class="tag">Crédito</span>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <button onclick="openModal('inadimplencia')" class="btn-secondary">
-            Detalhes
-          </button>
-
-          <a href="inadimplencia.html"
-             target="_blank"
-             class="btn-primary">
-            Ver projeto →
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Logística -->
-    <article class="card rounded-3xl overflow-hidden">
-      <img src="logistica-wms.png"
-           alt="Especialista Logística WMS"
-           class="h-56 w-full object-cover opacity-90">
-
-      <div class="p-7">
-        <h3 class="text-2xl font-extrabold">
-          Especialista Logística WMS
-        </h3>
-
-        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
-          Recebimento, armazenagem, picking,
-          expedição, SLA operacional, produtividade,
-          backlog e governança logística WMS.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span class="tag">WMS</span>
-          <span class="tag">Logística</span>
-          <span class="tag">SLA</span>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <button onclick="openModal('logistica')" class="btn-secondary">
-            Detalhes
-          </button>
-
-          <a href="logistica.html"
-             target="_blank"
-             class="btn-primary">
-            Ver projeto →
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Obras -->
-    <article class="card rounded-3xl overflow-hidden">
-      <img src="obras-sienge.png"
-           alt="Especialista Obras Sienge"
-           class="h-56 w-full object-cover opacity-90">
-
-      <div class="p-7">
-        <h3 class="text-2xl font-extrabold">
-          Especialista Obras Sienge
-        </h3>
-
-        <p class="mt-3 text-slate-400 text-sm leading-relaxed">
-          Evolução física, curva S, custo orçado vs realizado,
-          VGV, margem, Lean Construction, PPC e
-          indicadores executivos de engenharia.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span class="tag">Sienge</span>
-          <span class="tag">Obras</span>
-          <span class="tag">Lean</span>
-        </div>
-
-        <div class="mt-6 flex gap-3">
-          <button onclick="openModal('obras')" class="btn-secondary">
-            Detalhes
-          </button>
-
-          <a href="obras.html"
-             target="_blank"
-             class="btn-primary">
-            Ver projeto →
-          </a>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-    <section class="mt-24 glass rounded-[34px] p-8 md:p-10">
-      <div class="max-w-3xl mb-8">
-        <span class="eyebrow">Prova social</span>
-        <h2 class="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Depoimentos profissionais</h2>
-        <p class="mt-4 text-slate-400">Utilize depoimentos reais, preferencialmente com cargo, empresa e link do LinkedIn para aumentar credibilidade.</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div class="card rounded-3xl p-6">
-          <p class="text-slate-300 text-sm italic">“A implantação conduzida pelo Gustavo trouxe organização, padronização e confiabilidade nos dados.”</p>
-          <div class="mt-5 pt-4 border-t border-white/10">
-            <strong>Carlos Henrique</strong>
-            <p class="text-xs text-slate-500 mt-1">Gerente Administrativo</p>
-          </div>
-        </div>
-        <div class="card rounded-3xl p-6">
-          <p class="text-slate-300 text-sm italic">“O diferencial é unir tecnologia, processos e pessoas.”</p>
-          <div class="mt-5 pt-4 border-t border-white/10">
-            <strong>Eduardo Pacheco</strong>
-            <p class="text-xs text-slate-500 mt-1">CEO</p>
-          </div>
-        </div>
-        <div class="card rounded-3xl p-6">
-          <p class="text-slate-300 text-sm italic">“Os dashboards transformaram a forma como acompanhamos resultados.”</p>
-          <div class="mt-5 pt-4 border-t border-white/10">
-            <strong>Marcos Oliveira</strong>
-            <p class="text-xs text-slate-500 mt-1">Diretor Executivo</p>
-          </div>
-        </div>
-        <div class="card rounded-3xl p-6">
-          <p class="text-slate-300 text-sm italic">“Gustavo é dedicado, colaborativo e sempre entrega soluções aplicáveis ao negócio.”</p>
-          <div class="mt-5 pt-4 border-t border-white/10">
-            <strong>Rodrigues Ademir</strong>
-            <p class="text-xs text-slate-500 mt-1">RH</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contato" class="mt-24 mb-10 glass rounded-[34px] p-8 md:p-12 text-center">
-      <span class="eyebrow">Contato</span>
-      <h2 class="mt-5 text-3xl md:text-5xl font-extrabold tracking-tight">Vamos transformar sistemas em resultados?</h2>
-      <p class="mt-5 text-slate-400 max-w-2xl mx-auto">Disponível para conexões profissionais, projetos de ERP, BI, PMO de Sistemas, automação, governança de dados e transformação operacional.</p>
-      <div class="mt-9 flex flex-wrap justify-center gap-4">
-        <a href="mailto:gustavocruzfarias16@gmail.com" class="btn-primary">Enviar e-mail</a>
-        <a href="https://www.linkedin.com/in/gustavohenriquefarias" target="_blank" class="btn-secondary">Conectar no LinkedIn</a>
-      </div>
-    </section>
-  </main>
-
-  <div id="modalProjetos" class="modal">
-    <div class="glass rounded-[30px] w-full max-w-4xl p-7 md:p-9 relative">
-      <button onclick="closeModal()" class="absolute top-5 right-6 text-3xl text-slate-400 hover:text-white">×</button>
-      <div id="modalContent"></div>
+    <div class="top-actions">
+      <button class="btn btn-small print-btn" onclick="window.print()" aria-label="Exportar o portfólio em PDF">Exportar PDF</button>
+      <a class="btn btn-primary btn-small" href="#contato">Solicitar diagnóstico</a>
+      <button class="btn btn-small menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">Menu</button>
     </div>
   </div>
+</header>
 
-  <script>
-    const conteudos = {
-      erp: `
-        <span class="eyebrow">Case estratégico</span>
-        <h2 class="mt-5 text-3xl md:text-4xl font-extrabold">PMO de Sistemas & Implantação ERP</h2>
-        <p class="mt-4 text-slate-400 leading-relaxed">Estruturação de projetos sistêmicos com foco em governança, processos, usuários-chave, indicadores e sustentação pós-implantação.</p>
-        <div class="mt-8 grid md:grid-cols-4 gap-4">
-          <div class="card rounded-2xl p-5"><p class="text-2xl">📋</p><h3 class="mt-3 font-bold">Requisitos</h3><p class="text-xs text-slate-500 mt-2">Levantamento com áreas de negócio</p></div>
-          <div class="card rounded-2xl p-5"><p class="text-2xl">⚙️</p><h3 class="mt-3 font-bold">AS-IS / TO-BE</h3><p class="text-xs text-slate-500 mt-2">Mapeamento e redesenho de processos</p></div>
-          <div class="card rounded-2xl p-5"><p class="text-2xl">🔗</p><h3 class="mt-3 font-bold">Integrações</h3><p class="text-xs text-slate-500 mt-2">ERP, BI, APIs e dados</p></div>
-          <div class="card rounded-2xl p-5"><p class="text-2xl">🚀</p><h3 class="mt-3 font-bold">Go Live</h3><p class="text-xs text-slate-500 mt-2">Treinamento e sustentação</p></div>
+<nav class="mobile-nav" id="mobileNav" aria-label="Navegação móvel">
+  <a href="#desafio">Desafio</a>
+  <a href="#atuacao">Atuação</a>
+  <a href="#metodo">Método</a>
+  <a href="#experiencias">Experiências</a>
+  <a href="#modelos">Contratação</a>
+  <a href="#sobre">Gustavo</a>
+</nav>
+
+<main id="conteudo">
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">Transformação operacional orientada por valor</div>
+          <h1>Empresas crescem. <span>Seus processos precisam acompanhar.</span></h1>
+          <p class="lead">
+            Ajudo empresas a organizar processos, utilizar melhor seus sistemas, transformar dados em decisões e reduzir atividades manuais — conectando estratégia, operação, tecnologia e pessoas.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">Agendar diagnóstico executivo</a>
+            <a class="btn" href="#metodo">Conhecer a metodologia</a>
+          </div>
+          <div class="trust-row" aria-label="Áreas de especialidade">
+            <span class="trust-pill">Processos AS IS / TO BE</span>
+            <span class="trust-pill">ERP &amp; WMS</span>
+            <span class="trust-pill">Power BI &amp; Indicadores</span>
+            <span class="trust-pill">Governança</span>
+            <span class="trust-pill">Automação &amp; IA</span>
+          </div>
         </div>
-      `
-    };
 
-    function openModal(tipo){
-      document.getElementById('modalProjetos').classList.add('active');
-      document.getElementById('modalContent').innerHTML = conteudos[tipo] || '';
-    }
+        <div class="executive-visual reveal" aria-label="Modelo integrado de transformação">
+          <div class="visual-inner">
+            <div class="visual-top">
+              <div>
+                <div class="visual-title">Modelo integrado de transformação</div>
+              </div>
+              <div class="status"><i></i> Foco em adoção e resultado</div>
+            </div>
 
-    function closeModal(){
-      document.getElementById('modalProjetos').classList.remove('active');
-    }
+            <div class="operating-model">
+              <div class="model-node"><span>01</span><strong>Pessoas &amp; experiência</strong></div>
+              <div class="model-node"><span>02</span><strong>Processos &amp; responsabilidades</strong></div>
+              <div class="model-node"><span>03</span><strong>Sistemas &amp; integrações</strong></div>
+              <div class="model-node"><span>04</span><strong>Dados &amp; indicadores</strong></div>
+              <div class="model-node center-node"><span>Resultado empresarial</span><strong>Controle, produtividade, previsibilidade e decisões mais seguras.</strong></div>
+            </div>
 
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closeModal();
+            <div class="visual-bottom">
+              <div class="mini-metric"><strong>Diagnosticar</strong><span>entender antes de recomendar</span></div>
+              <div class="mini-metric"><strong>Transformar</strong><span>desenhar e implantar melhorias</span></div>
+              <div class="mini-metric"><strong>Sustentar</strong><span>governar, treinar e evoluir</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="executive-strip reveal">
+        <div class="strip-item"><strong>Visão executiva</strong><span>Tecnologia conectada a custo, risco, produtividade e crescimento.</span></div>
+        <div class="strip-item"><strong>Leitura operacional</strong><span>Entendimento do trabalho real, não apenas do fluxo desenhado.</span></div>
+        <div class="strip-item"><strong>Capacidade analítica</strong><span>Dados estruturados para indicadores e tomada de decisão.</span></div>
+        <div class="strip-item"><strong>Adoção sustentável</strong><span>Governança, treinamento e experiência dos usuários.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="desafio">
+    <div class="container section-grid">
+      <div class="section-head reveal">
+        <div class="eyebrow">O desafio empresarial</div>
+        <h2>Tecnologia sem conexão vira custo.</h2>
+        <p class="lead">A maior parte dos problemas não está em uma única ferramenta. Está na ruptura entre áreas, pessoas, processos, sistemas e dados.</p>
+      </div>
+
+      <div class="problem-map reveal">
+        <div class="problem-row">
+          <div class="icon-box">01</div>
+          <div><strong>Sistemas demais, utilização de menos</strong><p>Licenças, módulos e plataformas sem clareza de valor ou sobreposição de funções.</p></div>
+          <span class="impact-tag impact-gold">Custo invisível</span>
+        </div>
+        <div class="problem-row">
+          <div class="icon-box">02</div>
+          <div><strong>Processos fora do sistema</strong><p>Planilhas paralelas, aprovações informais, dados duplicados e baixa rastreabilidade.</p></div>
+          <span class="impact-tag impact-red">Risco operacional</span>
+        </div>
+        <div class="problem-row">
+          <div class="icon-box">03</div>
+          <div><strong>Dados que não sustentam decisões</strong><p>Cadastros inconsistentes, relatórios manuais e indicadores sem regra única de cálculo.</p></div>
+          <span class="impact-tag impact-red">Decisão frágil</span>
+        </div>
+        <div class="problem-row">
+          <div class="icon-box">04</div>
+          <div><strong>Usuários cansados e pouco engajados</strong><p>Treinamentos informais, telas confusas, retrabalho e resistência às mudanças.</p></div>
+          <span class="impact-tag impact-gold">Baixa adoção</span>
+        </div>
+        <div class="problem-row">
+          <div class="icon-box">05</div>
+          <div><strong>Crescimento sem governança</strong><p>Demandas dispersas, acessos sem padrão, fornecedores sem gestão e prioridades conflitantes.</p></div>
+          <span class="impact-tag impact-red">Perda de controle</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="atuacao">
+    <div class="container">
+      <div class="eyebrow reveal">Como gero valor</div>
+      <h2 class="reveal">Uma atuação integrada, da operação à decisão.</h2>
+      <p class="lead reveal">O serviço não começa com a escolha de um software. Começa pela compreensão da empresa e termina com uma operação mais clara, mensurável e sustentável.</p>
+
+      <div class="cards reveal" style="margin-top:42px">
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16v6H4zM4 14h7v6H4zM15 14h5v6h-5z"/></svg>
+          </div>
+          <div class="index">Pilar 01</div>
+          <h3>Processos &amp; operação</h3>
+          <p>Mapeamento AS IS / TO BE, gargalos, responsabilidades, alçadas, riscos, controles e oportunidades de simplificação.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5"/></svg>
+          </div>
+          <div class="index">Pilar 02</div>
+          <h3>Sistemas &amp; governança</h3>
+          <p>Inventário, custos, licenças, módulos, acessos, fornecedores, integrações, demandas, testes, homologação e gestão de mudanças.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+          </div>
+          <div class="index">Pilar 03</div>
+          <h3>Dados &amp; indicadores</h3>
+          <p>Qualidade dos dados, dicionário de indicadores, modelagem, consolidação de bases, Power BI e painéis para gestão.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <div class="index">Pilar 04</div>
+          <h3>Automação &amp; inteligência artificial</h3>
+          <p>Priorização de tarefas repetitivas, integrações, APIs, RPA, alertas, assistentes internos e IA com validação humana.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 2-7 5-7s5 3 5 7M13 20c.2-3 1.7-5.5 4-5.5s4 2.4 4 5.5"/></svg>
+          </div>
+          <div class="index">Pilar 05</div>
+          <h3>Pessoas &amp; adoção</h3>
+          <p>Jornada do usuário, capacitação, materiais, trilhas, Universidade Corporativa, suporte à mudança e acompanhamento de adoção.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24"><path d="M4 18h16M6 18V8l6-4 6 4v10M9 18v-5h6v5"/></svg>
+          </div>
+          <div class="index">Pilar 06</div>
+          <h3>Gestão executiva de valor</h3>
+          <p>Roadmap, portfólio, benefícios, custos, riscos, prioridades e comunicação objetiva para gestores e direção.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="metodo">
+    <div class="container section-grid">
+      <div class="section-head reveal">
+        <div class="eyebrow">Metodologia própria</div>
+        <h2>Entender. Priorizar. Transformar. Sustentar.</h2>
+        <p class="lead">Uma metodologia executiva que combina diagnóstico, desenho, implantação e melhoria contínua.</p>
+      </div>
+
+      <div class="method reveal">
+        <div class="method-step">
+          <div class="method-num">01</div>
+          <div><h3>Diagnóstico executivo</h3><p>Entrevistas com direção, gestores e usuários para compreender objetivos, dores, riscos e decisões críticas.</p></div>
+          <div class="deliverables"><span>Mapa de dores</span><span>Objetivos estratégicos</span><span>Priorização inicial</span></div>
+        </div>
+        <div class="method-step">
+          <div class="method-num">02</div>
+          <div><h3>Leitura da operação real</h3><p>Acompanhamento da rotina, processos AS IS, sistemas utilizados, planilhas, aprovações e pontos de ruptura.</p></div>
+          <div class="deliverables"><span>BPMN</span><span>SIPOC</span><span>RACI</span><span>Jornada do usuário</span></div>
+        </div>
+        <div class="method-step">
+          <div class="method-num">03</div>
+          <div><h3>Arquitetura da transformação</h3><p>Desenho TO BE, análise de sistemas, indicadores, integrações, automações, riscos e plano de mudança.</p></div>
+          <div class="deliverables"><span>TO BE</span><span>Roadmap</span><span>Business case</span><span>Backlog</span></div>
+        </div>
+        <div class="method-step">
+          <div class="method-num">04</div>
+          <div><h3>Implantação orientada por valor</h3><p>Execução em ondas, testes, homologação, painéis, automações, documentação e comunicação.</p></div>
+          <div class="deliverables"><span>Quick wins</span><span>Indicadores</span><span>Treinamentos</span><span>Governança</span></div>
+        </div>
+        <div class="method-step">
+          <div class="method-num">05</div>
+          <div><h3>Adoção e melhoria contínua</h3><p>Acompanhamento do uso, satisfação dos usuários, benefícios, custos, riscos e novas oportunidades.</p></div>
+          <div class="deliverables"><span>Ritual executivo</span><span>Pesquisa de adoção</span><span>Relatório de valor</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencias">
+    <div class="container">
+      <div class="eyebrow reveal">Experiências representativas</div>
+      <h2 class="reveal">Capacidade aplicada em ambientes empresariais reais.</h2>
+      <p class="lead reveal">Exemplos apresentados sem exposição de informações confidenciais. Resultados quantitativos devem ser incluídos apenas quando formalmente validados.</p>
+
+      <div class="case-grid reveal" style="margin-top:42px">
+        <article class="case">
+          <div class="case-top">
+            <span class="case-sector">Construção civil &amp; incorporação</span>
+            <h3>Governança de ERP, aprovações e integração da operação.</h3>
+          </div>
+          <div class="case-body">
+            <div class="case-line"><span>Contexto</span><p>Ambiente com diferentes departamentos, regras de aprovação, obras, contratos, medições e múltiplos sistemas corporativos.</p></div>
+            <div class="case-line"><span>Atuação</span><p>Estrutura organizacional, matriz de aprovações, governança de acessos, procedimentos, treinamento e conexão entre ERP, planejamento e operação de campo.</p></div>
+            <div class="case-line"><span>Valor gerado</span><p>Maior clareza de responsabilidades, rastreabilidade, padronização e base mais confiável para gestão.</p></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-top">
+            <span class="case-sector">Logística &amp; armazenagem</span>
+            <h3>Preparação operacional e validação ponta a ponta de WMS.</h3>
+          </div>
+          <div class="case-body">
+            <div class="case-line"><span>Contexto</span><p>Operação com portaria, recebimento, conferência, endereçamento, separação, expedição, faturamento e integrações.</p></div>
+            <div class="case-line"><span>Atuação</span><p>Mapeamento do processo real, cenários de teste, requisitos, cadastros, divergências, checklists e indicadores operacionais.</p></div>
+            <div class="case-line"><span>Valor gerado</span><p>Redução do risco de implantação, visão integrada da operação e critérios objetivos para homologação.</p></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-top">
+            <span class="case-sector">Gestão do conhecimento</span>
+            <h3>Universidade Corporativa para sistemas e processos.</h3>
+          </div>
+          <div class="case-body">
+            <div class="case-line"><span>Contexto</span><p>Conhecimento concentrado em poucas pessoas, treinamentos informais e dificuldade de integração de novos colaboradores.</p></div>
+            <div class="case-line"><span>Atuação</span><p>Portal centralizado, trilhas por sistema e processo, vídeos, manuais, BPMN, políticas, checklists e assistente interna.</p></div>
+            <div class="case-line"><span>Valor gerado</span><p>Preservação do conhecimento, padronização, autonomia dos usuários e redução da dependência de treinamentos individuais.</p></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-top">
+            <span class="case-sector">Dados &amp; gestão executiva</span>
+            <h3>Indicadores conectados à decisão, não apenas à visualização.</h3>
+          </div>
+          <div class="case-body">
+            <div class="case-line"><span>Contexto</span><p>Dados dispersos, indicadores manuais, pouca rastreabilidade e demora para responder perguntas gerenciais.</p></div>
+            <div class="case-line"><span>Atuação</span><p>Dicionário de indicadores, regras de cálculo, tratamento de dados, painéis executivos e operacionais, metas e responsáveis.</p></div>
+            <div class="case-line"><span>Valor gerado</span><p>Maior consistência das informações, acompanhamento de desvios e comunicação gerencial mais objetiva.</p></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="evidence-note reveal" style="margin-top:24px">
+        Próximo nível de autoridade: transformar cada experiência em um case de uma página com situação inicial, escopo, entregáveis, indicador antes/depois, depoimento autorizado e evidência visual.
+      </div>
+    </div>
+  </section>
+
+  <section id="resultados">
+    <div class="container section-grid">
+      <div class="section-head reveal">
+        <div class="eyebrow">Resultados que importam</div>
+        <h2>Valor mensurável em quatro dimensões.</h2>
+        <p class="lead">A transformação deve melhorar a operação, a gestão, a experiência das pessoas e a sustentabilidade do crescimento.</p>
+      </div>
+
+      <div class="outcome-board reveal">
+        <div class="outcome-row">
+          <div class="outcome-cell"><span>Eficiência</span><strong>Menos etapas e retrabalho</strong><p>Tempo de ciclo, horas manuais, erros, duplicidades e atividades sem valor agregado.</p></div>
+          <div class="outcome-cell"><span>Controle</span><strong>Mais rastreabilidade</strong><p>Responsáveis, aprovações, acessos, riscos, registros e aderência ao processo.</p></div>
+          <div class="outcome-cell"><span>Decisão</span><strong>Informação confiável</strong><p>Indicadores com regra clara, fonte definida, periodicidade e ação recomendada.</p></div>
+        </div>
+        <div class="outcome-row">
+          <div class="outcome-cell"><span>Tecnologia</span><strong>Melhor retorno sobre sistemas</strong><p>Uso de módulos contratados, consolidação, integração e revisão de licenças.</p></div>
+          <div class="outcome-cell"><span>Pessoas</span><strong>Melhor experiência do usuário</strong><p>Treinamento, clareza, autonomia, redução de burocracia e apoio à adoção.</p></div>
+          <div class="outcome-cell"><span>Estratégia</span><strong>Crescimento sustentável</strong><p>Roadmap, prioridades, gestão de portfólio e conexão entre investimento e benefício.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modelos">
+    <div class="container">
+      <div class="eyebrow reveal">Formatos de contratação</div>
+      <h2 class="reveal">Comece pelo nível de transformação que sua empresa precisa.</h2>
+      <p class="lead reveal">Escopos modulares, com governança, entregáveis e critérios de sucesso definidos.</p>
+
+      <div class="offer-grid reveal" style="margin-top:46px">
+        <article class="offer">
+          <span class="offer-tag">Entrada</span>
+          <h3>Diagnóstico Executivo</h3>
+          <p class="subtitle">Levantamento rápido para identificar prioridades, riscos e oportunidades.</p>
+          <ul>
+            <li>Entrevistas com direção e gestores</li>
+            <li>Inventário de sistemas e custos</li>
+            <li>Mapeamento dos processos críticos</li>
+            <li>Matriz de gargalos e riscos</li>
+            <li>Plano de ação priorizado</li>
+          </ul>
+          <div class="offer-foot"><strong>Ideal para:</strong> empresas que sabem que precisam mudar, mas ainda não possuem clareza sobre onde começar.</div>
+        </article>
+
+        <article class="offer featured">
+          <span class="offer-tag">Transformação</span>
+          <h3>Programa de Melhoria</h3>
+          <p class="subtitle">Diagnóstico, desenho e implantação das melhorias priorizadas.</p>
+          <ul>
+            <li>Processos AS IS / TO BE</li>
+            <li>Otimização e governança de sistemas</li>
+            <li>Indicadores e painéis</li>
+            <li>Automações e integrações</li>
+            <li>Treinamentos e gestão da mudança</li>
+          </ul>
+          <div class="offer-foot"><strong>Ideal para:</strong> empresas que precisam transformar um processo, área ou operação com execução acompanhada.</div>
+        </article>
+
+        <article class="offer">
+          <span class="offer-tag">Recorrência</span>
+          <h3>PMO de Sistemas Fracionado</h3>
+          <p class="subtitle">Gestão contínua para empresas que precisam de liderança especializada sem ampliar a estrutura fixa.</p>
+          <ul>
+            <li>Gestão de demandas e fornecedores</li>
+            <li>Custos, contratos e licenças</li>
+            <li>Roadmap e priorização</li>
+            <li>Acompanhamento de indicadores</li>
+            <li>Ritual executivo com a direção</li>
+          </ul>
+          <div class="offer-foot"><strong>Ideal para:</strong> empresas com vários sistemas e projetos, mas sem uma governança dedicada.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="container profile-grid">
+      <div class="profile-card reveal">
+        <div>
+          <div class="profile-mark">GF</div>
+          <h3>Gustavo Farias</h3>
+          <p>Consultor de Transformação Operacional, Sistemas e Dados.</p>
+          <p>Atuação na ligação entre direção, operação, usuários, fornecedores e tecnologia para transformar sistemas corporativos em capacidade de gestão.</p>
+        </div>
+        <div class="profile-meta">
+          <div><span>Base</span><strong>São Carlos — SP</strong></div>
+          <div><span>Atendimento</span><strong>Presencial e remoto</strong></div>
+          <div><span>Formação</span><strong>ADS, Dados e MBA em andamento</strong></div>
+          <div><span>Experiência</span><strong>ERP, WMS, BI, processos e governança</strong></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="eyebrow">Perfil executivo-técnico</div>
+        <h2>Traduzo a necessidade do negócio em uma solução aplicável.</h2>
+        <div class="capability-list">
+          <div class="capability"><strong>Sistemas corporativos</strong><p>Sienge, Prevision, Sankhya, WMS Senior, Omie, Mobuss, OnSafety, SoftExpert e ecossistemas integrados.</p></div>
+          <div class="capability"><strong>Dados &amp; tecnologia</strong><p>Power BI, SQL, Python, APIs, automações, modelagem, integração e análise de dados.</p></div>
+          <div class="capability"><strong>Processos</strong><p>Construção civil, logística, armazenagem, compras, contratos, medições, estoque, faturamento, financeiro e áreas administrativas.</p></div>
+          <div class="capability"><strong>Gestão</strong><p>Levantamento de requisitos, fornecedores, custos, projetos, testes, homologação, governança, documentação e treinamento.</p></div>
+          <div class="capability"><strong>Diferencial</strong><p>Capacidade de conversar com usuários operacionais e direção, conectando detalhes da rotina a decisões de negócio.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="maturidade">
+    <div class="container">
+      <div class="maturity reveal">
+        <div>
+          <div class="eyebrow">Leitura de maturidade</div>
+          <h2>O diagnóstico mede mais do que tecnologia.</h2>
+          <p class="lead">A avaliação considera a capacidade da empresa de operar, controlar, aprender e decidir de forma integrada.</p>
+          <p class="muted">O exemplo ao lado ilustra as dimensões avaliadas. A pontuação real é construída a partir de entrevistas, evidências e observação da operação.</p>
+        </div>
+
+        <div>
+          <div class="score-card">
+            <span class="eyebrow" style="margin-bottom:12px">Exemplo ilustrativo</span>
+            <div class="score-number">62</div>
+            <p>Maturidade intermediária — boa base, com oportunidades relevantes de integração e governança.</p>
+          </div>
+          <div class="maturity-bars" style="margin-top:24px">
+            <div><div class="bar-head"><span>Processos</span><span>68%</span></div><div class="bar"><i style="--w:68%"></i></div></div>
+            <div><div class="bar-head"><span>Sistemas</span><span>72%</span></div><div class="bar"><i style="--w:72%"></i></div></div>
+            <div><div class="bar-head"><span>Dados</span><span>55%</span></div><div class="bar"><i style="--w:55%"></i></div></div>
+            <div><div class="bar-head"><span>Governança</span><span>49%</span></div><div class="bar"><i style="--w:49%"></i></div></div>
+            <div><div class="bar-head"><span>Experiência do usuário</span><span>66%</span></div><div class="bar"><i style="--w:66%"></i></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roi">
+    <div class="container">
+      <div class="eyebrow reveal">Simulador executivo</div>
+      <h2 class="reveal">Quanto custa manter o retrabalho?</h2>
+      <p class="lead reveal">Uma estimativa inicial para tornar visível o custo mensal de atividades manuais e repetitivas.</p>
+
+      <div class="roi-grid reveal" style="margin-top:40px">
+        <div class="calculator">
+          <div class="field">
+            <label for="people">Pessoas envolvidas no processo</label>
+            <input id="people" type="number" min="0" step="1" value="5">
+          </div>
+          <div class="field">
+            <label for="hours">Horas improdutivas por semana, por pessoa</label>
+            <input id="hours" type="number" min="0" step="0.5" value="4">
+          </div>
+          <div class="field">
+            <label for="rate">Custo médio da hora (R$)</label>
+            <input id="rate" type="number" min="0" step="1" value="45">
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label for="recover">Percentual potencialmente recuperável</label>
+            <input id="recover" type="number" min="0" max="100" step="5" value="40">
+          </div>
+        </div>
+
+        <div class="roi-result">
+          <span>Potencial mensal recuperável</span>
+          <strong id="roiValue">R$ 1.559</strong>
+          <p id="roiSupport">Custo bruto estimado do retrabalho: R$ 3.897 por mês.</p>
+          <div class="disclaimer">Estimativa gerencial. O business case final deve considerar salário total, encargos, volume real, riscos, erros e custos de oportunidade.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="contato">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="eyebrow">Próximo passo</div>
+        <h2>Antes de comprar outra ferramenta, entenda onde sua operação perde valor.</h2>
+        <p class="lead">Uma conversa executiva pode revelar se o problema está no processo, no sistema, nos dados, na governança ou na experiência dos usuários.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="mailto:gustavohenriquefarias161@gmail.com?subject=Diagn%C3%B3stico%20Executivo%20-%20Transforma%C3%A7%C3%A3o%20Operacional">Solicitar diagnóstico por e-mail</a>
+          <a class="btn" href="https://wa.me/5516991940396?text=Ol%C3%A1%20Gustavo%2C%20gostaria%20de%20conversar%20sobre%20um%20diagn%C3%B3stico%20de%20processos%2C%20sistemas%20e%20dados." target="_blank" rel="noopener">Conversar pelo WhatsApp</a>
+        </div>
+        <div class="contact-line">Gustavo Farias · São Carlos/SP · Atendimento a empresas em todo o Brasil</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© 2026 Cruz &amp; Farias Consultoria. Transformação Operacional, Sistemas e Dados.</div>
+    <div>Processos bem estruturados. Sistemas bem utilizados. Decisões mais seguras.</div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  menuBtn?.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.textContent = open ? 'Fechar' : 'Menu';
+  });
+
+  mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = 'Menu';
     });
-  </script>
+  });
+
+  const sections = [...document.querySelectorAll('main section[id]')];
+  const desktopLinks = [...document.querySelectorAll('.desktop-nav a')];
+
+  const observerNav = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        desktopLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+      }
+    });
+  }, {rootMargin:'-42% 0px -50% 0px', threshold:0});
+
+  sections.forEach(section => observerNav.observe(section));
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observerReveal = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observerReveal.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+
+  reveals.forEach(el => observerReveal.observe(el));
+
+  const fields = ['people','hours','rate','recover'].map(id => document.getElementById(id));
+  const roiValue = document.getElementById('roiValue');
+  const roiSupport = document.getElementById('roiSupport');
+
+  function money(value){
+    return value.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  }
+
+  function calcROI(){
+    const people = Math.max(0, Number(fields[0].value) || 0);
+    const hours = Math.max(0, Number(fields[1].value) || 0);
+    const rate = Math.max(0, Number(fields[2].value) || 0);
+    const recover = Math.min(100, Math.max(0, Number(fields[3].value) || 0));
+    const gross = people * hours * rate * 4.33;
+    const potential = gross * (recover/100);
+    roiValue.textContent = money(potential);
+    roiSupport.textContent = `Custo bruto estimado do retrabalho: ${money(gross)} por mês.`;
+  }
+
+  fields.forEach(field => field.addEventListener('input', calcROI));
+  calcROI();
+</script>
 </body>
 </html>
