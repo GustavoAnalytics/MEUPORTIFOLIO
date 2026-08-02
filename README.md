@@ -1,10 +1,10 @@
-# Portfólio Gustavo Farias — versão 11 responsiva
+# Portfólio Gustavo Farias — versão 14
 
-Esta versão foi preparada para funcionar em telas amplas, notebooks, tablets, celulares e aparelhos em modo paisagem.
+Versão completa e responsiva do portfólio, preparada para desktops, notebooks, tablets, celulares e aparelhos em modo paisagem.
 
 ## Publicação
 
-Envie para a raiz do repositório GitHub Pages:
+Envie para a raiz do repositório ou da hospedagem:
 
 - `index.html`
 - `styles.css`
@@ -18,21 +18,31 @@ Envie para a raiz do repositório GitHub Pages:
 
 Mantenha a estrutura de pastas sem renomear os arquivos.
 
-## Versão autônoma
+## Versão com CSS e JavaScript incorporados
 
-O arquivo `gustavo-portfolio-completo.html` inclui CSS, JavaScript e imagens incorporados. Ele pode ser aberto sozinho para apresentação ou teste local.
+O arquivo `gustavo-portfolio-completo.html` contém o CSS e o JavaScript dentro do próprio HTML. A pasta `assets` deve permanecer ao lado do arquivo para carregar a foto, os logotipos e os ícones.
 
-## Breakpoints principais
+## Seis recomendações reais do LinkedIn
 
-- Acima de 1280 px: desktops amplos.
-- 1081–1280 px: notebooks.
-- 821–1080 px: notebooks pequenos e tablets horizontais.
-- 601–820 px: tablets.
-- 421–600 px: celulares grandes.
-- 341–420 px: celulares compactos.
-- Até 340 px: largura mínima suportada.
-- Até 520 px de altura em modo paisagem: hero compacto em duas colunas.
+A seção **Confiança construída na prática** utiliza seis recomendações profissionais reais:
 
-## Validação realizada
+- Mariano Latorre Bragion;
+- Lisandra Ferreira;
+- Taiane Binte;
+- Lorenna Scarelli;
+- Daniele Rodrigues;
+- Rodrigues Ademir.
 
-Foram testadas 13 resoluções entre 1920×1080 e 320×568, incluindo 812×375 em modo paisagem. Não foi detectada rolagem horizontal, e o menu, os filtros e as abas permaneceram funcionais.
+A recomendação de Mariano foi adicionada como o relato mais recente, datado de 28 de julho de 2026. Cada card apresenta autor, cargo, data, trecho literal e competências relacionadas. O botão **Ler recomendação completa** abre o texto integral em um modal acessível. O botão **Validar no LinkedIn** direciona para a página de recomendações do perfil.
+
+## Responsividade
+
+- Desktop amplo e notebook: seis cards em grade equilibrada de 3 × 2.
+- Tablet: dois cards por linha.
+- Celular: um card por linha.
+- Celular compacto: tipografia, espaçamento e ações reorganizados.
+- Paisagem de baixa altura: duas colunas e modal com rolagem interna.
+
+## Validação
+
+A seção deve ser validada após a publicação em janela anônima para evitar cache antigo. Os ícones recebem o parâmetro de versão `v=14` para atualização de cache.

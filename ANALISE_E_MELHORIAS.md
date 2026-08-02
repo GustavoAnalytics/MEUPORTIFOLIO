@@ -1,45 +1,26 @@
-# Melhorias de responsividade — versão 11
+# Portfólio Gustavo Farias — melhorias da versão 14
 
-## Problemas corrigidos
+## Recomendação de Mariano Latorre Bragion
 
-- Hero apertado em notebooks e tablets horizontais.
-- Imagem profissional mantendo altura fixa por causa dos atributos HTML.
-- Elementos decorativos ampliando a largura interna do documento.
-- Botão flutuante do WhatsApp cobrindo os CTAs na primeira dobra.
-- Cards e colunas com largura mínima inadequada em telas pequenas.
-- Experiências, cases e projetos com leitura apertada no celular.
-- Filtros, botões, e-mail e textos longos com risco de ultrapassar a tela.
-- Layout inadequado em celulares na orientação paisagem.
+- Inclusão do sexto depoimento real recebido no LinkedIn.
+- Autor: Mariano Latorre Bragion.
+- Data: 28 de julho de 2026.
+- Relação: trabalhou na mesma equipe que Gustavo Henrique.
+- Conteúdo preservado conforme a captura fornecida pelo usuário.
+- Destaque para domínio técnico, resolução de problemas complexos, clareza, paciência, profissionalismo e capacidade de transformar problemas técnicos em soluções práticas.
 
-## Soluções implementadas
+## Organização visual
 
-- Gutter e espaçamentos fluidos com `clamp()`.
-- Containers limitados pela viewport.
-- Imagens com largura e altura fluidas.
-- Breakpoints específicos para desktop, notebook, tablet, celular e landscape.
-- Hero empilhado abaixo de 1080 px e compacto em landscape de baixa altura.
-- Grids adaptativos: 4, 3, 2 ou 1 coluna conforme a largura.
-- Abas e filtros reorganizados para toque e teclado.
-- Quebra segura de URLs, e-mails, títulos e botões.
-- Menu móvel com altura limitada, rolagem interna e safe areas.
-- WhatsApp exibido apenas após o início da rolagem.
-- Regras para aparelhos touch, redução de movimento e impressão.
-- Correção dos glows decorativos com `overflow: clip`.
+- Grade desktop reorganizada em 3 × 2, sem card ocupando duas colunas.
+- Grade tablet em 2 × 3.
+- Grade celular em uma coluna.
+- Recomendação mais recente recebe destaque visual sutil, sem quebrar o equilíbrio da grade.
+- Contadores atualizados de cinco para seis recomendações.
+- Texto do CTA final atualizado para seis recomendações reais e verificáveis.
 
-## Matriz de testes
+## Modal e acessibilidade
 
-- 1920×1080
-- 1440×900
-- 1366×768
-- 1280×720
-- 1024×768
-- 834×1194
-- 768×1024
-- 430×932
-- 390×844
-- 375×812
-- 360×800
-- 320×568
-- 812×375 em landscape
-
-Resultado: zero overflow horizontal antes e depois da interação com abas e filtros; menu móvel funcional; nenhum erro JavaScript detectado.
+- Sexto item incluído no conjunto de dados do modal.
+- Quebras de parágrafo do depoimento de Mariano preservadas com `white-space: pre-line`.
+- Navegação por teclado, fechamento com Escape e retorno de foco mantidos.
+- Links de validação direcionam para a seção de recomendações do LinkedIn.

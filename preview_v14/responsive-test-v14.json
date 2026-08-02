@@ -1,0 +1,41 @@
+{
+  "desktop-1440": {
+    "overflow": false,
+    "cards": 6,
+    "first": "Mariano Latorre Bragion",
+    "errors": [],
+    "modal": null
+  },
+  "tablet-768": {
+    "overflow": false,
+    "cards": 6,
+    "first": "Mariano Latorre Bragion",
+    "errors": [],
+    "modal": null
+  },
+  "mobile-390": {
+    "overflow": false,
+    "cards": 6,
+    "first": "Mariano Latorre Bragion",
+    "errors": [],
+    "modal": {
+      "open": true,
+      "name": "Mariano Latorre Bragion",
+      "quote_has_saved_project": true
+    }
+  },
+  "mobile-320": {
+    "overflow": false,
+    "cards": 6,
+    "first": "Mariano Latorre Bragion",
+    "errors": [],
+    "modal": null
+  },
+  "landscape-812": {
+    "overflow": false,
+    "cards": 6,
+    "first": "Mariano Latorre Bragion",
+    "errors": [],
+    "modal": null
+  }
+}
