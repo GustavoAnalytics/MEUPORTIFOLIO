@@ -1,0 +1,22 @@
+{
+  "name": "Gustavo Farias | Operação Conectada",
+  "short_name": "Gustavo Farias",
+  "description": "ERP, WMS, processos e dados funcionando juntos na operação real.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "icons": [
+    {
+      "src": "assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

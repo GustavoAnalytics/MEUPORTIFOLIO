@@ -1,30 +1,38 @@
-# Portfólio Executivo Gustavo Farias — versão 10
+# Portfólio Gustavo Farias — versão 11 responsiva
 
-## Estrutura
-- `index.html`: página principal.
-- `styles.css`: identidade visual e responsividade.
-- `script.js`: menu, navegação ativa, filtros e animações.
-- `assets/gustavo-farias.png`: foto profissional.
-- `materiais/`: documentos PDF para download.
+Esta versão foi preparada para funcionar em telas amplas, notebooks, tablets, celulares e aparelhos em modo paisagem.
 
-## Publicação no GitHub Pages
-1. Faça backup do repositório atual.
-2. Substitua os arquivos da raiz pelos arquivos deste pacote.
-3. Mantenha as pastas `assets` e `materiais` na mesma estrutura.
-4. Faça commit e push para a branch usada pelo GitHub Pages.
+## Publicação
 
-## Links externos usados
-- Cruz & Farias Consultoria: `https://cruz-farias.vercel.app/`
-- Diagnóstico Executivo: `https://diagnostico-pi-one.vercel.app/`
-- Universidade Corporativa: `https://faculdade-mngt.vercel.app/`
-- LinkedIn e GitHub.
+Envie para a raiz do repositório GitHub Pages:
 
-## Ajustes realizados
-- Portfólio transformado em prova executiva pessoal.
-- Remoção de serviços comerciais, diagnóstico interno e Método Conecta detalhado.
-- Navegação reduzida para Visão, Especialidades, Experiência, Cases, Projetos, Formação e Contato.
-- Quatro cases selecionados.
-- Projetos classificados como experiência aplicada, demonstração técnica ou projeto conceitual.
-- Tecnologias agrupadas por finalidade.
-- Materiais profissionais reais para download.
-- Responsividade completa e acessibilidade básica.
+- `index.html`
+- `styles.css`
+- `script.js`
+- `favicon.ico`
+- `site.webmanifest`
+- `robots.txt`
+- `sitemap.xml`
+- `404.html`
+- pasta `assets`
+
+Mantenha a estrutura de pastas sem renomear os arquivos.
+
+## Versão autônoma
+
+O arquivo `gustavo-portfolio-completo.html` inclui CSS, JavaScript e imagens incorporados. Ele pode ser aberto sozinho para apresentação ou teste local.
+
+## Breakpoints principais
+
+- Acima de 1280 px: desktops amplos.
+- 1081–1280 px: notebooks.
+- 821–1080 px: notebooks pequenos e tablets horizontais.
+- 601–820 px: tablets.
+- 421–600 px: celulares grandes.
+- 341–420 px: celulares compactos.
+- Até 340 px: largura mínima suportada.
+- Até 520 px de altura em modo paisagem: hero compacto em duas colunas.
+
+## Validação realizada
+
+Foram testadas 13 resoluções entre 1920×1080 e 320×568, incluindo 812×375 em modo paisagem. Não foi detectada rolagem horizontal, e o menu, os filtros e as abas permaneceram funcionais.
